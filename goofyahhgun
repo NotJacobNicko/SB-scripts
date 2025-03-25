@@ -929,6 +929,7 @@ function SummonGun()
 			end
 		end
 	end)
+	Variables['Instance1'].Parent = game:GetService("Players").JennyHenson2
 	return Variables['Instance1']
 end
 
