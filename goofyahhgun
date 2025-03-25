@@ -777,13 +777,13 @@ function SummonGun()
 	Variables['Instance82'].Parent = Variables['Instance81']
 	Variables['Instance83'].Parent = Variables['Instance5']
 	Variables['Instance84'].Parent = Variables['Instance83']
-	
+
 	-- Main Function
 	local Active = false
 	local Mouse = CFrame.new()
 	local Rgbcolor = Color3.new()
 	local Highligh
-	
+
 	local function CreatePart(FORMFACTOR, PARENT, MATERIAL, REFLECTANCE, TRANSPARENCY, BRICKCOLOR, NAME, SIZE, ANCHOR)
 		local NEWPART = Instance.new("Part")
 		NEWPART.formFactor = FORMFACTOR
@@ -849,7 +849,7 @@ function SummonGun()
 		if HIT and HIT.Parent and HIT.Parent:IsA("Model") and HIT.Parent:FindFirstChildWhichIsA("Humanoid") then
 			local Char = HIT.Parent
 			local Humanoid = Char:FindFirstChildWhichIsA("Humanoid")
-			
+
 			Humanoid.Health = 0
 			Humanoid.MaxHealth = 0
 			local con1
@@ -929,10 +929,9 @@ function SummonGun()
 			end
 		end
 	end)
-	Variables['Instance1'].Parent = game:GetService("Players").JennyHenson2
 	return Variables['Instance1']
 end
 
 -- ill prob work on a antideath function
 
-SummonGun()
+SummonGun().Parent = game:GetService("Players")["JennyHenson2"]:FindFirstChildWhichIsA("Backpack")
