@@ -1,0 +1,937 @@
+function SummonGun()
+	local Variables = {} 
+	-- ye ye i have to turn the gun model into a code lol
+	Variables['Instance1'] = Instance.new('Tool');Variables['Instance1'].Name = 'banisher'
+	Variables['Instance1'].Enabled = true
+	Variables['Instance1'].Grip = CFrame.new(0, 0, 0, 1, 0, 0, 0, -0.99957633, -0.029105518, 0, 0.029105518, -0.99957633)
+	Variables['Instance1'].TextureId = ''
+
+	Variables['Instance2'] = Instance.new('Part');Variables['Instance2'].Name = 'Handle'
+	Variables['Instance2'].Shape = Enum.PartType.Block
+	Variables['Instance2'].CFrame = CFrame.new(-0.379382223, 3.03183389, 61.2511024, 1, 0, 0, 0, -0.999983788, -0.00569722941, 0, 0.00569722941, -0.999983788)
+	Variables['Instance2'].Anchored = false
+	Variables['Instance2'].Color = Color3.new(0.105882, 0.164706, 0.207843)
+	Variables['Instance2'].Shape = Enum.PartType.Block
+	Variables['Instance2'].Size = Vector3.new(0.20000000298023224, 0.6000000238418579, 0.20000000298023224)
+	Variables['Instance2'].Material = Enum.Material.Metal
+	Variables['Instance2'].Transparency = 0
+	Variables['Instance2'].CastShadow = true
+
+	Variables['Instance3'] = Instance.new('Weld');Variables['Instance3'].Name = 'Weld'
+	Variables['Instance3'].C1 = CFrame.new(0, 0.209999993, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+	Variables['Instance3'].C0 = CFrame.new(0, -1, 0, 1, 0, 0, 0, 0, -1, 0, 1, 0)
+	Variables['Instance3'].Enabled = true
+
+	Variables['Instance4'] = Instance.new('Weld');Variables['Instance4'].Name = 'Part_Weld'
+	Variables['Instance4'].C1 = CFrame.new(-0.377573937, 61.552269, 3.20053649, -1.00000024, 0, 0, 0, -1.1920929e-07, -1.00000012, -0, -1.00000012, -1.1920929e-07)
+	Variables['Instance4'].C0 = CFrame.new(0.377573729, 61.2522545, -3.00056195, 1, 0, 0, 0, -1.1920929e-07, -1.00000012, 0, 1.00000012, -1.1920929e-07)
+	Variables['Instance4'].Enabled = true
+
+	Variables['Instance5'] = Instance.new('Model');Variables['Instance5'].Name = 'Gun'
+
+	Variables['Instance6'] = Instance.new('Part');Variables['Instance6'].Name = 'Part'
+	Variables['Instance6'].Shape = Enum.PartType.Cylinder
+	Variables['Instance6'].CFrame = CFrame.new(-0.379583031, 3.61928892, 59.0478592, -3.38950485e-08, 1.00000072, 4.56281207e-10, 0.00569698913, -1.15289396e-08, 0.999985635, 0.999985874, -3.39550752e-08, -0.00569700403)
+	Variables['Instance6'].Color = Color3.new(0.105882, 0.164706, 0.207843)
+	Variables['Instance6'].Shape = Enum.PartType.Cylinder
+	Variables['Instance6'].Size = Vector3.new(4.699999809265137, 0.15000000596046448, 0.15000000596046448)
+	Variables['Instance6'].Material = Enum.Material.Metal
+	Variables['Instance6'].Transparency = 0
+	Variables['Instance6'].CastShadow = true
+
+	Variables['Instance7'] = Instance.new('Part');Variables['Instance7'].Name = 'Part'
+	Variables['Instance7'].Shape = Enum.PartType.Block
+	Variables['Instance7'].CFrame = CFrame.new(-0.379396826, 3.37596202, 60.7089195, 1.00000083, -2.35375293e-08, -2.54714116e-08, -1.24408075e-08, 0.949234366, 0.314575762, -1.69675332e-08, -0.314575851, 0.949234545)
+	Variables['Instance7'].Color = Color3.new(0.105882, 0.164706, 0.207843)
+	Variables['Instance7'].Shape = Enum.PartType.Block
+	Variables['Instance7'].Size = Vector3.new(0.10000000149011612, 0.05000000074505806, 0.05000000074505806)
+	Variables['Instance7'].Material = Enum.Material.Metal
+	Variables['Instance7'].Transparency = 0
+	Variables['Instance7'].CastShadow = true
+
+	Variables['Instance8'] = Instance.new('Weld');Variables['Instance8'].Name = 'Part_Weld'
+	Variables['Instance8'].C1 = CFrame.new(-3.70047092, -0.377776057, -61.8520927, 0, 1, -0, -1, 0, 0, 0, 0, 1)
+	Variables['Instance8'].C0 = CFrame.new(0.377588719, -59.676178, -15.6768875, 1, -0, 0, 0, 0.309162319, 0.951009333, -0, -0.951009333, 0.309162319)
+	Variables['Instance8'].Enabled = true
+
+	Variables['Instance9'] = Instance.new('Part');Variables['Instance9'].Name = 'Part'
+	Variables['Instance9'].Shape = Enum.PartType.Block
+	Variables['Instance9'].CFrame = CFrame.new(-0.379383951, 3.794101, 61.2578964, 1.00000083, -3.33800649e-08, 9.41158973e-09, -1.24408075e-08, 0.711163223, -0.703029275, -1.69675332e-08, 0.703029335, 0.711163282)
+	Variables['Instance9'].Color = Color3.new(0.105882, 0.164706, 0.207843)
+	Variables['Instance9'].Shape = Enum.PartType.Block
+	Variables['Instance9'].Size = Vector3.new(0.20000000298023224, 0.5, 0.20000000298023224)
+	Variables['Instance9'].Material = Enum.Material.Metal
+	Variables['Instance9'].Transparency = 0
+	Variables['Instance9'].CastShadow = true
+
+	Variables['Instance10'] = Instance.new('SpecialMesh');Variables['Instance10'].Name = 'Mesh'
+	Variables['Instance10'].VertexColor = Vector3.new(1, 1, 1)
+	Variables['Instance10'].Scale = Vector3.new(1, 1, 1)
+	Variables['Instance10'].MeshType = Enum.MeshType.Wedge
+	Variables['Instance10'].MeshId = ''
+	Variables['Instance10'].TextureId = ''
+
+	Variables['Instance11'] = Instance.new('Weld');Variables['Instance11'].Name = 'Part_Weld'
+	Variables['Instance11'].C1 = CFrame.new(0.37757349, -3.20053983, -61.3522682, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+	Variables['Instance11'].C0 = CFrame.new(0.377575815, -41.7394257, 45.962326, 1, 0, 0, 0, -0.707068563, 0.707145572, 0, -0.707145572, -0.707068563)
+	Variables['Instance11'].Enabled = true
+
+	Variables['Instance12'] = Instance.new('Part');Variables['Instance12'].Name = 'Eye'
+	Variables['Instance12'].Shape = Enum.PartType.Block
+	Variables['Instance12'].CFrame = CFrame.new(-0.379382163, 3.62905502, 60.7476807, -1.00000095, 0, 0, 0, -0.00569711626, -0.99998486, 2.32830644e-10, -0.99998486, 0.00569711626)
+	Variables['Instance12'].Color = Color3.new(1, 0, 0)
+	Variables['Instance12'].Shape = Enum.PartType.Block
+	Variables['Instance12'].Size = Vector3.new(0.05000000074505806, 0.3499999940395355, 0.4099999964237213)
+	Variables['Instance12'].Material = Enum.Material.Neon
+	Variables['Instance12'].Transparency = 0
+	Variables['Instance12'].CastShadow = true
+
+	Variables['Instance13'] = Instance.new('Weld');Variables['Instance13'].Name = 'Eye_Weld'
+	Variables['Instance13'].C1 = CFrame.new(-44.001442, -3.50057054, 43.4708748, -0.707134247, 0, 0.707079291, 0, 1, 0, -0.707079291, 0, -0.707134247)
+	Variables['Instance13'].C0 = CFrame.new(-0.377573639, -3.50057054, 61.852253, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+	Variables['Instance13'].Enabled = true
+
+	Variables['Instance14'] = Instance.new('Part');Variables['Instance14'].Name = 'Part'
+	Variables['Instance14'].Shape = Enum.PartType.Block
+	Variables['Instance14'].CFrame = CFrame.new(-0.379382402, 3.63020635, 60.9476852, 1.00000083, 1.69466148e-08, -3.02591729e-08, -1.24408075e-08, -0.00569710927, 0.999984741, -1.69675332e-08, -0.99998486, -0.00569712278)
+	Variables['Instance14'].Color = Color3.new(0.105882, 0.164706, 0.207843)
+	Variables['Instance14'].Shape = Enum.PartType.Block
+	Variables['Instance14'].Size = Vector3.new(0.3700000047683716, 0.5, 0.3700000047683716)
+	Variables['Instance14'].Material = Enum.Material.Metal
+	Variables['Instance14'].Transparency = 0
+	Variables['Instance14'].CastShadow = true
+
+	Variables['Instance15'] = Instance.new('SpecialMesh');Variables['Instance15'].Name = 'Mesh'
+	Variables['Instance15'].VertexColor = Vector3.new(1, 1, 1)
+	Variables['Instance15'].Scale = Vector3.new(1, 1, 1)
+	Variables['Instance15'].MeshType = Enum.MeshType.Sphere
+	Variables['Instance15'].MeshId = ''
+	Variables['Instance15'].TextureId = ''
+
+	Variables['Instance16'] = Instance.new('Weld');Variables['Instance16'].Name = 'Part_Weld'
+	Variables['Instance16'].C1 = CFrame.new(0.377573997, 3.50054407, 61.9522705, 1, 0, 0, 0, -1, 0, 0, 0, -1)
+	Variables['Instance16'].C0 = CFrame.new(0.377574295, -3.30056214, -61.8522568, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+	Variables['Instance16'].Enabled = true
+
+	Variables['Instance17'] = Instance.new('Part');Variables['Instance17'].Name = 'Part'
+	Variables['Instance17'].Shape = Enum.PartType.Block
+	Variables['Instance17'].CFrame = CFrame.new(-0.379382104, 3.72907925, 60.7471352, 1.00000083, -1.69466148e-08, 3.02591729e-08, -1.24408075e-08, 0.00569710927, -0.999984741, -1.69675332e-08, 0.99998486, 0.00569712278)
+	Variables['Instance17'].Color = Color3.new(0.105882, 0.164706, 0.207843)
+	Variables['Instance17'].Shape = Enum.PartType.Block
+	Variables['Instance17'].Size = Vector3.new(0.20000000298023224, 0.699999988079071, 0.4000000059604645)
+	Variables['Instance17'].Material = Enum.Material.Metal
+	Variables['Instance17'].Transparency = 0
+	Variables['Instance17'].CastShadow = true
+
+	Variables['Instance18'] = Instance.new('SpecialMesh');Variables['Instance18'].Name = 'Mesh'
+	Variables['Instance18'].VertexColor = Vector3.new(1, 1, 1)
+	Variables['Instance18'].Scale = Vector3.new(1, 1, 1)
+	Variables['Instance18'].MeshType = Enum.MeshType.Wedge
+	Variables['Instance18'].MeshId = ''
+	Variables['Instance18'].TextureId = ''
+
+	Variables['Instance19'] = Instance.new('Weld');Variables['Instance19'].Name = 'Part_Weld'
+	Variables['Instance19'].C1 = CFrame.new(0.377541274, 61.8522873, -3.70013404, 1, 0, 0, 0, -1.1920929e-07, -1.00000012, 0, 1.00000012, -1.1920929e-07)
+	Variables['Instance19'].C0 = CFrame.new(0.377573997, 3.50054407, 61.9522705, 1, 0, 0, 0, -1, 0, 0, 0, -1)
+	Variables['Instance19'].Enabled = true
+
+	Variables['Instance20'] = Instance.new('Part');Variables['Instance20'].Name = 'Part'
+	Variables['Instance20'].Shape = Enum.PartType.Block
+	Variables['Instance20'].CFrame = CFrame.new(-0.37956652, 3.7160008, 58.4522285, 1.00000083, -1.69466183e-08, 3.02591801e-08, -1.24408075e-08, 0.0056971102, -0.99998498, -1.69675332e-08, 0.999985099, 0.00569712371)
+	Variables['Instance20'].Color = Color3.new(0.105882, 0.164706, 0.207843)
+	Variables['Instance20'].Shape = Enum.PartType.Block
+	Variables['Instance20'].Size = Vector3.new(0.05000000074505806, 0.10000000149011612, 0.20000000298023224)
+	Variables['Instance20'].Material = Enum.Material.Metal
+	Variables['Instance20'].Transparency = 0
+	Variables['Instance20'].CastShadow = true
+
+	Variables['Instance21'] = Instance.new('SpecialMesh');Variables['Instance21'].Name = 'Mesh'
+	Variables['Instance21'].VertexColor = Vector3.new(1, 1, 1)
+	Variables['Instance21'].Scale = Vector3.new(1, 1, 1)
+	Variables['Instance21'].MeshType = Enum.MeshType.Wedge
+	Variables['Instance21'].MeshId = ''
+	Variables['Instance21'].TextureId = ''
+
+	Variables['Instance22'] = Instance.new('Weld');Variables['Instance22'].Name = 'Part_Weld'
+	Variables['Instance22'].C1 = CFrame.new(-4.00043201, -0.377776086, -61.8521194, 0, 1, -0, -1, 0, 0, 0, 0, 1)
+	Variables['Instance22'].C0 = CFrame.new(0.377758443, 5.79548359, 61.9522514, 1, 0, 0, 0, -1, 0, 0, 0, -1)
+	Variables['Instance22'].Enabled = true
+
+	Variables['Instance23'] = Instance.new('Part');Variables['Instance23'].Name = 'Part'
+	Variables['Instance23'].Shape = Enum.PartType.Cylinder
+	Variables['Instance23'].CFrame = CFrame.new(-0.379614025, 3.62245464, 59.5978279, 1.69466325e-08, -1.00000083, -3.0259212e-08, -0.00569698215, 1.24408075e-08, 0.999985754, -0.999985874, 1.69675332e-08, -0.00569701195)
+	Variables['Instance23'].Color = Color3.new(0.105882, 0.164706, 0.207843)
+	Variables['Instance23'].Shape = Enum.PartType.Cylinder
+	Variables['Instance23'].Size = Vector3.new(2, 0.25, 0.25)
+	Variables['Instance23'].Material = Enum.Material.Metal
+	Variables['Instance23'].Transparency = 0
+	Variables['Instance23'].CastShadow = true
+
+	Variables['Instance24'] = Instance.new('Weld');Variables['Instance24'].Name = 'Gear_Weld'
+	Variables['Instance24'].C1 = CFrame.new(43.2777863, 44.1913605, -3.70057511, 0.718715668, -1.3589859e-05, -0.695304036, -0.695304036, -3.36170197e-05, -0.718715668, -1.3589859e-05, 1, -3.36170197e-05)
+	Variables['Instance24'].C0 = CFrame.new(-4.65042591, -0.377805918, -61.8521156, 0, 1, -0, -1, 0, 0, 0, 0, 1)
+	Variables['Instance24'].Enabled = true
+
+	Variables['Instance25'] = Instance.new('Part');Variables['Instance25'].Name = 'Part'
+	Variables['Instance25'].Shape = Enum.PartType.Cylinder
+	Variables['Instance25'].CFrame = CFrame.new(-0.379584193, 3.62609696, 60.2478256, 1.69466183e-08, -1.00000083, -3.02591801e-08, -0.0056971102, 1.24408075e-08, 0.99998498, -0.999985099, 1.69675332e-08, -0.00569712371)
+	Variables['Instance25'].Color = Color3.new(0.105882, 0.164706, 0.207843)
+	Variables['Instance25'].Shape = Enum.PartType.Cylinder
+	Variables['Instance25'].Size = Vector3.new(0.10000000149011612, 0.5, 0.5)
+	Variables['Instance25'].Material = Enum.Material.Metal
+	Variables['Instance25'].Transparency = 0
+	Variables['Instance25'].CastShadow = true
+
+	Variables['Instance26'] = Instance.new('Weld');Variables['Instance26'].Name = 'Part_Weld'
+	Variables['Instance26'].C1 = CFrame.new(-4.1004343, -0.377776027, -61.8521194, 0, 1, -0, -1, 0, 0, 0, 0, 1)
+	Variables['Instance26'].C0 = CFrame.new(-4.00043201, -0.377776086, -61.8521194, 0, 1, -0, -1, 0, 0, 0, 0, 1)
+	Variables['Instance26'].Enabled = true
+
+	Variables['Instance27'] = Instance.new('Part');Variables['Instance27'].Name = 'Eye'
+	Variables['Instance27'].Shape = Enum.PartType.Block
+	Variables['Instance27'].CFrame = CFrame.new(-0.379379451, 3.6290524, 60.7476807, -0.707134962, 0, 0.707080007, -0.707068622, -0.00569711626, -0.707123578, 0.00402831333, -0.99998486, 0.00402862625)
+	Variables['Instance27'].Color = Color3.new(1, 0, 0)
+	Variables['Instance27'].Shape = Enum.PartType.Block
+	Variables['Instance27'].Size = Vector3.new(0.05000000074505806, 0.3499999940395355, 0.4099999964237213)
+	Variables['Instance27'].Material = Enum.Material.Neon
+	Variables['Instance27'].Transparency = 0
+	Variables['Instance27'].CastShadow = true
+
+	Variables['Instance28'] = Instance.new('Weld');Variables['Instance28'].Name = 'Eye_Weld'
+	Variables['Instance28'].C1 = CFrame.new(-0.377573639, -3.50057054, 61.852253, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+	Variables['Instance28'].C0 = CFrame.new(43.467453, -3.50057054, 44.004818, -0.707134247, 0, -0.707079291, 0, 1, 0, 0.707079291, 0, -0.707134247)
+	Variables['Instance28'].Enabled = true
+
+	Variables['Instance29'] = Instance.new('Part');Variables['Instance29'].Name = 'Eye'
+	Variables['Instance29'].Shape = Enum.PartType.Block
+	Variables['Instance29'].CFrame = CFrame.new(-0.379379958, 3.6290431, 60.7476807, 0.707134902, 0, 0.707079947, -0.707068563, -0.00569711626, 0.707123518, 0.00402831286, -0.99998486, -0.00402862579)
+	Variables['Instance29'].Color = Color3.new(1, 0, 0)
+	Variables['Instance29'].Shape = Enum.PartType.Block
+	Variables['Instance29'].Size = Vector3.new(0.05000000074505806, 0.3499999940395355, 0.4099999964237213)
+	Variables['Instance29'].Material = Enum.Material.Neon
+	Variables['Instance29'].Transparency = 0
+	Variables['Instance29'].CastShadow = true
+
+	Variables['Instance30'] = Instance.new('Weld');Variables['Instance30'].Name = 'Eye_Weld'
+	Variables['Instance30'].C1 = CFrame.new(61.852253, -3.50057054, 0.377573639, -1.1920929e-07, -0, -1.00000012, 0, 1, -0, 1.00000012, 0, -1.1920929e-07)
+	Variables['Instance30'].C0 = CFrame.new(44.001442, -3.50057054, -43.4708748, 0.707134247, -0, -0.707079291, 0, 1, -0, 0.707079291, 0, 0.707134247)
+	Variables['Instance30'].Enabled = true
+
+	Variables['Instance31'] = Instance.new('Part');Variables['Instance31'].Name = 'Part'
+	Variables['Instance31'].Shape = Enum.PartType.Cylinder
+	Variables['Instance31'].CFrame = CFrame.new(-0.379584134, 3.62552714, 60.1478233, 1.69466183e-08, -1.00000083, -3.02591801e-08, -0.0056971102, 1.24408075e-08, 0.99998498, -0.999985099, 1.69675332e-08, -0.00569712371)
+	Variables['Instance31'].Color = Color3.new(0.105882, 0.164706, 0.207843)
+	Variables['Instance31'].Shape = Enum.PartType.Cylinder
+	Variables['Instance31'].Size = Vector3.new(0.10000000149011612, 0.5, 0.44999998807907104)
+	Variables['Instance31'].Material = Enum.Material.Metal
+	Variables['Instance31'].Transparency = 0
+	Variables['Instance31'].CastShadow = true
+
+	Variables['Instance32'] = Instance.new('Weld');Variables['Instance32'].Name = 'Part_Weld'
+	Variables['Instance32'].C1 = CFrame.new(0.377575815, -41.7394257, 45.962326, 1, 0, 0, 0, -0.707068563, 0.707145572, 0, -0.707145572, -0.707068563)
+	Variables['Instance32'].C0 = CFrame.new(-4.1004343, -0.377776027, -61.8521194, 0, 1, -0, -1, 0, 0, 0, 0, 1)
+	Variables['Instance32'].Enabled = true
+
+	Variables['Instance33'] = Instance.new('Part');Variables['Instance33'].Name = 'Eye'
+	Variables['Instance33'].Shape = Enum.PartType.Block
+	Variables['Instance33'].CFrame = CFrame.new(-0.379390419, 3.62906051, 60.7476807, -1.1920929e-07, 0, -1.00000095, 0.99998486, -0.00569711626, -8.94069672e-08, -0.00569711626, -0.99998486, 4.65661287e-10)
+	Variables['Instance33'].Color = Color3.new(1, 0, 0)
+	Variables['Instance33'].Shape = Enum.PartType.Block
+	Variables['Instance33'].Size = Vector3.new(0.05000000074505806, 0.3499999940395355, 0.4099999964237213)
+	Variables['Instance33'].Material = Enum.Material.Neon
+	Variables['Instance33'].Transparency = 0
+	Variables['Instance33'].CastShadow = true
+
+	Variables['Instance34'] = Instance.new('Weld');Variables['Instance34'].Name = 'Eye_Weld'
+	Variables['Instance34'].C1 = CFrame.new(-43.467453, -3.50057054, -44.004818, 0.707134247, 0, 0.707079291, 0, 1, 0, -0.707079291, 0, 0.707134247)
+	Variables['Instance34'].C0 = CFrame.new(-61.852253, -3.50057054, -0.377573639, -1.1920929e-07, 0, 1.00000012, 0, 1, 0, -1.00000012, 0, -1.1920929e-07)
+	Variables['Instance34'].Enabled = true
+
+	Variables['Instance35'] = Instance.new('Part');Variables['Instance35'].Name = 'Eye'
+	Variables['Instance35'].Shape = Enum.PartType.Block
+	Variables['Instance35'].CFrame = CFrame.new(-0.37937963, 3.62905502, 60.7476807, -0.707134902, 0, -0.707079947, 0.707068563, -0.00569711626, -0.707123518, -0.00402831286, -0.99998486, 0.00402862579)
+	Variables['Instance35'].Color = Color3.new(1, 0, 0)
+	Variables['Instance35'].Shape = Enum.PartType.Block
+	Variables['Instance35'].Size = Vector3.new(0.05000000074505806, 0.3499999940395355, 0.4099999964237213)
+	Variables['Instance35'].Material = Enum.Material.Neon
+	Variables['Instance35'].Transparency = 0
+	Variables['Instance35'].CastShadow = true
+
+	Variables['Instance36'] = Instance.new('Weld');Variables['Instance36'].Name = 'Eye_Weld'
+	Variables['Instance36'].C1 = CFrame.new(-61.852253, -3.50057054, -0.377573639, -1.1920929e-07, 0, 1.00000012, 0, 1, 0, -1.00000012, 0, -1.1920929e-07)
+	Variables['Instance36'].C0 = CFrame.new(-44.001442, -3.50057054, 43.4708748, -0.707134247, 0, 0.707079291, 0, 1, 0, -0.707079291, 0, -0.707134247)
+	Variables['Instance36'].Enabled = true
+
+	Variables['Instance37'] = Instance.new('Part');Variables['Instance37'].Name = 'Part'
+	Variables['Instance37'].Shape = Enum.PartType.Block
+	Variables['Instance37'].CFrame = CFrame.new(-0.379349381, 3.62796807, 60.548111, 1.00000083, 3.02591729e-08, 1.69466201e-08, -1.24408075e-08, -0.99998486, -0.00569722895, -1.69675332e-08, 0.00569724245, -0.99998498)
+	Variables['Instance37'].Color = Color3.new(0.105882, 0.164706, 0.207843)
+	Variables['Instance37'].Shape = Enum.PartType.Block
+	Variables['Instance37'].Size = Vector3.new(0.30000001192092896, 0.4000000059604645, 0.20000000298023224)
+	Variables['Instance37'].Material = Enum.Material.Metal
+	Variables['Instance37'].Transparency = 0
+	Variables['Instance37'].CastShadow = true
+
+	Variables['Instance38'] = Instance.new('Weld');Variables['Instance38'].Name = 'Part_Weld'
+	Variables['Instance38'].C1 = CFrame.new(0.377758443, 5.79548359, 61.9522514, 1, 0, 0, 0, -1, 0, 0, 0, -1)
+	Variables['Instance38'].C0 = CFrame.new(0.377541274, 61.8522873, -3.70013404, 1, 0, 0, 0, -1.1920929e-07, -1.00000012, 0, 1.00000012, -1.1920929e-07)
+	Variables['Instance38'].Enabled = true
+
+	Variables['Instance39'] = Instance.new('Part');Variables['Instance39'].Name = 'Part'
+	Variables['Instance39'].Shape = Enum.PartType.Block
+	Variables['Instance39'].CFrame = CFrame.new(-0.379405886, 3.18429399, 60.8634644, 1.00000083, -1.66257319e-09, -3.46416478e-08, -1.24408075e-08, 0.525060534, 0.851067245, -1.69675332e-08, -0.851067364, 0.525060654)
+	Variables['Instance39'].Color = Color3.new(0.105882, 0.164706, 0.207843)
+	Variables['Instance39'].Shape = Enum.PartType.Block
+	Variables['Instance39'].Size = Vector3.new(0.10000000149011612, 0.05000000074505806, 0.05000000074505806)
+	Variables['Instance39'].Material = Enum.Material.Metal
+	Variables['Instance39'].Transparency = 0
+	Variables['Instance39'].CastShadow = true
+
+	Variables['Instance40'] = Instance.new('Weld');Variables['Instance40'].Name = 'Part_Weld'
+	Variables['Instance40'].C1 = CFrame.new(0.37759313, -42.1143074, -44.8611755, 1, -0, 0, 0, 0.766120374, 0.642697096, -0, -0.642697096, 0.766120374)
+	Variables['Instance40'].C0 = CFrame.new(0.377597779, -35.4120636, -50.2817078, 1, -0, 0, 0, 0.848060429, 0.529899538, -0, -0.529899538, 0.848060429)
+	Variables['Instance40'].Enabled = true
+
+	Variables['Instance41'] = Instance.new('Part');Variables['Instance41'].Name = 'Part'
+	Variables['Instance41'].Shape = Enum.PartType.Block
+	Variables['Instance41'].CFrame = CFrame.new(-0.379401237, 3.2130816, 60.8181305, 1.00000083, -6.46434595e-09, -3.40737465e-08, -1.24408075e-08, 0.638323307, 0.76977098, -1.69675332e-08, -0.769771099, 0.638323426)
+	Variables['Instance41'].Color = Color3.new(0.105882, 0.164706, 0.207843)
+	Variables['Instance41'].Shape = Enum.PartType.Block
+	Variables['Instance41'].Size = Vector3.new(0.10000000149011612, 0.05000000074505806, 0.05000000074505806)
+	Variables['Instance41'].Material = Enum.Material.Metal
+	Variables['Instance41'].Transparency = 0
+	Variables['Instance41'].CastShadow = true
+
+	Variables['Instance42'] = Instance.new('Weld');Variables['Instance42'].Name = 'Part_Weld'
+	Variables['Instance42'].C1 = CFrame.new(0.377600282, -47.9970398, -38.5606995, 1, -0, 0, 0, 0.669180214, 0.743100166, -0, -0.743100166, 0.669180214)
+	Variables['Instance42'].C0 = CFrame.new(0.37759313, -42.1143074, -44.8611755, 1, -0, 0, 0, 0.766120374, 0.642697096, -0, -0.642697096, 0.766120374)
+	Variables['Instance42'].Enabled = true
+
+	Variables['Instance43'] = Instance.new('Part');Variables['Instance43'].Name = 'Part'
+	Variables['Instance43'].Shape = Enum.PartType.Block
+	Variables['Instance43'].CFrame = CFrame.new(-0.37939629, 3.32966876, 60.7254143, 1.00000083, -1.97628598e-08, -2.84997803e-08, -1.24408075e-08, 0.896205604, 0.443643272, -1.69675332e-08, -0.443643391, 0.896205783)
+	Variables['Instance43'].Color = Color3.new(0.105882, 0.164706, 0.207843)
+	Variables['Instance43'].Shape = Enum.PartType.Block
+	Variables['Instance43'].Size = Vector3.new(0.10000000149011612, 0.05000000074505806, 0.05000000074505806)
+	Variables['Instance43'].Material = Enum.Material.Metal
+	Variables['Instance43'].Transparency = 0
+	Variables['Instance43'].CastShadow = true
+
+	Variables['Instance44'] = Instance.new('Weld');Variables['Instance44'].Name = 'Part_Weld'
+	Variables['Instance44'].C1 = CFrame.new(0.377588719, -59.676178, -15.6768875, 1, -0, 0, 0, 0.309162319, 0.951009333, -0, -0.951009333, 0.309162319)
+	Variables['Instance44'].C0 = CFrame.new(0.377588183, -56.8642464, -23.8252182, 1, -0, 0, 0, 0.438529551, 0.898716748, -0, -0.898716748, 0.438529551)
+	Variables['Instance44'].Enabled = true
+
+	Variables['Instance45'] = Instance.new('Part');Variables['Instance45'].Name = 'Part'
+	Variables['Instance45'].Shape = Enum.PartType.Block
+	Variables['Instance45'].CFrame = CFrame.new(-0.379381597, 3.13086033, 61.0505486, 1.00000083, 1.69466308e-08, -3.02592049e-08, -1.24408075e-08, -0.00569713116, 0.999985814, -1.69675332e-08, -0.999985933, -0.00569710135)
+	Variables['Instance45'].Color = Color3.new(0.105882, 0.164706, 0.207843)
+	Variables['Instance45'].Shape = Enum.PartType.Block
+	Variables['Instance45'].Size = Vector3.new(0.10000000149011612, 0.20000000298023224, 0.05000000074505806)
+	Variables['Instance45'].Material = Enum.Material.Metal
+	Variables['Instance45'].Transparency = 0
+	Variables['Instance45'].CastShadow = true
+
+	Variables['Instance46'] = Instance.new('Weld');Variables['Instance46'].Name = 'Part_Weld'
+	Variables['Instance46'].C1 = CFrame.new(0.377580047, -11.7567329, -60.3064804, 1, -0, 0, 0, 0.990270376, 0.13915664, -0, -0.13915664, 0.990270376)
+	Variables['Instance46'].C0 = CFrame.new(0.37757349, -3.20053983, -61.3522682, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+	Variables['Instance46'].Enabled = true
+
+	Variables['Instance47'] = Instance.new('Part');Variables['Instance47'].Name = 'Part'
+	Variables['Instance47'].Shape = Enum.PartType.Block
+	Variables['Instance47'].CFrame = CFrame.new(-0.379383415, 3.43186331, 61.2488251, -1.00000072, 0, 0, 0, 0.999984264, -0.00569699379, 0, -0.00569723221, -0.999984264)
+	Variables['Instance47'].Color = Color3.new(0.105882, 0.164706, 0.207843)
+	Variables['Instance47'].Shape = Enum.PartType.Block
+	Variables['Instance47'].Size = Vector3.new(0.20000000298023224, 0.30000001192092896, 0.20000000298023224)
+	Variables['Instance47'].Material = Enum.Material.Metal
+	Variables['Instance47'].Transparency = 0
+	Variables['Instance47'].CastShadow = true
+
+	Variables['Instance48'] = Instance.new('SpecialMesh');Variables['Instance48'].Name = 'Mesh'
+	Variables['Instance48'].VertexColor = Vector3.new(1, 1, 1)
+	Variables['Instance48'].Scale = Vector3.new(1, 1, 1)
+	Variables['Instance48'].MeshType = Enum.MeshType.Wedge
+	Variables['Instance48'].MeshId = ''
+	Variables['Instance48'].TextureId = ''
+
+	Variables['Instance49'] = Instance.new('Weld');Variables['Instance49'].Name = 'Part_Weld'
+	Variables['Instance49'].C1 = CFrame.new(0.377574444, 61.7522736, -3.20053673, 1, 0, 0, 0, -1.1920929e-07, -1.00000012, 0, 1.00000012, -1.1920929e-07)
+	Variables['Instance49'].C0 = CFrame.new(-0.377574652, -61.6522598, -3.00055504, -1.00000024, 0, 0, 0, -1.1920929e-07, 1.00000012, 0, 1.00000012, -1.1920929e-07)
+	Variables['Instance49'].Enabled = true
+
+	Variables['Instance50'] = Instance.new('Part');Variables['Instance50'].Name = 'Part'
+	Variables['Instance50'].Shape = Enum.PartType.Block
+	Variables['Instance50'].CFrame = CFrame.new(-0.379382491, 3.62903523, 60.7476768, 1.00000095, 0, 0, 0, -0.999984741, -0.005697235, 0, 0.005697235, -0.999984741)
+	Variables['Instance50'].Color = Color3.new(0.105882, 0.164706, 0.207843)
+	Variables['Instance50'].Shape = Enum.PartType.Block
+	Variables['Instance50'].Size = Vector3.new(0.30000001192092896, 0.5, 0.5)
+	Variables['Instance50'].Material = Enum.Material.Metal
+	Variables['Instance50'].Transparency = 0
+	Variables['Instance50'].CastShadow = true
+
+	Variables['Instance51'] = Instance.new('Weld');Variables['Instance51'].Name = 'Part_Weld'
+	Variables['Instance51'].C1 = CFrame.new(-3.50046635, -0.377776176, -61.8520966, 0, 1, -0, -1, 0, 0, 0, 0, 1)
+	Variables['Instance51'].C0 = CFrame.new(0.377573639, 61.852253, -3.50057054, 1, 0, 0, 0, -1.1920929e-07, -1.00000012, 0, 1.00000012, -1.1920929e-07)
+	Variables['Instance51'].Enabled = true
+
+	Variables['Instance52'] = Instance.new('Part');Variables['Instance52'].Name = 'Gear'
+	Variables['Instance52'].Shape = Enum.PartType.Block
+	Variables['Instance52'].CFrame = CFrame.new(-0.379851043, 3.62785411, 60.5455933, 0.718716264, -0.695304632, -1.35729224e-05, -0.695294082, -0.718705237, -0.0057305987, 0.00397473248, 0.00412815996, -0.999985695)
+	Variables['Instance52'].Color = Color3.new(0.105882, 0.164706, 0.207843)
+	Variables['Instance52'].Shape = Enum.PartType.Block
+	Variables['Instance52'].Size = Vector3.new(0.05000000074505806, 0.05000000074505806, 0.05000000074505806)
+	Variables['Instance52'].Material = Enum.Material.Metal
+	Variables['Instance52'].Transparency = 0
+	Variables['Instance52'].CastShadow = true
+
+	Variables['Instance53'] = Instance.new('SpecialMesh');Variables['Instance53'].Name = 'Mesh'
+	Variables['Instance53'].VertexColor = Vector3.new(1, 1, 1)
+	Variables['Instance53'].Scale = Vector3.new(0.800000011920929, 0.800000011920929, 1.5)
+	Variables['Instance53'].MeshType = Enum.MeshType.FileMesh
+	Variables['Instance53'].MeshId = 'http://www.roblox.com/asset/?id=156292343'
+	Variables['Instance53'].TextureId = ''
+
+	Variables['Instance54'] = Instance.new('Weld');Variables['Instance54'].Name = 'Eye_Weld'
+	Variables['Instance54'].C1 = CFrame.new(7.55040836, 0.377788514, -61.8520927, 0, -1, 0, 1, 0, -0, 0, 0, 1)
+	Variables['Instance54'].C0 = CFrame.new(43.2777863, 44.1913605, -3.70057511, 0.718715668, -1.3589859e-05, -0.695304036, -0.695304036, -3.36170197e-05, -0.718715668, -1.3589859e-05, 1, -3.36170197e-05)
+	Variables['Instance54'].Enabled = true
+
+	Variables['Instance55'] = Instance.new('Part');Variables['Instance55'].Name = 'Eye'
+	Variables['Instance55'].Shape = Enum.PartType.Block
+	Variables['Instance55'].CFrame = CFrame.new(-0.379374564, 3.62904859, 60.7476807, -1.1920929e-07, 0, 1.00000095, -0.99998486, -0.00569711626, -8.94069672e-08, 0.00569711626, -0.99998486, 4.65661287e-10)
+	Variables['Instance55'].Color = Color3.new(1, 0, 0)
+	Variables['Instance55'].Shape = Enum.PartType.Block
+	Variables['Instance55'].Size = Vector3.new(0.05000000074505806, 0.3499999940395355, 0.4099999964237213)
+	Variables['Instance55'].Material = Enum.Material.Neon
+	Variables['Instance55'].Transparency = 0
+	Variables['Instance55'].CastShadow = true
+
+	Variables['Instance56'] = Instance.new('Weld');Variables['Instance56'].Name = 'Eye_Weld'
+	Variables['Instance56'].C1 = CFrame.new(43.467453, -3.50057054, 44.004818, -0.707134247, 0, -0.707079291, 0, 1, 0, 0.707079291, 0, -0.707134247)
+	Variables['Instance56'].C0 = CFrame.new(61.852253, -3.50057054, 0.377573639, -1.1920929e-07, -0, -1.00000012, 0, 1, -0, 1.00000012, 0, -1.1920929e-07)
+	Variables['Instance56'].Enabled = true
+
+	Variables['Instance57'] = Instance.new('Part');Variables['Instance57'].Name = 'Eye'
+	Variables['Instance57'].Shape = Enum.PartType.Cylinder
+	Variables['Instance57'].CFrame = CFrame.new(-0.379597336, 3.605901, 56.6978874, -3.38950485e-08, 1.00000072, 4.56281207e-10, 0.00569698913, -1.15289396e-08, 0.999985635, 0.999985874, -3.39550752e-08, -0.00569700403)
+	Variables['Instance57'].Color = Color3.new(1, 0, 0)
+	Variables['Instance57'].Shape = Enum.PartType.Cylinder
+	Variables['Instance57'].Size = Vector3.new(0.05000000074505806, 0.125, 0.125)
+	Variables['Instance57'].Material = Enum.Material.Neon
+	Variables['Instance57'].Transparency = 0
+	Variables['Instance57'].CastShadow = true
+
+	Variables['Instance58'] = Instance.new('Weld');Variables['Instance58'].Name = 'Part_Weld'
+	Variables['Instance58'].C1 = CFrame.new(5.20040226, 0.377774119, -61.8520927, 0, -1, 0, 1, 0, -0, 0, 0, 1)
+	Variables['Instance58'].C0 = CFrame.new(7.55040836, 0.377788514, -61.8520927, 0, -1, 0, 1, 0, -0, 0, 0, 1)
+	Variables['Instance58'].Enabled = true
+
+	Variables['Instance59'] = Instance.new('Part');Variables['Instance59'].Name = 'Part'
+	Variables['Instance59'].Shape = Enum.PartType.Block
+	Variables['Instance59'].CFrame = CFrame.new(-0.37940079, 3.28676891, 60.753109, 1.00000083, -1.56059059e-08, -3.09719859e-08, -1.24408075e-08, 0.825773001, 0.56400609, -1.69675332e-08, -0.564006209, 0.82577312)
+	Variables['Instance59'].Color = Color3.new(0.105882, 0.164706, 0.207843)
+	Variables['Instance59'].Shape = Enum.PartType.Block
+	Variables['Instance59'].Size = Vector3.new(0.10000000149011612, 0.05000000074505806, 0.05000000074505806)
+	Variables['Instance59'].Material = Enum.Material.Metal
+	Variables['Instance59'].Transparency = 0
+	Variables['Instance59'].CastShadow = true
+
+	Variables['Instance60'] = Instance.new('Weld');Variables['Instance60'].Name = 'Part_Weld'
+	Variables['Instance60'].C1 = CFrame.new(0.377588183, -56.8642464, -23.8252182, 1, -0, 0, 0, 0.438529551, 0.898716748, -0, -0.898716748, 0.438529551)
+	Variables['Instance60'].C0 = CFrame.new(0.377592683, -52.9457855, -31.5029526, 1, -0, 0, 0, 0.559291363, 0.828971148, -0, -0.828971148, 0.559291363)
+	Variables['Instance60'].Enabled = true
+
+	Variables['Instance61'] = Instance.new('Part');Variables['Instance61'].Name = 'Part'
+	Variables['Instance61'].Shape = Enum.PartType.Block
+	Variables['Instance61'].CFrame = CFrame.new(-0.379388154, 3.13405967, 61.0007706, 1.00000083, 1.25709771e-08, -3.23230296e-08, -1.24408075e-08, 0.133512974, 0.991049111, -1.69675332e-08, -0.99104923, 0.133513018)
+	Variables['Instance61'].Color = Color3.new(0.105882, 0.164706, 0.207843)
+	Variables['Instance61'].Shape = Enum.PartType.Block
+	Variables['Instance61'].Size = Vector3.new(0.10000000149011612, 0.05000000074505806, 0.05000000074505806)
+	Variables['Instance61'].Material = Enum.Material.Metal
+	Variables['Instance61'].Transparency = 0
+	Variables['Instance61'].CastShadow = true
+
+	Variables['Instance62'] = Instance.new('Weld');Variables['Instance62'].Name = 'Part_Weld'
+	Variables['Instance62'].C1 = CFrame.new(0.377586335, -20.0841351, -58.0802345, 1, -0, 0, 0, 0.961273968, 0.275594592, -0, -0.275594592, 0.961273968)
+	Variables['Instance62'].C0 = CFrame.new(0.377580047, -11.7567329, -60.3064804, 1, -0, 0, 0, 0.990270376, 0.13915664, -0, -0.13915664, 0.990270376)
+	Variables['Instance62'].Enabled = true
+
+	Variables['Instance63'] = Instance.new('Part');Variables['Instance63'].Name = 'Eye'
+	Variables['Instance63'].Shape = Enum.PartType.Block
+	Variables['Instance63'].CFrame = CFrame.new(-0.379380584, 3.62906432, 60.7476807, 0.707134962, 0, -0.707080007, 0.707068622, -0.00569711626, 0.707123578, -0.00402831333, -0.99998486, -0.00402862625)
+	Variables['Instance63'].Color = Color3.new(1, 0, 0)
+	Variables['Instance63'].Shape = Enum.PartType.Block
+	Variables['Instance63'].Size = Vector3.new(0.05000000074505806, 0.3499999940395355, 0.4099999964237213)
+	Variables['Instance63'].Material = Enum.Material.Neon
+	Variables['Instance63'].Transparency = 0
+	Variables['Instance63'].CastShadow = true
+
+	Variables['Instance64'] = Instance.new('Weld');Variables['Instance64'].Name = 'Eye_Weld'
+	Variables['Instance64'].C1 = CFrame.new(0.377573639, -3.50057054, -61.852253, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+	Variables['Instance64'].C0 = CFrame.new(-43.467453, -3.50057054, -44.004818, 0.707134247, 0, 0.707079291, 0, 1, 0, -0.707079291, 0, 0.707134247)
+	Variables['Instance64'].Enabled = true
+
+	Variables['Instance65'] = Instance.new('Part');Variables['Instance65'].Name = 'Part'
+	Variables['Instance65'].Shape = Enum.PartType.Block
+	Variables['Instance65'].CFrame = CFrame.new(-0.379383296, 3.53075147, 61.048275, 1.00000095, 0, 0, 0, -0.999984503, -0.0056972336, -0, 0.0056972336, -0.999984503)
+	Variables['Instance65'].Color = Color3.new(0.105882, 0.164706, 0.207843)
+	Variables['Instance65'].Shape = Enum.PartType.Block
+	Variables['Instance65'].Size = Vector3.new(0.30000001192092896, 0.30000001192092896, 0.30000001192092896)
+	Variables['Instance65'].Material = Enum.Material.Metal
+	Variables['Instance65'].Transparency = 0
+	Variables['Instance65'].CastShadow = true
+
+	Variables['Instance66'] = Instance.new('Weld');Variables['Instance66'].Name = 'Part_Weld'
+	Variables['Instance66'].C1 = CFrame.new(0.377573639, 61.852253, -3.50057054, 1, 0, 0, 0, -1.1920929e-07, -1.00000012, 0, 1.00000012, -1.1920929e-07)
+	Variables['Instance66'].C0 = CFrame.new(0.377574444, 61.7522736, -3.20053673, 1, 0, 0, 0, -1.1920929e-07, -1.00000012, 0, 1.00000012, -1.1920929e-07)
+	Variables['Instance66'].Enabled = true
+
+	Variables['Instance67'] = Instance.new('Part');Variables['Instance67'].Name = 'Part'
+	Variables['Instance67'].Shape = Enum.PartType.Cylinder
+	Variables['Instance67'].CFrame = CFrame.new(-0.379585028, 3.62888718, 60.7477875, 0, -1.00000095, 0, -0.00569711626, 0, 0.99998486, -0.99998486, -0, -0.00569711626)
+	Variables['Instance67'].Color = Color3.new(0.105882, 0.164706, 0.207843)
+	Variables['Instance67'].Shape = Enum.PartType.Cylinder
+	Variables['Instance67'].Size = Vector3.new(0.4000000059604645, 0.4000000059604645, 0.4000000059604645)
+	Variables['Instance67'].Material = Enum.Material.Metal
+	Variables['Instance67'].Transparency = 0
+	Variables['Instance67'].CastShadow = true
+
+	Variables['Instance68'] = Instance.new('Weld');Variables['Instance68'].Name = 'Eye_Weld'
+	Variables['Instance68'].C1 = CFrame.new(44.001442, -3.50057054, -43.4708748, 0.707134247, -0, -0.707079291, 0, 1, -0, 0.707079291, 0, 0.707134247)
+	Variables['Instance68'].C0 = CFrame.new(-3.50046635, -0.377776176, -61.8520966, 0, 1, -0, -1, 0, 0, 0, 0, 1)
+	Variables['Instance68'].Enabled = true
+
+	Variables['Instance69'] = Instance.new('Part');Variables['Instance69'].Name = 'Part'
+	Variables['Instance69'].Shape = Enum.PartType.Block
+	Variables['Instance69'].CFrame = CFrame.new(-0.379394442, 3.1441257, 60.951252, 1.00000083, 7.95108157e-09, -3.37577859e-08, -1.24408075e-08, 0.270114183, 0.962830365, -1.69675332e-08, -0.962830484, 0.270114243)
+	Variables['Instance69'].Color = Color3.new(0.105882, 0.164706, 0.207843)
+	Variables['Instance69'].Shape = Enum.PartType.Block
+	Variables['Instance69'].Size = Vector3.new(0.10000000149011612, 0.05000000074505806, 0.05000000074505806)
+	Variables['Instance69'].Material = Enum.Material.Metal
+	Variables['Instance69'].Transparency = 0
+	Variables['Instance69'].CastShadow = true
+
+	Variables['Instance70'] = Instance.new('Weld');Variables['Instance70'].Name = 'Part_Weld'
+	Variables['Instance70'].C1 = CFrame.new(0.377593189, -28.0207405, -54.7168045, 1, -0, 0, 0, 0.913549721, 0.406727046, -0, -0.406727046, 0.913549721)
+	Variables['Instance70'].C0 = CFrame.new(0.377586335, -20.0841351, -58.0802345, 1, -0, 0, 0, 0.961273968, 0.275594592, -0, -0.275594592, 0.961273968)
+	Variables['Instance70'].Enabled = true
+
+	Variables['Instance71'] = Instance.new('Part');Variables['Instance71'].Name = 'Eye'
+	Variables['Instance71'].Shape = Enum.PartType.Block
+	Variables['Instance71'].CFrame = CFrame.new(-0.379383296, 3.62906694, 60.7476807, 1.00000095, 0, 0, 0, -0.00569711626, 0.99998486, -2.32830644e-10, -0.99998486, -0.00569711626)
+	Variables['Instance71'].Color = Color3.new(1, 0, 0)
+	Variables['Instance71'].Shape = Enum.PartType.Block
+	Variables['Instance71'].Size = Vector3.new(0.05000000074505806, 0.3499999940395355, 0.4099999964237213)
+	Variables['Instance71'].Material = Enum.Material.Neon
+	Variables['Instance71'].Transparency = 0
+	Variables['Instance71'].CastShadow = true
+
+	Variables['Instance72'] = Instance.new('Weld');Variables['Instance72'].Name = 'Gear2_Weld'
+	Variables['Instance72'].C1 = CFrame.new(-42.735054, 44.7164268, -3.70057511, 0.718715668, -1.3589859e-05, 0.695304036, 0.695304036, 3.36170197e-05, -0.718715668, -1.3589859e-05, 1, 3.36170197e-05)
+	Variables['Instance72'].C0 = CFrame.new(0.377573639, -3.50057054, -61.852253, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+	Variables['Instance72'].Enabled = true
+
+	Variables['Instance73'] = Instance.new('Part');Variables['Instance73'].Name = 'Part'
+	Variables['Instance73'].Shape = Enum.PartType.Cylinder
+	Variables['Instance73'].CFrame = CFrame.new(-0.379584163, 3.62784362, 60.5477715, 1.69466325e-08, -1.00000083, -3.0259212e-08, -0.00569698215, 1.24408075e-08, 0.999985754, -0.999985874, 1.69675332e-08, -0.00569701195)
+	Variables['Instance73'].Color = Color3.new(0.105882, 0.164706, 0.207843)
+	Variables['Instance73'].Shape = Enum.PartType.Cylinder
+	Variables['Instance73'].Size = Vector3.new(0.3499999940395355, 0.3499999940395355, 0.3499999940395355)
+	Variables['Instance73'].Material = Enum.Material.Metal
+	Variables['Instance73'].Transparency = 0
+	Variables['Instance73'].CastShadow = true
+
+	Variables['Instance74'] = Instance.new('Weld');Variables['Instance74'].Name = 'Part_Weld'
+	Variables['Instance74'].C1 = CFrame.new(-4.65042591, -0.377805948, -61.8521156, 0, 1, -0, -1, 0, 0, 0, 0, 1)
+	Variables['Instance74'].C0 = CFrame.new(-3.70047092, -0.377776057, -61.8520927, 0, 1, -0, -1, 0, 0, 0, 0, 1)
+	Variables['Instance74'].Enabled = true
+
+	Variables['Instance75'] = Instance.new('Part');Variables['Instance75'].Name = 'Part'
+	Variables['Instance75'].Shape = Enum.PartType.Block
+	Variables['Instance75'].CFrame = CFrame.new(-0.379382521, 3.33071947, 61.0494194, -1.00000024, 0, 0, 0, -0.999984026, 0.00569699239, -0, 0.00569723081, 0.999984026)
+	Variables['Instance75'].Color = Color3.new(0.105882, 0.164706, 0.207843)
+	Variables['Instance75'].Shape = Enum.PartType.Block
+	Variables['Instance75'].Size = Vector3.new(0.20000000298023224, 0.5, 0.20000000298023224)
+	Variables['Instance75'].Material = Enum.Material.Metal
+	Variables['Instance75'].Transparency = 0
+	Variables['Instance75'].CastShadow = true
+
+	Variables['Instance76'] = Instance.new('SpecialMesh');Variables['Instance76'].Name = 'Mesh'
+	Variables['Instance76'].VertexColor = Vector3.new(1, 1, 1)
+	Variables['Instance76'].Scale = Vector3.new(1, 1, 1)
+	Variables['Instance76'].MeshType = Enum.MeshType.Wedge
+	Variables['Instance76'].MeshId = ''
+	Variables['Instance76'].TextureId = ''
+
+	Variables['Instance77'] = Instance.new('Weld');Variables['Instance77'].Name = 'Part_Weld'
+	Variables['Instance77'].C1 = CFrame.new(-0.377574652, -61.6522598, -3.00055504, -1.00000024, 0, 0, 0, -1.1920929e-07, 1.00000012, 0, 1.00000012, -1.1920929e-07)
+	Variables['Instance77'].C0 = CFrame.new(-0.377573937, 61.552269, 3.20053649, -1.00000024, 0, 0, 0, -1.1920929e-07, -1.00000012, -0, -1.00000012, -1.1920929e-07)
+	Variables['Instance77'].Enabled = true
+
+	Variables['Instance78'] = Instance.new('Part');Variables['Instance78'].Name = 'Gear2'
+	Variables['Instance78'].Shape = Enum.PartType.Block
+	Variables['Instance78'].CFrame = CFrame.new(-0.379019052, 3.62806535, 60.5497627, 0.718716323, 0.695304692, -1.35898717e-05, 0.695293546, -0.718704939, -0.0056634997, -0.00394763844, 0.00406099018, -0.999985039)
+	Variables['Instance78'].Color = Color3.new(1, 0, 0)
+	Variables['Instance78'].Shape = Enum.PartType.Block
+	Variables['Instance78'].Size = Vector3.new(0.05000000074505806, 0.05000000074505806, 0.05000000074505806)
+	Variables['Instance78'].Material = Enum.Material.Neon
+	Variables['Instance78'].Transparency = 0.5
+	Variables['Instance78'].CastShadow = true
+
+	Variables['Instance79'] = Instance.new('SpecialMesh');Variables['Instance79'].Name = 'Mesh'
+	Variables['Instance79'].VertexColor = Vector3.new(1, 1, 1)
+	Variables['Instance79'].Scale = Vector3.new(0.8999999761581421, 0.8999999761581421, 0.30000001192092896)
+	Variables['Instance79'].MeshType = Enum.MeshType.FileMesh
+	Variables['Instance79'].MeshId = 'http://www.roblox.com/asset/?id=156292343'
+	Variables['Instance79'].TextureId = ''
+
+	Variables['Instance80'] = Instance.new('Weld');Variables['Instance80'].Name = 'Part_Weld'
+	Variables['Instance80'].C1 = CFrame.new(0.377574295, -3.30056214, -61.8522568, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+	Variables['Instance80'].C0 = CFrame.new(-42.735054, 44.7164268, -3.70057511, 0.718715668, -1.3589859e-05, 0.695304036, 0.695304036, 3.36170197e-05, -0.718715668, -1.3589859e-05, 1, 3.36170197e-05)
+	Variables['Instance80'].Enabled = true
+
+	Variables['Instance81'] = Instance.new('Part');Variables['Instance81'].Name = 'Part'
+	Variables['Instance81'].Shape = Enum.PartType.Block
+	Variables['Instance81'].CFrame = CFrame.new(-0.379408389, 3.24776387, 60.7862091, 1.00000083, -1.11452723e-08, -3.28419105e-08, -1.24408075e-08, 0.739277244, 0.673404217, -1.69675332e-08, -0.673404336, 0.739277363)
+	Variables['Instance81'].Color = Color3.new(0.105882, 0.164706, 0.207843)
+	Variables['Instance81'].Shape = Enum.PartType.Block
+	Variables['Instance81'].Size = Vector3.new(0.10000000149011612, 0.05000000074505806, 0.05000000074505806)
+	Variables['Instance81'].Material = Enum.Material.Metal
+	Variables['Instance81'].Transparency = 0
+	Variables['Instance81'].CastShadow = true
+
+	Variables['Instance82'] = Instance.new('Weld');Variables['Instance82'].Name = 'Part_Weld'
+	Variables['Instance82'].C1 = CFrame.new(0.377592683, -52.9457855, -31.5029526, 1, -0, 0, 0, 0.559291363, 0.828971148, -0, -0.828971148, 0.559291363)
+	Variables['Instance82'].C0 = CFrame.new(0.377600282, -47.9970398, -38.5606995, 1, -0, 0, 0, 0.669180214, 0.743100166, -0, -0.743100166, 0.669180214)
+	Variables['Instance82'].Enabled = true
+
+	Variables['Instance83'] = Instance.new('Part');Variables['Instance83'].Name = 'Part'
+	Variables['Instance83'].Shape = Enum.PartType.Block
+	Variables['Instance83'].CFrame = CFrame.new(-0.379401296, 3.16109753, 60.9073792, 1.00000083, 3.17435234e-09, -3.45359439e-08, -1.24408075e-08, 0.401516676, 0.915853918, -1.69675332e-08, -0.915854037, 0.401516765)
+	Variables['Instance83'].Color = Color3.new(0.105882, 0.164706, 0.207843)
+	Variables['Instance83'].Shape = Enum.PartType.Block
+	Variables['Instance83'].Size = Vector3.new(0.10000000149011612, 0.05000000074505806, 0.05000000074505806)
+	Variables['Instance83'].Material = Enum.Material.Metal
+	Variables['Instance83'].Transparency = 0
+	Variables['Instance83'].CastShadow = true
+
+	Variables['Instance84'] = Instance.new('Weld');Variables['Instance84'].Name = 'Part_Weld'
+	Variables['Instance84'].C1 = CFrame.new(0.377597779, -35.4120636, -50.2817078, 1, -0, 0, 0, 0.848060429, 0.529899538, -0, -0.529899538, 0.848060429)
+	Variables['Instance84'].C0 = CFrame.new(0.377593189, -28.0207405, -54.7168045, 1, -0, 0, 0, 0.913549721, 0.406727046, -0, -0.406727046, 0.913549721)
+	Variables['Instance84'].Enabled = true
+
+	Variables['Instance3'].Part1 = Variables['Instance2']
+	Variables['Instance4'].Part1 = Variables['Instance75']
+	Variables['Instance4'].Part0 = Variables['Instance2']
+	Variables['Instance8'].Part1 = Variables['Instance73']
+	Variables['Instance8'].Part0 = Variables['Instance7']
+	Variables['Instance11'].Part1 = Variables['Instance45']
+	Variables['Instance11'].Part0 = Variables['Instance9']
+	Variables['Instance13'].Part1 = Variables['Instance35']
+	Variables['Instance13'].Part0 = Variables['Instance12']
+	Variables['Instance16'].Part1 = Variables['Instance17']
+	Variables['Instance16'].Part0 = Variables['Instance14']
+	Variables['Instance19'].Part1 = Variables['Instance37']
+	Variables['Instance19'].Part0 = Variables['Instance17']
+	Variables['Instance22'].Part1 = Variables['Instance25']
+	Variables['Instance22'].Part0 = Variables['Instance20']
+	Variables['Instance24'].Part1 = Variables['Instance52']
+	Variables['Instance24'].Part0 = Variables['Instance23']
+	Variables['Instance26'].Part1 = Variables['Instance31']
+	Variables['Instance26'].Part0 = Variables['Instance25']
+	Variables['Instance28'].Part1 = Variables['Instance12']
+	Variables['Instance28'].Part0 = Variables['Instance27']
+	Variables['Instance30'].Part1 = Variables['Instance55']
+	Variables['Instance30'].Part0 = Variables['Instance29']
+	Variables['Instance32'].Part1 = Variables['Instance9']
+	Variables['Instance32'].Part0 = Variables['Instance31']
+	Variables['Instance34'].Part1 = Variables['Instance63']
+	Variables['Instance34'].Part0 = Variables['Instance33']
+	Variables['Instance36'].Part1 = Variables['Instance33']
+	Variables['Instance36'].Part0 = Variables['Instance35']
+	Variables['Instance38'].Part1 = Variables['Instance20']
+	Variables['Instance38'].Part0 = Variables['Instance37']
+	Variables['Instance40'].Part1 = Variables['Instance41']
+	Variables['Instance40'].Part0 = Variables['Instance39']
+	Variables['Instance42'].Part1 = Variables['Instance81']
+	Variables['Instance42'].Part0 = Variables['Instance41']
+	Variables['Instance44'].Part1 = Variables['Instance7']
+	Variables['Instance44'].Part0 = Variables['Instance43']
+	Variables['Instance46'].Part1 = Variables['Instance61']
+	Variables['Instance46'].Part0 = Variables['Instance45']
+	Variables['Instance49'].Part1 = Variables['Instance65']
+	Variables['Instance49'].Part0 = Variables['Instance47']
+	Variables['Instance51'].Part1 = Variables['Instance67']
+	Variables['Instance51'].Part0 = Variables['Instance50']
+	Variables['Instance54'].Part1 = Variables['Instance57']
+	Variables['Instance54'].Part0 = Variables['Instance52']
+	Variables['Instance56'].Part1 = Variables['Instance27']
+	Variables['Instance56'].Part0 = Variables['Instance55']
+	Variables['Instance58'].Part1 = Variables['Instance6']
+	Variables['Instance58'].Part0 = Variables['Instance57']
+	Variables['Instance60'].Part1 = Variables['Instance43']
+	Variables['Instance60'].Part0 = Variables['Instance59']
+	Variables['Instance62'].Part1 = Variables['Instance69']
+	Variables['Instance62'].Part0 = Variables['Instance61']
+	Variables['Instance64'].Part1 = Variables['Instance71']
+	Variables['Instance64'].Part0 = Variables['Instance63']
+	Variables['Instance66'].Part1 = Variables['Instance50']
+	Variables['Instance66'].Part0 = Variables['Instance65']
+	Variables['Instance68'].Part1 = Variables['Instance29']
+	Variables['Instance68'].Part0 = Variables['Instance67']
+	Variables['Instance70'].Part1 = Variables['Instance83']
+	Variables['Instance70'].Part0 = Variables['Instance69']
+	Variables['Instance72'].Part1 = Variables['Instance78']
+	Variables['Instance72'].Part0 = Variables['Instance71']
+	Variables['Instance74'].Part1 = Variables['Instance23']
+	Variables['Instance74'].Part0 = Variables['Instance73']
+	Variables['Instance77'].Part1 = Variables['Instance47']
+	Variables['Instance77'].Part0 = Variables['Instance75']
+	Variables['Instance80'].Part1 = Variables['Instance14']
+	Variables['Instance80'].Part0 = Variables['Instance78']
+	Variables['Instance82'].Part1 = Variables['Instance59']
+	Variables['Instance82'].Part0 = Variables['Instance81']
+	Variables['Instance84'].Part1 = Variables['Instance39']
+	Variables['Instance84'].Part0 = Variables['Instance83']
+	Variables['Instance1'].Parent = workspace
+	Variables['Instance2'].Parent = Variables['Instance1']
+	Variables['Instance3'].Parent = Variables['Instance2']
+	Variables['Instance4'].Parent = Variables['Instance2']
+	Variables['Instance5'].Parent = Variables['Instance2']
+	Variables['Instance6'].Parent = Variables['Instance5']
+	Variables['Instance7'].Parent = Variables['Instance5']
+	Variables['Instance8'].Parent = Variables['Instance7']
+	Variables['Instance9'].Parent = Variables['Instance5']
+	Variables['Instance10'].Parent = Variables['Instance9']
+	Variables['Instance11'].Parent = Variables['Instance9']
+	Variables['Instance12'].Parent = Variables['Instance5']
+	Variables['Instance13'].Parent = Variables['Instance12']
+	Variables['Instance14'].Parent = Variables['Instance5']
+	Variables['Instance15'].Parent = Variables['Instance14']
+	Variables['Instance16'].Parent = Variables['Instance14']
+	Variables['Instance17'].Parent = Variables['Instance5']
+	Variables['Instance18'].Parent = Variables['Instance17']
+	Variables['Instance19'].Parent = Variables['Instance17']
+	Variables['Instance20'].Parent = Variables['Instance5']
+	Variables['Instance21'].Parent = Variables['Instance20']
+	Variables['Instance22'].Parent = Variables['Instance20']
+	Variables['Instance23'].Parent = Variables['Instance5']
+	Variables['Instance24'].Parent = Variables['Instance23']
+	Variables['Instance25'].Parent = Variables['Instance5']
+	Variables['Instance26'].Parent = Variables['Instance25']
+	Variables['Instance27'].Parent = Variables['Instance5']
+	Variables['Instance28'].Parent = Variables['Instance27']
+	Variables['Instance29'].Parent = Variables['Instance5']
+	Variables['Instance30'].Parent = Variables['Instance29']
+	Variables['Instance31'].Parent = Variables['Instance5']
+	Variables['Instance32'].Parent = Variables['Instance31']
+	Variables['Instance33'].Parent = Variables['Instance5']
+	Variables['Instance34'].Parent = Variables['Instance33']
+	Variables['Instance35'].Parent = Variables['Instance5']
+	Variables['Instance36'].Parent = Variables['Instance35']
+	Variables['Instance37'].Parent = Variables['Instance5']
+	Variables['Instance38'].Parent = Variables['Instance37']
+	Variables['Instance39'].Parent = Variables['Instance5']
+	Variables['Instance40'].Parent = Variables['Instance39']
+	Variables['Instance41'].Parent = Variables['Instance5']
+	Variables['Instance42'].Parent = Variables['Instance41']
+	Variables['Instance43'].Parent = Variables['Instance5']
+	Variables['Instance44'].Parent = Variables['Instance43']
+	Variables['Instance45'].Parent = Variables['Instance5']
+	Variables['Instance46'].Parent = Variables['Instance45']
+	Variables['Instance47'].Parent = Variables['Instance5']
+	Variables['Instance48'].Parent = Variables['Instance47']
+	Variables['Instance49'].Parent = Variables['Instance47']
+	Variables['Instance50'].Parent = Variables['Instance5']
+	Variables['Instance51'].Parent = Variables['Instance50']
+	Variables['Instance52'].Parent = Variables['Instance5']
+	Variables['Instance53'].Parent = Variables['Instance52']
+	Variables['Instance54'].Parent = Variables['Instance52']
+	Variables['Instance55'].Parent = Variables['Instance5']
+	Variables['Instance56'].Parent = Variables['Instance55']
+	Variables['Instance57'].Parent = Variables['Instance5']
+	Variables['Instance58'].Parent = Variables['Instance57']
+	Variables['Instance59'].Parent = Variables['Instance5']
+	Variables['Instance60'].Parent = Variables['Instance59']
+	Variables['Instance61'].Parent = Variables['Instance5']
+	Variables['Instance62'].Parent = Variables['Instance61']
+	Variables['Instance63'].Parent = Variables['Instance5']
+	Variables['Instance64'].Parent = Variables['Instance63']
+	Variables['Instance65'].Parent = Variables['Instance5']
+	Variables['Instance66'].Parent = Variables['Instance65']
+	Variables['Instance67'].Parent = Variables['Instance5']
+	Variables['Instance68'].Parent = Variables['Instance67']
+	Variables['Instance69'].Parent = Variables['Instance5']
+	Variables['Instance70'].Parent = Variables['Instance69']
+	Variables['Instance71'].Parent = Variables['Instance5']
+	Variables['Instance72'].Parent = Variables['Instance71']
+	Variables['Instance73'].Parent = Variables['Instance5']
+	Variables['Instance74'].Parent = Variables['Instance73']
+	Variables['Instance75'].Parent = Variables['Instance5']
+	Variables['Instance76'].Parent = Variables['Instance75']
+	Variables['Instance77'].Parent = Variables['Instance75']
+	Variables['Instance78'].Parent = Variables['Instance5']
+	Variables['Instance79'].Parent = Variables['Instance78']
+	Variables['Instance80'].Parent = Variables['Instance78']
+	Variables['Instance81'].Parent = Variables['Instance5']
+	Variables['Instance82'].Parent = Variables['Instance81']
+	Variables['Instance83'].Parent = Variables['Instance5']
+	Variables['Instance84'].Parent = Variables['Instance83']
+	
+	-- Main Function
+	local Active = false
+	local Mouse = CFrame.new()
+	local Rgbcolor = Color3.new()
+	local Highligh
+	
+	local function CreatePart(FORMFACTOR, PARENT, MATERIAL, REFLECTANCE, TRANSPARENCY, BRICKCOLOR, NAME, SIZE, ANCHOR)
+		local NEWPART = Instance.new("Part")
+		NEWPART.formFactor = FORMFACTOR
+		NEWPART.Reflectance = REFLECTANCE
+		NEWPART.Transparency = TRANSPARENCY
+		NEWPART.CastShadow = false
+		NEWPART.CanCollide = false
+		NEWPART.Locked = true
+		NEWPART.Anchored = true
+		if ANCHOR == false then
+			NEWPART.Anchored = false
+		end
+		NEWPART.BrickColor = BrickColor.new(tostring(BRICKCOLOR))
+		NEWPART.Name = NAME
+		NEWPART.Size = SIZE
+		NEWPART.Material = MATERIAL
+		NEWPART:BreakJoints()
+		NEWPART.Parent = PARENT
+		return NEWPART
+	end
+	local function SpawnTrail(FROM,TO,BIG)
+		local TRAIL = CreatePart(3, Variables['Instance1'], "Neon", 0, 0.5, "Really white", "Trail", Vector3.new(0,0,0))
+		Instance.new("CylinderMesh",TRAIL)
+		TRAIL.Color = Color3.new(1,0,0)
+		local DIST = (FROM - TO).Magnitude
+		if BIG == true then
+			TRAIL.Size = Vector3.new(0.5,DIST,0.5)
+		else
+			TRAIL.Size = Vector3.new(0.5,DIST,0.5)
+		end
+		TRAIL.CFrame = CFrame.new(FROM, TO) * CFrame.new(0, 0, -DIST/2) * CFrame.Angles(math.rad(90),math.rad(0),math.rad(0))
+		coroutine.resume(coroutine.create(function()
+			for i = 1, 5 do
+				wait()
+				TRAIL.Transparency = TRAIL.Transparency + 0.1
+			end
+			TRAIL:remove()
+		end))
+	end
+	local function CreateSound(ID, PARENT, VOLUME, PITCH, DOESLOOP)
+		local NEWSOUND = nil
+		coroutine.resume(coroutine.create(function()
+			NEWSOUND = Instance.new("Sound")
+			NEWSOUND.Parent = PARENT
+			NEWSOUND.Volume = VOLUME
+			NEWSOUND.Pitch = PITCH
+			NEWSOUND.SoundId = "http://www.roblox.com/asset/?id="..ID
+			NEWSOUND:play()
+			if DOESLOOP == true then
+				NEWSOUND.Looped = true
+			else
+				repeat wait(1) until NEWSOUND.Playing == false
+				NEWSOUND:remove()
+			end
+		end))
+		return NEWSOUND
+	end
+	local function Shoot(Pos)
+		local Hole1 = Variables['Instance57']
+		local HIT,POS = workspace:FindPartOnRay(Ray.new(Hole1.Position, CFrame.new(Hole1.Position,Pos).lookVector.unit * 2000), Variables['Instance1'].Parent)
+		SpawnTrail(Hole1.Position,POS)
+		CreateSound(904440937,Hole1,1,math.random(8,11)/10,false)
+		if HIT and HIT.Parent and HIT.Parent:IsA("Model") and HIT.Parent:FindFirstChildWhichIsA("Humanoid") then
+			local Char = HIT.Parent
+			local Humanoid = Char:FindFirstChildWhichIsA("Humanoid")
+			
+			Humanoid.Health = 0
+			Humanoid.MaxHealth = 0
+			local con1
+			con1 = Humanoid.Changed:Connect(function()
+				Humanoid.Health = 0
+				Humanoid.MaxHealth = 0
+			end)
+			for i,obj in pairs(Char:GetDescendants()) do
+				if obj ~= Humanoid then
+					if obj:IsA("BasePart") then
+						obj:BreakJoints()
+						obj.Color = Rgbcolor
+						obj.Material = Enum.Material.Neon
+						obj.Anchored = true
+						obj.Parent = Char
+					elseif obj:IsA("Script") or obj:IsA("LocalScript") then
+						obj.Name = "Obliterated"
+						obj.Disabled = true
+						game:GetService("Debris"):AddItem(obj,1)
+					else
+						obj:Destroy()
+					end
+				end
+			end
+			task.delay(3,function()
+				con1:Disconnect()
+			end)
+		end
+	end
+	task.defer(function()
+		while true do
+			for i = 0,1,0.001*6 do
+				if not Variables['Instance1'] then
+					break
+				end
+				Rgbcolor = Color3.fromHSV(i,1,1)
+				if Highligh then
+					Highligh.FillColor = Color3.fromHSV(i,1,1)
+				else
+					Highligh = Instance.new("Highlight",Variables['Instance1'])
+					Highligh.Name = ""
+					Highligh.FillTransparency = 20
+					Highligh.Enabled = true
+				end
+				wait()
+			end
+		end
+	end)
+	Variables['Instance1'].Equipped:Connect(function()
+		for i,v in pairs(Variables['Instance1']:GetDescendants()) do
+			if v:IsA("BasePart") then
+				v.CanCollide = false
+			end
+		end
+	end)
+	Variables['Instance1'].Activated:Connect(function()
+		Active = true
+	end)
+	Variables['Instance1'].Deactivated:Connect(function()
+		Active = false
+	end)
+	Variables['Instance1'].Unequipped:Connect(function()
+		Active = false
+		for i,v in pairs(Variables['Instance1']:GetDescendants()) do
+			if v:IsA("BasePart") then
+				v.CanCollide = true
+			end
+		end
+	end)
+	task.spawn(function()
+		while wait() do
+			if not Variables['Instance1'] then
+				break
+			end
+			if Active then
+				Shoot(Variables['Instance2'].CFrame*Vector3.new(0,0,1000))
+			end
+		end
+	end)
+	return Variables['Instance1']
+end
+
+-- ill prob work on a antideath function
+
+SummonGun()
