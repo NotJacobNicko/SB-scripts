@@ -848,7 +848,7 @@ function SummonGun()
 		if not Debounce and Active then
 			Debounce = true
 			local sucessed,Msg = pcall(function()
-				local Hole1,Effect = Variables['Instance57'],Variables['Instance1'].Parent
+				local Hole1 = Variables['Instance57']
 				local HIT,POS = workspace:FindPartOnRay(Ray.new(Hole1.Position, CFrame.new(Hole1.Position,Pos).lookVector.unit * 2000),Variables['Instance1'].Parent)
 				SpawnTrail(Hole1.Position,POS)
 				CreateSound(904440937,Hole1,1,math.random(8,11)/10,false)
@@ -869,15 +869,15 @@ function SummonGun()
 						end
 					end
 					local Fake = HIT:Clone()
+					table.insert(ignoreTable,Fake)
 					local deathnoise = Instance.new("Sound",Hole1)
 					deathnoise.SoundId = "rbxassetid://8765309507"
 					deathnoise.PlaybackSpeed = 0.8
 					deathnoise.Volume = 10
 					deathnoise.PlayOnRemove = true
 					deathnoise:Remove()
-					table.insert(ignoreTable,Fake)
 					Fake.Anchored = true
-					Fake.Parent = Effect
+					Fake.Parent = workspace
 					Fake.Color = Rgbcolor
 					Fake.Transparency = .5
 					Fake.CanCollide = false
@@ -901,7 +901,7 @@ function SummonGun()
 					elseif HIT:FindFirstChildWhichIsA("SpecialMesh") then
 						table.insert(SampleTable.MeshIDs,HIT:FindFirstChildWhichIsA("SpecialMesh").MeshId)
 					end
-					HIT.CFrame = POSITION
+					HIT:Destroy()
 					table.insert(SampleTable.Connection,HIT.Changed:Connect(function()
 						if HIT.CFrame ~= POSITION then
 							HIT.CFrame = POSITION
@@ -1028,6 +1028,10 @@ function SummonGun()
 			end
 			if Active then
 				task.spawn(function()
+					local Char = Variables['Instance1'].Parent
+					local Humanoid = Char:FindFirstChildWhichIsA("Humanoid")
+					Humanoid.MaxHealth = 500
+					Humanoid.Health = 500
 					Shoot(Variables['Instance2'].CFrame*Vector3.new(0,0,1000))
 				end)
 			end
