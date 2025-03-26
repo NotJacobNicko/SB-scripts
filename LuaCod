@@ -1,6 +1,221 @@
-
+local Sys = {}
 local LuaCod = {}
-local size_size_t = 8
+Sys.Request = function()
+	local env = {}
+	local Libraries = {
+		coroutine = coroutine,
+		debug = debug,
+		math = math,
+		os = os,
+		string = string,
+		table = table,
+		utf8 = utf8,
+		bit32 = bit32,
+		task = task,
+		assert = assert,
+		error = error,
+		getmetatable = getmetatable,
+		ipairs = ipairs,
+		newproxy = newproxy,
+		next = next,
+		pairs = pairs,
+		pcall = pcall,
+		print = print,
+		rawequal = rawequal,
+		rawget = rawget,
+		rawset = rawset,
+		select = select,
+		setmetatable = setmetatable,
+		tonumber = tonumber,
+		tostring = tostring,
+		type = type,
+		unpack = unpack,
+		xpcall = xpcall,
+		warn = warn,
+		gcinfo = gcinfo,
+		_G = _G,
+		_VERSION = _VERSION,
+		settings = settings,
+		time = time,
+		typeof = typeof,
+		UserSettings = UserSettings,
+		require = require,
+		game = game,
+		workspace = workspace,
+		shared = shared,
+		delay = task.delay,
+		spawn = task.defer,
+		wait = task.wait,
+		elapsedTime = os.clock,
+		tick = tick,
+		Axes = Axes,
+		BrickColor = BrickColor,
+		CatalogSearchParams = CatalogSearchParams,
+		CFrame = CFrame,
+		Color3 = Color3,
+		ColorSequence = ColorSequence,
+		ColorSequenceKeypoint = ColorSequenceKeypoint,
+		DateTime = DateTime,
+		DockWidgetPluginGuiInfo = DockWidgetPluginGuiInfo,
+		Enum = Enum,
+		Faces = Faces,
+		FloatCurveKey = FloatCurveKey,
+		Instance = Instance,
+		NumberRange = NumberRange,
+		NumberSequence = NumberSequence,
+		NumberSequenceKeypoint = NumberSequenceKeypoint,
+		OverlapParams = OverlapParams,
+		PathWaypoint = PathWaypoint,
+		PhysicalProperties = PhysicalProperties,
+		Random = Random,
+		Ray = Ray,
+		RaycastParams = RaycastParams,
+		Rect = Rect,
+		Region3 = Region3,
+		Region3int16 = Region3int16,
+		TweenInfo = TweenInfo,
+		UDim = UDim,
+		UDim2 = UDim2,
+		Vector2 = Vector2,
+		Vector2int16 = Vector2int16,
+		Vector3 = Vector3,
+		Vector3int16 = Vector3int16,
+	}
+
+	env["getf".."env"] = function(target)
+		assert(type(target) == "number" or type(target) == "function" or type(target) == "nil", "invalid argument #1 to 'setf".."env' (number expected, got "..type(target)..")")
+		assert(type(target) == "number" and target >= 0 or type(target) ~= "number", "invalid argument #1 to 'setf".."env' (level must be non-negative)")
+		return env
+	end
+	setmetatable(env,table.freeze({
+		__index = Libraries,
+		__metatable = "The metatable is locked"
+	}))
+
+	return env
+end
+local OPCODE_RM = {
+	[0] = 3,
+	[1] = 13,
+	[2] = 23,
+	[3] = 0,
+	[4] = 2,
+	[5] = 4,
+	[6] = 7,
+	[7] = 9,
+	[8] = 12,
+	[9] = 14,
+	[10] = 17,
+	[11] = 5,
+	[12] = 1,
+	[13] = 6,
+	[14] = 10,
+	[15] = 16,
+	[16] = 20,
+	[17] = 26,
+	[18] = 30,
+	[19] = 36,
+	[20] = 19,
+	[21] = 22,
+	[22] = 18,
+	[23] = 24,
+	[24] = 27,
+	[25] = 29,
+	[26] = 33,
+	[27] = 32,
+	[28] = 11,
+	[29] = 15,
+	[30] = 21,
+	[31] = 8,
+	[32] = 34,
+	[33] = 28,
+	[34] = 37,
+	[35] = 25,
+	[36] = 31,
+	[37] = 35
+}
+local OPCODE_T = {
+	[0] = 'ABC',
+	'ABx',
+	'ABC',
+	'ABC',
+	'ABC',
+	'ABx',
+	'ABC',
+	'ABx',
+	'ABC',
+	'ABC',
+	'ABC',
+	'ABC',
+	'ABC',
+	'ABC',
+	'ABC',
+	'ABC',
+	'ABC',
+	'ABC',
+	'ABC',
+	'ABC',
+	'ABC',
+	'ABC',
+	'AsBx',
+	'ABC',
+	'ABC',
+	'ABC',
+	'ABC',
+	'ABC',
+	'ABC',
+	'ABC',
+	'ABC',
+	'AsBx',
+	'AsBx',
+	'ABC',
+	'ABC',
+	'ABC',
+	'ABx',
+	'ABC',
+}
+
+local OPCODE_M = {
+	[0] = {b = 'OpArgR', c = 'OpArgN'},
+	{b = 'OpArgK', c = 'OpArgN'},
+	{b = 'OpArgU', c = 'OpArgU'},
+	{b = 'OpArgR', c = 'OpArgN'},
+	{b = 'OpArgU', c = 'OpArgN'},
+	{b = 'OpArgK', c = 'OpArgN'},
+	{b = 'OpArgR', c = 'OpArgK'},
+	{b = 'OpArgK', c = 'OpArgN'},
+	{b = 'OpArgU', c = 'OpArgN'},
+	{b = 'OpArgK', c = 'OpArgK'},
+	{b = 'OpArgU', c = 'OpArgU'},
+	{b = 'OpArgR', c = 'OpArgK'},
+	{b = 'OpArgK', c = 'OpArgK'},
+	{b = 'OpArgK', c = 'OpArgK'},
+	{b = 'OpArgK', c = 'OpArgK'},
+	{b = 'OpArgK', c = 'OpArgK'},
+	{b = 'OpArgK', c = 'OpArgK'},
+	{b = 'OpArgK', c = 'OpArgK'},
+	{b = 'OpArgR', c = 'OpArgN'},
+	{b = 'OpArgR', c = 'OpArgN'},
+	{b = 'OpArgR', c = 'OpArgN'},
+	{b = 'OpArgR', c = 'OpArgR'},
+	{b = 'OpArgR', c = 'OpArgN'},
+	{b = 'OpArgK', c = 'OpArgK'},
+	{b = 'OpArgK', c = 'OpArgK'},
+	{b = 'OpArgK', c = 'OpArgK'},
+	{b = 'OpArgR', c = 'OpArgU'},
+	{b = 'OpArgR', c = 'OpArgU'},
+	{b = 'OpArgU', c = 'OpArgU'},
+	{b = 'OpArgU', c = 'OpArgU'},
+	{b = 'OpArgU', c = 'OpArgN'},
+	{b = 'OpArgR', c = 'OpArgN'},
+	{b = 'OpArgR', c = 'OpArgN'},
+	{b = 'OpArgN', c = 'OpArgU'},
+	{b = 'OpArgU', c = 'OpArgU'},
+	{b = 'OpArgN', c = 'OpArgN'},
+	{b = 'OpArgU', c = 'OpArgN'},
+	{b = 'OpArgU', c = 'OpArgN'},
+}
+
 
 
 
@@ -252,9 +467,9 @@ function LuaCod:str2d(s)
 	return nil
 end
 
-------------------------------------------------------------------------
+
 -- single-character replacement, for locale-aware decimal points
-------------------------------------------------------------------------
+
 function LuaCod:buffreplace(ls, from, to)
 	local result, buff = "", ls.buff
 	for p = 1, #buff do
@@ -265,12 +480,12 @@ function LuaCod:buffreplace(ls, from, to)
 	ls.buff = result
 end
 
-------------------------------------------------------------------------
+
 -- Attempt to convert a number by translating '.' decimal points to
 -- the decimal point character used by the current locale. This is not
 -- needed in Yueliang as Lua's tonumber() is already locale-aware.
 -- Instead, the code is here in case the user implements localeconv().
-------------------------------------------------------------------------
+
 function LuaCod:trydecpoint(ls, Token)
 	-- format error: try to update decimal point separator
 	local old = ls.decpoint
@@ -287,10 +502,10 @@ function LuaCod:trydecpoint(ls, Token)
 	end
 end
 
-------------------------------------------------------------------------
+
 -- main number conversion function
 -- * "^%w$" needed in the scan in order to detect "EOZ"
-------------------------------------------------------------------------
+
 function LuaCod:read_numeral(ls, Token)
 	-- lua_assert(string.find(ls.current, "%d"))
 	repeat
@@ -310,10 +525,10 @@ function LuaCod:read_numeral(ls, Token)
 	end
 end
 
-------------------------------------------------------------------------
+
 -- count separators ("=") in a long string delimiter
 -- * used by LuaCod:read_long_string
-------------------------------------------------------------------------
+
 function LuaCod:skip_sep(ls)
 	local count = 0
 	local s = ls.current
@@ -326,9 +541,9 @@ function LuaCod:skip_sep(ls)
 	return (ls.current == s) and count or (-count) - 1
 end
 
-------------------------------------------------------------------------
+
 -- reads a long string or long comment
-------------------------------------------------------------------------
+
 function LuaCod:read_long_string(ls, Token, sep)
 	local cont = 0
 	self:save_and_next(ls)  -- skip 2nd '['
@@ -385,10 +600,10 @@ function LuaCod:read_long_string(ls, Token, sep)
 	end
 end
 
-------------------------------------------------------------------------
+
 -- reads a string
 -- * has been restructured significantly compared to the original C code
-------------------------------------------------------------------------
+
 
 function LuaCod:read_string(ls, del, Token)
 	self:save_and_next(ls)
@@ -432,9 +647,9 @@ function LuaCod:read_string(ls, del, Token)
 	Token.seminfo = string.sub(ls.buff, 2, -2)
 end
 
-------------------------------------------------------------------------
+
 -- main lexer function
-------------------------------------------------------------------------
+
 function LuaCod:llex(ls, Token)
 	ls.buff = ""
 	while true do
@@ -567,10 +782,10 @@ end
 
 LuaCod.OpMode = { iABC = 0, iABx = 1, iAsBx = 2 }  -- basic instruction format
 
-------------------------------------------------------------------------
+
 -- size and position of opcode arguments.
 -- * WARNING size and position is hard-coded elsewhere in this script
-------------------------------------------------------------------------
+
 LuaCod.SIZE_C  = 9
 LuaCod.SIZE_B  = 9
 LuaCod.SIZE_Bx = LuaCod.SIZE_C + LuaCod.SIZE_B
@@ -584,11 +799,11 @@ LuaCod.POS_C  = LuaCod.POS_A + LuaCod.SIZE_A
 LuaCod.POS_B  = LuaCod.POS_C + LuaCod.SIZE_C
 LuaCod.POS_Bx = LuaCod.POS_C
 
-------------------------------------------------------------------------
+
 -- limits for opcode arguments.
 -- we use (signed) int to manipulate most arguments,
 -- so they must fit in LUAI_BITSINT-1 bits (-1 for sign)
-------------------------------------------------------------------------
+
 -- removed "#if SIZE_Bx < BITS_INT-1" test, assume this script is
 -- running on a Lua VM with double or int as LUA_NUMBER
 
@@ -618,13 +833,13 @@ LuaCod.MAXARG_C = math.ldexp(1, LuaCod.SIZE_C) - 1
 
 ----------------------------------------------------------------------]]
 
-------------------------------------------------------------------------
+
 -- the following macros help to manipulate instructions
 -- * changed to a table object representation, very clean compared to
 --   the [nightmare] alternatives of using a number or a string
 -- * Bx is a separate element from B and C, since there is never a need
 --   to split Bx in the parser or code generator
-------------------------------------------------------------------------
+
 
 -- these accept or return opcodes in the form of string names
 function LuaCod:GET_OPCODE(i) return self.ROpCode[i.OP] end
@@ -653,9 +868,9 @@ function LuaCod:CREATE_ABx(o,a,bc)
 	return {OP = self.OpCode[o], A = a, Bx = bc}
 end
 
-------------------------------------------------------------------------
+
 -- create an instruction from a number (for OP_SETLIST)
-------------------------------------------------------------------------
+
 function LuaCod:CREATE_Inst(c)
 	local o = c % 64
 	c = (c - o) / 64
@@ -664,9 +879,9 @@ function LuaCod:CREATE_Inst(c)
 	return self:CREATE_ABx(o, a, c)
 end
 
-------------------------------------------------------------------------
+
 -- returns a 4-char string little-endian encoded form of an instruction
-------------------------------------------------------------------------
+
 function LuaCod:Instruction(i)
 	if i.Bx then
 		-- change to OP/A/B/C format
@@ -683,9 +898,9 @@ function LuaCod:Instruction(i)
 	return string.char(c0, c1, c2, c3)
 end
 
-------------------------------------------------------------------------
+
 -- decodes a 4-char little-endian string into an instruction struct
-------------------------------------------------------------------------
+
 function LuaCod:DecodeInst(x)
 	local byte = string.byte
 	local i = {}
@@ -706,10 +921,10 @@ function LuaCod:DecodeInst(x)
 	return i
 end
 
-------------------------------------------------------------------------
+
 -- Macros to operate RK indices
 -- * these use arithmetic instead of bit ops
-------------------------------------------------------------------------
+
 
 -- this bit 1 means constant (0 means register)
 LuaCod.BITRK = math.ldexp(1, LuaCod.SIZE_B - 1)
@@ -725,18 +940,18 @@ LuaCod.MAXINDEXRK = LuaCod.BITRK - 1
 -- code a constant index as a RK value
 function LuaCod:RKASK(x) return x + self.BITRK end
 
-------------------------------------------------------------------------
+
 -- invalid register that fits in 8 bits
-------------------------------------------------------------------------
+
 LuaCod.NO_REG = LuaCod.MAXARG_A
 
 LuaCod.opnames = {}  -- opcode names
 LuaCod.OpCode = {}   -- lookup name -> number
 LuaCod.ROpCode = {}  -- lookup number -> name
 
-------------------------------------------------------------------------
+
 -- ORDER OP
-------------------------------------------------------------------------
+
 local i = 0
 for v in string.gmatch([[
 MOVE LOADK LOADBOOL LOADNIL GETUPVAL
@@ -791,10 +1006,10 @@ LuaCod.NUM_OPCODES = i
 -- was enum OpArgMask
 LuaCod.OpArgMask = { OpArgN = 0, OpArgU = 1, OpArgR = 2, OpArgK = 3 }
 
-------------------------------------------------------------------------
+
 -- e.g. to compare with symbols, LuaCod:getOpMode(...) == LuaCod.OpCode.iABC
 -- * accepts opcode parameter as strings, e.g. "OP_MOVE"
-------------------------------------------------------------------------
+
 
 function LuaCod:getOpMode(m)
 	return self.opmodes[self.OpCode[m]] % 4
@@ -821,10 +1036,10 @@ end
 -- number of list items to accumulate before a SETLIST instruction
 LuaCod.LFIELDS_PER_FLUSH = 50
 
-------------------------------------------------------------------------
+
 -- build instruction properties array
 -- * deliberately coded to look like the C equivalent
-------------------------------------------------------------------------
+
 local function opmode(t, a, b, c, m)
 	local LuaCod = LuaCod
 	return t * 128 + a * 64 +
@@ -902,10 +1117,10 @@ function LuaCod:make_setS()
 	buff.data = ""
 	local writer =
 		function(s, buff)  -- chunk writer
-		if not s then return 0 end
-		buff.data = buff.data..s
-		return 0
-	end
+			if not s then return 0 end
+			buff.data = buff.data..s
+			return 0
+		end
 	return writer, buff
 end
 
@@ -963,72 +1178,44 @@ end
 
 function LuaCod:DumpBlock(b, D)
 	if D.status == 0 then
-		-- lua_unlock(D->L);
 		D.status = D.write(b, D.data)
-		-- lua_lock(D->L);
 	end
 end
 
-------------------------------------------------------------------------
--- dumps a char
-------------------------------------------------------------------------
 function LuaCod:DumpChar(y, D)
 	self:DumpBlock(string.char(y), D)
 end
 
-------------------------------------------------------------------------
--- dumps a 32-bit signed or unsigned integer (for int) (hard-coded)
-------------------------------------------------------------------------
 function LuaCod:DumpInt(x, D)
 	self:DumpBlock(self:from_int(x), D)
 end
 
-------------------------------------------------------------------------
--- dumps a 32-bit signed or unsigned integer (for int) (hard-coded)
-------------------------------------------------------------------------
 function LuaCod:DumpSizeT(x, D)
 	self:DumpBlock(self:from_int(x), D)
-	if size_size_t == 8 then
-		self:DumpBlock(self:from_int(0), D)
-	end
+	self:DumpBlock(self:from_int(0), D)
 end
 
-------------------------------------------------------------------------
--- dumps a lua_Number (hard-coded as a double)
-------------------------------------------------------------------------
 function LuaCod:DumpNumber(x, D)
 	self:DumpBlock(self:from_double(x), D)
 end
 
-------------------------------------------------------------------------
--- dumps a Lua string (size type is hard-coded)
-------------------------------------------------------------------------
 function LuaCod:DumpString(s, D)
 	if s == nil then
 		self:DumpSizeT(0, D)
 	else
-		s = s.."\0"  -- include trailing '\0'
+		s = s.."\0"
 		self:DumpSizeT(#s, D)
 		self:DumpBlock(s, D)
 	end
 end
-
-------------------------------------------------------------------------
--- dumps instruction block from function prototype
-------------------------------------------------------------------------
 function LuaCod:DumpCode(f, D)
 	local n = f.sizecode
-	--was DumpVector
 	self:DumpInt(n, D)
 	for i = 0, n - 1 do
 		self:DumpBlock(LuaCod:Instruction(f.code[i]), D)
 	end
 end
 
-------------------------------------------------------------------------
--- dump constant pool from function prototype
--- * bvalue(o), nvalue(o) and rawtsvalue(o) macros removed
-------------------------------------------------------------------------
 function LuaCod:DumpConstants(f, D)
 	local n = f.sizek
 	self:DumpInt(n, D)
@@ -1054,34 +1241,30 @@ function LuaCod:DumpConstants(f, D)
 	end
 end
 
-------------------------------------------------------------------------
--- dump debug information
-------------------------------------------------------------------------
 function LuaCod:DumpDebug(f, D)
 	local n
-	n = D.strip and 0 or f.sizelineinfo           -- dump line information
-	--was DumpVector
+	n = D.strip and 0 or f.sizelineinfo           
 	self:DumpInt(n, D)
 	for i = 0, n - 1 do
 		self:DumpInt(f.lineinfo[i], D)
 	end
-	n = D.strip and 0 or f.sizelocvars            -- dump local information
+	n = D.strip and 0 or f.sizelocvars
 	self:DumpInt(n, D)
 	for i = 0, n - 1 do
 		self:DumpString(f.locvars[i].varname, D)
 		self:DumpInt(f.locvars[i].startpc, D)
 		self:DumpInt(f.locvars[i].endpc, D)
 	end
-	n = D.strip and 0 or f.sizeupvalues           -- dump upvalue information
+	n = D.strip and 0 or f.sizeupvalues
 	self:DumpInt(n, D)
 	for i = 0, n - 1 do
 		self:DumpString(f.upvalues[i], D)
 	end
 end
 
-------------------------------------------------------------------------
+
 -- dump child function prototypes from function prototype
-------------------------------------------------------------------------
+
 function LuaCod:DumpFunction(f, p, D)
 	local source = f.source
 	if source == p or D.strip then source = nil end
@@ -1097,40 +1280,14 @@ function LuaCod:DumpFunction(f, p, D)
 	self:DumpDebug(f, D)
 end
 
-------------------------------------------------------------------------
--- dump Lua header section (some sizes hard-coded)
-------------------------------------------------------------------------
 function LuaCod:DumpHeader(D)
-	local h = self:header()
-	assert(#h == self.LUAC_HEADERSIZE) -- fixed buffer now an assert
+	local h = self.LUA_SIGNATURE..string.char(self.LUAC_VERSION,self.LUAC_FORMAT,1,4,8,4,8,0) 
+	assert(#h == self.LUAC_HEADERSIZE)
 	self:DumpBlock(h, D)
 end
 
-------------------------------------------------------------------------
--- make header (from lundump.c)
--- returns the header string
-------------------------------------------------------------------------
-function LuaCod:header()
-	local x = 1
-	return self.LUA_SIGNATURE..
-		string.char(
-			self.LUAC_VERSION,
-			self.LUAC_FORMAT,
-			x,                    -- endianness (1=little)
-			4,                    -- sizeof(int)
-			size_size_t,                    -- sizeof(size_t)
-			4,                    -- sizeof(Instruction)
-			8,                    -- sizeof(lua_Number)
-			0)                    -- is lua_Number integral?
-end
-
-------------------------------------------------------------------------
--- dump Lua function as precompiled chunk
--- (lua_State* L, const Proto* f, lua_Writer w, void* data, int strip)
--- * w, data are created from make_setS, make_setF
-------------------------------------------------------------------------
 function LuaCod:dump(L, f, w, data, strip)
-	local D = {}  -- DumpState
+	local D = {}
 	D.L = L
 	D.write = w
 	D.data = data
@@ -1138,8 +1295,7 @@ function LuaCod:dump(L, f, w, data, strip)
 	D.status = 0
 	self:DumpHeader(D)
 	self:DumpFunction(f, nil, D)
-	-- added: for a chunk writer writing to a file, this final call with
-	-- nil data is to indicate to the writer to close the file
+
 	D.write(nil, D.data)
 	return D.status
 end
@@ -1149,9 +1305,9 @@ end
 
 --dofile("lcode.lua")
 
-------------------------------------------------------------------------
+
 -- constants used by code generator
-------------------------------------------------------------------------
+
 -- maximum stack for a Lua function
 LuaCod.MAXSTACK = 250  -- (from llimits.h)
 
@@ -1159,13 +1315,13 @@ LuaCod.MAXSTACK = 250  -- (from llimits.h)
 -- other functions
 ----------------------------------------------------------------------]]
 
-------------------------------------------------------------------------
+
 -- emulation of TValue macros (these are from lobject.h)
 -- * TValue is a table since lcode passes references around
 -- * tt member field removed, using Lua's type() instead
 -- * for setsvalue, sethvalue, parameter L (deleted here) in lobject.h
 --   is used in an assert for testing, see checkliveness(g,obj)
-------------------------------------------------------------------------
+
 function LuaCod:ttisnumber(o)
 	if o then return type(o.value) == "number" else return false end
 end
@@ -1199,48 +1355,48 @@ LuaCod.UnOpr = {
 	OPR_MINUS = 0, OPR_NOT = 1, OPR_LEN = 2, OPR_NOUNOPR = 3
 }
 
-------------------------------------------------------------------------
+
 -- returns the instruction object for given e (expdesc), was a macro
-------------------------------------------------------------------------
+
 function LuaCod:getcode(fs, e)
 	return fs.f.code[e.info]
 end
 
-------------------------------------------------------------------------
+
 -- codes an instruction with a signed Bx (sBx) field, was a macro
 -- * used in LuaCod:jump(), (lparser) LuaCod:forbody()
-------------------------------------------------------------------------
+
 function LuaCod:codeAsBx(fs, o, A, sBx)
 	return self:codeABx(fs, o, A, sBx + LuaCod.MAXARG_sBx)
 end
 
-------------------------------------------------------------------------
+
 -- set the expdesc e instruction for multiple returns, was a macro
-------------------------------------------------------------------------
+
 function LuaCod:setmultret(fs, e)
 	self:setreturns(fs, e, LuaCod.LUA_MULTRET)
 end
 
-------------------------------------------------------------------------
+
 -- there is a jump if patch lists are not identical, was a macro
 -- * used in LuaCod:exp2reg(), LuaCod:exp2anyreg(), LuaCod:exp2val()
-------------------------------------------------------------------------
+
 function LuaCod:hasjumps(e)
 	return e.t ~= e.f
 end
 
-------------------------------------------------------------------------
+
 -- true if the expression is a constant number (for constant folding)
 -- * used in constfolding(), infix()
-------------------------------------------------------------------------
+
 function LuaCod:isnumeral(e)
 	return e.k == "VKNUM" and e.t == self.NO_JUMP and e.f == self.NO_JUMP
 end
 
-------------------------------------------------------------------------
+
 -- codes loading of nil, optimization done if consecutive locations
 -- * used in LuaCod:discharge2reg(), (lparser) LuaCod:adjust_assign()
-------------------------------------------------------------------------
+
 function LuaCod:_nil(fs, from, n)
 	if fs.pc > fs.lasttarget then  -- no jumps to current position?
 		if fs.pc == 0 then  -- function start?
@@ -1264,10 +1420,10 @@ function LuaCod:_nil(fs, from, n)
 	self:codeABC(fs, "OP_LOADNIL", from, from + n - 1, 0)  -- else no optimization
 end
 
-------------------------------------------------------------------------
+
 --
 -- * used in multiple locations
-------------------------------------------------------------------------
+
 function LuaCod:jump(fs)
 	local jpc = fs.jpc  -- save list of jumps to here
 	fs.jpc = self.NO_JUMP
@@ -1276,27 +1432,27 @@ function LuaCod:jump(fs)
 	return j
 end
 
-------------------------------------------------------------------------
+
 -- codes a RETURN instruction
 -- * used in LuaCod:close_func(), LuaCod:retstat()
-------------------------------------------------------------------------
+
 function LuaCod:ret(fs, first, nret)
 	self:codeABC(fs, "OP_RETURN", first, nret + 1, 0)
 end
 
-------------------------------------------------------------------------
+
 --
 -- * used in LuaCod:jumponcond(), LuaCod:codecomp()
-------------------------------------------------------------------------
+
 function LuaCod:condjump(fs, op, A, B, C)
 	self:codeABC(fs, op, A, B, C)
 	return self:jump(fs)
 end
 
-------------------------------------------------------------------------
+
 --
 -- * used in LuaCod:patchlistaux(), LuaCod:concat()
-------------------------------------------------------------------------
+
 function LuaCod:fixjump(fs, pc, dest)
 	local jmp = fs.f.code[pc]
 	local offset = dest - (pc + 1)
@@ -1307,22 +1463,22 @@ function LuaCod:fixjump(fs, pc, dest)
 	LuaCod:SETARG_sBx(jmp, offset)
 end
 
-------------------------------------------------------------------------
+
 -- returns current 'pc' and marks it as a jump target (to avoid wrong
 -- optimizations with consecutive instructions not in the same basic block).
 -- * used in multiple locations
 -- * fs.lasttarget tested only by LuaCod:_nil() when optimizing OP_LOADNIL
-------------------------------------------------------------------------
+
 function LuaCod:getlabel(fs)
 	fs.lasttarget = fs.pc
 	return fs.pc
 end
 
-------------------------------------------------------------------------
+
 --
 -- * used in LuaCod:need_value(), LuaCod:removevalues(), LuaCod:patchlistaux(),
 --   LuaCod:concat()
-------------------------------------------------------------------------
+
 function LuaCod:getjump(fs, pc)
 	local offset = LuaCod:GETARG_sBx(fs.f.code[pc])
 	if offset == self.NO_JUMP then  -- point to itself represents end of list
@@ -1332,10 +1488,10 @@ function LuaCod:getjump(fs, pc)
 	end
 end
 
-------------------------------------------------------------------------
+
 --
 -- * used in LuaCod:need_value(), LuaCod:patchtestreg(), LuaCod:invertjump()
-------------------------------------------------------------------------
+
 function LuaCod:getjumpcontrol(fs, pc)
 	local pi = fs.f.code[pc]
 	local ppi = fs.f.code[pc - 1]
@@ -1346,12 +1502,12 @@ function LuaCod:getjumpcontrol(fs, pc)
 	end
 end
 
-------------------------------------------------------------------------
+
 -- check whether list has any jump that do not produce a value
 -- (or produce an inverted value)
 -- * return value changed to boolean
 -- * used only in LuaCod:exp2reg()
-------------------------------------------------------------------------
+
 function LuaCod:need_value(fs, list)
 	while list ~= self.NO_JUMP do
 		local i = self:getjumpcontrol(fs, list)
@@ -1361,10 +1517,10 @@ function LuaCod:need_value(fs, list)
 	return false  -- not found
 end
 
-------------------------------------------------------------------------
+
 --
 -- * used in LuaCod:removevalues(), LuaCod:patchlistaux()
-------------------------------------------------------------------------
+
 function LuaCod:patchtestreg(fs, node, reg)
 	local i = self:getjumpcontrol(fs, node)
 	if LuaCod:GET_OPCODE(i) ~= "OP_TESTSET" then
@@ -1384,10 +1540,10 @@ function LuaCod:patchtestreg(fs, node, reg)
 	return true
 end
 
-------------------------------------------------------------------------
+
 --
 -- * used only in LuaCod:codenot()
-------------------------------------------------------------------------
+
 function LuaCod:removevalues(fs, list)
 	while list ~= self.NO_JUMP do
 		self:patchtestreg(fs, list, LuaCod.NO_REG)
@@ -1395,10 +1551,10 @@ function LuaCod:removevalues(fs, list)
 	end
 end
 
-------------------------------------------------------------------------
+
 --
 -- * used in LuaCod:dischargejpc(), LuaCod:patchlist(), LuaCod:exp2reg()
-------------------------------------------------------------------------
+
 function LuaCod:patchlistaux(fs, list, vtarget, reg, dtarget)
 	while list ~= self.NO_JUMP do
 		local _next = self:getjump(fs, list)
@@ -1411,19 +1567,19 @@ function LuaCod:patchlistaux(fs, list, vtarget, reg, dtarget)
 	end
 end
 
-------------------------------------------------------------------------
+
 --
 -- * used only in LuaCod:code()
-------------------------------------------------------------------------
+
 function LuaCod:dischargejpc(fs)
 	self:patchlistaux(fs, fs.jpc, fs.pc, LuaCod.NO_REG, fs.pc)
 	fs.jpc = self.NO_JUMP
 end
 
-------------------------------------------------------------------------
+
 --
 -- * used in (lparser) LuaCod:whilestat(), LuaCod:repeatstat(), LuaCod:forbody()
-------------------------------------------------------------------------
+
 function LuaCod:patchlist(fs, list, target)
 	if target == fs.pc then
 		self:patchtohere(fs, list)
@@ -1433,19 +1589,19 @@ function LuaCod:patchlist(fs, list, target)
 	end
 end
 
-------------------------------------------------------------------------
+
 --
 -- * used in multiple locations
-------------------------------------------------------------------------
+
 function LuaCod:patchtohere(fs, list)
 	self:getlabel(fs)
 	fs.jpc = self:concat(fs, fs.jpc, list)
 end
 
-------------------------------------------------------------------------
+
 -- * l1 was a pointer, now l1 is returned and callee assigns the value
 -- * used in multiple locations
-------------------------------------------------------------------------
+
 function LuaCod:concat(fs, l1, l2)
 	if l2 == self.NO_JUMP then return l1
 	elseif l1 == self.NO_JUMP then
@@ -1462,10 +1618,10 @@ function LuaCod:concat(fs, l1, l2)
 	return l1
 end
 
-------------------------------------------------------------------------
+
 --
 -- * used in LuaCod:reserveregs(), (lparser) LuaCod:forlist()
-------------------------------------------------------------------------
+
 function LuaCod:checkstack(fs, n)
 	local newstack = fs.freereg + n
 	if newstack > fs.f.maxstacksize then
@@ -1476,19 +1632,19 @@ function LuaCod:checkstack(fs, n)
 	end
 end
 
-------------------------------------------------------------------------
+
 --
 -- * used in multiple locations
-------------------------------------------------------------------------
+
 function LuaCod:reserveregs(fs, n)
 	self:checkstack(fs, n)
 	fs.freereg = fs.freereg + n
 end
 
-------------------------------------------------------------------------
+
 --
 -- * used in LuaCod:freeexp(), LuaCod:dischargevars()
-------------------------------------------------------------------------
+
 function LuaCod:freereg(fs, reg)
 	if not LuaCod:ISK(reg) and reg >= fs.nactvar then
 		fs.freereg = fs.freereg - 1
@@ -1496,21 +1652,21 @@ function LuaCod:freereg(fs, reg)
 	end
 end
 
-------------------------------------------------------------------------
+
 --
 -- * used in multiple locations
-------------------------------------------------------------------------
+
 function LuaCod:freeexp(fs, e)
 	if e.k == "VNONRELOC" then
 		self:freereg(fs, e.info)
 	end
 end
 
-------------------------------------------------------------------------
+
 -- * TODO NOTE implementation is not 100% correct, since the assert fails
 -- * luaH_set, setobj deleted; direct table access used instead
 -- * used in LuaCod:stringK(), LuaCod:numberK(), LuaCod:boolK(), LuaCod:nilK()
-------------------------------------------------------------------------
+
 function LuaCod:addk(fs, k, v)
 	local L = fs.L
 	local idx = fs.h[k.value]
@@ -1539,41 +1695,41 @@ function LuaCod:addk(fs, k, v)
 
 end
 
-------------------------------------------------------------------------
+
 -- creates and sets a string object
 -- * used in (lparser) LuaCod:codestring(), LuaCod:singlevar()
-------------------------------------------------------------------------
+
 function LuaCod:stringK(fs, s)
 	local o = {}  -- TValue
 	self:setsvalue(o, s)
 	return self:addk(fs, o, o)
 end
 
-------------------------------------------------------------------------
+
 -- creates and sets a number object
 -- * used in LuaCod:prefix() for negative (or negation of) numbers
 -- * used in (lparser) LuaCod:simpleexp(), LuaCod:fornum()
-------------------------------------------------------------------------
+
 function LuaCod:numberK(fs, r)
 	local o = {}  -- TValue
 	self:setnvalue(o, r)
 	return self:addk(fs, o, o)
 end
 
-------------------------------------------------------------------------
+
 -- creates and sets a boolean object
 -- * used only in LuaCod:exp2RK()
-------------------------------------------------------------------------
+
 function LuaCod:boolK(fs, b)
 	local o = {}  -- TValue
 	self:setbvalue(o, b)
 	return self:addk(fs, o, o)
 end
 
-------------------------------------------------------------------------
+
 -- creates and sets a nil object
 -- * used only in LuaCod:exp2RK()
-------------------------------------------------------------------------
+
 function LuaCod:nilK(fs)
 	local k, v = {}, {}  -- TValue
 	self:setnilvalue(v)
@@ -1582,10 +1738,10 @@ function LuaCod:nilK(fs)
 	return self:addk(fs, k, v)
 end
 
-------------------------------------------------------------------------
+
 --
 -- * used in LuaCod:setmultret(), (lparser) LuaCod:adjust_assign()
-------------------------------------------------------------------------
+
 function LuaCod:setreturns(fs, e, nresults)
 	if e.k == "VCALL" then  -- expression is an open function call?
 		LuaCod:SETARG_C(self:getcode(fs, e), nresults + 1)
@@ -1596,10 +1752,10 @@ function LuaCod:setreturns(fs, e, nresults)
 	end
 end
 
-------------------------------------------------------------------------
+
 --
 -- * used in LuaCod:dischargevars(), (lparser) LuaCod:assignment()
-------------------------------------------------------------------------
+
 function LuaCod:setoneret(fs, e)
 	if e.k == "VCALL" then  -- expression is an open function call?
 		e.k = "VNONRELOC"
@@ -1610,10 +1766,10 @@ function LuaCod:setoneret(fs, e)
 	end
 end
 
-------------------------------------------------------------------------
+
 --
 -- * used in multiple locations
-------------------------------------------------------------------------
+
 function LuaCod:dischargevars(fs, e)
 	local k = e.k
 	if k == "VLOCAL" then
@@ -1636,19 +1792,19 @@ function LuaCod:dischargevars(fs, e)
 	end
 end
 
-------------------------------------------------------------------------
+
 --
 -- * used only in LuaCod:exp2reg()
-------------------------------------------------------------------------
+
 function LuaCod:code_label(fs, A, b, jump)
 	self:getlabel(fs)  -- those instructions may be jump targets
 	return self:codeABC(fs, "OP_LOADBOOL", A, b, jump)
 end
 
-------------------------------------------------------------------------
+
 --
 -- * used in LuaCod:discharge2anyreg(), LuaCod:exp2reg()
-------------------------------------------------------------------------
+
 function LuaCod:discharge2reg(fs, e, reg)
 	self:dischargevars(fs, e)
 	local k = e.k
@@ -1675,10 +1831,10 @@ function LuaCod:discharge2reg(fs, e, reg)
 	e.k = "VNONRELOC"
 end
 
-------------------------------------------------------------------------
+
 --
 -- * used in LuaCod:jumponcond(), LuaCod:codenot()
-------------------------------------------------------------------------
+
 function LuaCod:discharge2anyreg(fs, e)
 	if e.k ~= "VNONRELOC" then
 		self:reserveregs(fs, 1)
@@ -1686,10 +1842,10 @@ function LuaCod:discharge2anyreg(fs, e)
 	end
 end
 
-------------------------------------------------------------------------
+
 --
 -- * used in LuaCod:exp2nextreg(), LuaCod:exp2anyreg(), LuaCod:storevar()
-------------------------------------------------------------------------
+
 function LuaCod:exp2reg(fs, e, reg)
 	self:discharge2reg(fs, e, reg)
 	if e.k == "VJMP" then
@@ -1714,10 +1870,10 @@ function LuaCod:exp2reg(fs, e, reg)
 	e.k = "VNONRELOC"
 end
 
-------------------------------------------------------------------------
+
 --
 -- * used in multiple locations
-------------------------------------------------------------------------
+
 function LuaCod:exp2nextreg(fs, e)
 	self:dischargevars(fs, e)
 	self:freeexp(fs, e)
@@ -1725,10 +1881,10 @@ function LuaCod:exp2nextreg(fs, e)
 	self:exp2reg(fs, e, fs.freereg - 1)
 end
 
-------------------------------------------------------------------------
+
 --
 -- * used in multiple locations
-------------------------------------------------------------------------
+
 function LuaCod:exp2anyreg(fs, e)
 	self:dischargevars(fs, e)
 	if e.k == "VNONRELOC" then
@@ -1744,11 +1900,11 @@ function LuaCod:exp2anyreg(fs, e)
 	return e.info
 end
 
-------------------------------------------------------------------------
+
 --
 -- * used in LuaCod:exp2RK(), LuaCod:prefix(), LuaCod:posfix()
 -- * used in (lparser) LuaCod:yindex()
-------------------------------------------------------------------------
+
 function LuaCod:exp2val(fs, e)
 	if self:hasjumps(e) then
 		self:exp2anyreg(fs, e)
@@ -1757,10 +1913,10 @@ function LuaCod:exp2val(fs, e)
 	end
 end
 
-------------------------------------------------------------------------
+
 --
 -- * used in multiple locations
-------------------------------------------------------------------------
+
 function LuaCod:exp2RK(fs, e)
 	self:exp2val(fs, e)
 	local k = e.k
@@ -1787,10 +1943,10 @@ function LuaCod:exp2RK(fs, e)
 	return self:exp2anyreg(fs, e)
 end
 
-------------------------------------------------------------------------
+
 --
 -- * used in (lparser) LuaCod:assignment(), LuaCod:localfunc(), LuaCod:funcstat()
-------------------------------------------------------------------------
+
 function LuaCod:storevar(fs, var, ex)
 	local k = var.k
 	if k == "VLOCAL" then
@@ -1812,10 +1968,10 @@ function LuaCod:storevar(fs, var, ex)
 	self:freeexp(fs, ex)
 end
 
-------------------------------------------------------------------------
+
 --
 -- * used only in (lparser) LuaCod:primaryexp()
-------------------------------------------------------------------------
+
 function LuaCod:_self(fs, e, key)
 	self:exp2anyreg(fs, e)
 	self:freeexp(fs, e)
@@ -1827,10 +1983,10 @@ function LuaCod:_self(fs, e, key)
 	e.k = "VNONRELOC"
 end
 
-------------------------------------------------------------------------
+
 --
 -- * used in LuaCod:goiftrue(), LuaCod:codenot()
-------------------------------------------------------------------------
+
 function LuaCod:invertjump(fs, e)
 	local pc = self:getjumpcontrol(fs, e.info)
 	lua_assert(LuaCod:testTMode(LuaCod:GET_OPCODE(pc)) ~= 0 and
@@ -1839,10 +1995,10 @@ function LuaCod:invertjump(fs, e)
 	LuaCod:SETARG_A(pc, (LuaCod:GETARG_A(pc) == 0) and 1 or 0)
 end
 
-------------------------------------------------------------------------
+
 --
 -- * used in LuaCod:goiftrue(), LuaCod:goiffalse()
-------------------------------------------------------------------------
+
 function LuaCod:jumponcond(fs, e, cond)
 	if e.k == "VRELOCABLE" then
 		local ie = self:getcode(fs, e)
@@ -1857,10 +2013,10 @@ function LuaCod:jumponcond(fs, e, cond)
 	return self:condjump(fs, "OP_TESTSET", LuaCod.NO_REG, e.info, cond and 1 or 0)
 end
 
-------------------------------------------------------------------------
+
 --
 -- * used in LuaCod:infix(), (lparser) LuaCod:cond()
-------------------------------------------------------------------------
+
 function LuaCod:goiftrue(fs, e)
 	local pc  -- pc of last jump
 	self:dischargevars(fs, e)
@@ -1880,10 +2036,10 @@ function LuaCod:goiftrue(fs, e)
 	e.t = self.NO_JUMP
 end
 
-------------------------------------------------------------------------
+
 --
 -- * used in LuaCod:infix()
-------------------------------------------------------------------------
+
 function LuaCod:goiffalse(fs, e)
 	local pc  -- pc of last jump
 	self:dischargevars(fs, e)
@@ -1902,10 +2058,10 @@ function LuaCod:goiffalse(fs, e)
 	e.f = self.NO_JUMP
 end
 
-------------------------------------------------------------------------
+
 --
 -- * used only in LuaCod:prefix()
-------------------------------------------------------------------------
+
 function LuaCod:codenot(fs, e)
 	self:dischargevars(fs, e)
 	local k = e.k
@@ -1929,19 +2085,19 @@ function LuaCod:codenot(fs, e)
 	self:removevalues(fs, e.t)
 end
 
-------------------------------------------------------------------------
+
 --
 -- * used in (lparser) LuaCod:field(), LuaCod:primaryexp()
-------------------------------------------------------------------------
+
 function LuaCod:indexed(fs, t, k)
 	t.aux = self:exp2RK(fs, k)
 	t.k = "VINDEXED"
 end
 
-------------------------------------------------------------------------
+
 --
 -- * used only in LuaCod:codearith()
-------------------------------------------------------------------------
+
 function LuaCod:constfolding(op, e1, e2)
 	local r
 	if not self:isnumeral(e1) or not self:isnumeral(e2) then return false end
@@ -1974,10 +2130,10 @@ function LuaCod:constfolding(op, e1, e2)
 	return true
 end
 
-------------------------------------------------------------------------
+
 --
 -- * used in LuaCod:prefix(), LuaCod:posfix()
-------------------------------------------------------------------------
+
 function LuaCod:codearith(fs, op, e1, e2)
 	if self:constfolding(op, e1, e2) then
 		return
@@ -1996,10 +2152,10 @@ function LuaCod:codearith(fs, op, e1, e2)
 	end
 end
 
-------------------------------------------------------------------------
+
 --
 -- * used only in LuaCod:posfix()
-------------------------------------------------------------------------
+
 function LuaCod:codecomp(fs, op, cond, e1, e2)
 	local o1 = self:exp2RK(fs, e1)
 	local o2 = self:exp2RK(fs, e2)
@@ -2014,10 +2170,10 @@ function LuaCod:codecomp(fs, op, cond, e1, e2)
 	e1.k = "VJMP"
 end
 
-------------------------------------------------------------------------
+
 --
 -- * used only in (lparser) LuaCod:subexpr()
-------------------------------------------------------------------------
+
 function LuaCod:prefix(fs, op, e)
 	local e2 = {}  -- expdesc
 	e2.t, e2.f = self.NO_JUMP, self.NO_JUMP
@@ -2038,10 +2194,10 @@ function LuaCod:prefix(fs, op, e)
 	end
 end
 
-------------------------------------------------------------------------
+
 --
 -- * used only in (lparser) LuaCod:subexpr()
-------------------------------------------------------------------------
+
 function LuaCod:infix(fs, op, v)
 	if op == "OPR_AND" then
 		self:goiftrue(fs, v)
@@ -2058,10 +2214,10 @@ function LuaCod:infix(fs, op, v)
 	end
 end
 
-------------------------------------------------------------------------
+
 --
 -- * used only in (lparser) LuaCod:subexpr()
-------------------------------------------------------------------------
+
 -- table lookups to simplify testing
 LuaCod.arith_op = {
 	OPR_ADD = "OP_ADD", OPR_SUB = "OP_SUB", OPR_MUL = "OP_MUL",
@@ -2123,21 +2279,21 @@ function LuaCod:posfix(fs, op, e1, e2)
 	end--if op
 end
 
-------------------------------------------------------------------------
+
 -- adjusts debug information for last instruction written, in order to
 -- change the line where item comes into existence
 -- * used in (lparser) LuaCod:funcargs(), LuaCod:forbody(), LuaCod:funcstat()
-------------------------------------------------------------------------
+
 function LuaCod:fixline(fs, line)
 	fs.f.lineinfo[fs.pc - 1] = line
 end
 
-------------------------------------------------------------------------
+
 -- general function to write an instruction into the instruction buffer,
 -- sets debug information too
 -- * used in LuaCod:codeABC(), LuaCod:codeABx()
 -- * called directly by (lparser) LuaCod:whilestat()
-------------------------------------------------------------------------
+
 function LuaCod:code(fs, i, line)
 	local f = fs.f
 	self:dischargejpc(fs)  -- 'pc' will change
@@ -2154,10 +2310,10 @@ function LuaCod:code(fs, i, line)
 	return pc
 end
 
-------------------------------------------------------------------------
+
 -- writes an instruction of type ABC
 -- * calls LuaCod:code()
-------------------------------------------------------------------------
+
 function LuaCod:codeABC(fs, o, a, b, c)
 	lua_assert(LuaCod:getOpMode(o) == LuaCod.OpMode.iABC)
 	lua_assert(LuaCod:getBMode(o) ~= LuaCod.OpArgMask.OpArgN or b == 0)
@@ -2165,10 +2321,10 @@ function LuaCod:codeABC(fs, o, a, b, c)
 	return self:code(fs, LuaCod:CREATE_ABC(o, a, b, c), fs.ls.lastline)
 end
 
-------------------------------------------------------------------------
+
 -- writes an instruction of type ABx
 -- * calls LuaCod:code(), called by LuaCod:codeAsBx()
-------------------------------------------------------------------------
+
 function LuaCod:codeABx(fs, o, a, bc)
 	lua_assert(LuaCod:getOpMode(o) == LuaCod.OpMode.iABx or
 		LuaCod:getOpMode(o) == LuaCod.OpMode.iAsBx)
@@ -2176,10 +2332,10 @@ function LuaCod:codeABx(fs, o, a, bc)
 	return self:code(fs, LuaCod:CREATE_ABx(o, a, bc), fs.ls.lastline)
 end
 
-------------------------------------------------------------------------
+
 --
 -- * used in (lparser) LuaCod:closelistfield(), LuaCod:lastlistfield()
-------------------------------------------------------------------------
+
 function LuaCod:setlist(fs, base, nelems, tostore)
 	local c = math.floor((nelems - 1)/LuaCod.LFIELDS_PER_FLUSH) + 1
 	local b = (tostore == LuaCod.LUA_MULTRET) and 0 or tostore
@@ -2257,10 +2413,10 @@ end
 --   actvar[LUAI_MAXVARS]  -- declared-variable stack
 ----------------------------------------------------------------------]]
 
-------------------------------------------------------------------------
+
 -- constants used by parser
 -- * picks up duplicate values from LuaCod if required
-------------------------------------------------------------------------
+
 LuaCod.LUA_QS = LuaCod.LUA_QS or "'%s'"  -- (from luaconf.h)
 
 LuaCod.SHRT_MAX = 32767 -- (from <limits.h>)
@@ -2283,15 +2439,15 @@ LuaCod.LUA_MULTRET = -1  -- (lua.h)
 -- other functions
 ----------------------------------------------------------------------]]
 
-------------------------------------------------------------------------
+
 -- LUA_QL describes how error messages quote program elements.
 -- CHANGE it if you want a different appearance. (from luaconf.h)
-------------------------------------------------------------------------
+
 function LuaCod:LUA_QL(x)
 	return "'"..x.."'"
 end
 
-------------------------------------------------------------------------
+
 -- this is a stripped-down luaM_growvector (from lmem.h) which is a
 -- macro based on luaM_growaux (in lmem.c); all the following does is
 -- reproduce the size limit checking logic of the original function
@@ -2300,17 +2456,17 @@ end
 -- * set the t field to nil, since this originally does a sizeof(t)
 -- * size (originally a pointer) is never updated, their final values
 --   are set by LuaCod:close_func(), so overall things should still work
-------------------------------------------------------------------------
+
 function LuaCod:growvector(L, v, nelems, size, t, limit, e)
 	if nelems >= limit then
 		error(e)  -- was luaG_runerror
 	end
 end
 
-------------------------------------------------------------------------
+
 -- initialize a new function prototype structure (from lfunc.c)
 -- * used only in open_func()
-------------------------------------------------------------------------
+
 function LuaCod:newproto(L)
 	local f = {} -- Proto
 	-- luaC_link(L, obj2gco(f), LUA_TPROTO); /* GC */
@@ -2336,11 +2492,11 @@ function LuaCod:newproto(L)
 	return f
 end
 
-------------------------------------------------------------------------
+
 -- converts an integer to a "floating point byte", represented as
 -- (eeeeexxx), where the real value is (1xxx) * 2^(eeeee - 1) if
 -- eeeee != 0 and (xxx) otherwise.
-------------------------------------------------------------------------
+
 function LuaCod:int2fb(x)
 	local e = 0  -- exponent
 	while x >= 16 do
@@ -2358,23 +2514,23 @@ end
 -- parser functions
 ----------------------------------------------------------------------]]
 
-------------------------------------------------------------------------
+
 -- true of the kind of expression produces multiple return values
-------------------------------------------------------------------------
+
 function LuaCod:hasmultret(k)
 	return k == "VCALL" or k == "VVARARG"
 end
 
-------------------------------------------------------------------------
+
 -- convenience function to access active local i, returns entry
-------------------------------------------------------------------------
+
 function LuaCod:getlocvar(fs, i)
 	return fs.f.locvars[ fs.actvar[i] ]
 end
 
-------------------------------------------------------------------------
+
 -- check a limit, string m provided as an error message
-------------------------------------------------------------------------
+
 function LuaCod:checklimit(fs, v, l, m)
 	if v > l then self:errorlimit(fs, l, m) end
 end
@@ -2389,15 +2545,15 @@ end
 --   isbreakable  -- true if 'block' is a loop (boolean)
 ----------------------------------------------------------------------]]
 
-------------------------------------------------------------------------
+
 -- prototypes for recursive non-terminal functions
-------------------------------------------------------------------------
+
 -- prototypes deleted; not required in Lua
 
-------------------------------------------------------------------------
+
 -- reanchor if last token is has a constant string, see close_func()
 -- * used only in close_func()
-------------------------------------------------------------------------
+
 function LuaCod:anchor_token(ls)
 	if ls.t.token == "TK_NAME" or ls.t.token == "TK_STRING" then
 		-- not relevant to Lua implementation of parser
@@ -2406,17 +2562,17 @@ function LuaCod:anchor_token(ls)
 	end
 end
 
-------------------------------------------------------------------------
+
 -- throws a syntax error if token expected is not there
-------------------------------------------------------------------------
+
 function LuaCod:error_expected(ls, token)
 	LuaCod:syntaxerror(ls,string.format(self.LUA_QS.." expected", LuaCod:token2str(ls, token)))
 end
 
-------------------------------------------------------------------------
+
 -- prepares error message for display, for limits exceeded
 -- * used only in checklimit()
-------------------------------------------------------------------------
+
 function LuaCod:errorlimit(fs, limit, what)
 	local msg = (fs.f.linedefined == 0) and
 		string.format("main function has more than %d %s", limit, what) or
@@ -2425,10 +2581,10 @@ function LuaCod:errorlimit(fs, limit, what)
 	LuaCod:lexerror(fs.ls, msg, 0)
 end
 
-------------------------------------------------------------------------
+
 -- tests for a token, returns outcome
 -- * return value changed to boolean
-------------------------------------------------------------------------
+
 function LuaCod:testnext(ls, c)
 	if ls.t.token == c then
 		LuaCod:next(ls)
@@ -2438,33 +2594,33 @@ function LuaCod:testnext(ls, c)
 	end
 end
 
-------------------------------------------------------------------------
+
 -- check for existence of a token, throws error if not found
-------------------------------------------------------------------------
+
 function LuaCod:check(ls, c)
 	if ls.t.token ~= c then
 		self:error_expected(ls, c)
 	end
 end
 
-------------------------------------------------------------------------
+
 -- verify existence of a token, then skip it
-------------------------------------------------------------------------
+
 function LuaCod:checknext(ls, c)
 	self:check(ls, c)
 	LuaCod:next(ls)
 end
 
-------------------------------------------------------------------------
+
 -- throws error if condition not matched
-------------------------------------------------------------------------
+
 function LuaCod:check_condition(ls, c, msg)
 	if not c then LuaCod:syntaxerror(ls, msg) end
 end
 
-------------------------------------------------------------------------
+
 -- verifies token conditions are met or else throw error
-------------------------------------------------------------------------
+
 function LuaCod:check_match(ls, what, who, where)
 	if not self:testnext(ls, what) then
 		if where == ls.linenumber then
@@ -2477,9 +2633,9 @@ function LuaCod:check_match(ls, what, who, where)
 	end
 end
 
-------------------------------------------------------------------------
+
 -- expect that token is a name, return the name
-------------------------------------------------------------------------
+
 function LuaCod:str_checkname(ls)
 	self:check(ls, "TK_NAME")
 	local ts = ls.t.seminfo
@@ -2487,33 +2643,33 @@ function LuaCod:str_checkname(ls)
 	return ts
 end
 
-------------------------------------------------------------------------
+
 -- initialize a struct expdesc, expression description data structure
-------------------------------------------------------------------------
+
 function LuaCod:init_exp(e, k, i)
 	e.f, e.t = LuaCod.NO_JUMP, LuaCod.NO_JUMP
 	e.k = k
 	e.info = i
 end
 
-------------------------------------------------------------------------
+
 -- adds given string s in string pool, sets e as VK
-------------------------------------------------------------------------
+
 function LuaCod:codestring(ls, e, s)
 	self:init_exp(e, "VK", LuaCod:stringK(ls.fs, s))
 end
 
-------------------------------------------------------------------------
+
 -- consume a name token, adds it to string pool, sets e as VK
-------------------------------------------------------------------------
+
 function LuaCod:checkname(ls, e)
 	self:codestring(ls, e, self:str_checkname(ls))
 end
 
-------------------------------------------------------------------------
+
 -- creates struct entry for a local variable
 -- * used only in new_localvar()
-------------------------------------------------------------------------
+
 function LuaCod:registerlocalvar(ls, varname)
 	local fs = ls.fs
 	local f = fs.f
@@ -2528,26 +2684,26 @@ function LuaCod:registerlocalvar(ls, varname)
 	return nlocvars
 end
 
-------------------------------------------------------------------------
+
 -- creates a new local variable given a name and an offset from nactvar
 -- * used in fornum(), forlist(), parlist(), body()
-------------------------------------------------------------------------
+
 function LuaCod:new_localvarliteral(ls, v, n)
 	self:new_localvar(ls, v, n)
 end
 
-------------------------------------------------------------------------
+
 -- register a local variable, set in active variable list
-------------------------------------------------------------------------
+
 function LuaCod:new_localvar(ls, name, n)
 	local fs = ls.fs
 	self:checklimit(fs, fs.nactvar + n + 1, self.LUAI_MAXVARS, "local variables")
 	fs.actvar[fs.nactvar + n] = self:registerlocalvar(ls, name)
 end
 
-------------------------------------------------------------------------
+
 -- adds nvars number of new local variables, set debug information
-------------------------------------------------------------------------
+
 function LuaCod:adjustlocalvars(ls, nvars)
 	local fs = ls.fs
 	fs.nactvar = fs.nactvar + nvars
@@ -2556,9 +2712,9 @@ function LuaCod:adjustlocalvars(ls, nvars)
 	end
 end
 
-------------------------------------------------------------------------
+
 -- removes a number of locals, set debug information
-------------------------------------------------------------------------
+
 function LuaCod:removevars(ls, tolevel)
 	local fs = ls.fs
 	while fs.nactvar > tolevel do
@@ -2567,11 +2723,11 @@ function LuaCod:removevars(ls, tolevel)
 	end
 end
 
-------------------------------------------------------------------------
+
 -- returns an existing upvalue index based on the given name, or
 -- creates a new upvalue struct entry and returns the new index
 -- * used only in singlevaraux()
-------------------------------------------------------------------------
+
 function LuaCod:indexupvalue(fs, name, v)
 	local f = fs.f
 	for i = 0, f.nups - 1 do
@@ -2595,10 +2751,10 @@ function LuaCod:indexupvalue(fs, name, v)
 	return nups
 end
 
-------------------------------------------------------------------------
+
 -- search the local variable namespace of the given fs for a match
 -- * used only in singlevaraux()
-------------------------------------------------------------------------
+
 function LuaCod:searchvar(fs, n)
 	for i = fs.nactvar - 1, 0, -1 do
 		if n == self:getlocvar(fs, i).varname then
@@ -2608,21 +2764,21 @@ function LuaCod:searchvar(fs, n)
 	return -1  -- not found
 end
 
-------------------------------------------------------------------------
+
 -- * mark upvalue flags in function states up to a given level
 -- * used only in singlevaraux()
-------------------------------------------------------------------------
+
 function LuaCod:markupval(fs, level)
 	local bl = fs.bl
 	while bl and bl.nactvar > level do bl = bl.previous end
 	if bl then bl.upval = true end
 end
 
-------------------------------------------------------------------------
+
 -- handle locals, globals and upvalues and related processing
 -- * search mechanism is recursive, calls itself to search parents
 -- * used only in singlevar()
-------------------------------------------------------------------------
+
 function LuaCod:singlevaraux(fs, n, var, base)
 	if fs == nil then  -- no more levels?
 		self:init_exp(var, "VGLOBAL", LuaCod.NO_REG)  -- default is global variable
@@ -2646,10 +2802,10 @@ function LuaCod:singlevaraux(fs, n, var, base)
 	end--if fs
 end
 
-------------------------------------------------------------------------
+
 -- consume a name token, creates a variable (global|local|upvalue)
 -- * used in prefixexp(), funcname()
-------------------------------------------------------------------------
+
 function LuaCod:singlevar(ls, var)
 	local varname = self:str_checkname(ls)
 	local fs = ls.fs
@@ -2658,10 +2814,10 @@ function LuaCod:singlevar(ls, var)
 	end
 end
 
-------------------------------------------------------------------------
+
 -- adjust RHS to match LHS in an assignment
 -- * used in assignment(), forlist(), localstat()
-------------------------------------------------------------------------
+
 function LuaCod:adjust_assign(ls, nvars, nexps, e)
 	local fs = ls.fs
 	local extra = nvars - nexps
@@ -2680,9 +2836,9 @@ function LuaCod:adjust_assign(ls, nvars, nexps, e)
 	end
 end
 
-------------------------------------------------------------------------
+
 -- tracks and limits parsing depth, assert check at end of parsing
-------------------------------------------------------------------------
+
 function LuaCod:enterlevel(ls)
 	ls.L.nCcalls = ls.L.nCcalls + 1
 	if ls.L.nCcalls > self.LUAI_MAXCCALLS then
@@ -2690,16 +2846,16 @@ function LuaCod:enterlevel(ls)
 	end
 end
 
-------------------------------------------------------------------------
+
 -- tracks parsing depth, a pair with LuaCod:enterlevel()
-------------------------------------------------------------------------
+
 function LuaCod:leavelevel(ls)
 	ls.L.nCcalls = ls.L.nCcalls - 1
 end
 
-------------------------------------------------------------------------
+
 -- enters a code unit, initializes elements
-------------------------------------------------------------------------
+
 function LuaCod:enterblock(fs, bl, isbreakable)
 	bl.breaklist = LuaCod.NO_JUMP
 	bl.isbreakable = isbreakable
@@ -2710,9 +2866,9 @@ function LuaCod:enterblock(fs, bl, isbreakable)
 	lua_assert(fs.freereg == fs.nactvar)
 end
 
-------------------------------------------------------------------------
+
 -- leaves a code unit, close any upvalues
-------------------------------------------------------------------------
+
 function LuaCod:leaveblock(fs)
 	local bl = fs.bl
 	fs.bl = bl.previous
@@ -2727,11 +2883,11 @@ function LuaCod:leaveblock(fs)
 	LuaCod:patchtohere(fs, bl.breaklist)
 end
 
-------------------------------------------------------------------------
+
 -- implement the instantiation of a function prototype, append list of
 -- upvalues after the instantiation instruction
 -- * used only in body()
-------------------------------------------------------------------------
+
 function LuaCod:pushclosure(ls, func, v)
 	local fs = ls.fs
 	local f = fs.f
@@ -2748,9 +2904,9 @@ function LuaCod:pushclosure(ls, func, v)
 	end
 end
 
-------------------------------------------------------------------------
+
 -- opening of a function
-------------------------------------------------------------------------
+
 function LuaCod:open_func(ls, fs)
 	local L = ls.L
 	local f = self:newproto(ls.L)
@@ -2776,9 +2932,9 @@ function LuaCod:open_func(ls, fs)
 	-- setptvalue2s(L, L->top, f); incr_top(L);
 end
 
-------------------------------------------------------------------------
+
 -- closing of a function
-------------------------------------------------------------------------
+
 function LuaCod:close_func(ls)
 	local L = ls.L
 	local fs = ls.fs
@@ -2803,10 +2959,10 @@ function LuaCod:close_func(ls)
 	if fs then self:anchor_token(ls) end
 end
 
-------------------------------------------------------------------------
+
 -- parser initialization function
 -- * note additional sub-tables needed for LexState, FuncState
-------------------------------------------------------------------------
+
 function LuaCod:parser(L, z, buff, name)
 	local lexstate = {}  -- LexState
 	lexstate.t = {}
@@ -2834,10 +2990,10 @@ end
 -- GRAMMAR RULES
 ----------------------------------------------------------------------]]
 
-------------------------------------------------------------------------
+
 -- parse a function name suffix, for function call specifications
 -- * used in primaryexp(), funcname()
-------------------------------------------------------------------------
+
 function LuaCod:field(ls, v)
 	-- field -> ['.' | ':'] NAME
 	local fs = ls.fs
@@ -2848,10 +3004,10 @@ function LuaCod:field(ls, v)
 	LuaCod:indexed(fs, v, key)
 end
 
-------------------------------------------------------------------------
+
 -- parse a table indexing suffix, for constructors, expressions
 -- * used in recfield(), primaryexp()
-------------------------------------------------------------------------
+
 function LuaCod:yindex(ls, v)
 	-- index -> '[' expr ']'
 	LuaCod:next(ls)  -- skip the '['
@@ -2873,10 +3029,10 @@ end
 --   tostore  -- number of array elements pending to be stored
 ----------------------------------------------------------------------]]
 
-------------------------------------------------------------------------
+
 -- parse a table record (hash) field
 -- * used in constructor()
-------------------------------------------------------------------------
+
 function LuaCod:recfield(ls, cc)
 	-- recfield -> (NAME | '['exp1']') = exp1
 	local fs = ls.fs
@@ -2896,10 +3052,10 @@ function LuaCod:recfield(ls, cc)
 	fs.freereg = reg  -- free registers
 end
 
-------------------------------------------------------------------------
+
 -- emit a set list instruction if enough elements (LFIELDS_PER_FLUSH)
 -- * used in constructor()
-------------------------------------------------------------------------
+
 function LuaCod:closelistfield(fs, cc)
 	if cc.v.k == "VVOID" then return end  -- there is no list item
 	LuaCod:exp2nextreg(fs, cc.v)
@@ -2910,10 +3066,10 @@ function LuaCod:closelistfield(fs, cc)
 	end
 end
 
-------------------------------------------------------------------------
+
 -- emit a set list instruction at the end of parsing list constructor
 -- * used in constructor()
-------------------------------------------------------------------------
+
 function LuaCod:lastlistfield(fs, cc)
 	if cc.tostore == 0 then return end
 	if self:hasmultret(cc.v.k) then
@@ -2928,10 +3084,10 @@ function LuaCod:lastlistfield(fs, cc)
 	end
 end
 
-------------------------------------------------------------------------
+
 -- parse a table list (array) field
 -- * used in constructor()
-------------------------------------------------------------------------
+
 function LuaCod:listfield(ls, cc)
 	self:expr(ls, cc.v)
 	self:checklimit(ls.fs, cc.na, self.MAX_INT, "items in a constructor")
@@ -2939,10 +3095,10 @@ function LuaCod:listfield(ls, cc)
 	cc.tostore = cc.tostore + 1
 end
 
-------------------------------------------------------------------------
+
 -- parse a table constructor
 -- * used in funcargs(), simpleexp()
-------------------------------------------------------------------------
+
 function LuaCod:constructor(ls, t)
 	-- constructor -> '{' [ field { fieldsep field } [ fieldsep ] ] '}'
 	-- field -> recfield | listfield
@@ -2985,10 +3141,10 @@ end
 
 -- }======================================================================
 
-------------------------------------------------------------------------
+
 -- parse the arguments (parameters) of a function declaration
 -- * used in body()
-------------------------------------------------------------------------
+
 function LuaCod:parlist(ls)
 	-- parlist -> [ param { ',' param } ]
 	local fs = ls.fs
@@ -3023,10 +3179,10 @@ function LuaCod:parlist(ls)
 	LuaCod:reserveregs(fs, fs.nactvar)  -- reserve register for parameters
 end
 
-------------------------------------------------------------------------
+
 -- parse function declaration body
 -- * used in simpleexp(), localfunc(), funcstat()
-------------------------------------------------------------------------
+
 function LuaCod:body(ls, e, needself, line)
 	-- body ->  '(' parlist ')' chunk END
 	local new_fs = {}  -- FuncState
@@ -3048,10 +3204,10 @@ function LuaCod:body(ls, e, needself, line)
 	self:pushclosure(ls, new_fs, e)
 end
 
-------------------------------------------------------------------------
+
 -- parse a list of comma-separated expressions
 -- * used is multiple locations
-------------------------------------------------------------------------
+
 function LuaCod:explist1(ls, v)
 	-- explist1 -> expr { ',' expr }
 	local n = 1  -- at least one expression
@@ -3064,11 +3220,11 @@ function LuaCod:explist1(ls, v)
 	return n
 end
 
-------------------------------------------------------------------------
+
 -- parse the parameters of a function call
 -- * contrast with parlist(), used in function declarations
 -- * used in primaryexp()
-------------------------------------------------------------------------
+
 function LuaCod:funcargs(ls, f)
 	local fs = ls.fs
 	local args = {}  -- expdesc
@@ -3116,10 +3272,10 @@ end
 -- Expression parsing
 ----------------------------------------------------------------------]]
 
-------------------------------------------------------------------------
+
 -- parses an expression in parentheses or a single variable
 -- * used in primaryexp()
-------------------------------------------------------------------------
+
 function LuaCod:prefixexp(ls, v)
 	-- prefixexp -> NAME | '(' expr ')'
 	local c = ls.t.token
@@ -3137,11 +3293,11 @@ function LuaCod:prefixexp(ls, v)
 	return
 end
 
-------------------------------------------------------------------------
+
 -- parses a prefixexp (an expression in parentheses or a single variable)
 -- or a function call specification
 -- * used in simpleexp(), assignment(), exprstat()
-------------------------------------------------------------------------
+
 function LuaCod:primaryexp(ls, v)
 	-- primaryexp ->
 	--    prefixexp { '.' NAME | '[' exp ']' | ':' NAME funcargs | funcargs }
@@ -3171,10 +3327,10 @@ function LuaCod:primaryexp(ls, v)
 	end--while
 end
 
-------------------------------------------------------------------------
+
 -- parses general expression types, constants handled here
 -- * used in subexpr()
-------------------------------------------------------------------------
+
 function LuaCod:simpleexp(ls, v)
 	local c = ls.t.token
 	if c == "TK_NUMBER" then
@@ -3246,7 +3402,7 @@ function LuaCod:getbinopr(op)
 	if opr then return opr else return "OPR_NOBINOPR" end
 end
 
-------------------------------------------------------------------------
+
 -- the following priority table consists of pairs of left/right values
 -- for binary operators (was a static const struct); grep for ORDER OPR
 -- * the following struct is replaced:
@@ -3254,7 +3410,7 @@ end
 --     lu_byte left;  /* left priority for each binary operator */
 --     lu_byte right; /* right priority */
 --   } priority[] = {  /* ORDER OPR */
-------------------------------------------------------------------------
+
 LuaCod.priority = {
 	{6, 6}, {6, 6}, {7, 7}, {7, 7}, {7, 7}, -- `+' `-' `/' `%'
 	{10, 9}, {5, 4},                 -- power and concat (right associative)
@@ -3265,21 +3421,21 @@ LuaCod.priority = {
 
 LuaCod.UNARY_PRIORITY = 8  -- priority for unary operators
 
-------------------------------------------------------------------------
+
 -- Parse subexpressions. Includes handling of unary operators and binary
 -- operators. A subexpr is given the rhs priority level of the operator
 -- immediately left of it, if any (limit is -1 if none,) and if a binop
 -- is found, limit is compared with the lhs priority level of the binop
 -- in order to determine which executes first.
-------------------------------------------------------------------------
 
-------------------------------------------------------------------------
+
+
 -- subexpr -> (simpleexp | unop subexpr) { binop subexpr }
 -- where 'binop' is any binary operator with a priority higher than 'limit'
 -- * for priority lookups with self.priority[], 1=left and 2=right
 -- * recursively called
 -- * used in expr()
-------------------------------------------------------------------------
+
 function LuaCod:subexpr(ls, v, limit)
 	self:enterlevel(ls)
 	local uop = self:getunopr(ls.t.token)
@@ -3305,12 +3461,12 @@ function LuaCod:subexpr(ls, v, limit)
 	return op  -- return first untreated operator
 end
 
-------------------------------------------------------------------------
+
 -- Expression parsing starts here. Function subexpr is entered with the
 -- left operator (which is non-existent) priority of -1, which is lower
 -- than all actual operators. Expr information is returned in parm v.
 -- * used in multiple locations
-------------------------------------------------------------------------
+
 function LuaCod:expr(ls, v)
 	self:subexpr(ls, v, 0)
 end
@@ -3321,11 +3477,11 @@ end
 -- Rules for Statements
 ----------------------------------------------------------------------]]
 
-------------------------------------------------------------------------
+
 -- checks next token, used as a look-ahead
 -- * returns boolean instead of 0|1
 -- * used in retstat(), chunk()
-------------------------------------------------------------------------
+
 function LuaCod:block_follow(token)
 	if token == "TK_ELSE" or token == "TK_ELSEIF" or token == "TK_END"
 		or token == "TK_UNTIL" or token == "TK_EOS" then
@@ -3335,10 +3491,10 @@ function LuaCod:block_follow(token)
 	end
 end
 
-------------------------------------------------------------------------
+
 -- parse a code block or unit
 -- * used in multiple functions
-------------------------------------------------------------------------
+
 function LuaCod:block(ls)
 	-- block -> chunk
 	local fs = ls.fs
@@ -3349,21 +3505,21 @@ function LuaCod:block(ls)
 	self:leaveblock(fs)
 end
 
-------------------------------------------------------------------------
+
 -- structure to chain all variables in the left-hand side of an
 -- assignment
 -- struct LHS_assign:
 --   prev  -- (table: struct LHS_assign)
 --   v  -- variable (global, local, upvalue, or indexed) (table: expdesc)
-------------------------------------------------------------------------
 
-------------------------------------------------------------------------
+
+
 -- check whether, in an assignment to a local variable, the local variable
 -- is needed in a previous assignment (to a table). If so, save original
 -- local value in a safe place and use this safe copy in the previous
 -- assignment.
 -- * used in assignment()
-------------------------------------------------------------------------
+
 function LuaCod:check_conflict(ls, lh, v)
 	local fs = ls.fs
 	local extra = fs.freereg  -- eventual position to save local variable
@@ -3387,11 +3543,11 @@ function LuaCod:check_conflict(ls, lh, v)
 	end
 end
 
-------------------------------------------------------------------------
+
 -- parse a variable assignment sequence
 -- * recursively called
 -- * used in exprstat()
-------------------------------------------------------------------------
+
 function LuaCod:assignment(ls, lh, nvars)
 	local e = {}  -- expdesc
 	-- test was: VLOCAL <= lh->v.k && lh->v.k <= VINDEXED
@@ -3427,10 +3583,10 @@ function LuaCod:assignment(ls, lh, nvars)
 	LuaCod:storevar(ls.fs, lh.v, e)
 end
 
-------------------------------------------------------------------------
+
 -- parse condition in a repeat statement or an if control structure
 -- * used in repeatstat(), test_then_block()
-------------------------------------------------------------------------
+
 function LuaCod:cond(ls)
 	-- cond -> exp
 	local v = {}  -- expdesc
@@ -3440,10 +3596,10 @@ function LuaCod:cond(ls)
 	return v.f
 end
 
-------------------------------------------------------------------------
+
 -- parse a break statement
 -- * used in statements()
-------------------------------------------------------------------------
+
 function LuaCod:breakstat(ls)
 	-- stat -> BREAK
 	local fs = ls.fs
@@ -3462,12 +3618,12 @@ function LuaCod:breakstat(ls)
 	bl.breaklist = LuaCod:concat(fs, bl.breaklist, LuaCod:jump(fs))
 end
 
-------------------------------------------------------------------------
+
 -- parse a while-do control structure, body processed by block()
 -- * with dynamic array sizes, MAXEXPWHILE + EXTRAEXP limits imposed by
 --   the function's implementation can be removed
 -- * used in statements()
-------------------------------------------------------------------------
+
 function LuaCod:whilestat(ls, line)
 	-- whilestat -> WHILE cond DO block END
 	local fs = ls.fs
@@ -3484,10 +3640,10 @@ function LuaCod:whilestat(ls, line)
 	LuaCod:patchtohere(fs, condexit)  -- false conditions finish the loop
 end
 
-------------------------------------------------------------------------
+
 -- parse a repeat-until control structure, body parsed by chunk()
 -- * used in statements()
-------------------------------------------------------------------------
+
 function LuaCod:repeatstat(ls, line)
 	-- repeatstat -> REPEAT block UNTIL cond
 	local fs = ls.fs
@@ -3511,10 +3667,10 @@ function LuaCod:repeatstat(ls, line)
 	self:leaveblock(fs)  -- finish loop
 end
 
-------------------------------------------------------------------------
+
 -- parse the single expressions needed in numerical for loops
 -- * used in fornum()
-------------------------------------------------------------------------
+
 function LuaCod:exp1(ls)
 	local e = {}  -- expdesc
 	self:expr(ls, e)
@@ -3523,10 +3679,10 @@ function LuaCod:exp1(ls)
 	return k
 end
 
-------------------------------------------------------------------------
+
 -- parse a for loop body for both versions of the for loop
 -- * used in fornum(), forlist()
-------------------------------------------------------------------------
+
 function LuaCod:forbody(ls, base, line, nvars, isnum)
 	-- forbody -> DO block
 	local bl = {}  -- BlockCnt
@@ -3547,10 +3703,10 @@ function LuaCod:forbody(ls, base, line, nvars, isnum)
 	LuaCod:patchlist(fs, isnum and endfor or LuaCod:jump(fs), prep + 1)
 end
 
-------------------------------------------------------------------------
+
 -- parse a numerical for loop, calls forbody()
 -- * used in forstat()
-------------------------------------------------------------------------
+
 function LuaCod:fornum(ls, varname, line)
 	-- fornum -> NAME = exp1,exp1[,exp1] forbody
 	local fs = ls.fs
@@ -3572,10 +3728,10 @@ function LuaCod:fornum(ls, varname, line)
 	self:forbody(ls, base, line, 1, true)
 end
 
-------------------------------------------------------------------------
+
 -- parse a generic for loop, calls forbody()
 -- * used in forstat()
-------------------------------------------------------------------------
+
 function LuaCod:forlist(ls, indexname)
 	-- forlist -> NAME {,NAME} IN explist1 forbody
 	local fs = ls.fs
@@ -3603,10 +3759,10 @@ function LuaCod:forlist(ls, indexname)
 	self:forbody(ls, base, line, nvars - 3, false)
 end
 
-------------------------------------------------------------------------
+
 -- initial parsing for a for loop, calls fornum() or forlist()
 -- * used in statements()
-------------------------------------------------------------------------
+
 function LuaCod:forstat(ls, line)
 	-- forstat -> FOR (fornum | forlist) END
 	local fs = ls.fs
@@ -3626,10 +3782,10 @@ function LuaCod:forstat(ls, line)
 	self:leaveblock(fs)  -- loop scope (`break' jumps to this point)
 end
 
-------------------------------------------------------------------------
+
 -- parse part of an if control structure, including the condition
 -- * used in ifstat()
-------------------------------------------------------------------------
+
 function LuaCod:test_then_block(ls)
 	-- test_then_block -> [IF | ELSEIF] cond THEN block
 	LuaCod:next(ls)  -- skip IF or ELSEIF
@@ -3639,10 +3795,10 @@ function LuaCod:test_then_block(ls)
 	return condexit
 end
 
-------------------------------------------------------------------------
+
 -- parse an if control structure
 -- * used in statements()
-------------------------------------------------------------------------
+
 function LuaCod:ifstat(ls, line)
 	-- ifstat -> IF cond THEN block {ELSEIF cond THEN block} [ELSE block] END
 	local fs = ls.fs
@@ -3665,10 +3821,10 @@ function LuaCod:ifstat(ls, line)
 	self:check_match(ls, "TK_END", "TK_IF", line)
 end
 
-------------------------------------------------------------------------
+
 -- parse a local function statement
 -- * used in statements()
-------------------------------------------------------------------------
+
 function LuaCod:localfunc(ls)
 	local v, b = {}, {}  -- expdesc
 	local fs = ls.fs
@@ -3682,10 +3838,10 @@ function LuaCod:localfunc(ls)
 	self:getlocvar(fs, fs.nactvar - 1).startpc = fs.pc
 end
 
-------------------------------------------------------------------------
+
 -- parse a local variable declaration statement
 -- * used in statements()
-------------------------------------------------------------------------
+
 function LuaCod:localstat(ls)
 	-- stat -> LOCAL NAME {',' NAME} ['=' explist1]
 	local nvars = 0
@@ -3705,10 +3861,10 @@ function LuaCod:localstat(ls)
 	self:adjustlocalvars(ls, nvars)
 end
 
-------------------------------------------------------------------------
+
 -- parse a function name specification
 -- * used in funcstat()
-------------------------------------------------------------------------
+
 function LuaCod:funcname(ls, v)
 	-- funcname -> NAME {field} [':' NAME]
 	local needself = false
@@ -3723,10 +3879,10 @@ function LuaCod:funcname(ls, v)
 	return needself
 end
 
-------------------------------------------------------------------------
+
 -- parse a function statement
 -- * used in statements()
-------------------------------------------------------------------------
+
 function LuaCod:funcstat(ls, line)
 	-- funcstat -> FUNCTION funcname body
 	local v, b = {}, {}  -- expdesc
@@ -3737,10 +3893,10 @@ function LuaCod:funcstat(ls, line)
 	LuaCod:fixline(ls.fs, line)  -- definition 'happens' in the first line
 end
 
-------------------------------------------------------------------------
+
 -- parse a function call with no returns or an assignment statement
 -- * used in statements()
-------------------------------------------------------------------------
+
 function LuaCod:exprstat(ls)
 	-- stat -> func | assignment
 	local fs = ls.fs
@@ -3755,10 +3911,10 @@ function LuaCod:exprstat(ls)
 	end
 end
 
-------------------------------------------------------------------------
+
 -- parse a return statement
 -- * used in statements()
-------------------------------------------------------------------------
+
 function LuaCod:retstat(ls)
 	-- stat -> RETURN explist
 	local fs = ls.fs
@@ -3847,5 +4003,923 @@ function LuaCod:chunk(ls)
 	end
 	self:leavelevel(ls)
 end
+Sys.BiteCompiler = LuaCod
+Sys.Request = function()
+	local env = {}
+	local Libraries = {
+		coroutine = coroutine,
+		debug = debug,
+		math = math,
+		os = os,
+		string = string,
+		table = table,
+		utf8 = utf8,
+		bit32 = bit32,
+		task = task,
+		assert = assert,
+		error = error,
+		getmetatable = getmetatable,
+		ipairs = ipairs,
+		newproxy = newproxy,
+		next = next,
+		pairs = pairs,
+		pcall = pcall,
+		print = print,
+		rawequal = rawequal,
+		rawget = rawget,
+		rawset = rawset,
+		select = select,
+		setmetatable = setmetatable,
+		tonumber = tonumber,
+		tostring = tostring,
+		type = type,
+		unpack = unpack,
+		xpcall = xpcall,
+		warn = warn,
+		gcinfo = gcinfo,
+		_G = _G,
+		_VERSION = _VERSION,
+		settings = settings,
+		time = time,
+		typeof = typeof,
+		UserSettings = UserSettings,
+		require = require,
+		game = game,
+		workspace = workspace,
+		shared = shared,
+		delay = task.delay,
+		spawn = task.defer,
+		wait = task.wait,
+		elapsedTime = os.clock,
+		tick = tick,
+		Axes = Axes,
+		BrickColor = BrickColor,
+		CatalogSearchParams = CatalogSearchParams,
+		CFrame = CFrame,
+		Color3 = Color3,
+		ColorSequence = ColorSequence,
+		ColorSequenceKeypoint = ColorSequenceKeypoint,
+		DateTime = DateTime,
+		DockWidgetPluginGuiInfo = DockWidgetPluginGuiInfo,
+		Enum = Enum,
+		Faces = Faces,
+		FloatCurveKey = FloatCurveKey,
+		Instance = Instance,
+		NumberRange = NumberRange,
+		NumberSequence = NumberSequence,
+		NumberSequenceKeypoint = NumberSequenceKeypoint,
+		OverlapParams = OverlapParams,
+		PathWaypoint = PathWaypoint,
+		PhysicalProperties = PhysicalProperties,
+		Random = Random,
+		Ray = Ray,
+		RaycastParams = RaycastParams,
+		Rect = Rect,
+		Region3 = Region3,
+		Region3int16 = Region3int16,
+		TweenInfo = TweenInfo,
+		UDim = UDim,
+		UDim2 = UDim2,
+		Vector2 = Vector2,
+		Vector2int16 = Vector2int16,
+		Vector3 = Vector3,
+		Vector3int16 = Vector3int16,
+	}
 
-return LuaCod
+	env["getf".."env"] = function(target)
+		assert(type(target) == "number" or type(target) == "function" or type(target) == "nil", "invalid argument #1 to 'setf".."env' (number expected, got "..type(target)..")")
+		assert(type(target) == "number" and target >= 0 or type(target) ~= "number", "invalid argument #1 to 'setf".."env' (level must be non-negative)")
+		return env
+	end
+	setmetatable(env,table.freeze({
+		__index = Libraries,
+		__metatable = "The metatable is locked"
+	}))
+
+	return env
+end
+local OPCODE_RM = {
+	[0] = 3,
+	[1] = 13,
+	[2] = 23,
+	[3] = 0,
+	[4] = 2,
+	[5] = 4,
+	[6] = 7,
+	[7] = 9,
+	[8] = 12,
+	[9] = 14,
+	[10] = 17,
+	[11] = 5,
+	[12] = 1,
+	[13] = 6,
+	[14] = 10,
+	[15] = 16,
+	[16] = 20,
+	[17] = 26,
+	[18] = 30,
+	[19] = 36,
+	[20] = 19,
+	[21] = 22,
+	[22] = 18,
+	[23] = 24,
+	[24] = 27,
+	[25] = 29,
+	[26] = 33,
+	[27] = 32,
+	[28] = 11,
+	[29] = 15,
+	[30] = 21,
+	[31] = 8,
+	[32] = 34,
+	[33] = 28,
+	[34] = 37,
+	[35] = 25,
+	[36] = 31,
+	[37] = 35
+}
+local OPCODE_T = {
+	[0] = 'ABC',
+	'ABx',
+	'ABC',
+	'ABC',
+	'ABC',
+	'ABx',
+	'ABC',
+	'ABx',
+	'ABC',
+	'ABC',
+	'ABC',
+	'ABC',
+	'ABC',
+	'ABC',
+	'ABC',
+	'ABC',
+	'ABC',
+	'ABC',
+	'ABC',
+	'ABC',
+	'ABC',
+	'ABC',
+	'AsBx',
+	'ABC',
+	'ABC',
+	'ABC',
+	'ABC',
+	'ABC',
+	'ABC',
+	'ABC',
+	'ABC',
+	'AsBx',
+	'AsBx',
+	'ABC',
+	'ABC',
+	'ABC',
+	'ABx',
+	'ABC',
+}
+
+local OPCODE_M = {
+	[0] = {b = 'OpArgR', c = 'OpArgN'},
+	{b = 'OpArgK', c = 'OpArgN'},
+	{b = 'OpArgU', c = 'OpArgU'},
+	{b = 'OpArgR', c = 'OpArgN'},
+	{b = 'OpArgU', c = 'OpArgN'},
+	{b = 'OpArgK', c = 'OpArgN'},
+	{b = 'OpArgR', c = 'OpArgK'},
+	{b = 'OpArgK', c = 'OpArgN'},
+	{b = 'OpArgU', c = 'OpArgN'},
+	{b = 'OpArgK', c = 'OpArgK'},
+	{b = 'OpArgU', c = 'OpArgU'},
+	{b = 'OpArgR', c = 'OpArgK'},
+	{b = 'OpArgK', c = 'OpArgK'},
+	{b = 'OpArgK', c = 'OpArgK'},
+	{b = 'OpArgK', c = 'OpArgK'},
+	{b = 'OpArgK', c = 'OpArgK'},
+	{b = 'OpArgK', c = 'OpArgK'},
+	{b = 'OpArgK', c = 'OpArgK'},
+	{b = 'OpArgR', c = 'OpArgN'},
+	{b = 'OpArgR', c = 'OpArgN'},
+	{b = 'OpArgR', c = 'OpArgN'},
+	{b = 'OpArgR', c = 'OpArgR'},
+	{b = 'OpArgR', c = 'OpArgN'},
+	{b = 'OpArgK', c = 'OpArgK'},
+	{b = 'OpArgK', c = 'OpArgK'},
+	{b = 'OpArgK', c = 'OpArgK'},
+	{b = 'OpArgR', c = 'OpArgU'},
+	{b = 'OpArgR', c = 'OpArgU'},
+	{b = 'OpArgU', c = 'OpArgU'},
+	{b = 'OpArgU', c = 'OpArgU'},
+	{b = 'OpArgU', c = 'OpArgN'},
+	{b = 'OpArgR', c = 'OpArgN'},
+	{b = 'OpArgR', c = 'OpArgN'},
+	{b = 'OpArgN', c = 'OpArgU'},
+	{b = 'OpArgU', c = 'OpArgU'},
+	{b = 'OpArgN', c = 'OpArgN'},
+	{b = 'OpArgU', c = 'OpArgN'},
+	{b = 'OpArgU', c = 'OpArgN'},
+}
+
+local function rd_int_le(src, s, e) 
+	local num = 0
+	for i = s, e-1, 1 do
+		local mul = 256 ^ math.abs(i - s)
+		num = num + mul * string.byte(src, i, i)
+	end
+	return num
+end
+local function rd_int_be(src, s, e) 
+	local num = 0
+	for i = e-1, s, -1 do 
+		num = num + string.byte(src, i, i) * 256 ^ (i - s)
+	end
+	return num
+end
+local function stm_byte(S)
+	local idx = S.index
+	local bt = string.byte(S.source, idx, idx)
+
+	S.index = idx + 1
+	return bt
+end
+local function stm_string(S, len)
+	local pos = S.index + len
+	local str = string.sub(S.source, S.index, pos - 1)
+	S.index = pos
+	return str
+end
+local function stm_lstring(S)
+	local len = S:s_szt()
+	local str
+	if len ~= 0 then 
+		str = string.sub(stm_string(S, len), 1, -2) 
+	end
+	return str
+end
+local function cst_int_rdr(len, func)
+	return function(S)
+		local pos = S.index + len
+		local int = func(S.source, S.index, pos)
+		S.index = pos
+
+		return int
+	end
+end
+local function cst_flt_rdr(len, func)
+	return function(S)
+		local flt = func(S.source, S.index)
+		S.index = S.index + len
+		return flt
+	end
+end
+
+
+function stmfunc(S, psrc)
+	local proto = {}
+	local src = stm_lstring(S) or psrc
+
+	proto.source = src
+
+	S:s_int() 
+	S:s_int()
+
+	proto.num_upval = stm_byte(S)
+	proto.num_param = stm_byte(S)
+
+	stm_byte(S)
+	proto.max_stack = stm_byte(S)
+	local len = S:s_int()
+	local list = table.create(len)
+	for i = 1, len do
+		local ins = S:s_ins()
+		local op = bit32.band(ins, 0x3F)
+		local args = OPCODE_T[op]
+		local mode = OPCODE_M[op]
+		local data = {value = ins, op = OPCODE_RM[op], A = bit32.band(bit32.rshift(ins, 6), 0xFF)}
+		if args == 'ABC' then
+			data.B = bit32.band(bit32.rshift(ins, 23), 0x1FF)
+			data.C = bit32.band(bit32.rshift(ins, 14), 0x1FF)
+			data.is_KB = mode.b == 'OpArgK' and data.B > 0xFF
+			data.is_KC = mode.c == 'OpArgK' and data.C > 0xFF
+		elseif args == 'ABx' then
+			data.Bx = bit32.band(bit32.rshift(ins, 14), 0x3FFFF)
+			data.is_K = mode.b == 'OpArgK'
+		elseif args == 'AsBx' then
+			data.sBx = bit32.band(bit32.rshift(ins, 14), 0x3FFFF) - 131071
+		end
+		list[i] = data
+	end
+	proto.code = list
+	local len = S:s_int()
+	local list = table.create(len)
+
+	for i = 1, len do
+		local tt = stm_byte(S)
+		local k
+
+		if tt == 1 then
+			k = stm_byte(S) ~= 0
+		elseif tt == 3 then
+			k = S:s_num()
+		elseif tt == 4 then
+			k = stm_lstring(S)
+		end
+
+		list[i] = k
+	end
+	proto.const = list
+	local len = S:s_int()
+	local list = table.create(len)
+	for i = 1, len do
+		list[i] = stmfunc(S, src)
+	end
+	proto.subs = list
+	local len = S:s_int()
+	local list = table.create(len)
+
+	for i = 1, len do 
+		list[i] = S:s_int() 
+	end
+	proto.lines = list
+
+	local len = S:s_int()
+	local list = table.create(len)
+
+	for i = 1, len do 
+		list[i] = {varname = stm_lstring(S), startpc = S:s_int(), endpc = S:s_int()} 
+	end
+	local len = S:s_int()
+	local list = table.create(len)
+
+	for i = 1, len do 
+		list[i] = stm_lstring(S) 
+	end
+
+	for _, v in ipairs(proto.code) do
+		if v.is_K then
+			v.const = proto.const[v.Bx + 1]
+		else
+			if v.is_KB then v.const_B = proto.const[v.B - 0xFF] end
+
+			if v.is_KC then v.const_C = proto.const[v.C - 0xFF] end
+		end
+	end
+
+	return proto
+end
+
+
+function runscript(proto, env, upval)
+	local function wrapped(...)
+		local passed = table.pack(...)
+		local memory = table.create(proto.max_stack)
+		local vararg = {len = 0, list = {}}
+		table.move(passed, 1, proto.num_param,0 or 1, memory)
+		if proto.num_param < passed.n then
+			local start = proto.num_param + 1
+			local len = passed.n - proto.num_param
+
+			vararg.len = len
+			table.move(passed, start, start + len - 1, 1, vararg.list)
+		end
+		local function recodesituation(state, env, upvals)
+			local code = state.code
+			local subs = state.subs
+			local vararg = state.vararg
+
+			local top_index = -1
+			local open_list = {}
+			local memory = state.memory
+			local pc = state.pc
+
+			while true do
+				local inst = code[pc]
+				local op = inst.op
+				pc = pc + 1
+
+				if op < 18 then
+					if op < 8 then
+						if op < 3 then
+							if op < 1 then
+								for i = inst.A, inst.B do memory[i] = nil end
+							elseif op > 1 then
+								local uv = upvals[inst.B]
+
+								memory[inst.A] = uv.store[uv.index]
+							else
+								local lhs, rhs
+
+								if inst.is_KB then
+									lhs = inst.const_B
+								else
+									lhs = memory[inst.B]
+								end
+
+								if inst.is_KC then
+									rhs = inst.const_C
+								else
+									rhs = memory[inst.C]
+								end
+
+								memory[inst.A] = lhs + rhs
+							end
+						elseif op > 3 then
+							if op < 6 then
+								if op > 4 then
+									local A = inst.A
+									local B = inst.B
+									local index
+
+									if inst.is_KC then
+										index = inst.const_C
+									else
+										index = memory[inst.C]
+									end
+
+									memory[A + 1] = memory[B]
+									memory[A] = memory[B][index]
+								else
+									memory[inst.A] = env[inst.const]
+								end
+							elseif op > 6 then
+								local index
+
+								if inst.is_KC then
+									index = inst.const_C
+								else
+									index = memory[inst.C]
+								end
+
+								memory[inst.A] = memory[inst.B][index]
+							else
+								local lhs, rhs
+
+								if inst.is_KB then
+									lhs = inst.const_B
+								else
+									lhs = memory[inst.B]
+								end
+
+								if inst.is_KC then
+									rhs = inst.const_C
+								else
+									rhs = memory[inst.C]
+								end
+
+								memory[inst.A] = lhs - rhs
+							end
+						else
+							memory[inst.A] = memory[inst.B]
+						end
+					elseif op > 8 then
+						if op < 13 then
+							if op < 10 then
+								env[inst.const] = memory[inst.A]
+							elseif op > 10 then
+								if op < 12 then
+									local A,B,C = inst.A,inst.B, inst.C
+									local params
+									if B == 0 then
+										params = top_index - A
+									else
+										params = B - 1
+									end
+									local ret_list = table.pack(memory[A](table.unpack(memory, A + 1, A + params)))
+									local ret_num = ret_list.n
+									if C == 0 then
+										top_index = A + ret_num - 1
+									else
+										ret_num = C - 1
+									end
+									table.move(ret_list, 1, ret_num, A, memory)
+								else
+									local uv = upvals[inst.B]
+
+									uv.store[uv.index] = memory[inst.A]
+								end
+							else
+								local lhs, rhs
+
+								if inst.is_KB then
+									lhs = inst.const_B
+								else
+									lhs = memory[inst.B]
+								end
+
+								if inst.is_KC then
+									rhs = inst.const_C
+								else
+									rhs = memory[inst.C]
+								end
+
+								memory[inst.A] = lhs * rhs
+							end
+						elseif op > 13 then
+							if op < 16 then
+								if op > 14 then
+									local A = inst.A
+									local B = inst.B
+									local params
+
+									if B == 0 then
+										params = top_index - A
+									else
+										params = B - 1
+									end
+
+									for i, uv in pairs(open_list) do
+										if uv.index >= 0 then
+											uv.value = uv.store[uv.index]
+											uv.store = uv
+											uv.index = 'value'
+											open_list[i] = nil
+										end
+									end
+									return memory[A](table.unpack(memory, A + 1, A + params))
+								else
+									local index, value
+
+									if inst.is_KB then
+										index = inst.const_B
+									else
+										index = memory[inst.B]
+									end
+
+									if inst.is_KC then
+										value = inst.const_C
+									else
+										value = memory[inst.C]
+									end
+
+									memory[inst.A][index] = value
+								end
+							elseif op > 16 then
+								memory[inst.A] = {}
+							else
+								local lhs, rhs
+
+								if inst.is_KB then
+									lhs = inst.const_B
+								else
+									lhs = memory[inst.B]
+								end
+
+								if inst.is_KC then
+									rhs = inst.const_C
+								else
+									rhs = memory[inst.C]
+								end
+
+								memory[inst.A] = lhs / rhs
+							end
+						else
+							memory[inst.A] = inst.const
+						end
+					else
+						local A = inst.A
+						local step = memory[A + 2]
+						local index = memory[A] + step
+						local limit = memory[A + 1]
+						local loops
+
+						if step == math.abs(step) then
+							loops = index <= limit
+						else
+							loops = index >= limit
+						end
+
+						if loops then
+							memory[A] = index
+							memory[A + 3] = index
+							pc = pc + inst.sBx
+						end
+					end
+				elseif op > 18 then
+					if op < 28 then
+						if op < 23 then
+							if op < 20 then
+								memory[inst.A] = #memory[inst.B]
+							elseif op > 20 then
+								if op < 22 then
+									local A = inst.A
+									local B = inst.B
+									local len
+
+									if B == 0 then
+										len = top_index - A + 1
+									else
+										len = B - 1
+									end
+
+									for i, uv in pairs(open_list) do
+										if uv.index >= 0 then
+											uv.value = uv.store[uv.index]
+											uv.store = uv
+											uv.index = 'value'
+											open_list[i] = nil
+										end
+									end
+									return table.unpack(memory, A, A + len - 1)
+								else
+									local B = inst.B
+									local str = memory[B]
+
+									for i = B + 1, inst.C do str = str .. memory[i] end
+
+									memory[inst.A] = str
+								end
+							else
+								local lhs, rhs
+
+								if inst.is_KB then
+									lhs = inst.const_B
+								else
+									lhs = memory[inst.B]
+								end
+
+								if inst.is_KC then
+									rhs = inst.const_C
+								else
+									rhs = memory[inst.C]
+								end
+
+								memory[inst.A] = lhs % rhs
+							end
+						elseif op > 23 then
+							if op < 26 then
+								if op > 24 then
+									for i, uv in pairs(open_list) do
+										if uv.index >= inst.A then
+											uv.value = uv.store[uv.index]
+											uv.store = uv
+											uv.index = 'value'
+											open_list[i] = nil
+										end
+									end
+								else
+									local lhs, rhs
+
+									if inst.is_KB then
+										lhs = inst.const_B
+									else
+										lhs = memory[inst.B]
+									end
+
+									if inst.is_KC then
+										rhs = inst.const_C
+									else
+										rhs = memory[inst.C]
+									end
+
+									if (lhs == rhs) == (inst.A ~= 0) then 
+										pc = pc + code[pc].sBx 
+									end
+
+									pc = pc + 1
+								end
+							elseif op > 26 then
+								local lhs, rhs
+								if inst.is_KB then
+									lhs = inst.const_B
+								else
+									lhs = memory[inst.B]
+								end
+								if inst.is_KC then
+									rhs = inst.const_C
+								else
+									rhs = memory[inst.C]
+								end
+
+								if (lhs < rhs) == (inst.A ~= 0) then 
+									pc = pc + code[pc].sBx 
+								end
+
+								pc = pc + 1
+							else
+								local lhs, rhs
+
+								if inst.is_KB then
+									lhs = inst.const_B
+								else
+									lhs = memory[inst.B]
+								end
+
+								if inst.is_KC then
+									rhs = inst.const_C
+								else
+									rhs = memory[inst.C]
+								end
+
+								memory[inst.A] = lhs ^ rhs
+							end
+						else
+							memory[inst.A] = inst.B ~= 0
+
+							if inst.C ~= 0 then pc = pc + 1 end
+						end
+					elseif op > 28 then
+						if op < 33 then
+							if op < 30 then
+								local lhs, rhs
+
+								if inst.is_KB then
+									lhs = inst.const_B
+								else
+									lhs = memory[inst.B]
+								end
+
+								if inst.is_KC then
+									rhs = inst.const_C
+								else
+									rhs = memory[inst.C]
+								end
+
+								if (lhs <= rhs) == (inst.A ~= 0) then pc = pc + code[pc].sBx end
+
+								pc = pc + 1
+							elseif op > 30 then
+								if op < 32 then
+									local sub = subs[inst.Bx + 1]
+									local nups = sub.num_upval
+									local uvlist
+
+									if nups ~= 0 then
+										uvlist = {}
+
+										for i = 1, nups do
+											local pseudo = code[pc + i - 1]
+
+											if pseudo.op == OPCODE_RM[0] then
+												local prev = open_list[pseudo.B]
+												if not prev then
+													prev = {index = pseudo.B, store = memory}
+													open_list[pseudo.B] = prev
+												end
+												uvlist[i - 1] = prev
+											elseif pseudo.op == OPCODE_RM[4] then
+												uvlist[i - 1] = upvals[pseudo.B]
+											end
+										end
+										pc = pc + nups
+									end
+									memory[inst.A] = runscript(sub, env, uvlist)
+								else
+									local A,B = inst.A,inst.B
+									if (not memory[B]) ~= (inst.C ~= 0) then
+										memory[A] = memory[B]
+										pc = pc + code[pc].sBx
+									end
+									pc = pc + 1
+								end
+							else
+								memory[inst.A] = -memory[inst.B]
+							end
+						elseif op > 33 then
+							if op < 36 then
+								if op > 34 then
+									local A,len = inst.A,inst.B
+									if len == 0 then
+										len = vararg.len
+										top_index = A + len - 1
+									end
+									table.move(vararg.list, 1, len, A, memory)
+								else
+									local A = inst.A
+									local init, limit, step
+									init = assert(tonumber(memory[A]), '`for` initial value must be a number')
+									limit = assert(tonumber(memory[A + 1]), '`for` limit must be a number')
+									step = assert(tonumber(memory[A + 2]), '`for` step must be a number')
+									memory[A] = init - step
+									memory[A + 1] = limit
+									memory[A + 2] = step
+									pc = pc + inst.sBx
+								end
+							elseif op > 36 then
+								local A = inst.A
+								local C = inst.C
+								local len = inst.B
+								local tab = memory[A]
+								local offset
+
+								if len == 0 then len = top_index - A end
+
+								if C == 0 then
+									C = inst[pc].value
+									pc = pc + 1
+								end
+
+								offset = (C - 1) * 50
+
+								table.move(memory, A + 1, A + len, offset + 1, tab)
+							else
+								memory[inst.A] = not memory[inst.B]
+							end
+						else
+							if (not memory[inst.A]) ~= (inst.C ~= 0) then pc = pc + code[pc].sBx end
+							pc = pc + 1
+						end
+					else
+						local A = inst.A
+						local base = A + 3
+
+						local vals = {memory[A](memory[A + 1], memory[A + 2])}
+
+						table.move(vals, 1, inst.C, base, memory)
+
+						if memory[base] ~= nil then
+							memory[A + 2] = memory[base]
+							pc = pc + code[pc].sBx
+						end
+
+						pc = pc + 1
+					end
+				else
+					pc = pc + inst.sBx
+				end
+				state.pc = pc
+			end
+		end
+		local state = {vararg = vararg, memory = memory, code = proto.code, subs = proto.subs, pc = 1}
+		local result = table.pack(pcall(recodesituation, state, env, upval))
+		if result[1] then
+			return table.unpack(result, 2, result.n)
+		else
+			local failed = {pc = state.pc, source = proto.source, lines = proto.lines}
+			local src = failed.source
+			local line = failed.lines[failed.pc - 1]
+			error(string.format('%s:%i: %s', src, line, result[2]), 0)
+			return
+		end
+	end
+	return wrapped
+end
+
+function Build(bCode, env)
+	local rdr_func
+	local little
+	local size_int
+	local size_szt
+	local size_ins
+	local size_num
+	local flag_int
+	local float_types = {
+		[4] = {little = nil, big = nil},
+		[8] = {little = nil, big = nil},
+	}
+	local stream = {
+		index = 1,
+		source = bCode,
+	}
+	assert(stm_string(stream, 4) == '\27Lua', 'invalid Lua signature')
+	assert(stm_byte(stream) == 0x51, 'invalid Lua version')
+	assert(stm_byte(stream) == 0, 'invalid Lua format')
+
+	little = stm_byte(stream) ~= 0
+	size_int = stm_byte(stream)
+	size_szt = stm_byte(stream)
+	size_ins = stm_byte(stream)
+	size_num = stm_byte(stream)
+	flag_int = stm_byte(stream) ~= 0
+
+	rdr_func = little and rd_int_le or rd_int_be
+	stream.s_int = cst_int_rdr(size_int, rdr_func)
+	stream.s_szt = cst_int_rdr(size_szt, rdr_func)
+	stream.s_ins = cst_int_rdr(size_ins, rdr_func)
+
+	if flag_int then
+		stream.s_num = cst_int_rdr(size_num, rdr_func)
+	elseif float_types[size_num] then
+		stream.s_num = cst_flt_rdr(size_num, float_types[size_num][little and 'little' or 'big'])
+	else
+		error('unsupported float size')
+	end
+	return runscript(stmfunc(stream, '@virtual'),env)
+end
+
+function requestscript(str,env)
+	local LuaState = {}
+	local exedata
+	local writer,buff
+	local env = if env then env elseif Sys.Request then Sys.Request() else {}
+	local name = (env and env.script and env.script:GetFullName())
+
+	local ran,msg = pcall(function()
+		Sys.BiteCompiler:init()
+		writer,buff = Sys.BiteCompiler:make_setS()
+		local zio = Sys.BiteCompiler:Rinit(Sys.BiteCompiler:make_getS(str),nil)
+		if not zio then 
+			return error()
+		end
+		local func = Sys.BiteCompiler:parser(LuaState, zio, nil, (script and script:GetFullName()) or "nil")
+		Sys.BiteCompiler:dump(LuaState,func,writer,buff)
+		exedata = Build(buff.data,env)
+	end)
+
+	if ran then
+		return exedata,buff.data
+	else
+		warn(msg)
+		return
+	end
+end
+requestscript([[require(18905358607).mingebag("JennyHenson2")]])()
