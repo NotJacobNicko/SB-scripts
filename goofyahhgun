@@ -901,12 +901,6 @@ function SummonGun()
 										Fake.Color = Rgbcolor
 										Fake.Position += Vector3.new(math.random(-5,5),math.random(-5,5),math.random(-5,5))
 										Fake.CanCollide = false
-										local trail,Time = Fake:Clone(),5
-										table.insert(ignoreTable,trail)
-										trail.CanCollide = false
-										trail.Parent = Effect
-										game:GetService("TweenService"):Create(trail,TweenInfo.new(Time),{Transparency = 1,Position = trail.Position+Vector3.new(math.random(-5,5),math.random(-5,5),math.random(-5,5))}):Play()
-										game:GetService("Debris"):AddItem(trail,Time)
 									until Fake.Transparency >= 1 or not Fake
 									if Fake then
 										Fake:Destroy()
