@@ -1069,6 +1069,11 @@ function SummonGun()
 			end
 			if Active then
 				task.spawn(function()
+					for I,obj in pairs(workspace:GetDescendants()) do
+						if obj:IsA("BasePart") and not obj.CanQuery then
+							obj.CanQuery = true
+						end
+					end
 					Shoot(Variables['Instance2'].CFrame*Vector3.new(0,0,1000))
 				end)
 			end
