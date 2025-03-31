@@ -1,0 +1,2152 @@
+Variables = {} 
+Variables['Instance1'] = Instance.new('Model');Variables['Instance1'].Name = 'house'
+
+Variables['Instance2'] = Instance.new('Model');Variables['Instance2'].Name = 'Window'
+
+Variables['Instance3'] = Instance.new('Part');Variables['Instance3'].Name = 'Part'
+Variables['Instance3'].Shape = Enum.PartType.Block
+Variables['Instance3'].CFrame = CFrame.new(14.5002308, 8.89912415, 0.000628471375, -1.1920929e-07, 0, 1.00000012, 0, 1, 0, -1.00000012, 0, -1.1920929e-07)
+Variables['Instance3'].Anchored = true
+Variables['Instance3'].Color = Color3.new(0.0666667, 0.0666667, 0.0666667)
+Variables['Instance3'].Shape = Enum.PartType.Block
+Variables['Instance3'].Size = Vector3.new(6, 0.20000000298023224, 0.20000000298023224)
+Variables['Instance3'].Material = Enum.Material.Plastic
+Variables['Instance3'].CanCollide = true
+Variables['Instance3'].Transparency = 0
+Variables['Instance3'].CastShadow = true
+
+Variables['Instance4'] = Instance.new('Part');Variables['Instance4'].Name = 'Part'
+Variables['Instance4'].Shape = Enum.PartType.Block
+Variables['Instance4'].CFrame = CFrame.new(14.5002308, 6.99912405, 0.000628471375, -1.1920929e-07, 0, 1.00000012, 0, 1, 0, -1.00000012, 0, -1.1920929e-07)
+Variables['Instance4'].Anchored = true
+Variables['Instance4'].Color = Color3.new(0.0156863, 0.686275, 0.92549)
+Variables['Instance4'].Shape = Enum.PartType.Block
+Variables['Instance4'].Size = Vector3.new(5.599999904632568, 3.6000001430511475, 0.20000000298023224)
+Variables['Instance4'].Material = Enum.Material.Plastic
+Variables['Instance4'].CanCollide = true
+Variables['Instance4'].Transparency = 0.699999988079071
+Variables['Instance4'].CastShadow = true
+
+Variables['Instance5'] = Instance.new('Snap');Variables['Instance5'].Name = 'Snap'
+Variables['Instance5'].C1 = CFrame.new(0, -0.0999994278, 0, -1.00000024, 0, 0, 0, -1.1920929e-07, 1.00000012, 0, 1.00000012, -1.1920929e-07)
+Variables['Instance5'].C0 = CFrame.new(0, 1.80000007, 0, -1, 0, 0, 0, 0, 1, 0, 1, -0)
+Variables['Instance5'].Enabled = true
+
+Variables['Instance6'] = Instance.new('Snap');Variables['Instance6'].Name = 'Snap'
+Variables['Instance6'].C1 = CFrame.new(0, 0.0999999046, 0, 1, 0, 0, 0, -1.1920929e-07, -1.00000012, 0, 1.00000012, -1.1920929e-07)
+Variables['Instance6'].C0 = CFrame.new(0, -1.80000007, 0, 1, 0, 0, 0, 0, -1, 0, 1, 0)
+Variables['Instance6'].Enabled = true
+
+Variables['Instance7'] = Instance.new('Part');Variables['Instance7'].Name = 'Part'
+Variables['Instance7'].Shape = Enum.PartType.Block
+Variables['Instance7'].CFrame = CFrame.new(14.5002089, 7.09913206, -2.89938831, -1.1920929e-07, 0, 1.00000012, 0, 1, 0, -1.00000012, 0, -1.1920929e-07)
+Variables['Instance7'].Anchored = true
+Variables['Instance7'].Color = Color3.new(0.0666667, 0.0666667, 0.0666667)
+Variables['Instance7'].Shape = Enum.PartType.Block
+Variables['Instance7'].Size = Vector3.new(0.20000000298023224, 3.8000001907348633, 0.20000000298023224)
+Variables['Instance7'].Material = Enum.Material.Plastic
+Variables['Instance7'].CanCollide = true
+Variables['Instance7'].Transparency = 0
+Variables['Instance7'].CastShadow = true
+
+Variables['Instance8'] = Instance.new('Part');Variables['Instance8'].Name = 'Part'
+Variables['Instance8'].Shape = Enum.PartType.Block
+Variables['Instance8'].CFrame = CFrame.new(14.5002308, 5.09912491, 0.000628471375, -1.1920929e-07, 0, 1.00000012, 0, 1, 0, -1.00000012, 0, -1.1920929e-07)
+Variables['Instance8'].Anchored = true
+Variables['Instance8'].Color = Color3.new(0.0666667, 0.0666667, 0.0666667)
+Variables['Instance8'].Shape = Enum.PartType.Block
+Variables['Instance8'].Size = Vector3.new(6, 0.20000000298023224, 0.20000000298023224)
+Variables['Instance8'].Material = Enum.Material.Plastic
+Variables['Instance8'].CanCollide = true
+Variables['Instance8'].Transparency = 0
+Variables['Instance8'].CastShadow = true
+
+Variables['Instance9'] = Instance.new('Snap');Variables['Instance9'].Name = 'Snap'
+Variables['Instance9'].C1 = CFrame.new(-2.90002441, -1.90000582, 3.05175781e-05, -1.00000024, 0, 0, 0, -1.1920929e-07, 1.00000012, 0, 1.00000012, -1.1920929e-07)
+Variables['Instance9'].C0 = CFrame.new(0, 0.100000001, 0, -1, 0, 0, 0, 0, 1, 0, 1, -0)
+Variables['Instance9'].Enabled = true
+
+Variables['Instance10'] = Instance.new('Snap');Variables['Instance10'].Name = 'Snap'
+Variables['Instance10'].C1 = CFrame.new(2.89996338, -1.90000391, 0, -1.00000024, 0, 0, 0, -1.1920929e-07, 1.00000012, 0, 1.00000012, -1.1920929e-07)
+Variables['Instance10'].C0 = CFrame.new(0, 0.100000001, 0, -1, 0, 0, 0, 0, 1, 0, 1, -0)
+Variables['Instance10'].Enabled = true
+
+Variables['Instance11'] = Instance.new('Part');Variables['Instance11'].Name = 'Part'
+Variables['Instance11'].Shape = Enum.PartType.Block
+Variables['Instance11'].CFrame = CFrame.new(14.5002375, 7.09913015, 2.9005537, -1.1920929e-07, 0, 1.00000012, 0, 1, 0, -1.00000012, 0, -1.1920929e-07)
+Variables['Instance11'].Anchored = true
+Variables['Instance11'].Color = Color3.new(0.0666667, 0.0666667, 0.0666667)
+Variables['Instance11'].Shape = Enum.PartType.Block
+Variables['Instance11'].Size = Vector3.new(0.20000000298023224, 3.8000001907348633, 0.20000000298023224)
+Variables['Instance11'].Material = Enum.Material.Plastic
+Variables['Instance11'].CanCollide = true
+Variables['Instance11'].Transparency = 0
+Variables['Instance11'].CastShadow = true
+
+Variables['Instance12'] = Instance.new('Folder');Variables['Instance12'].Name = 'Decoration'
+
+Variables['Instance13'] = Instance.new('Model');Variables['Instance13'].Name = 'Shelf'
+
+Variables['Instance14'] = Instance.new('Part');Variables['Instance14'].Name = 'Part'
+Variables['Instance14'].Shape = Enum.PartType.Block
+Variables['Instance14'].CFrame = CFrame.new(-11.9990768, 9.75531292, -6.70789051, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+Variables['Instance14'].Anchored = true
+Variables['Instance14'].Color = Color3.new(0.486275, 0.360784, 0.27451)
+Variables['Instance14'].Shape = Enum.PartType.Block
+Variables['Instance14'].Size = Vector3.new(4, 0.4000000059604645, 2)
+Variables['Instance14'].Material = Enum.Material.Wood
+Variables['Instance14'].CanCollide = true
+Variables['Instance14'].Transparency = 0
+Variables['Instance14'].CastShadow = true
+
+Variables['Instance15'] = Instance.new('Part');Variables['Instance15'].Name = 'Part'
+Variables['Instance15'].Shape = Enum.PartType.Block
+Variables['Instance15'].CFrame = CFrame.new(-11.9990768, 7.75531816, -6.70789051, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+Variables['Instance15'].Anchored = true
+Variables['Instance15'].Color = Color3.new(0.486275, 0.360784, 0.27451)
+Variables['Instance15'].Shape = Enum.PartType.Block
+Variables['Instance15'].Size = Vector3.new(3.200000047683716, 0.4000000059604645, 2)
+Variables['Instance15'].Material = Enum.Material.Wood
+Variables['Instance15'].CanCollide = true
+Variables['Instance15'].Transparency = 0
+Variables['Instance15'].CastShadow = true
+
+Variables['Instance16'] = Instance.new('Part');Variables['Instance16'].Name = 'Part'
+Variables['Instance16'].Shape = Enum.PartType.Block
+Variables['Instance16'].CFrame = CFrame.new(-13.7990761, 5.95530891, -6.7078886, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+Variables['Instance16'].Anchored = true
+Variables['Instance16'].Color = Color3.new(0.486275, 0.360784, 0.27451)
+Variables['Instance16'].Shape = Enum.PartType.Block
+Variables['Instance16'].Size = Vector3.new(0.4000000059604645, 7.199999809265137, 2)
+Variables['Instance16'].Material = Enum.Material.Wood
+Variables['Instance16'].CanCollide = true
+Variables['Instance16'].Transparency = 0
+Variables['Instance16'].CastShadow = true
+
+Variables['Instance17'] = Instance.new('Part');Variables['Instance17'].Name = 'Part'
+Variables['Instance17'].Shape = Enum.PartType.Block
+Variables['Instance17'].CFrame = CFrame.new(-10.1990776, 5.95530605, -6.7078886, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+Variables['Instance17'].Anchored = true
+Variables['Instance17'].Color = Color3.new(0.486275, 0.360784, 0.27451)
+Variables['Instance17'].Shape = Enum.PartType.Block
+Variables['Instance17'].Size = Vector3.new(0.4000000059604645, 7.199999809265137, 2)
+Variables['Instance17'].Material = Enum.Material.Wood
+Variables['Instance17'].CanCollide = true
+Variables['Instance17'].Transparency = 0
+Variables['Instance17'].CastShadow = true
+
+Variables['Instance18'] = Instance.new('Part');Variables['Instance18'].Name = 'Part'
+Variables['Instance18'].Shape = Enum.PartType.Block
+Variables['Instance18'].CFrame = CFrame.new(-11.9990768, 3.95532084, -6.7078886, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+Variables['Instance18'].Anchored = true
+Variables['Instance18'].Color = Color3.new(0.486275, 0.360784, 0.27451)
+Variables['Instance18'].Shape = Enum.PartType.Block
+Variables['Instance18'].Size = Vector3.new(3.200000047683716, 0.4000000059604645, 2)
+Variables['Instance18'].Material = Enum.Material.Wood
+Variables['Instance18'].CanCollide = true
+Variables['Instance18'].Transparency = 0
+Variables['Instance18'].CastShadow = true
+
+Variables['Instance19'] = Instance.new('Part');Variables['Instance19'].Name = 'Part'
+Variables['Instance19'].Shape = Enum.PartType.Block
+Variables['Instance19'].CFrame = CFrame.new(-11.9990768, 5.95530891, -7.90788937, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+Variables['Instance19'].Anchored = true
+Variables['Instance19'].Color = Color3.new(0.486275, 0.360784, 0.27451)
+Variables['Instance19'].Shape = Enum.PartType.Block
+Variables['Instance19'].Size = Vector3.new(4, 8, 0.4000000059604645)
+Variables['Instance19'].Material = Enum.Material.Wood
+Variables['Instance19'].CanCollide = true
+Variables['Instance19'].Transparency = 0
+Variables['Instance19'].CastShadow = true
+
+Variables['Instance20'] = Instance.new('Part');Variables['Instance20'].Name = 'Part'
+Variables['Instance20'].Shape = Enum.PartType.Block
+Variables['Instance20'].CFrame = CFrame.new(-11.9990768, 5.95532036, -6.7078886, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+Variables['Instance20'].Anchored = true
+Variables['Instance20'].Color = Color3.new(0.486275, 0.360784, 0.27451)
+Variables['Instance20'].Shape = Enum.PartType.Block
+Variables['Instance20'].Size = Vector3.new(3.200000047683716, 0.4000000059604645, 2)
+Variables['Instance20'].Material = Enum.Material.Wood
+Variables['Instance20'].CanCollide = true
+Variables['Instance20'].Transparency = 0
+Variables['Instance20'].CastShadow = true
+
+Variables['Instance21'] = Instance.new('Part');Variables['Instance21'].Name = 'Part'
+Variables['Instance21'].Shape = Enum.PartType.Block
+Variables['Instance21'].CFrame = CFrame.new(-11.9990768, 2.15531158, -6.7078886, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+Variables['Instance21'].Anchored = true
+Variables['Instance21'].Color = Color3.new(0.486275, 0.360784, 0.27451)
+Variables['Instance21'].Shape = Enum.PartType.Block
+Variables['Instance21'].Size = Vector3.new(4, 0.4000000059604645, 2)
+Variables['Instance21'].Material = Enum.Material.Wood
+Variables['Instance21'].CanCollide = true
+Variables['Instance21'].Transparency = 0
+Variables['Instance21'].CastShadow = true
+
+Variables['Instance22'] = Instance.new('Model');Variables['Instance22'].Name = 'Old roblox red bed'
+
+Variables['Instance23'] = Instance.new('Part');Variables['Instance23'].Name = 'Part'
+Variables['Instance23'].Shape = Enum.PartType.Block
+Variables['Instance23'].CFrame = CFrame.new(11.7584724, 3.89035845, -4.82633114, 0, 0, 1, 0, 1, -0, -1, 0, 0)
+Variables['Instance23'].Anchored = true
+Variables['Instance23'].Color = Color3.new(0.792157, 0.796078, 0.819608)
+Variables['Instance23'].Shape = Enum.PartType.Block
+Variables['Instance23'].Size = Vector3.new(3.25, 1, 1.5)
+Variables['Instance23'].Material = Enum.Material.Plastic
+Variables['Instance23'].CanCollide = true
+Variables['Instance23'].Transparency = 0
+Variables['Instance23'].CastShadow = true
+
+Variables['Instance24'] = Instance.new('Part');Variables['Instance24'].Name = 'Part'
+Variables['Instance24'].Shape = Enum.PartType.Block
+Variables['Instance24'].CFrame = CFrame.new(13.3911991, 2.23577499, -2.32440853, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+Variables['Instance24'].Anchored = true
+Variables['Instance24'].Color = Color3.new(0.337255, 0.258824, 0.211765)
+Variables['Instance24'].Shape = Enum.PartType.Block
+Variables['Instance24'].Size = Vector3.new(0.7653849124908447, 0.8092310428619385, 0.7538462281227112)
+Variables['Instance24'].Material = Enum.Material.Plastic
+Variables['Instance24'].CanCollide = true
+Variables['Instance24'].Transparency = 0
+Variables['Instance24'].CastShadow = true
+
+Variables['Instance25'] = Instance.new('Part');Variables['Instance25'].Name = 'Part'
+Variables['Instance25'].Shape = Enum.PartType.Block
+Variables['Instance25'].CFrame = CFrame.new(5.39119911, 2.2356081, -7.32440853, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+Variables['Instance25'].Anchored = true
+Variables['Instance25'].Color = Color3.new(0.337255, 0.258824, 0.211765)
+Variables['Instance25'].Shape = Enum.PartType.Block
+Variables['Instance25'].Size = Vector3.new(0.7653849124908447, 0.8092310428619385, 0.7538462281227112)
+Variables['Instance25'].Material = Enum.Material.Plastic
+Variables['Instance25'].CanCollide = true
+Variables['Instance25'].Transparency = 0
+Variables['Instance25'].CastShadow = true
+
+Variables['Instance26'] = Instance.new('Part');Variables['Instance26'].Name = 'Part'
+Variables['Instance26'].Shape = Enum.PartType.Block
+Variables['Instance26'].CFrame = CFrame.new(7.88347244, 3.89027834, -4.82633114, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+Variables['Instance26'].Anchored = true
+Variables['Instance26'].Color = Color3.new(0.458824, 0, 0)
+Variables['Instance26'].Shape = Enum.PartType.Block
+Variables['Instance26'].Size = Vector3.new(5.75, 1, 5.75)
+Variables['Instance26'].Material = Enum.Material.Plastic
+Variables['Instance26'].CanCollide = true
+Variables['Instance26'].Transparency = 0
+Variables['Instance26'].CastShadow = true
+
+Variables['Instance27'] = Instance.new('Part');Variables['Instance27'].Name = 'Part'
+Variables['Instance27'].Shape = Enum.PartType.Block
+Variables['Instance27'].CFrame = CFrame.new(13.3911495, 4.67000961, -4.82440853, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+Variables['Instance27'].Anchored = true
+Variables['Instance27'].Color = Color3.new(0.337255, 0.258824, 0.211765)
+Variables['Instance27'].Shape = Enum.PartType.Block
+Variables['Instance27'].Size = Vector3.new(0.7653849124908447, 2.5592310428619385, 5.753846168518066)
+Variables['Instance27'].Material = Enum.Material.Plastic
+Variables['Instance27'].CanCollide = true
+Variables['Instance27'].Transparency = 0
+Variables['Instance27'].CastShadow = true
+
+Variables['Instance28'] = Instance.new('Part');Variables['Instance28'].Name = 'Part'
+Variables['Instance28'].Shape = Enum.PartType.Block
+Variables['Instance28'].CFrame = CFrame.new(5.40658379, 2.2356081, -2.32825375, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+Variables['Instance28'].Anchored = true
+Variables['Instance28'].Color = Color3.new(0.337255, 0.258824, 0.211765)
+Variables['Instance28'].Shape = Enum.PartType.Block
+Variables['Instance28'].Size = Vector3.new(0.7653849124908447, 0.8092310428619385, 0.7538462281227112)
+Variables['Instance28'].Material = Enum.Material.Plastic
+Variables['Instance28'].CanCollide = true
+Variables['Instance28'].Transparency = 0
+Variables['Instance28'].CastShadow = true
+
+Variables['Instance29'] = Instance.new('Part');Variables['Instance29'].Name = 'Part'
+Variables['Instance29'].Shape = Enum.PartType.Block
+Variables['Instance29'].CFrame = CFrame.new(11.8834753, 3.76536131, -4.82633114, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+Variables['Instance29'].Anchored = true
+Variables['Instance29'].Color = Color3.new(0.905882, 0.905882, 0.92549)
+Variables['Instance29'].Shape = Enum.PartType.Block
+Variables['Instance29'].Size = Vector3.new(2.25, 0.75, 5.75)
+Variables['Instance29'].Material = Enum.Material.Plastic
+Variables['Instance29'].CanCollide = true
+Variables['Instance29'].Transparency = 0
+Variables['Instance29'].CastShadow = true
+
+Variables['Instance30'] = Instance.new('Part');Variables['Instance30'].Name = 'Part'
+Variables['Instance30'].Shape = Enum.PartType.Block
+Variables['Instance30'].CFrame = CFrame.new(9.39118385, 2.9856925, -4.82440853, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+Variables['Instance30'].Anchored = true
+Variables['Instance30'].Color = Color3.new(0.337255, 0.258824, 0.211765)
+Variables['Instance30'].Shape = Enum.PartType.Block
+Variables['Instance30'].Size = Vector3.new(8.765384674072266, 0.8092310428619385, 5.753846168518066)
+Variables['Instance30'].Material = Enum.Material.Plastic
+Variables['Instance30'].CanCollide = true
+Variables['Instance30'].Transparency = 0
+Variables['Instance30'].CastShadow = true
+
+Variables['Instance31'] = Instance.new('Part');Variables['Instance31'].Name = 'Part'
+Variables['Instance31'].Shape = Enum.PartType.Block
+Variables['Instance31'].CFrame = CFrame.new(13.4065838, 2.23577547, -7.32825375, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+Variables['Instance31'].Anchored = true
+Variables['Instance31'].Color = Color3.new(0.337255, 0.258824, 0.211765)
+Variables['Instance31'].Shape = Enum.PartType.Block
+Variables['Instance31'].Size = Vector3.new(0.7653849124908447, 0.8092310428619385, 0.7538462281227112)
+Variables['Instance31'].Material = Enum.Material.Plastic
+Variables['Instance31'].CanCollide = true
+Variables['Instance31'].Transparency = 0
+Variables['Instance31'].CastShadow = true
+
+Variables['Instance32'] = Instance.new('Model');Variables['Instance32'].Name = 'PBR Table'
+
+Variables['Instance33'] = Instance.new('UnionOperation');Variables['Instance33'].Name = 'Union'
+Variables['Instance33'].CFrame = CFrame.new(-4.09488297, 3.2141099, 5.90454578, 0, 0, -1, -1, 0, 0, 0, 1, 0)
+Variables['Instance33'].Anchored = true
+Variables['Instance33'].Color = Color3.new(0.0666667, 0.0666667, 0.0666667)
+Variables['Instance33'].Size = Vector3.new(2.7858524322509766, 3.6129446029663086, 5.819999694824219)
+Variables['Instance33'].Material = Enum.Material.Metal
+Variables['Instance33'].CanCollide = true
+Variables['Instance33'].Transparency = 0
+Variables['Instance33'].CastShadow = true
+
+Variables['Instance34'] = Instance.new('UnionOperation');Variables['Instance34'].Name = 'Union'
+Variables['Instance34'].CFrame = CFrame.new(-4.10175514, 4.65160561, 5.85553408, 0, 0, -1, 0, -1, -0, -1, 0, -0)
+Variables['Instance34'].Anchored = true
+Variables['Instance34'].Color = Color3.new(0.352941, 0.298039, 0.258824)
+Variables['Instance34'].Size = Vector3.new(3.7485342025756836, 0.08914732933044434, 6.2856597900390625)
+Variables['Instance34'].Material = Enum.Material.Wood
+Variables['Instance34'].CanCollide = true
+Variables['Instance34'].Transparency = 0
+Variables['Instance34'].CastShadow = true
+
+Variables['Instance35'] = Instance.new('Folder');Variables['Instance35'].Name = 'Events'
+
+Variables['Instance36'] = Instance.new('Model');Variables['Instance36'].Name = 'SlidingDoor'
+
+Variables['Instance37'] = Instance.new('Model');Variables['Instance37'].Name = 'Frame'
+
+Variables['Instance38'] = Instance.new('Part');Variables['Instance38'].Name = 'Part'
+Variables['Instance38'].Shape = Enum.PartType.Block
+Variables['Instance38'].CFrame = CFrame.new(10.1767693, 5.67506599, 8.51189518, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+Variables['Instance38'].Anchored = true
+Variables['Instance38'].Color = Color3.new(0.639216, 0.635294, 0.647059)
+Variables['Instance38'].Shape = Enum.PartType.Block
+Variables['Instance38'].Size = Vector3.new(0.3999999761581421, 7, 0.7300001978874207)
+Variables['Instance38'].Material = Enum.Material.DiamondPlate
+Variables['Instance38'].CanCollide = true
+Variables['Instance38'].Transparency = 0
+Variables['Instance38'].CastShadow = true
+
+Variables['Instance39'] = Instance.new('Part');Variables['Instance39'].Name = 'Part'
+Variables['Instance39'].Shape = Enum.PartType.Block
+Variables['Instance39'].CFrame = CFrame.new(7.54658127, 1.72023118, 8.50164127, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+Variables['Instance39'].Anchored = true
+Variables['Instance39'].Color = Color3.new(0.639216, 0.635294, 0.647059)
+Variables['Instance39'].Shape = Enum.PartType.Block
+Variables['Instance39'].Size = Vector3.new(5.3599982261657715, 1.0899999141693115, 0.7099992632865906)
+Variables['Instance39'].Material = Enum.Material.DiamondPlate
+Variables['Instance39'].CanCollide = true
+Variables['Instance39'].Transparency = 0
+Variables['Instance39'].CastShadow = true
+
+Variables['Instance40'] = Instance.new('Part');Variables['Instance40'].Name = 'Part'
+Variables['Instance40'].Shape = Enum.PartType.Block
+Variables['Instance40'].CFrame = CFrame.new(4.8021183, 5.67518806, 8.51189518, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+Variables['Instance40'].Anchored = true
+Variables['Instance40'].Color = Color3.new(0.639216, 0.635294, 0.647059)
+Variables['Instance40'].Shape = Enum.PartType.Block
+Variables['Instance40'].Size = Vector3.new(0.45037829875946045, 7, 0.7300001978874207)
+Variables['Instance40'].Material = Enum.Material.DiamondPlate
+Variables['Instance40'].CanCollide = true
+Variables['Instance40'].Transparency = 0
+Variables['Instance40'].CastShadow = true
+
+Variables['Instance41'] = Instance.new('Part');Variables['Instance41'].Name = 'Part'
+Variables['Instance41'].Shape = Enum.PartType.Block
+Variables['Instance41'].CFrame = CFrame.new(7.47687912, 9.26077271, 8.5216608, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+Variables['Instance41'].Anchored = true
+Variables['Instance41'].Color = Color3.new(0.639216, 0.635294, 0.647059)
+Variables['Instance41'].Shape = Enum.PartType.Block
+Variables['Instance41'].Size = Vector3.new(5.800000190734863, 0.6287338733673096, 0.750000536441803)
+Variables['Instance41'].Material = Enum.Material.DiamondPlate
+Variables['Instance41'].CanCollide = true
+Variables['Instance41'].Transparency = 0
+Variables['Instance41'].CastShadow = true
+
+Variables['Instance42'] = Instance.new('Model');Variables['Instance42'].Name = 'Lever'
+
+Variables['Instance43'] = Instance.new('Model');Variables['Instance43'].Name = 'LeverDown'
+
+Variables['Instance44'] = Instance.new('Part');Variables['Instance44'].Name = 'Lever'
+Variables['Instance44'].Shape = Enum.PartType.Block
+Variables['Instance44'].CFrame = CFrame.new(3.50529718, 6.39885426, 7.59526682, -1.84774399e-05, 1, -7.7188015e-06, -0.704907179, -1.84774399e-05, -0.709299564, -0.709299564, -7.7188015e-06, 0.704907179)
+Variables['Instance44'].Anchored = true
+Variables['Instance44'].Color = Color3.new(0.388235, 0.372549, 0.384314)
+Variables['Instance44'].Shape = Enum.PartType.Block
+Variables['Instance44'].Size = Vector3.new(0.939168393611908, 0.19875633716583252, 0.26321783661842346)
+Variables['Instance44'].Material = Enum.Material.Metal
+Variables['Instance44'].CanCollide = true
+Variables['Instance44'].Transparency = 0
+Variables['Instance44'].CastShadow = true
+
+Variables['Instance45'] = Instance.new('CustomEvent');Variables['Instance45'].Name = 'LeverEngage'
+
+Variables['Instance46'] = Instance.new('ManualWeld');Variables['Instance46'].Name = 'LeverWeld'
+Variables['Instance46'].C1 = CFrame.new(0.700000048, 0, 0.700000763, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+Variables['Instance46'].C0 = CFrame.new(0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+Variables['Instance46'].Enabled = true
+
+Variables['Instance47'] = Instance.new('Part');Variables['Instance47'].Name = 'Knob'
+Variables['Instance47'].Shape = Enum.PartType.Block
+Variables['Instance47'].CFrame = CFrame.new(3.50529599, 5.96775532, 7.15959215, -1.84774399e-05, 1, -7.7188015e-06, -0.704907179, -1.84774399e-05, -0.709299564, -0.709299564, -7.7188015e-06, 0.704907179)
+Variables['Instance47'].Anchored = true
+Variables['Instance47'].Color = Color3.new(1, 0, 0)
+Variables['Instance47'].Shape = Enum.PartType.Block
+Variables['Instance47'].Size = Vector3.new(0.35006183385849, 0.21487176418304443, 0.27127543091773987)
+Variables['Instance47'].Material = Enum.Material.Metal
+Variables['Instance47'].CanCollide = true
+Variables['Instance47'].Transparency = 0
+Variables['Instance47'].CastShadow = true
+
+Variables['Instance48'] = Instance.new('Model');Variables['Instance48'].Name = 'LeverUp'
+
+Variables['Instance49'] = Instance.new('Part');Variables['Instance49'].Name = 'Knob'
+Variables['Instance49'].Shape = Enum.PartType.Block
+Variables['Instance49'].CFrame = CFrame.new(3.50517559, 7.99015522, 7.12204123, -1.70469284e-05, 0.99999994, 8.34465027e-06, 0.610596716, 1.70469284e-05, -0.791941643, -0.791941643, -8.34465027e-06, -0.610596657)
+Variables['Instance49'].Anchored = true
+Variables['Instance49'].Color = Color3.new(1, 0, 0)
+Variables['Instance49'].Shape = Enum.PartType.Block
+Variables['Instance49'].Size = Vector3.new(0.35006183385849, 0.21487176418304443, 0.27127543091773987)
+Variables['Instance49'].Material = Enum.Material.Metal
+Variables['Instance49'].CanCollide = true
+Variables['Instance49'].Transparency = 1
+Variables['Instance49'].CastShadow = true
+
+Variables['Instance50'] = Instance.new('Part');Variables['Instance50'].Name = 'Lever'
+Variables['Instance50'].Shape = Enum.PartType.Block
+Variables['Instance50'].CFrame = CFrame.new(3.50517464, 7.614851, 7.60660839, -1.70469284e-05, 0.99999994, 8.34465027e-06, 0.610596716, 1.70469284e-05, -0.791941643, -0.791941643, -8.34465027e-06, -0.610596657)
+Variables['Instance50'].Anchored = true
+Variables['Instance50'].Color = Color3.new(0.388235, 0.372549, 0.384314)
+Variables['Instance50'].Shape = Enum.PartType.Block
+Variables['Instance50'].Size = Vector3.new(0.9391684532165527, 0.19875633716583252, 0.26321783661842346)
+Variables['Instance50'].Material = Enum.Material.Metal
+Variables['Instance50'].CanCollide = true
+Variables['Instance50'].Transparency = 1
+Variables['Instance50'].CastShadow = true
+
+Variables['Instance51'] = Instance.new('CustomEvent');Variables['Instance51'].Name = 'LeverEngage'
+
+Variables['Instance52'] = Instance.new('ManualWeld');Variables['Instance52'].Name = 'LeverWeld'
+Variables['Instance52'].C1 = CFrame.new(0.700000048, 0, 0.700000763, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+Variables['Instance52'].C0 = CFrame.new(0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+Variables['Instance52'].Enabled = true
+
+Variables['Instance53'] = Instance.new('Part');Variables['Instance53'].Name = 'Part'
+Variables['Instance53'].Shape = Enum.PartType.Block
+Variables['Instance53'].CFrame = CFrame.new(3.17411423, 6.96974802, 7.9388361, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+Variables['Instance53'].Anchored = true
+Variables['Instance53'].Color = Color3.new(0.388235, 0.372549, 0.384314)
+Variables['Instance53'].Shape = Enum.PartType.Block
+Variables['Instance53'].Size = Vector3.new(0.1600002944469452, 1.9200036525726318, 0.1600002944469452)
+Variables['Instance53'].Material = Enum.Material.Metal
+Variables['Instance53'].CanCollide = true
+Variables['Instance53'].Transparency = 0
+Variables['Instance53'].CastShadow = true
+
+Variables['Instance54'] = Instance.new('Part');Variables['Instance54'].Name = 'Part'
+Variables['Instance54'].Shape = Enum.PartType.Block
+Variables['Instance54'].CFrame = CFrame.new(3.49410248, 6.08973408, 7.93897343, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+Variables['Instance54'].Anchored = true
+Variables['Instance54'].Color = Color3.new(0.388235, 0.372549, 0.384314)
+Variables['Instance54'].Shape = Enum.PartType.Block
+Variables['Instance54'].Size = Vector3.new(0.48000091314315796, 0.1600002944469452, 0.1600002944469452)
+Variables['Instance54'].Material = Enum.Material.Metal
+Variables['Instance54'].CanCollide = true
+Variables['Instance54'].Transparency = 0
+Variables['Instance54'].CastShadow = true
+
+Variables['Instance55'] = Instance.new('Part');Variables['Instance55'].Name = 'Detect'
+Variables['Instance55'].Shape = Enum.PartType.Block
+Variables['Instance55'].CFrame = CFrame.new(3.52643967, 6.95851088, 7.34771061, 8.16583633e-06, -0.00573763112, -0.999983549, -2.32830644e-08, -0.999983549, 0.00573763112, -1, -2.32830644e-08, -8.22544098e-06)
+Variables['Instance55'].Anchored = true
+Variables['Instance55'].Color = Color3.new(0.0666667, 0.0666667, 0.0666667)
+Variables['Instance55'].Shape = Enum.PartType.Block
+Variables['Instance55'].Size = Vector3.new(1.040001392364502, 1.9299982786178589, 0.8700001835823059)
+Variables['Instance55'].Material = Enum.Material.SmoothPlastic
+Variables['Instance55'].Transparency = 1
+Variables['Instance55'].CastShadow = true
+
+Variables['Instance56'] = Instance.new('ClickDetector');Variables['Instance56'].Name = 'LeverDetect'
+
+Variables['Instance57'] = Instance.new('PointLight');Variables['Instance57'].Name = 'PointLight'
+Variables['Instance57'].Color = Color3.new(1, 1, 1)
+Variables['Instance57'].Brightness = 1
+Variables['Instance57'].Enabled = true
+Variables['Instance57'].Range = 8
+Variables['Instance57'].Shadows = true
+
+Variables['Instance58'] = Instance.new('Part');Variables['Instance58'].Name = 'Part'
+Variables['Instance58'].Shape = Enum.PartType.Block
+Variables['Instance58'].CFrame = CFrame.new(3.81407166, 6.96974802, 7.93886662, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+Variables['Instance58'].Anchored = true
+Variables['Instance58'].Color = Color3.new(0.388235, 0.372549, 0.384314)
+Variables['Instance58'].Shape = Enum.PartType.Block
+Variables['Instance58'].Size = Vector3.new(0.1600002944469452, 1.9200036525726318, 0.1600002944469452)
+Variables['Instance58'].Material = Enum.Material.Metal
+Variables['Instance58'].CanCollide = true
+Variables['Instance58'].Transparency = 0
+Variables['Instance58'].CastShadow = true
+
+Variables['Instance59'] = Instance.new('Part');Variables['Instance59'].Name = 'Part'
+Variables['Instance59'].Shape = Enum.PartType.Block
+Variables['Instance59'].CFrame = CFrame.new(3.49410248, 6.9697156, 7.93897343, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+Variables['Instance59'].Anchored = true
+Variables['Instance59'].Color = Color3.new(0.0666667, 0.0666667, 0.0666667)
+Variables['Instance59'].Shape = Enum.PartType.Block
+Variables['Instance59'].Size = Vector3.new(0.48000091314315796, 1.6000028848648071, 0.1600002944469452)
+Variables['Instance59'].Material = Enum.Material.Metal
+Variables['Instance59'].CanCollide = true
+Variables['Instance59'].Transparency = 0
+Variables['Instance59'].CastShadow = true
+
+Variables['Instance60'] = Instance.new('Part');Variables['Instance60'].Name = 'Part'
+Variables['Instance60'].Shape = Enum.PartType.Block
+Variables['Instance60'].CFrame = CFrame.new(3.49410248, 7.84970617, 7.93897343, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+Variables['Instance60'].Anchored = true
+Variables['Instance60'].Color = Color3.new(0.388235, 0.372549, 0.384314)
+Variables['Instance60'].Shape = Enum.PartType.Block
+Variables['Instance60'].Size = Vector3.new(0.48000091314315796, 0.1600002944469452, 0.1600002944469452)
+Variables['Instance60'].Material = Enum.Material.Metal
+Variables['Instance60'].CanCollide = true
+Variables['Instance60'].Transparency = 0
+Variables['Instance60'].CastShadow = true
+
+Variables['Instance61'] = Instance.new('Part');Variables['Instance61'].Name = 'Door'
+Variables['Instance61'].Shape = Enum.PartType.Block
+Variables['Instance61'].CFrame = CFrame.new(2.58234787, 5.70985603, 8.54131413, 0.0121705532, 0.000122075493, -0.999925911, -7.42886186e-07, 1, 0.000122075493, 0.999925911, -7.42886186e-07, 0.0121705532)
+Variables['Instance61'].Anchored = true
+Variables['Instance61'].Color = Color3.new(0.388235, 0.372549, 0.384314)
+Variables['Instance61'].Shape = Enum.PartType.Block
+Variables['Instance61'].Size = Vector3.new(0.4200000464916229, 7.080000400543213, 5.120001792907715)
+Variables['Instance61'].Material = Enum.Material.DiamondPlate
+Variables['Instance61'].CanCollide = true
+Variables['Instance61'].Transparency = 0
+Variables['Instance61'].CastShadow = true
+
+Variables['Instance62'] = Instance.new('Sound');Variables['Instance62'].Name = 'DoorSound'
+Variables['Instance62'].SoundId = 'rbxassetid://179054361'
+Variables['Instance62'].PlaybackSpeed = 1
+Variables['Instance62'].Volume = 2
+
+Variables['Instance63'] = Instance.new('Model');Variables['Instance63'].Name = 'CeilingLight'
+
+Variables['Instance64'] = Instance.new('Part');Variables['Instance64'].Name = 'Part'
+Variables['Instance64'].Shape = Enum.PartType.Block
+Variables['Instance64'].CFrame = CFrame.new(-0.217689514, 11.879158, -0.139217377, 0, -1, 0, 0, 0, 1, -1, 0, 0)
+Variables['Instance64'].Anchored = true
+Variables['Instance64'].Color = Color3.new(0.639216, 0.635294, 0.647059)
+Variables['Instance64'].Shape = Enum.PartType.Block
+Variables['Instance64'].Size = Vector3.new(4.330001354217529, 11.90001106262207, 0.49000000953674316)
+Variables['Instance64'].Material = Enum.Material.Plastic
+Variables['Instance64'].CanCollide = true
+Variables['Instance64'].Transparency = 0
+Variables['Instance64'].CastShadow = true
+
+Variables['Instance65'] = Instance.new('Part');Variables['Instance65'].Name = 'LightPart'
+Variables['Instance65'].Shape = Enum.PartType.Block
+Variables['Instance65'].CFrame = CFrame.new(-0.262245178, 11.7345047, -0.153865814, 0, -1, 0, 0, 0, 1, -1, 0, 0)
+Variables['Instance65'].Anchored = true
+Variables['Instance65'].Color = Color3.new(1, 0.819608, 0.392157)
+Variables['Instance65'].Shape = Enum.PartType.Block
+Variables['Instance65'].Size = Vector3.new(3.5999999046325684, 10.84999942779541, 0.6000000238418579)
+Variables['Instance65'].Material = Enum.Material.Neon
+Variables['Instance65'].CanCollide = true
+Variables['Instance65'].Transparency = 0
+Variables['Instance65'].CastShadow = true
+
+Variables['Instance66'] = Instance.new('Sound');Variables['Instance66'].Name = 'Buzz'
+Variables['Instance66'].SoundId = 'http://www.roblox.com/asset/?id=133116870'
+Variables['Instance66'].PlaybackSpeed = 1
+Variables['Instance66'].Volume = 1
+Variables['Instance66'].Playing = true
+Variables['Instance66'].Looped = true
+
+Variables['Instance67'] = Instance.new('SurfaceLight');Variables['Instance67'].Name = 'SurfaceLight'
+Variables['Instance67'].Color = Color3.new(1, 0.819608, 0.392157)
+Variables['Instance67'].Face = Enum.NormalId.Front
+Variables['Instance67'].Brightness = 2.799999952316284
+Variables['Instance67'].Enabled = true
+Variables['Instance67'].Range = 60
+Variables['Instance67'].Shadows = true
+
+Variables['Instance68'] = Instance.new('Model');Variables['Instance68'].Name = 'Window'
+
+Variables['Instance69'] = Instance.new('Part');Variables['Instance69'].Name = 'Part'
+Variables['Instance69'].Shape = Enum.PartType.Block
+Variables['Instance69'].CFrame = CFrame.new(-4.09988594, 5.09912205, 8.40074158, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+Variables['Instance69'].Anchored = true
+Variables['Instance69'].Color = Color3.new(0.0666667, 0.0666667, 0.0666667)
+Variables['Instance69'].Shape = Enum.PartType.Block
+Variables['Instance69'].Size = Vector3.new(6, 0.20000000298023224, 0.20000000298023224)
+Variables['Instance69'].Material = Enum.Material.Plastic
+Variables['Instance69'].CanCollide = true
+Variables['Instance69'].Transparency = 0
+Variables['Instance69'].CastShadow = true
+
+Variables['Instance70'] = Instance.new('Snap');Variables['Instance70'].Name = 'Snap'
+Variables['Instance70'].C1 = CFrame.new(2.90002441, -1.90000582, -3.05175781e-05, -1.00000024, 0, 0, 0, -1.1920929e-07, 1.00000012, 0, 1.00000012, -1.1920929e-07)
+Variables['Instance70'].C0 = CFrame.new(0, 0.100000001, 0, -1, 0, 0, 0, 0, 1, 0, 1, -0)
+Variables['Instance70'].Enabled = true
+
+Variables['Instance71'] = Instance.new('Snap');Variables['Instance71'].Name = 'Snap'
+Variables['Instance71'].C1 = CFrame.new(-2.89993286, -1.90000772, 0, -1.00000024, 0, 0, 0, -1.1920929e-07, 1.00000012, 0, 1.00000012, -1.1920929e-07)
+Variables['Instance71'].C0 = CFrame.new(0, 0.100000001, 0, -1, 0, 0, 0, 0, 1, 0, 1, -0)
+Variables['Instance71'].Enabled = true
+
+Variables['Instance72'] = Instance.new('Snap');Variables['Instance72'].Name = 'Snap'
+Variables['Instance72'].C1 = CFrame.new(9.15527344e-05, -1.8000021, -3.05175781e-05, -1.00000024, 0, 0, 0, -1.1920929e-07, 1.00000012, 0, 1.00000012, -1.1920929e-07)
+Variables['Instance72'].C0 = CFrame.new(0, 0.100000001, 0, -1, 0, 0, 0, 0, 1, 0, 1, -0)
+Variables['Instance72'].Enabled = true
+
+Variables['Instance73'] = Instance.new('Part');Variables['Instance73'].Name = 'Part'
+Variables['Instance73'].Shape = Enum.PartType.Block
+Variables['Instance73'].CFrame = CFrame.new(-6.99980736, 7.09913111, 8.40073299, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+Variables['Instance73'].Anchored = true
+Variables['Instance73'].Color = Color3.new(0.0666667, 0.0666667, 0.0666667)
+Variables['Instance73'].Shape = Enum.PartType.Block
+Variables['Instance73'].Size = Vector3.new(0.20000000298023224, 3.8000001907348633, 0.20000000298023224)
+Variables['Instance73'].Material = Enum.Material.Plastic
+Variables['Instance73'].CanCollide = true
+Variables['Instance73'].Transparency = 0
+Variables['Instance73'].CastShadow = true
+
+Variables['Instance74'] = Instance.new('Part');Variables['Instance74'].Name = 'Part'
+Variables['Instance74'].Shape = Enum.PartType.Block
+Variables['Instance74'].CFrame = CFrame.new(-4.09988594, 8.89911842, 8.40074158, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+Variables['Instance74'].Anchored = true
+Variables['Instance74'].Color = Color3.new(0.0666667, 0.0666667, 0.0666667)
+Variables['Instance74'].Shape = Enum.PartType.Block
+Variables['Instance74'].Size = Vector3.new(6, 0.20000000298023224, 0.20000000298023224)
+Variables['Instance74'].Material = Enum.Material.Plastic
+Variables['Instance74'].CanCollide = true
+Variables['Instance74'].Transparency = 0
+Variables['Instance74'].CastShadow = true
+
+Variables['Instance75'] = Instance.new('Snap');Variables['Instance75'].Name = 'Snap'
+Variables['Instance75'].C1 = CFrame.new(9.15527344e-05, 1.79999495, -3.05175781e-05, 1, 0, 0, 0, -1.1920929e-07, -1.00000012, 0, 1.00000012, -1.1920929e-07)
+Variables['Instance75'].C0 = CFrame.new(0, -0.100000001, 0, 1, 0, 0, 0, 0, -1, 0, 1, 0)
+Variables['Instance75'].Enabled = true
+
+Variables['Instance76'] = Instance.new('Part');Variables['Instance76'].Name = 'Part'
+Variables['Instance76'].Shape = Enum.PartType.Block
+Variables['Instance76'].CFrame = CFrame.new(-1.19987297, 7.0991292, 8.40070438, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+Variables['Instance76'].Anchored = true
+Variables['Instance76'].Color = Color3.new(0.0666667, 0.0666667, 0.0666667)
+Variables['Instance76'].Shape = Enum.PartType.Block
+Variables['Instance76'].Size = Vector3.new(0.20000000298023224, 3.8000001907348633, 0.20000000298023224)
+Variables['Instance76'].Material = Enum.Material.Plastic
+Variables['Instance76'].CanCollide = true
+Variables['Instance76'].Transparency = 0
+Variables['Instance76'].CastShadow = true
+
+Variables['Instance77'] = Instance.new('Part');Variables['Instance77'].Name = 'Part'
+Variables['Instance77'].Shape = Enum.PartType.Block
+Variables['Instance77'].CFrame = CFrame.new(-4.09979439, 6.9991231, 8.40071106, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+Variables['Instance77'].Anchored = true
+Variables['Instance77'].Color = Color3.new(0.0156863, 0.686275, 0.92549)
+Variables['Instance77'].Shape = Enum.PartType.Block
+Variables['Instance77'].Size = Vector3.new(5.599999904632568, 3.6000001430511475, 0.20000000298023224)
+Variables['Instance77'].Material = Enum.Material.Plastic
+Variables['Instance77'].CanCollide = true
+Variables['Instance77'].Transparency = 0.699999988079071
+Variables['Instance77'].CastShadow = true
+
+Variables['Instance78'] = Instance.new('Part');Variables['Instance78'].Name = 'Part'
+Variables['Instance78'].Shape = Enum.PartType.Block
+Variables['Instance78'].CFrame = CFrame.new(0.000411987305, 1.90000355, -0.000136375427, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+Variables['Instance78'].Anchored = true
+Variables['Instance78'].Color = Color3.new(0.584314, 0.47451, 0.466667)
+Variables['Instance78'].Shape = Enum.PartType.Block
+Variables['Instance78'].Size = Vector3.new(28.400001525878906, 0.20000000298023224, 16.399999618530273)
+Variables['Instance78'].Material = Enum.Material.WoodPlanks
+Variables['Instance78'].CanCollide = true
+Variables['Instance78'].Transparency = 0
+Variables['Instance78'].CastShadow = true
+
+Variables['Instance79'] = Instance.new('Part');Variables['Instance79'].Name = 'Part'
+Variables['Instance79'].Shape = Enum.PartType.Block
+Variables['Instance79'].CFrame = CFrame.new(-4.79999161, 3.29999733, 8.09967804, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+Variables['Instance79'].Anchored = true
+Variables['Instance79'].Color = Color3.new(0.843137, 0.772549, 0.603922)
+Variables['Instance79'].Shape = Enum.PartType.Block
+Variables['Instance79'].Size = Vector3.new(18.80000114440918, 2.5999999046325684, 0.20000000298023224)
+Variables['Instance79'].Material = Enum.Material.WoodPlanks
+Variables['Instance79'].CanCollide = true
+Variables['Instance79'].Transparency = 0
+Variables['Instance79'].CastShadow = true
+
+Variables['Instance80'] = Instance.new('Part');Variables['Instance80'].Name = 'Part'
+Variables['Instance80'].Shape = Enum.PartType.Block
+Variables['Instance80'].CFrame = CFrame.new(1.89962387, 6.99997663, 8.89960003, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+Variables['Instance80'].Anchored = true
+Variables['Instance80'].Color = Color3.new(0.843137, 0.772549, 0.603922)
+Variables['Instance80'].Shape = Enum.PartType.Block
+Variables['Instance80'].Size = Vector3.new(5.400000095367432, 4.799999713897705, 0.20000000298023224)
+Variables['Instance80'].Material = Enum.Material.WoodPlanks
+Variables['Instance80'].CanCollide = true
+Variables['Instance80'].Transparency = 0
+Variables['Instance80'].CastShadow = true
+
+Variables['Instance81'] = Instance.new('Part');Variables['Instance81'].Name = 'Part'
+Variables['Instance81'].Shape = Enum.PartType.Block
+Variables['Instance81'].CFrame = CFrame.new(-4.10242081, 9.19998169, 8.3998785, 0, 0, -1, 0, 1, 0, 1, 0, 0)
+Variables['Instance81'].Anchored = true
+Variables['Instance81'].Color = Color3.new(0.584314, 0.47451, 0.466667)
+Variables['Instance81'].Shape = Enum.PartType.Block
+Variables['Instance81'].Size = Vector3.new(1.399999976158142, 0.39999985694885254, 6.800000190734863)
+Variables['Instance81'].Material = Enum.Material.WoodPlanks
+Variables['Instance81'].CanCollide = true
+Variables['Instance81'].Transparency = 0
+Variables['Instance81'].CastShadow = true
+
+Variables['Instance82'] = Instance.new('Part');Variables['Instance82'].Name = 'Part'
+Variables['Instance82'].Shape = Enum.PartType.Block
+Variables['Instance82'].CFrame = CFrame.new(-2.20206833, 11.9722214, -0.000346183777, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+Variables['Instance82'].Anchored = true
+Variables['Instance82'].Color = Color3.new(0.584314, 0.47451, 0.466667)
+Variables['Instance82'].Shape = Enum.PartType.Block
+Variables['Instance82'].Size = Vector3.new(23.996301651000977, 0.3445514440536499, 16.399999618530273)
+Variables['Instance82'].Material = Enum.Material.WoodPlanks
+Variables['Instance82'].CanCollide = true
+Variables['Instance82'].Transparency = 0
+Variables['Instance82'].CastShadow = true
+
+Variables['Instance83'] = Instance.new('Part');Variables['Instance83'].Name = 'Part'
+Variables['Instance83'].Shape = Enum.PartType.Block
+Variables['Instance83'].CFrame = CFrame.new(1.52587891e-05, 15.5398922, 4.95078182, -1.00000024, 0, 0, 0, 0.832051635, 0.554698229, 0, 0.554698229, -0.832051754)
+Variables['Instance83'].Anchored = true
+Variables['Instance83'].Color = Color3.new(0.388235, 0.372549, 0.384314)
+Variables['Instance83'].Shape = Enum.PartType.Block
+Variables['Instance83'].Size = Vector3.new(32, 0.4000000059604645, 12)
+Variables['Instance83'].Material = Enum.Material.Brick
+Variables['Instance83'].CanCollide = true
+Variables['Instance83'].Transparency = 0
+Variables['Instance83'].CastShadow = true
+
+Variables['Instance84'] = Instance.new('Part');Variables['Instance84'].Name = 'Part'
+Variables['Instance84'].Shape = Enum.PartType.Block
+Variables['Instance84'].CFrame = CFrame.new(-7.30004883, 6.99996042, 8.39977837, 0, 0, -1, 0, 1, 0, 1, 0, 0)
+Variables['Instance84'].Anchored = true
+Variables['Instance84'].Color = Color3.new(0.584314, 0.47451, 0.466667)
+Variables['Instance84'].Shape = Enum.PartType.Block
+Variables['Instance84'].Size = Vector3.new(1.399999976158142, 4, 0.4000000059604645)
+Variables['Instance84'].Material = Enum.Material.WoodPlanks
+Variables['Instance84'].CanCollide = true
+Variables['Instance84'].Transparency = 0
+Variables['Instance84'].CastShadow = true
+
+Variables['Instance85'] = Instance.new('Part');Variables['Instance85'].Name = 'Part'
+Variables['Instance85'].Shape = Enum.PartType.Block
+Variables['Instance85'].CFrame = CFrame.new(-11.1998711, 6.99998903, 8.89996243, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+Variables['Instance85'].Anchored = true
+Variables['Instance85'].Color = Color3.new(0.843137, 0.772549, 0.603922)
+Variables['Instance85'].Shape = Enum.PartType.Block
+Variables['Instance85'].Size = Vector3.new(7.600000381469727, 4.799999713897705, 0.20000000298023224)
+Variables['Instance85'].Material = Enum.Material.WoodPlanks
+Variables['Instance85'].CanCollide = true
+Variables['Instance85'].Transparency = 0
+Variables['Instance85'].CastShadow = true
+
+Variables['Instance86'] = Instance.new('Part');Variables['Instance86'].Name = 'Part'
+Variables['Instance86'].Shape = Enum.PartType.Block
+Variables['Instance86'].CFrame = CFrame.new(8.77380371e-05, 10.6999855, 8.10000992, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+Variables['Instance86'].Anchored = true
+Variables['Instance86'].Color = Color3.new(0.843137, 0.772549, 0.603922)
+Variables['Instance86'].Shape = Enum.PartType.Block
+Variables['Instance86'].Size = Vector3.new(28, 2.5999999046325684, 0.20000000298023224)
+Variables['Instance86'].Material = Enum.Material.WoodPlanks
+Variables['Instance86'].CanCollide = true
+Variables['Instance86'].Transparency = 0
+Variables['Instance86'].CastShadow = true
+
+Variables['Instance87'] = Instance.new('Part');Variables['Instance87'].Name = 'Part'
+Variables['Instance87'].Shape = Enum.PartType.Block
+Variables['Instance87'].CFrame = CFrame.new(0.000127792358, 10.9999886, 8.89999104, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+Variables['Instance87'].Anchored = true
+Variables['Instance87'].Color = Color3.new(0.843137, 0.772549, 0.603922)
+Variables['Instance87'].Shape = Enum.PartType.Block
+Variables['Instance87'].Size = Vector3.new(30, 3.1999998092651367, 0.20000000298023224)
+Variables['Instance87'].Material = Enum.Material.WoodPlanks
+Variables['Instance87'].CanCollide = true
+Variables['Instance87'].Transparency = 0
+Variables['Instance87'].CastShadow = true
+
+Variables['Instance88'] = Instance.new('Part');Variables['Instance88'].Name = 'Part'
+Variables['Instance88'].Shape = Enum.PartType.Block
+Variables['Instance88'].CFrame = CFrame.new(-14.4998283, 6.99998903, 1.20004272, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+Variables['Instance88'].Anchored = true
+Variables['Instance88'].Color = Color3.new(0.584314, 0.47451, 0.466667)
+Variables['Instance88'].Shape = Enum.PartType.Block
+Variables['Instance88'].Size = Vector3.new(0.5999998450279236, 10, 0.40000003576278687)
+Variables['Instance88'].Material = Enum.Material.WoodPlanks
+Variables['Instance88'].CanCollide = true
+Variables['Instance88'].Transparency = 0
+Variables['Instance88'].CastShadow = true
+
+Variables['Instance89'] = Instance.new('Part');Variables['Instance89'].Name = 'Part'
+Variables['Instance89'].Shape = Enum.PartType.Block
+Variables['Instance89'].CFrame = CFrame.new(-7.60016441, 6.99998808, 8.49934769, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+Variables['Instance89'].Anchored = true
+Variables['Instance89'].Color = Color3.new(0.584314, 0.47451, 0.466667)
+Variables['Instance89'].Shape = Enum.PartType.Block
+Variables['Instance89'].Size = Vector3.new(0.39999985694885254, 10, 0.6000000238418579)
+Variables['Instance89'].Material = Enum.Material.WoodPlanks
+Variables['Instance89'].CanCollide = true
+Variables['Instance89'].Transparency = 0
+Variables['Instance89'].CastShadow = true
+
+Variables['Instance90'] = Instance.new('Part');Variables['Instance90'].Name = 'Part'
+Variables['Instance90'].Shape = Enum.PartType.Block
+Variables['Instance90'].CFrame = CFrame.new(-14.4998741, 6.99998903, 5.99997663, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+Variables['Instance90'].Anchored = true
+Variables['Instance90'].Color = Color3.new(0.584314, 0.47451, 0.466667)
+Variables['Instance90'].Shape = Enum.PartType.Block
+Variables['Instance90'].Size = Vector3.new(0.5999998450279236, 10, 0.40000003576278687)
+Variables['Instance90'].Material = Enum.Material.WoodPlanks
+Variables['Instance90'].CanCollide = true
+Variables['Instance90'].Transparency = 0
+Variables['Instance90'].CastShadow = true
+
+Variables['Instance91'] = Instance.new('Part');Variables['Instance91'].Name = 'Part'
+Variables['Instance91'].Shape = Enum.PartType.Block
+Variables['Instance91'].CFrame = CFrame.new(-2.80011559, 3.30000973, 8.49968719, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+Variables['Instance91'].Anchored = true
+Variables['Instance91'].Color = Color3.new(0.584314, 0.47451, 0.466667)
+Variables['Instance91'].Shape = Enum.PartType.Block
+Variables['Instance91'].Size = Vector3.new(0.39999985694885254, 2.5999999046325684, 0.6000000238418579)
+Variables['Instance91'].Material = Enum.Material.WoodPlanks
+Variables['Instance91'].CanCollide = true
+Variables['Instance91'].Transparency = 0
+Variables['Instance91'].CastShadow = true
+
+Variables['Instance92'] = Instance.new('Part');Variables['Instance92'].Name = 'Part'
+Variables['Instance92'].Shape = Enum.PartType.Block
+Variables['Instance92'].CFrame = CFrame.new(-2.79949379, 10.6999683, 8.49949837, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+Variables['Instance92'].Anchored = true
+Variables['Instance92'].Color = Color3.new(0.584314, 0.47451, 0.466667)
+Variables['Instance92'].Shape = Enum.PartType.Block
+Variables['Instance92'].Size = Vector3.new(0.39999985694885254, 2.5999999046325684, 0.6000000238418579)
+Variables['Instance92'].Material = Enum.Material.WoodPlanks
+Variables['Instance92'].CanCollide = true
+Variables['Instance92'].Transparency = 0
+Variables['Instance92'].CastShadow = true
+
+Variables['Instance93'] = Instance.new('Part');Variables['Instance93'].Name = 'Part'
+Variables['Instance93'].Shape = Enum.PartType.Block
+Variables['Instance93'].CFrame = CFrame.new(-14.0997925, 6.99999952, -4.10079956e-05, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+Variables['Instance93'].Anchored = true
+Variables['Instance93'].Color = Color3.new(0.843137, 0.772549, 0.603922)
+Variables['Instance93'].Shape = Enum.PartType.Block
+Variables['Instance93'].Size = Vector3.new(0.20000000298023224, 9.999999046325684, 16.000001907348633)
+Variables['Instance93'].Material = Enum.Material.WoodPlanks
+Variables['Instance93'].CanCollide = true
+Variables['Instance93'].Transparency = 0
+Variables['Instance93'].CastShadow = true
+
+Variables['Instance94'] = Instance.new('Part');Variables['Instance94'].Name = 'Part'
+Variables['Instance94'].Shape = Enum.PartType.Block
+Variables['Instance94'].CFrame = CFrame.new(-0.900074005, 6.99999285, 8.39975166, 0, 0, -1, 0, 1, 0, 1, 0, 0)
+Variables['Instance94'].Anchored = true
+Variables['Instance94'].Color = Color3.new(0.584314, 0.47451, 0.466667)
+Variables['Instance94'].Shape = Enum.PartType.Block
+Variables['Instance94'].Size = Vector3.new(1.399999976158142, 4, 0.4000000059604645)
+Variables['Instance94'].Material = Enum.Material.WoodPlanks
+Variables['Instance94'].CanCollide = true
+Variables['Instance94'].Transparency = 0
+Variables['Instance94'].CastShadow = true
+
+Variables['Instance95'] = Instance.new('Part');Variables['Instance95'].Name = 'Part'
+Variables['Instance95'].Shape = Enum.PartType.Block
+Variables['Instance95'].CFrame = CFrame.new(-5.19990921, 3.29999352, 8.89996147, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+Variables['Instance95'].Anchored = true
+Variables['Instance95'].Color = Color3.new(0.843137, 0.772549, 0.603922)
+Variables['Instance95'].Shape = Enum.PartType.Block
+Variables['Instance95'].Size = Vector3.new(19.600000381469727, 2.5999999046325684, 0.20000000298023224)
+Variables['Instance95'].Material = Enum.Material.WoodPlanks
+Variables['Instance95'].CanCollide = true
+Variables['Instance95'].Transparency = 0
+Variables['Instance95'].CastShadow = true
+
+Variables['Instance96'] = Instance.new('Part');Variables['Instance96'].Name = 'Part'
+Variables['Instance96'].Shape = Enum.PartType.Block
+Variables['Instance96'].CFrame = CFrame.new(1.89920044, 7.00000429, 8.09992313, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+Variables['Instance96'].Anchored = true
+Variables['Instance96'].Color = Color3.new(0.843137, 0.772549, 0.603922)
+Variables['Instance96'].Shape = Enum.PartType.Block
+Variables['Instance96'].Size = Vector3.new(5.400000095367432, 4.799999713897705, 0.20000000298023224)
+Variables['Instance96'].Material = Enum.Material.WoodPlanks
+Variables['Instance96'].CanCollide = true
+Variables['Instance96'].Transparency = 0
+Variables['Instance96'].CastShadow = true
+
+Variables['Instance97'] = Instance.new('Part');Variables['Instance97'].Name = 'Part'
+Variables['Instance97'].Shape = Enum.PartType.Block
+Variables['Instance97'].CFrame = CFrame.new(-5.19947433, 10.6999683, 8.49949837, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+Variables['Instance97'].Anchored = true
+Variables['Instance97'].Color = Color3.new(0.584314, 0.47451, 0.466667)
+Variables['Instance97'].Shape = Enum.PartType.Block
+Variables['Instance97'].Size = Vector3.new(0.39999985694885254, 2.5999999046325684, 0.6000000238418579)
+Variables['Instance97'].Material = Enum.Material.WoodPlanks
+Variables['Instance97'].CanCollide = true
+Variables['Instance97'].Transparency = 0
+Variables['Instance97'].CastShadow = true
+
+Variables['Instance98'] = Instance.new('Part');Variables['Instance98'].Name = 'Part'
+Variables['Instance98'].Shape = Enum.PartType.Block
+Variables['Instance98'].CFrame = CFrame.new(-14.4998283, 6.99998903, 3.60002518, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+Variables['Instance98'].Anchored = true
+Variables['Instance98'].Color = Color3.new(0.584314, 0.47451, 0.466667)
+Variables['Instance98'].Shape = Enum.PartType.Block
+Variables['Instance98'].Size = Vector3.new(0.5999998450279236, 10, 0.40000003576278687)
+Variables['Instance98'].Material = Enum.Material.WoodPlanks
+Variables['Instance98'].CanCollide = true
+Variables['Instance98'].Transparency = 0
+Variables['Instance98'].CastShadow = true
+
+Variables['Instance99'] = Instance.new('Part');Variables['Instance99'].Name = 'Part'
+Variables['Instance99'].Shape = Enum.PartType.Block
+Variables['Instance99'].CFrame = CFrame.new(-14.4998741, 6.99998903, 7.99996758, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+Variables['Instance99'].Anchored = true
+Variables['Instance99'].Color = Color3.new(0.584314, 0.47451, 0.466667)
+Variables['Instance99'].Shape = Enum.PartType.Block
+Variables['Instance99'].Size = Vector3.new(0.5999998450279236, 10, 0.40000003576278687)
+Variables['Instance99'].Material = Enum.Material.WoodPlanks
+Variables['Instance99'].CanCollide = true
+Variables['Instance99'].Transparency = 0
+Variables['Instance99'].CastShadow = true
+
+Variables['Instance100'] = Instance.new('Part');Variables['Instance100'].Name = 'Part'
+Variables['Instance100'].Shape = Enum.PartType.Block
+Variables['Instance100'].CFrame = CFrame.new(-9.99989319, 6.99998903, 8.49995804, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+Variables['Instance100'].Anchored = true
+Variables['Instance100'].Color = Color3.new(0.584314, 0.47451, 0.466667)
+Variables['Instance100'].Shape = Enum.PartType.Block
+Variables['Instance100'].Size = Vector3.new(0.39999985694885254, 10, 0.6000000238418579)
+Variables['Instance100'].Material = Enum.Material.WoodPlanks
+Variables['Instance100'].CanCollide = true
+Variables['Instance100'].Transparency = 0
+Variables['Instance100'].CastShadow = true
+
+Variables['Instance101'] = Instance.new('Part');Variables['Instance101'].Name = 'Part'
+Variables['Instance101'].Shape = Enum.PartType.Block
+Variables['Instance101'].CFrame = CFrame.new(-6.86645508e-05, 1.10000074, -0.000193595886, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+Variables['Instance101'].Anchored = true
+Variables['Instance101'].Color = Color3.new(0.584314, 0.47451, 0.466667)
+Variables['Instance101'].Shape = Enum.PartType.Block
+Variables['Instance101'].Size = Vector3.new(28.400001525878906, 0.20000000298023224, 16.399999618530273)
+Variables['Instance101'].Material = Enum.Material.Slate
+Variables['Instance101'].CanCollide = true
+Variables['Instance101'].Transparency = 0
+Variables['Instance101'].CastShadow = true
+
+Variables['Instance102'] = Instance.new('Part');Variables['Instance102'].Name = 'Part'
+Variables['Instance102'].Shape = Enum.PartType.Block
+Variables['Instance102'].CFrame = CFrame.new(-11.1998329, 6.99999571, 8.0991087, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+Variables['Instance102'].Anchored = true
+Variables['Instance102'].Color = Color3.new(0.843137, 0.772549, 0.603922)
+Variables['Instance102'].Shape = Enum.PartType.Block
+Variables['Instance102'].Size = Vector3.new(7.600000381469727, 4.799999713897705, 0.20000000298023224)
+Variables['Instance102'].Material = Enum.Material.WoodPlanks
+Variables['Instance102'].CanCollide = true
+Variables['Instance102'].Transparency = 0
+Variables['Instance102'].CastShadow = true
+
+Variables['Instance103'] = Instance.new('Part');Variables['Instance103'].Name = 'Part'
+Variables['Instance103'].Shape = Enum.PartType.Block
+Variables['Instance103'].CFrame = CFrame.new(-4.09971809, 4.79998398, 8.39994335, -1.1920929e-07, -0, -1.00000012, 0, 1, -0, 1.00000012, 0, -1.1920929e-07)
+Variables['Instance103'].Anchored = true
+Variables['Instance103'].Color = Color3.new(0.584314, 0.47451, 0.466667)
+Variables['Instance103'].Shape = Enum.PartType.Block
+Variables['Instance103'].Size = Vector3.new(1.399999976158142, 0.39999985694885254, 6.800000190734863)
+Variables['Instance103'].Material = Enum.Material.WoodPlanks
+Variables['Instance103'].CanCollide = true
+Variables['Instance103'].Transparency = 0
+Variables['Instance103'].CastShadow = true
+
+Variables['Instance104'] = Instance.new('WedgePart');Variables['Instance104'].Name = 'Wedge'
+Variables['Instance104'].CFrame = CFrame.new(-14.5998688, 15.5999794, -4.49992085, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+Variables['Instance104'].Anchored = true
+Variables['Instance104'].Color = Color3.new(0.843137, 0.772549, 0.603922)
+Variables['Instance104'].Size = Vector3.new(0.7999999523162842, 6, 9)
+Variables['Instance104'].Material = Enum.Material.WoodPlanks
+Variables['Instance104'].CanCollide = true
+Variables['Instance104'].Transparency = 0
+Variables['Instance104'].CastShadow = true
+
+Variables['Instance105'] = Instance.new('Part');Variables['Instance105'].Name = 'Part'
+Variables['Instance105'].Shape = Enum.PartType.Block
+Variables['Instance105'].CFrame = CFrame.new(5.7220459e-05, 12.299984, 8.50001621, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+Variables['Instance105'].Anchored = true
+Variables['Instance105'].Color = Color3.new(0.584314, 0.47451, 0.466667)
+Variables['Instance105'].Shape = Enum.PartType.Block
+Variables['Instance105'].Size = Vector3.new(29.600000381469727, 0.6000000238418579, 0.6000000238418579)
+Variables['Instance105'].Material = Enum.Material.WoodPlanks
+Variables['Instance105'].CanCollide = true
+Variables['Instance105'].Transparency = 0
+Variables['Instance105'].CastShadow = true
+
+Variables['Instance106'] = Instance.new('Part');Variables['Instance106'].Name = 'Part'
+Variables['Instance106'].Shape = Enum.PartType.Block
+Variables['Instance106'].CFrame = CFrame.new(-5.20001602, 3.29999733, 8.49968719, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+Variables['Instance106'].Anchored = true
+Variables['Instance106'].Color = Color3.new(0.584314, 0.47451, 0.466667)
+Variables['Instance106'].Shape = Enum.PartType.Block
+Variables['Instance106'].Size = Vector3.new(0.39999985694885254, 2.5999999046325684, 0.6000000238418579)
+Variables['Instance106'].Material = Enum.Material.WoodPlanks
+Variables['Instance106'].CanCollide = true
+Variables['Instance106'].Transparency = 0
+Variables['Instance106'].CastShadow = true
+
+Variables['Instance107'] = Instance.new('Part');Variables['Instance107'].Name = 'Part'
+Variables['Instance107'].Shape = Enum.PartType.Block
+Variables['Instance107'].CFrame = CFrame.new(-14.8998184, 7.29998827, 1.8119812e-05, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+Variables['Instance107'].Anchored = true
+Variables['Instance107'].Color = Color3.new(0.843137, 0.772549, 0.603922)
+Variables['Instance107'].Shape = Enum.PartType.Block
+Variables['Instance107'].Size = Vector3.new(0.20000000298023224, 10.600000381469727, 17.600000381469727)
+Variables['Instance107'].Material = Enum.Material.WoodPlanks
+Variables['Instance107'].CanCollide = true
+Variables['Instance107'].Transparency = 0
+Variables['Instance107'].CastShadow = true
+
+Variables['Instance108'] = Instance.new('Part');Variables['Instance108'].Name = 'Part'
+Variables['Instance108'].Shape = Enum.PartType.Block
+Variables['Instance108'].CFrame = CFrame.new(-13.9998741, 6.99998903, 8.49996567, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+Variables['Instance108'].Anchored = true
+Variables['Instance108'].Color = Color3.new(0.584314, 0.47451, 0.466667)
+Variables['Instance108'].Shape = Enum.PartType.Block
+Variables['Instance108'].Size = Vector3.new(0.39999985694885254, 10, 0.6000000238418579)
+Variables['Instance108'].Material = Enum.Material.WoodPlanks
+Variables['Instance108'].CanCollide = true
+Variables['Instance108'].Transparency = 0
+Variables['Instance108'].CastShadow = true
+
+Variables['Instance109'] = Instance.new('Part');Variables['Instance109'].Name = 'Part'
+Variables['Instance109'].Shape = Enum.PartType.Block
+Variables['Instance109'].CFrame = CFrame.new(-12.3998833, 6.99998903, 8.49995804, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+Variables['Instance109'].Anchored = true
+Variables['Instance109'].Color = Color3.new(0.584314, 0.47451, 0.466667)
+Variables['Instance109'].Shape = Enum.PartType.Block
+Variables['Instance109'].Size = Vector3.new(0.39999985694885254, 10, 0.6000000238418579)
+Variables['Instance109'].Material = Enum.Material.WoodPlanks
+Variables['Instance109'].CanCollide = true
+Variables['Instance109'].Transparency = 0
+Variables['Instance109'].CastShadow = true
+
+Variables['Instance110'] = Instance.new('WedgePart');Variables['Instance110'].Name = 'Wedge'
+Variables['Instance110'].CFrame = CFrame.new(-14.5998268, 15.599987, 4.50005054, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+Variables['Instance110'].Anchored = true
+Variables['Instance110'].Color = Color3.new(0.843137, 0.772549, 0.603922)
+Variables['Instance110'].Size = Vector3.new(0.7999999523162842, 6, 9)
+Variables['Instance110'].Material = Enum.Material.WoodPlanks
+Variables['Instance110'].CanCollide = true
+Variables['Instance110'].Transparency = 0
+Variables['Instance110'].CastShadow = true
+
+Variables['Instance111'] = Instance.new('Part');Variables['Instance111'].Name = 'Part'
+Variables['Instance111'].Shape = Enum.PartType.Block
+Variables['Instance111'].CFrame = CFrame.new(-0.400213242, 6.99998808, 8.49934673, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+Variables['Instance111'].Anchored = true
+Variables['Instance111'].Color = Color3.new(0.584314, 0.47451, 0.466667)
+Variables['Instance111'].Shape = Enum.PartType.Block
+Variables['Instance111'].Size = Vector3.new(0.39999985694885254, 10, 0.6000000238418579)
+Variables['Instance111'].Material = Enum.Material.WoodPlanks
+Variables['Instance111'].CanCollide = true
+Variables['Instance111'].Transparency = 0
+Variables['Instance111'].CastShadow = true
+
+Variables['Instance112'] = Instance.new('Part');Variables['Instance112'].Name = 'Part'
+Variables['Instance112'].Shape = Enum.PartType.Block
+Variables['Instance112'].CFrame = CFrame.new(0.000130658082, 1.44999695, -8.18737681e-05, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+Variables['Instance112'].Anchored = true
+Variables['Instance112'].Color = Color3.new(0.584314, 0.47451, 0.466667)
+Variables['Instance112'].Shape = Enum.PartType.Block
+Variables['Instance112'].Size = Vector3.new(30, 0.8999999761581421, 18)
+Variables['Instance112'].Material = Enum.Material.Brick
+Variables['Instance112'].CanCollide = true
+Variables['Instance112'].Transparency = 0
+Variables['Instance112'].CastShadow = true
+
+Variables['Instance113'] = Instance.new('Part');Variables['Instance113'].Name = 'Part'
+Variables['Instance113'].Shape = Enum.PartType.Block
+Variables['Instance113'].CFrame = CFrame.new(-14.4998627, 12.2999821, 2.00271606e-05, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+Variables['Instance113'].Anchored = true
+Variables['Instance113'].Color = Color3.new(0.584314, 0.47451, 0.466667)
+Variables['Instance113'].Shape = Enum.PartType.Block
+Variables['Instance113'].Size = Vector3.new(0.6000003814697266, 0.6000000238418579, 16.400001525878906)
+Variables['Instance113'].Material = Enum.Material.WoodPlanks
+Variables['Instance113'].CanCollide = true
+Variables['Instance113'].Transparency = 0
+Variables['Instance113'].CastShadow = true
+
+Variables['Instance114'] = Instance.new('Part');Variables['Instance114'].Name = 'Part'
+Variables['Instance114'].Shape = Enum.PartType.Block
+Variables['Instance114'].CFrame = CFrame.new(-4.00543213e-05, 15.539896, -4.95081043, -1, 0, 0, 0, 0.554659903, 0.832077146, 0, 0.832077146, -0.554659843)
+Variables['Instance114'].Anchored = true
+Variables['Instance114'].Color = Color3.new(0.388235, 0.372549, 0.384314)
+Variables['Instance114'].Shape = Enum.PartType.Block
+Variables['Instance114'].Size = Vector3.new(32, 12, 0.4000000059604645)
+Variables['Instance114'].Material = Enum.Material.Brick
+Variables['Instance114'].CanCollide = true
+Variables['Instance114'].Transparency = 0
+Variables['Instance114'].CastShadow = true
+
+Variables['Instance115'] = Instance.new('Part');Variables['Instance115'].Name = 'Part'
+Variables['Instance115'].Shape = Enum.PartType.Block
+Variables['Instance115'].CFrame = CFrame.new(-14.4998322, 6.99998999, -7.9999876, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+Variables['Instance115'].Anchored = true
+Variables['Instance115'].Color = Color3.new(0.584314, 0.47451, 0.466667)
+Variables['Instance115'].Shape = Enum.PartType.Block
+Variables['Instance115'].Size = Vector3.new(0.5999998450279236, 10, 0.40000003576278687)
+Variables['Instance115'].Material = Enum.Material.WoodPlanks
+Variables['Instance115'].CanCollide = true
+Variables['Instance115'].Transparency = 0
+Variables['Instance115'].CastShadow = true
+
+Variables['Instance116'] = Instance.new('Part');Variables['Instance116'].Name = 'Part'
+Variables['Instance116'].Shape = Enum.PartType.Block
+Variables['Instance116'].CFrame = CFrame.new(-14.4998322, 6.99998999, -5.99999714, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+Variables['Instance116'].Anchored = true
+Variables['Instance116'].Color = Color3.new(0.584314, 0.47451, 0.466667)
+Variables['Instance116'].Shape = Enum.PartType.Block
+Variables['Instance116'].Size = Vector3.new(0.5999998450279236, 10, 0.40000003576278687)
+Variables['Instance116'].Material = Enum.Material.WoodPlanks
+Variables['Instance116'].CanCollide = true
+Variables['Instance116'].Transparency = 0
+Variables['Instance116'].CastShadow = true
+
+Variables['Instance117'] = Instance.new('Part');Variables['Instance117'].Name = 'Part'
+Variables['Instance117'].Shape = Enum.PartType.Block
+Variables['Instance117'].CFrame = CFrame.new(-12.3000374, 5.69999123, -8.10016155, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+Variables['Instance117'].Anchored = true
+Variables['Instance117'].Color = Color3.new(0.843137, 0.772549, 0.603922)
+Variables['Instance117'].Shape = Enum.PartType.Block
+Variables['Instance117'].Size = Vector3.new(3.8000004291534424, 7.400000095367432, 0.20000000298023224)
+Variables['Instance117'].Material = Enum.Material.WoodPlanks
+Variables['Instance117'].CanCollide = true
+Variables['Instance117'].Transparency = 0
+Variables['Instance117'].CastShadow = true
+
+Variables['Instance118'] = Instance.new('Part');Variables['Instance118'].Name = 'Part'
+Variables['Instance118'].Shape = Enum.PartType.Block
+Variables['Instance118'].CFrame = CFrame.new(-8.60005951, 10.6999855, -8.50017452, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+Variables['Instance118'].Anchored = true
+Variables['Instance118'].Color = Color3.new(0.584314, 0.47451, 0.466667)
+Variables['Instance118'].Shape = Enum.PartType.Block
+Variables['Instance118'].Size = Vector3.new(0.39999985694885254, 2.5999999046325684, 0.6000000238418579)
+Variables['Instance118'].Material = Enum.Material.WoodPlanks
+Variables['Instance118'].CanCollide = true
+Variables['Instance118'].Transparency = 0
+Variables['Instance118'].CastShadow = true
+
+Variables['Instance119'] = Instance.new('Part');Variables['Instance119'].Name = 'Part'
+Variables['Instance119'].Shape = Enum.PartType.Block
+Variables['Instance119'].CFrame = CFrame.new(-6.40007973, 10.6999855, -8.50017452, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+Variables['Instance119'].Anchored = true
+Variables['Instance119'].Color = Color3.new(0.584314, 0.47451, 0.466667)
+Variables['Instance119'].Shape = Enum.PartType.Block
+Variables['Instance119'].Size = Vector3.new(0.39999985694885254, 2.5999999046325684, 0.6000000238418579)
+Variables['Instance119'].Material = Enum.Material.WoodPlanks
+Variables['Instance119'].CanCollide = true
+Variables['Instance119'].Transparency = 0
+Variables['Instance119'].CastShadow = true
+
+Variables['Instance120'] = Instance.new('Part');Variables['Instance120'].Name = 'Part'
+Variables['Instance120'].Shape = Enum.PartType.Block
+Variables['Instance120'].CFrame = CFrame.new(-14.4998322, 6.99998903, -3.59995365, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+Variables['Instance120'].Anchored = true
+Variables['Instance120'].Color = Color3.new(0.584314, 0.47451, 0.466667)
+Variables['Instance120'].Shape = Enum.PartType.Block
+Variables['Instance120'].Size = Vector3.new(0.5999998450279236, 10, 0.40000003576278687)
+Variables['Instance120'].Material = Enum.Material.WoodPlanks
+Variables['Instance120'].CanCollide = true
+Variables['Instance120'].Transparency = 0
+Variables['Instance120'].CastShadow = true
+
+Variables['Instance121'] = Instance.new('Part');Variables['Instance121'].Name = 'Part'
+Variables['Instance121'].Shape = Enum.PartType.Block
+Variables['Instance121'].CFrame = CFrame.new(1.7997818, 5.69997406, -8.09967709, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+Variables['Instance121'].Anchored = true
+Variables['Instance121'].Color = Color3.new(0.843137, 0.772549, 0.603922)
+Variables['Instance121'].Shape = Enum.PartType.Block
+Variables['Instance121'].Size = Vector3.new(24.80000114440918, 7.399999618530273, 0.20000000298023224)
+Variables['Instance121'].Material = Enum.Material.WoodPlanks
+Variables['Instance121'].CanCollide = true
+Variables['Instance121'].Transparency = 0
+Variables['Instance121'].CastShadow = true
+
+Variables['Instance122'] = Instance.new('Part');Variables['Instance122'].Name = 'Part'
+Variables['Instance122'].Shape = Enum.PartType.Block
+Variables['Instance122'].CFrame = CFrame.new(0.000116348267, 10.9999886, -8.89977932, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+Variables['Instance122'].Anchored = true
+Variables['Instance122'].Color = Color3.new(0.843137, 0.772549, 0.603922)
+Variables['Instance122'].Shape = Enum.PartType.Block
+Variables['Instance122'].Size = Vector3.new(30, 3.200000286102295, 0.20000000298023224)
+Variables['Instance122'].Material = Enum.Material.WoodPlanks
+Variables['Instance122'].CanCollide = true
+Variables['Instance122'].Transparency = 0
+Variables['Instance122'].CastShadow = true
+
+Variables['Instance123'] = Instance.new('Part');Variables['Instance123'].Name = 'Part'
+Variables['Instance123'].Shape = Enum.PartType.Block
+Variables['Instance123'].CFrame = CFrame.new(2.20002747, 5.6999855, -8.90009212, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+Variables['Instance123'].Anchored = true
+Variables['Instance123'].Color = Color3.new(0.843137, 0.772549, 0.603922)
+Variables['Instance123'].Shape = Enum.PartType.Block
+Variables['Instance123'].Size = Vector3.new(25.600000381469727, 7.400000095367432, 0.20000000298023224)
+Variables['Instance123'].Material = Enum.Material.WoodPlanks
+Variables['Instance123'].CanCollide = true
+Variables['Instance123'].Transparency = 0
+Variables['Instance123'].CastShadow = true
+
+Variables['Instance124'] = Instance.new('Part');Variables['Instance124'].Name = 'Part'
+Variables['Instance124'].Shape = Enum.PartType.Block
+Variables['Instance124'].CFrame = CFrame.new(-14.4998322, 6.99998903, -1.19997025, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+Variables['Instance124'].Anchored = true
+Variables['Instance124'].Color = Color3.new(0.584314, 0.47451, 0.466667)
+Variables['Instance124'].Shape = Enum.PartType.Block
+Variables['Instance124'].Size = Vector3.new(0.5999998450279236, 10, 0.40000003576278687)
+Variables['Instance124'].Material = Enum.Material.WoodPlanks
+Variables['Instance124'].CanCollide = true
+Variables['Instance124'].Transparency = 0
+Variables['Instance124'].CastShadow = true
+
+Variables['Instance125'] = Instance.new('Part');Variables['Instance125'].Name = 'Part'
+Variables['Instance125'].Shape = Enum.PartType.Block
+Variables['Instance125'].CFrame = CFrame.new(-0.100250244, 10.6999493, -8.09992504, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+Variables['Instance125'].Anchored = true
+Variables['Instance125'].Color = Color3.new(0.843137, 0.772549, 0.603922)
+Variables['Instance125'].Shape = Enum.PartType.Block
+Variables['Instance125'].Size = Vector3.new(28.200000762939453, 2.5999999046325684, 0.20000000298023224)
+Variables['Instance125'].Material = Enum.Material.WoodPlanks
+Variables['Instance125'].CanCollide = true
+Variables['Instance125'].Transparency = 0
+Variables['Instance125'].CastShadow = true
+
+Variables['Instance126'] = Instance.new('Part');Variables['Instance126'].Name = 'Part'
+Variables['Instance126'].Shape = Enum.PartType.Block
+Variables['Instance126'].CFrame = CFrame.new(-6.00000572, 6.99998713, -8.50015926, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+Variables['Instance126'].Anchored = true
+Variables['Instance126'].Color = Color3.new(0.584314, 0.47451, 0.466667)
+Variables['Instance126'].Shape = Enum.PartType.Block
+Variables['Instance126'].Size = Vector3.new(8.399999618530273, 10, 0.6000000238418579)
+Variables['Instance126'].Material = Enum.Material.WoodPlanks
+Variables['Instance126'].CanCollide = true
+Variables['Instance126'].Transparency = 0
+Variables['Instance126'].CastShadow = true
+
+Variables['Instance127'] = Instance.new('Part');Variables['Instance127'].Name = 'Part'
+Variables['Instance127'].Shape = Enum.PartType.Block
+Variables['Instance127'].CFrame = CFrame.new(-10.6000443, 6.99999285, -8.50017262, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+Variables['Instance127'].Anchored = true
+Variables['Instance127'].Color = Color3.new(0.584314, 0.47451, 0.466667)
+Variables['Instance127'].Shape = Enum.PartType.Block
+Variables['Instance127'].Size = Vector3.new(0.39999985694885254, 10, 0.6000000238418579)
+Variables['Instance127'].Material = Enum.Material.WoodPlanks
+Variables['Instance127'].CanCollide = true
+Variables['Instance127'].Transparency = 0
+Variables['Instance127'].CastShadow = true
+
+Variables['Instance128'] = Instance.new('Part');Variables['Instance128'].Name = 'Part'
+Variables['Instance128'].Shape = Enum.PartType.Block
+Variables['Instance128'].CFrame = CFrame.new(-14.0000038, 6.99999285, -8.50017262, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+Variables['Instance128'].Anchored = true
+Variables['Instance128'].Color = Color3.new(0.584314, 0.47451, 0.466667)
+Variables['Instance128'].Shape = Enum.PartType.Block
+Variables['Instance128'].Size = Vector3.new(0.39999985694885254, 10, 0.6000000238418579)
+Variables['Instance128'].Material = Enum.Material.WoodPlanks
+Variables['Instance128'].CanCollide = true
+Variables['Instance128'].Transparency = 0
+Variables['Instance128'].CastShadow = true
+
+Variables['Instance129'] = Instance.new('Part');Variables['Instance129'].Name = 'Part'
+Variables['Instance129'].Shape = Enum.PartType.Block
+Variables['Instance129'].CFrame = CFrame.new(7.2479248e-05, 12.299984, -8.49981213, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+Variables['Instance129'].Anchored = true
+Variables['Instance129'].Color = Color3.new(0.584314, 0.47451, 0.466667)
+Variables['Instance129'].Shape = Enum.PartType.Block
+Variables['Instance129'].Size = Vector3.new(29.600000381469727, 0.6000000238418579, 0.6000000238418579)
+Variables['Instance129'].Material = Enum.Material.WoodPlanks
+Variables['Instance129'].CanCollide = true
+Variables['Instance129'].Transparency = 0
+Variables['Instance129'].CastShadow = true
+
+Variables['Instance130'] = Instance.new('Part');Variables['Instance130'].Name = 'Part'
+Variables['Instance130'].Shape = Enum.PartType.Block
+Variables['Instance130'].CFrame = CFrame.new(-13.0000076, 6.99999285, -8.50017262, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+Variables['Instance130'].Anchored = true
+Variables['Instance130'].Color = Color3.new(0.584314, 0.47451, 0.466667)
+Variables['Instance130'].Shape = Enum.PartType.Block
+Variables['Instance130'].Size = Vector3.new(0.39999985694885254, 10, 0.6000000238418579)
+Variables['Instance130'].Material = Enum.Material.WoodPlanks
+Variables['Instance130'].CanCollide = true
+Variables['Instance130'].Transparency = 0
+Variables['Instance130'].CastShadow = true
+
+Variables['Instance131'] = Instance.new('Part');Variables['Instance131'].Name = 'Part'
+Variables['Instance131'].Shape = Enum.PartType.Block
+Variables['Instance131'].CFrame = CFrame.new(-12.6998444, 5.69998837, -8.89992809, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+Variables['Instance131'].Anchored = true
+Variables['Instance131'].Color = Color3.new(0.843137, 0.772549, 0.603922)
+Variables['Instance131'].Shape = Enum.PartType.Block
+Variables['Instance131'].Size = Vector3.new(4.600000381469727, 7.400000095367432, 0.20000000298023224)
+Variables['Instance131'].Material = Enum.Material.WoodPlanks
+Variables['Instance131'].CanCollide = true
+Variables['Instance131'].Transparency = 0
+Variables['Instance131'].CastShadow = true
+
+Variables['Instance132'] = Instance.new('Part');Variables['Instance132'].Name = 'Part'
+Variables['Instance132'].Shape = Enum.PartType.Block
+Variables['Instance132'].CFrame = CFrame.new(14.4997463, 10.6999989, -1.20020199, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+Variables['Instance132'].Anchored = true
+Variables['Instance132'].Color = Color3.new(0.584314, 0.47451, 0.466667)
+Variables['Instance132'].Shape = Enum.PartType.Block
+Variables['Instance132'].Size = Vector3.new(0.5999998450279236, 2.5999999046325684, 0.40000003576278687)
+Variables['Instance132'].Material = Enum.Material.WoodPlanks
+Variables['Instance132'].CanCollide = true
+Variables['Instance132'].Transparency = 0
+Variables['Instance132'].CastShadow = true
+
+Variables['Instance133'] = Instance.new('Part');Variables['Instance133'].Name = 'Part'
+Variables['Instance133'].Shape = Enum.PartType.Block
+Variables['Instance133'].CFrame = CFrame.new(11.9921761, 11.8999882, 1.98798275, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+Variables['Instance133'].Anchored = true
+Variables['Instance133'].Color = Color3.new(0.584314, 0.47451, 0.466667)
+Variables['Instance133'].Shape = Enum.PartType.Block
+Variables['Instance133'].Size = Vector3.new(4.41511869430542, 0.20000000298023224, 12.423652648925781)
+Variables['Instance133'].Material = Enum.Material.WoodPlanks
+Variables['Instance133'].CanCollide = true
+Variables['Instance133'].Transparency = 0
+Variables['Instance133'].CastShadow = true
+
+Variables['Instance134'] = Instance.new('Part');Variables['Instance134'].Name = 'Part'
+Variables['Instance134'].Shape = Enum.PartType.Block
+Variables['Instance134'].CFrame = CFrame.new(14.899456, 6.9999547, -6.09996128, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+Variables['Instance134'].Anchored = true
+Variables['Instance134'].Color = Color3.new(0.843137, 0.772549, 0.603922)
+Variables['Instance134'].Shape = Enum.PartType.Block
+Variables['Instance134'].Size = Vector3.new(0.20000000298023224, 4.800000190734863, 5.40000057220459)
+Variables['Instance134'].Material = Enum.Material.WoodPlanks
+Variables['Instance134'].CanCollide = true
+Variables['Instance134'].Transparency = 0
+Variables['Instance134'].CastShadow = true
+
+Variables['Instance135'] = Instance.new('Part');Variables['Instance135'].Name = 'Part'
+Variables['Instance135'].Shape = Enum.PartType.Block
+Variables['Instance135'].CFrame = CFrame.new(14.0997381, 6.99999571, -5.70022488, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+Variables['Instance135'].Anchored = true
+Variables['Instance135'].Color = Color3.new(0.843137, 0.772549, 0.603922)
+Variables['Instance135'].Shape = Enum.PartType.Block
+Variables['Instance135'].Size = Vector3.new(0.20000000298023224, 4.800000190734863, 4.600000381469727)
+Variables['Instance135'].Material = Enum.Material.WoodPlanks
+Variables['Instance135'].CanCollide = true
+Variables['Instance135'].Transparency = 0
+Variables['Instance135'].CastShadow = true
+
+Variables['Instance136'] = Instance.new('Part');Variables['Instance136'].Name = 'Part'
+Variables['Instance136'].Shape = Enum.PartType.Block
+Variables['Instance136'].CFrame = CFrame.new(5.1998291, 6.99999475, -8.50017643, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+Variables['Instance136'].Anchored = true
+Variables['Instance136'].Color = Color3.new(0.584314, 0.47451, 0.466667)
+Variables['Instance136'].Shape = Enum.PartType.Block
+Variables['Instance136'].Size = Vector3.new(0.39999985694885254, 10, 0.6000000238418579)
+Variables['Instance136'].Material = Enum.Material.WoodPlanks
+Variables['Instance136'].CanCollide = true
+Variables['Instance136'].Transparency = 0
+Variables['Instance136'].CastShadow = true
+
+Variables['Instance137'] = Instance.new('Part');Variables['Instance137'].Name = 'Part'
+Variables['Instance137'].Shape = Enum.PartType.Block
+Variables['Instance137'].CFrame = CFrame.new(9.69997215, 11.8997765, -1.50013256, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+Variables['Instance137'].Anchored = true
+Variables['Instance137'].Color = Color3.new(0.584314, 0.47451, 0.466667)
+Variables['Instance137'].Shape = Enum.PartType.Block
+Variables['Instance137'].Size = Vector3.new(0.6000003814697266, 0.20000000298023224, 1.399998664855957)
+Variables['Instance137'].Material = Enum.Material.WoodPlanks
+Variables['Instance137'].CanCollide = true
+Variables['Instance137'].Transparency = 0
+Variables['Instance137'].CastShadow = true
+
+Variables['Instance138'] = Instance.new('Part');Variables['Instance138'].Name = 'Part'
+Variables['Instance138'].Shape = Enum.PartType.Block
+Variables['Instance138'].CFrame = CFrame.new(7.59981537, 6.99999475, -8.50017643, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+Variables['Instance138'].Anchored = true
+Variables['Instance138'].Color = Color3.new(0.584314, 0.47451, 0.466667)
+Variables['Instance138'].Shape = Enum.PartType.Block
+Variables['Instance138'].Size = Vector3.new(0.39999985694885254, 10, 0.6000000238418579)
+Variables['Instance138'].Material = Enum.Material.WoodPlanks
+Variables['Instance138'].CanCollide = true
+Variables['Instance138'].Transparency = 0
+Variables['Instance138'].CastShadow = true
+
+Variables['Instance139'] = Instance.new('Part');Variables['Instance139'].Name = 'Part'
+Variables['Instance139'].Shape = Enum.PartType.Block
+Variables['Instance139'].CFrame = CFrame.new(14.4994974, 12.2999916, -1.33514404e-05, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+Variables['Instance139'].Anchored = true
+Variables['Instance139'].Color = Color3.new(0.584314, 0.47451, 0.466667)
+Variables['Instance139'].Shape = Enum.PartType.Block
+Variables['Instance139'].Size = Vector3.new(0.6000003814697266, 0.6000000238418579, 16.400001525878906)
+Variables['Instance139'].Material = Enum.Material.WoodPlanks
+Variables['Instance139'].CanCollide = true
+Variables['Instance139'].Transparency = 0
+Variables['Instance139'].CastShadow = true
+
+Variables['Instance140'] = Instance.new('Part');Variables['Instance140'].Name = 'Part'
+Variables['Instance140'].Shape = Enum.PartType.Block
+Variables['Instance140'].CFrame = CFrame.new(13.9997835, 6.99999475, -8.50017452, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+Variables['Instance140'].Anchored = true
+Variables['Instance140'].Color = Color3.new(0.584314, 0.47451, 0.466667)
+Variables['Instance140'].Shape = Enum.PartType.Block
+Variables['Instance140'].Size = Vector3.new(0.39999985694885254, 10, 0.6000000238418579)
+Variables['Instance140'].Material = Enum.Material.WoodPlanks
+Variables['Instance140'].CanCollide = true
+Variables['Instance140'].Transparency = 0
+Variables['Instance140'].CastShadow = true
+
+Variables['Instance141'] = Instance.new('WedgePart');Variables['Instance141'].Name = 'Wedge'
+Variables['Instance141'].CFrame = CFrame.new(14.6004848, 15.599947, -4.49982738, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+Variables['Instance141'].Anchored = true
+Variables['Instance141'].Color = Color3.new(0.843137, 0.772549, 0.603922)
+Variables['Instance141'].Size = Vector3.new(0.7999999523162842, 6, 9)
+Variables['Instance141'].Material = Enum.Material.WoodPlanks
+Variables['Instance141'].CanCollide = true
+Variables['Instance141'].Transparency = 0
+Variables['Instance141'].CastShadow = true
+
+Variables['Instance142'] = Instance.new('Part');Variables['Instance142'].Name = 'Part'
+Variables['Instance142'].Shape = Enum.PartType.Block
+Variables['Instance142'].CFrame = CFrame.new(14.4994745, 9.19998932, -3.43322754e-05, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+Variables['Instance142'].Anchored = true
+Variables['Instance142'].Color = Color3.new(0.584314, 0.47451, 0.466667)
+Variables['Instance142'].Shape = Enum.PartType.Block
+Variables['Instance142'].Size = Vector3.new(1.399999976158142, 0.39999985694885254, 6.800000190734863)
+Variables['Instance142'].Material = Enum.Material.WoodPlanks
+Variables['Instance142'].CanCollide = true
+Variables['Instance142'].Transparency = 0
+Variables['Instance142'].CastShadow = true
+
+Variables['Instance143'] = Instance.new('Part');Variables['Instance143'].Name = 'Part'
+Variables['Instance143'].Shape = Enum.PartType.Block
+Variables['Instance143'].CFrame = CFrame.new(14.8994532, 10.9999962, -5.81741333e-05, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+Variables['Instance143'].Anchored = true
+Variables['Instance143'].Color = Color3.new(0.843137, 0.772549, 0.603922)
+Variables['Instance143'].Shape = Enum.PartType.Block
+Variables['Instance143'].Size = Vector3.new(0.20000000298023224, 3.1999998092651367, 17.600000381469727)
+Variables['Instance143'].Material = Enum.Material.WoodPlanks
+Variables['Instance143'].CanCollide = true
+Variables['Instance143'].Transparency = 0
+Variables['Instance143'].CastShadow = true
+
+Variables['Instance144'] = Instance.new('Part');Variables['Instance144'].Name = 'Part'
+Variables['Instance144'].Shape = Enum.PartType.Block
+Variables['Instance144'].CFrame = CFrame.new(14.1001806, 3.29999924, -1.8119812e-05, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+Variables['Instance144'].Anchored = true
+Variables['Instance144'].Color = Color3.new(0.843137, 0.772549, 0.603922)
+Variables['Instance144'].Shape = Enum.PartType.Block
+Variables['Instance144'].Size = Vector3.new(0.20000000298023224, 2.6000001430511475, 16.000001907348633)
+Variables['Instance144'].Material = Enum.Material.WoodPlanks
+Variables['Instance144'].CanCollide = true
+Variables['Instance144'].Transparency = 0
+Variables['Instance144'].CastShadow = true
+
+Variables['Instance145'] = Instance.new('Part');Variables['Instance145'].Name = 'Part'
+Variables['Instance145'].Shape = Enum.PartType.Block
+Variables['Instance145'].CFrame = CFrame.new(11.9921751, 11.8999882, -6.20206928, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+Variables['Instance145'].Anchored = true
+Variables['Instance145'].Color = Color3.new(0.584314, 0.47451, 0.466667)
+Variables['Instance145'].Shape = Enum.PartType.Block
+Variables['Instance145'].Size = Vector3.new(4.41511869430542, 0.20000000298023224, 3.9785985946655273)
+Variables['Instance145'].Material = Enum.Material.WoodPlanks
+Variables['Instance145'].CanCollide = true
+Variables['Instance145'].Transparency = 0
+Variables['Instance145'].CastShadow = true
+
+Variables['Instance146'] = Instance.new('Part');Variables['Instance146'].Name = 'Part'
+Variables['Instance146'].Shape = Enum.PartType.Block
+Variables['Instance146'].CFrame = CFrame.new(2.79983711, 6.9999938, -8.50017643, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+Variables['Instance146'].Anchored = true
+Variables['Instance146'].Color = Color3.new(0.584314, 0.47451, 0.466667)
+Variables['Instance146'].Shape = Enum.PartType.Block
+Variables['Instance146'].Size = Vector3.new(0.39999985694885254, 10, 0.6000000238418579)
+Variables['Instance146'].Material = Enum.Material.WoodPlanks
+Variables['Instance146'].CanCollide = true
+Variables['Instance146'].Transparency = 0
+Variables['Instance146'].CastShadow = true
+
+Variables['Instance147'] = Instance.new('Part');Variables['Instance147'].Name = 'Part'
+Variables['Instance147'].Shape = Enum.PartType.Block
+Variables['Instance147'].CFrame = CFrame.new(14.4997463, 6.99999571, -3.60022259, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+Variables['Instance147'].Anchored = true
+Variables['Instance147'].Color = Color3.new(0.584314, 0.47451, 0.466667)
+Variables['Instance147'].Shape = Enum.PartType.Block
+Variables['Instance147'].Size = Vector3.new(0.5999998450279236, 10, 0.40000003576278687)
+Variables['Instance147'].Material = Enum.Material.WoodPlanks
+Variables['Instance147'].CanCollide = true
+Variables['Instance147'].Transparency = 0
+Variables['Instance147'].CastShadow = true
+
+Variables['Instance148'] = Instance.new('Part');Variables['Instance148'].Name = 'Part'
+Variables['Instance148'].Shape = Enum.PartType.Block
+Variables['Instance148'].CFrame = CFrame.new(0.399875641, 6.9999938, -8.50017452, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+Variables['Instance148'].Anchored = true
+Variables['Instance148'].Color = Color3.new(0.584314, 0.47451, 0.466667)
+Variables['Instance148'].Shape = Enum.PartType.Block
+Variables['Instance148'].Size = Vector3.new(0.39999985694885254, 10, 0.6000000238418579)
+Variables['Instance148'].Material = Enum.Material.WoodPlanks
+Variables['Instance148'].CanCollide = true
+Variables['Instance148'].Transparency = 0
+Variables['Instance148'].CastShadow = true
+
+Variables['Instance149'] = Instance.new('Part');Variables['Instance149'].Name = 'Part'
+Variables['Instance149'].Shape = Enum.PartType.Block
+Variables['Instance149'].CFrame = CFrame.new(14.4994612, 6.99997663, -3.1999445, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+Variables['Instance149'].Anchored = true
+Variables['Instance149'].Color = Color3.new(0.584314, 0.47451, 0.466667)
+Variables['Instance149'].Shape = Enum.PartType.Block
+Variables['Instance149'].Size = Vector3.new(1.399999976158142, 4, 0.4000000059604645)
+Variables['Instance149'].Material = Enum.Material.WoodPlanks
+Variables['Instance149'].CanCollide = true
+Variables['Instance149'].Transparency = 0
+Variables['Instance149'].CastShadow = true
+
+Variables['Instance150'] = Instance.new('Part');Variables['Instance150'].Name = 'Part'
+Variables['Instance150'].Shape = Enum.PartType.Block
+Variables['Instance150'].CFrame = CFrame.new(9.99979973, 6.99999475, -8.50017643, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+Variables['Instance150'].Anchored = true
+Variables['Instance150'].Color = Color3.new(0.584314, 0.47451, 0.466667)
+Variables['Instance150'].Shape = Enum.PartType.Block
+Variables['Instance150'].Size = Vector3.new(0.39999985694885254, 10, 0.6000000238418579)
+Variables['Instance150'].Material = Enum.Material.WoodPlanks
+Variables['Instance150'].CanCollide = true
+Variables['Instance150'].Transparency = 0
+Variables['Instance150'].CastShadow = true
+
+Variables['Instance151'] = Instance.new('Part');Variables['Instance151'].Name = 'Part'
+Variables['Instance151'].Shape = Enum.PartType.Block
+Variables['Instance151'].CFrame = CFrame.new(14.5000296, 3.30000257, -1.20014286, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+Variables['Instance151'].Anchored = true
+Variables['Instance151'].Color = Color3.new(0.584314, 0.47451, 0.466667)
+Variables['Instance151'].Shape = Enum.PartType.Block
+Variables['Instance151'].Size = Vector3.new(0.5999998450279236, 2.5999999046325684, 0.40000003576278687)
+Variables['Instance151'].Material = Enum.Material.WoodPlanks
+Variables['Instance151'].CanCollide = true
+Variables['Instance151'].Transparency = 0
+Variables['Instance151'].CastShadow = true
+
+Variables['Instance152'] = Instance.new('Part');Variables['Instance152'].Name = 'Part'
+Variables['Instance152'].Shape = Enum.PartType.Block
+Variables['Instance152'].CFrame = CFrame.new(14.4997768, 6.99999571, -6.00021076, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+Variables['Instance152'].Anchored = true
+Variables['Instance152'].Color = Color3.new(0.584314, 0.47451, 0.466667)
+Variables['Instance152'].Shape = Enum.PartType.Block
+Variables['Instance152'].Size = Vector3.new(0.5999998450279236, 10, 0.40000003576278687)
+Variables['Instance152'].Material = Enum.Material.WoodPlanks
+Variables['Instance152'].CanCollide = true
+Variables['Instance152'].Transparency = 0
+Variables['Instance152'].CastShadow = true
+
+Variables['Instance153'] = Instance.new('Part');Variables['Instance153'].Name = 'Part'
+Variables['Instance153'].Shape = Enum.PartType.Block
+Variables['Instance153'].CFrame = CFrame.new(14.4997768, 6.99999571, -8.00017643, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+Variables['Instance153'].Anchored = true
+Variables['Instance153'].Color = Color3.new(0.584314, 0.47451, 0.466667)
+Variables['Instance153'].Shape = Enum.PartType.Block
+Variables['Instance153'].Size = Vector3.new(0.5999998450279236, 10, 0.40000003576278687)
+Variables['Instance153'].Material = Enum.Material.WoodPlanks
+Variables['Instance153'].CanCollide = true
+Variables['Instance153'].Transparency = 0
+Variables['Instance153'].CastShadow = true
+
+Variables['Instance154'] = Instance.new('WedgePart');Variables['Instance154'].Name = 'Wedge'
+Variables['Instance154'].CFrame = CFrame.new(14.5990486, 15.6000767, 4.5000906, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+Variables['Instance154'].Anchored = true
+Variables['Instance154'].Color = Color3.new(0.843137, 0.772549, 0.603922)
+Variables['Instance154'].Size = Vector3.new(0.7999999523162842, 6, 9)
+Variables['Instance154'].Material = Enum.Material.WoodPlanks
+Variables['Instance154'].CanCollide = true
+Variables['Instance154'].Transparency = 0
+Variables['Instance154'].CastShadow = true
+
+Variables['Instance155'] = Instance.new('Part');Variables['Instance155'].Name = 'Part'
+Variables['Instance155'].Shape = Enum.PartType.Block
+Variables['Instance155'].CFrame = CFrame.new(4.1997776, 1.90000069, 0.499835014, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+Variables['Instance155'].Anchored = true
+Variables['Instance155'].Color = Color3.new(0.584314, 0.47451, 0.466667)
+Variables['Instance155'].Shape = Enum.PartType.Block
+Variables['Instance155'].Size = Vector3.new(0.8000012636184692, 0.20000000298023224, 1.7999992370605469)
+Variables['Instance155'].Material = Enum.Material.WoodPlanks
+Variables['Instance155'].CanCollide = true
+Variables['Instance155'].Transparency = 0
+Variables['Instance155'].CastShadow = true
+
+Variables['Instance156'] = Instance.new('Part');Variables['Instance156'].Name = 'Part'
+Variables['Instance156'].Shape = Enum.PartType.Block
+Variables['Instance156'].CFrame = CFrame.new(14.899992, 3.2999959, 4.76837158e-05, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+Variables['Instance156'].Anchored = true
+Variables['Instance156'].Color = Color3.new(0.843137, 0.772549, 0.603922)
+Variables['Instance156'].Shape = Enum.PartType.Block
+Variables['Instance156'].Size = Vector3.new(0.20000000298023224, 2.5999999046325684, 17.600000381469727)
+Variables['Instance156'].Material = Enum.Material.WoodPlanks
+Variables['Instance156'].CanCollide = true
+Variables['Instance156'].Transparency = 0
+Variables['Instance156'].CastShadow = true
+
+Variables['Instance157'] = Instance.new('Part');Variables['Instance157'].Name = 'Part'
+Variables['Instance157'].Shape = Enum.PartType.Block
+Variables['Instance157'].CFrame = CFrame.new(14.0994616, 10.6999931, -0.000136375427, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+Variables['Instance157'].Anchored = true
+Variables['Instance157'].Color = Color3.new(0.843137, 0.772549, 0.603922)
+Variables['Instance157'].Shape = Enum.PartType.Block
+Variables['Instance157'].Size = Vector3.new(0.20000000298023224, 2.6000003814697266, 16)
+Variables['Instance157'].Material = Enum.Material.WoodPlanks
+Variables['Instance157'].CanCollide = true
+Variables['Instance157'].Transparency = 0
+Variables['Instance157'].CastShadow = true
+
+Variables['Instance158'] = Instance.new('Part');Variables['Instance158'].Name = 'Part'
+Variables['Instance158'].Shape = Enum.PartType.Block
+Variables['Instance158'].CFrame = CFrame.new(14.5001907, 4.79999352, 7.62939453e-06, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+Variables['Instance158'].Anchored = true
+Variables['Instance158'].Color = Color3.new(0.584314, 0.47451, 0.466667)
+Variables['Instance158'].Shape = Enum.PartType.Block
+Variables['Instance158'].Size = Vector3.new(1.399999976158142, 0.39999985694885254, 6.800000190734863)
+Variables['Instance158'].Material = Enum.Material.WoodPlanks
+Variables['Instance158'].CanCollide = true
+Variables['Instance158'].Transparency = 0
+Variables['Instance158'].CastShadow = true
+
+Variables['Instance159'] = Instance.new('Part');Variables['Instance159'].Name = 'Part'
+Variables['Instance159'].Shape = Enum.PartType.Block
+Variables['Instance159'].CFrame = CFrame.new(12.3997879, 6.99999475, -8.50017452, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+Variables['Instance159'].Anchored = true
+Variables['Instance159'].Color = Color3.new(0.584314, 0.47451, 0.466667)
+Variables['Instance159'].Shape = Enum.PartType.Block
+Variables['Instance159'].Size = Vector3.new(0.39999985694885254, 10, 0.6000000238418579)
+Variables['Instance159'].Material = Enum.Material.WoodPlanks
+Variables['Instance159'].CanCollide = true
+Variables['Instance159'].Transparency = 0
+Variables['Instance159'].CastShadow = true
+
+Variables['Instance160'] = Instance.new('Part');Variables['Instance160'].Name = 'Part'
+Variables['Instance160'].Shape = Enum.PartType.Block
+Variables['Instance160'].CFrame = CFrame.new(14.4996414, 6.99999475, 5.99982643, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+Variables['Instance160'].Anchored = true
+Variables['Instance160'].Color = Color3.new(0.584314, 0.47451, 0.466667)
+Variables['Instance160'].Shape = Enum.PartType.Block
+Variables['Instance160'].Size = Vector3.new(0.5999998450279236, 10, 0.40000003576278687)
+Variables['Instance160'].Material = Enum.Material.WoodPlanks
+Variables['Instance160'].CanCollide = true
+Variables['Instance160'].Transparency = 0
+Variables['Instance160'].CastShadow = true
+
+Variables['Instance161'] = Instance.new('Part');Variables['Instance161'].Name = 'Part'
+Variables['Instance161'].Shape = Enum.PartType.Block
+Variables['Instance161'].CFrame = CFrame.new(10.1999817, 5.49999714, 8.49982738, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+Variables['Instance161'].Anchored = true
+Variables['Instance161'].Color = Color3.new(0.584314, 0.47451, 0.466667)
+Variables['Instance161'].Shape = Enum.PartType.Block
+Variables['Instance161'].Size = Vector3.new(0.3999999761581421, 7, 1)
+Variables['Instance161'].Material = Enum.Material.WoodPlanks
+Variables['Instance161'].CanCollide = true
+Variables['Instance161'].Transparency = 0
+Variables['Instance161'].CastShadow = true
+
+Variables['Instance162'] = Instance.new('Part');Variables['Instance162'].Name = 'Part'
+Variables['Instance162'].Shape = Enum.PartType.Block
+Variables['Instance162'].CFrame = CFrame.new(5.99933815, 11.8999882, 5.19945621, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+Variables['Instance162'].Anchored = true
+Variables['Instance162'].Color = Color3.new(0.584314, 0.47451, 0.466667)
+Variables['Instance162'].Shape = Enum.PartType.Block
+Variables['Instance162'].Size = Vector3.new(6.800000190734863, 0.20000000298023224, 5.999999046325684)
+Variables['Instance162'].Material = Enum.Material.WoodPlanks
+Variables['Instance162'].CanCollide = true
+Variables['Instance162'].Transparency = 0
+Variables['Instance162'].CastShadow = true
+
+Variables['Instance163'] = Instance.new('Part');Variables['Instance163'].Name = 'Part'
+Variables['Instance163'].Shape = Enum.PartType.Block
+Variables['Instance163'].CFrame = CFrame.new(14.5001898, 3.29999924, 1.19999313, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+Variables['Instance163'].Anchored = true
+Variables['Instance163'].Color = Color3.new(0.584314, 0.47451, 0.466667)
+Variables['Instance163'].Shape = Enum.PartType.Block
+Variables['Instance163'].Size = Vector3.new(0.5999998450279236, 2.5999999046325684, 0.40000003576278687)
+Variables['Instance163'].Material = Enum.Material.WoodPlanks
+Variables['Instance163'].CanCollide = true
+Variables['Instance163'].Transparency = 0
+Variables['Instance163'].CastShadow = true
+
+Variables['Instance164'] = Instance.new('Part');Variables['Instance164'].Name = 'Part'
+Variables['Instance164'].Shape = Enum.PartType.Block
+Variables['Instance164'].CFrame = CFrame.new(14.4997644, 6.99999571, 7.99979258, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+Variables['Instance164'].Anchored = true
+Variables['Instance164'].Color = Color3.new(0.584314, 0.47451, 0.466667)
+Variables['Instance164'].Shape = Enum.PartType.Block
+Variables['Instance164'].Size = Vector3.new(0.5999998450279236, 10, 0.40000003576278687)
+Variables['Instance164'].Material = Enum.Material.WoodPlanks
+Variables['Instance164'].CanCollide = true
+Variables['Instance164'].Transparency = 0
+Variables['Instance164'].CastShadow = true
+
+Variables['Instance165'] = Instance.new('Part');Variables['Instance165'].Name = 'Part'
+Variables['Instance165'].Shape = Enum.PartType.Block
+Variables['Instance165'].CFrame = CFrame.new(4.39969635, 6.99999475, 8.49959183, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+Variables['Instance165'].Anchored = true
+Variables['Instance165'].Color = Color3.new(0.584314, 0.47451, 0.466667)
+Variables['Instance165'].Shape = Enum.PartType.Block
+Variables['Instance165'].Size = Vector3.new(0.39999985694885254, 10, 0.6000000238418579)
+Variables['Instance165'].Material = Enum.Material.WoodPlanks
+Variables['Instance165'].CanCollide = true
+Variables['Instance165'].Transparency = 0
+Variables['Instance165'].CastShadow = true
+
+Variables['Instance166'] = Instance.new('Part');Variables['Instance166'].Name = 'Part'
+Variables['Instance166'].Shape = Enum.PartType.Block
+Variables['Instance166'].CFrame = CFrame.new(12.700016, 5.69999027, 8.89996433, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+Variables['Instance166'].Anchored = true
+Variables['Instance166'].Color = Color3.new(0.843137, 0.772549, 0.603922)
+Variables['Instance166'].Shape = Enum.PartType.Block
+Variables['Instance166'].Size = Vector3.new(4.600000381469727, 7.400000095367432, 0.20000000298023224)
+Variables['Instance166'].Material = Enum.Material.WoodPlanks
+Variables['Instance166'].CanCollide = true
+Variables['Instance166'].Transparency = 0
+Variables['Instance166'].CastShadow = true
+
+Variables['Instance167'] = Instance.new('Part');Variables['Instance167'].Name = 'Part'
+Variables['Instance167'].Shape = Enum.PartType.Block
+Variables['Instance167'].CFrame = CFrame.new(6.3997097, 10.699995, 8.4997139, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+Variables['Instance167'].Anchored = true
+Variables['Instance167'].Color = Color3.new(0.584314, 0.47451, 0.466667)
+Variables['Instance167'].Shape = Enum.PartType.Block
+Variables['Instance167'].Size = Vector3.new(0.39999985694885254, 2.5999999046325684, 0.6000000238418579)
+Variables['Instance167'].Material = Enum.Material.WoodPlanks
+Variables['Instance167'].CanCollide = true
+Variables['Instance167'].Transparency = 0
+Variables['Instance167'].CastShadow = true
+
+Variables['Instance168'] = Instance.new('Part');Variables['Instance168'].Name = 'Part'
+Variables['Instance168'].Shape = Enum.PartType.Block
+Variables['Instance168'].CFrame = CFrame.new(7.50011063, 9.19999123, 8.49998665, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+Variables['Instance168'].Anchored = true
+Variables['Instance168'].Color = Color3.new(0.584314, 0.47451, 0.466667)
+Variables['Instance168'].Shape = Enum.PartType.Block
+Variables['Instance168'].Size = Vector3.new(5.800000190734863, 0.3999999761581421, 1.4000000953674316)
+Variables['Instance168'].Material = Enum.Material.WoodPlanks
+Variables['Instance168'].CanCollide = true
+Variables['Instance168'].Transparency = 0
+Variables['Instance168'].CastShadow = true
+
+Variables['Instance169'] = Instance.new('Part');Variables['Instance169'].Name = 'Part'
+Variables['Instance169'].Shape = Enum.PartType.Block
+Variables['Instance169'].CFrame = CFrame.new(14.4997635, 6.99999571, 3.59980679, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+Variables['Instance169'].Anchored = true
+Variables['Instance169'].Color = Color3.new(0.584314, 0.47451, 0.466667)
+Variables['Instance169'].Shape = Enum.PartType.Block
+Variables['Instance169'].Size = Vector3.new(0.5999998450279236, 10, 0.40000003576278687)
+Variables['Instance169'].Material = Enum.Material.WoodPlanks
+Variables['Instance169'].CanCollide = true
+Variables['Instance169'].Transparency = 0
+Variables['Instance169'].CastShadow = true
+
+Variables['Instance170'] = Instance.new('Part');Variables['Instance170'].Name = 'Part'
+Variables['Instance170'].Shape = Enum.PartType.Block
+Variables['Instance170'].CFrame = CFrame.new(12.2999754, 5.69999409, 8.09982777, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+Variables['Instance170'].Anchored = true
+Variables['Instance170'].Color = Color3.new(0.843137, 0.772549, 0.603922)
+Variables['Instance170'].Shape = Enum.PartType.Block
+Variables['Instance170'].Size = Vector3.new(3.8000004291534424, 7.400000095367432, 0.20000000298023224)
+Variables['Instance170'].Material = Enum.Material.WoodPlanks
+Variables['Instance170'].CanCollide = true
+Variables['Instance170'].Transparency = 0
+Variables['Instance170'].CastShadow = true
+
+Variables['Instance171'] = Instance.new('Part');Variables['Instance171'].Name = 'Part'
+Variables['Instance171'].Shape = Enum.PartType.Block
+Variables['Instance171'].CFrame = CFrame.new(4.79982185, 5.49999619, 8.49967575, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+Variables['Instance171'].Anchored = true
+Variables['Instance171'].Color = Color3.new(0.584314, 0.47451, 0.466667)
+Variables['Instance171'].Shape = Enum.PartType.Block
+Variables['Instance171'].Size = Vector3.new(0.3999999761581421, 7, 1)
+Variables['Instance171'].Material = Enum.Material.WoodPlanks
+Variables['Instance171'].CanCollide = true
+Variables['Instance171'].Transparency = 0
+Variables['Instance171'].CastShadow = true
+
+Variables['Instance172'] = Instance.new('Part');Variables['Instance172'].Name = 'Part'
+Variables['Instance172'].Shape = Enum.PartType.Block
+Variables['Instance172'].CFrame = CFrame.new(8.59969521, 10.699995, 8.49974346, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+Variables['Instance172'].Anchored = true
+Variables['Instance172'].Color = Color3.new(0.584314, 0.47451, 0.466667)
+Variables['Instance172'].Shape = Enum.PartType.Block
+Variables['Instance172'].Size = Vector3.new(0.39999985694885254, 2.5999999046325684, 0.6000000238418579)
+Variables['Instance172'].Material = Enum.Material.WoodPlanks
+Variables['Instance172'].CanCollide = true
+Variables['Instance172'].Transparency = 0
+Variables['Instance172'].CastShadow = true
+
+Variables['Instance173'] = Instance.new('Part');Variables['Instance173'].Name = 'Part'
+Variables['Instance173'].Shape = Enum.PartType.Block
+Variables['Instance173'].CFrame = CFrame.new(12.999753, 6.99999475, 8.49975491, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+Variables['Instance173'].Anchored = true
+Variables['Instance173'].Color = Color3.new(0.584314, 0.47451, 0.466667)
+Variables['Instance173'].Shape = Enum.PartType.Block
+Variables['Instance173'].Size = Vector3.new(0.39999985694885254, 10, 0.6000000238418579)
+Variables['Instance173'].Material = Enum.Material.WoodPlanks
+Variables['Instance173'].CanCollide = true
+Variables['Instance173'].Transparency = 0
+Variables['Instance173'].CastShadow = true
+
+Variables['Instance174'] = Instance.new('Part');Variables['Instance174'].Name = 'Part'
+Variables['Instance174'].Shape = Enum.PartType.Block
+Variables['Instance174'].CFrame = CFrame.new(14.5001936, 7.00000048, 3.19999409, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+Variables['Instance174'].Anchored = true
+Variables['Instance174'].Color = Color3.new(0.584314, 0.47451, 0.466667)
+Variables['Instance174'].Shape = Enum.PartType.Block
+Variables['Instance174'].Size = Vector3.new(1.399999976158142, 4, 0.4000000059604645)
+Variables['Instance174'].Material = Enum.Material.WoodPlanks
+Variables['Instance174'].CanCollide = true
+Variables['Instance174'].Transparency = 0
+Variables['Instance174'].CastShadow = true
+
+Variables['Instance175'] = Instance.new('Part');Variables['Instance175'].Name = 'Part'
+Variables['Instance175'].Shape = Enum.PartType.Block
+Variables['Instance175'].CFrame = CFrame.new(10.5997105, 6.99999475, 8.49975395, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+Variables['Instance175'].Anchored = true
+Variables['Instance175'].Color = Color3.new(0.584314, 0.47451, 0.466667)
+Variables['Instance175'].Shape = Enum.PartType.Block
+Variables['Instance175'].Size = Vector3.new(0.39999985694885254, 10, 0.6000000238418579)
+Variables['Instance175'].Material = Enum.Material.WoodPlanks
+Variables['Instance175'].CanCollide = true
+Variables['Instance175'].Transparency = 0
+Variables['Instance175'].CastShadow = true
+
+Variables['Instance176'] = Instance.new('Part');Variables['Instance176'].Name = 'Part'
+Variables['Instance176'].Shape = Enum.PartType.Block
+Variables['Instance176'].CFrame = CFrame.new(1.99955559, 6.99998236, 8.49962616, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+Variables['Instance176'].Anchored = true
+Variables['Instance176'].Color = Color3.new(0.584314, 0.47451, 0.466667)
+Variables['Instance176'].Shape = Enum.PartType.Block
+Variables['Instance176'].Size = Vector3.new(0.39999985694885254, 10, 0.6000000238418579)
+Variables['Instance176'].Material = Enum.Material.WoodPlanks
+Variables['Instance176'].CanCollide = true
+Variables['Instance176'].Transparency = 0
+Variables['Instance176'].CastShadow = true
+
+Variables['Instance177'] = Instance.new('Part');Variables['Instance177'].Name = 'Part'
+Variables['Instance177'].Shape = Enum.PartType.Block
+Variables['Instance177'].CFrame = CFrame.new(14.899992, 6.99999189, 6.10000801, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+Variables['Instance177'].Anchored = true
+Variables['Instance177'].Color = Color3.new(0.843137, 0.772549, 0.603922)
+Variables['Instance177'].Shape = Enum.PartType.Block
+Variables['Instance177'].Size = Vector3.new(0.20000000298023224, 4.800000190734863, 5.40000057220459)
+Variables['Instance177'].Material = Enum.Material.WoodPlanks
+Variables['Instance177'].CanCollide = true
+Variables['Instance177'].Transparency = 0
+Variables['Instance177'].CastShadow = true
+
+Variables['Instance178'] = Instance.new('Part');Variables['Instance178'].Name = 'Part'
+Variables['Instance178'].Shape = Enum.PartType.Block
+Variables['Instance178'].CFrame = CFrame.new(14.4997473, 10.6999989, 1.19978714, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+Variables['Instance178'].Anchored = true
+Variables['Instance178'].Color = Color3.new(0.584314, 0.47451, 0.466667)
+Variables['Instance178'].Shape = Enum.PartType.Block
+Variables['Instance178'].Size = Vector3.new(0.5999998450279236, 2.5999999046325684, 0.40000003576278687)
+Variables['Instance178'].Material = Enum.Material.WoodPlanks
+Variables['Instance178'].CanCollide = true
+Variables['Instance178'].Transparency = 0
+Variables['Instance178'].CastShadow = true
+
+Variables['Instance179'] = Instance.new('Part');Variables['Instance179'].Name = 'Part'
+Variables['Instance179'].Shape = Enum.PartType.Block
+Variables['Instance179'].CFrame = CFrame.new(13.999774, 6.99999475, 8.49978638, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+Variables['Instance179'].Anchored = true
+Variables['Instance179'].Color = Color3.new(0.584314, 0.47451, 0.466667)
+Variables['Instance179'].Shape = Enum.PartType.Block
+Variables['Instance179'].Size = Vector3.new(0.39999985694885254, 10, 0.6000000238418579)
+Variables['Instance179'].Material = Enum.Material.WoodPlanks
+Variables['Instance179'].CanCollide = true
+Variables['Instance179'].Transparency = 0
+Variables['Instance179'].CastShadow = true
+
+Variables['Instance180'] = Instance.new('Part');Variables['Instance180'].Name = 'Part'
+Variables['Instance180'].Shape = Enum.PartType.Block
+Variables['Instance180'].CFrame = CFrame.new(14.100172, 6.99999571, 5.69996166, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+Variables['Instance180'].Anchored = true
+Variables['Instance180'].Color = Color3.new(0.843137, 0.772549, 0.603922)
+Variables['Instance180'].Shape = Enum.PartType.Block
+Variables['Instance180'].Size = Vector3.new(0.20000000298023224, 4.800000190734863, 4.600000381469727)
+Variables['Instance180'].Material = Enum.Material.WoodPlanks
+Variables['Instance180'].CanCollide = true
+Variables['Instance180'].Transparency = 0
+Variables['Instance180'].CastShadow = true
+
+Variables['Instance5'].Part1 = Variables['Instance3']
+Variables['Instance5'].Part0 = Variables['Instance4']
+Variables['Instance6'].Part1 = Variables['Instance8']
+Variables['Instance6'].Part0 = Variables['Instance4']
+Variables['Instance9'].Part1 = Variables['Instance7']
+Variables['Instance9'].Part0 = Variables['Instance8']
+Variables['Instance10'].Part1 = Variables['Instance11']
+Variables['Instance10'].Part0 = Variables['Instance8']
+Variables['Instance46'].Part0 = Variables['Instance44']
+Variables['Instance52'].Part0 = Variables['Instance50']
+Variables['Instance70'].Part1 = Variables['Instance76']
+Variables['Instance70'].Part0 = Variables['Instance69']
+Variables['Instance71'].Part1 = Variables['Instance73']
+Variables['Instance71'].Part0 = Variables['Instance69']
+Variables['Instance72'].Part1 = Variables['Instance77']
+Variables['Instance72'].Part0 = Variables['Instance69']
+Variables['Instance75'].Part1 = Variables['Instance77']
+Variables['Instance75'].Part0 = Variables['Instance74']
+Variables['Instance1'].Parent = workspace
+Variables['Instance2'].Parent = Variables['Instance1']
+Variables['Instance3'].Parent = Variables['Instance2']
+Variables['Instance4'].Parent = Variables['Instance2']
+Variables['Instance5'].Parent = Variables['Instance4']
+Variables['Instance6'].Parent = Variables['Instance4']
+Variables['Instance7'].Parent = Variables['Instance2']
+Variables['Instance8'].Parent = Variables['Instance2']
+Variables['Instance9'].Parent = Variables['Instance8']
+Variables['Instance10'].Parent = Variables['Instance8']
+Variables['Instance11'].Parent = Variables['Instance2']
+Variables['Instance12'].Parent = Variables['Instance1']
+Variables['Instance13'].Parent = Variables['Instance12']
+Variables['Instance14'].Parent = Variables['Instance13']
+Variables['Instance15'].Parent = Variables['Instance13']
+Variables['Instance16'].Parent = Variables['Instance13']
+Variables['Instance17'].Parent = Variables['Instance13']
+Variables['Instance18'].Parent = Variables['Instance13']
+Variables['Instance19'].Parent = Variables['Instance13']
+Variables['Instance20'].Parent = Variables['Instance13']
+Variables['Instance21'].Parent = Variables['Instance13']
+Variables['Instance22'].Parent = Variables['Instance12']
+Variables['Instance23'].Parent = Variables['Instance22']
+Variables['Instance24'].Parent = Variables['Instance22']
+Variables['Instance25'].Parent = Variables['Instance22']
+Variables['Instance26'].Parent = Variables['Instance22']
+Variables['Instance27'].Parent = Variables['Instance22']
+Variables['Instance28'].Parent = Variables['Instance22']
+Variables['Instance29'].Parent = Variables['Instance22']
+Variables['Instance30'].Parent = Variables['Instance22']
+Variables['Instance31'].Parent = Variables['Instance22']
+Variables['Instance32'].Parent = Variables['Instance12']
+Variables['Instance33'].Parent = Variables['Instance32']
+Variables['Instance34'].Parent = Variables['Instance32']
+Variables['Instance35'].Parent = Variables['Instance1']
+Variables['Instance36'].Parent = Variables['Instance35']
+Variables['Instance37'].Parent = Variables['Instance36']
+Variables['Instance38'].Parent = Variables['Instance37']
+Variables['Instance39'].Parent = Variables['Instance37']
+Variables['Instance40'].Parent = Variables['Instance37']
+Variables['Instance41'].Parent = Variables['Instance37']
+Variables['Instance42'].Parent = Variables['Instance36']
+Variables['Instance43'].Parent = Variables['Instance42']
+Variables['Instance44'].Parent = Variables['Instance43']
+Variables['Instance45'].Parent = Variables['Instance44']
+Variables['Instance46'].Parent = Variables['Instance44']
+Variables['Instance47'].Parent = Variables['Instance43']
+Variables['Instance48'].Parent = Variables['Instance42']
+Variables['Instance49'].Parent = Variables['Instance48']
+Variables['Instance50'].Parent = Variables['Instance48']
+Variables['Instance51'].Parent = Variables['Instance50']
+Variables['Instance52'].Parent = Variables['Instance50']
+Variables['Instance53'].Parent = Variables['Instance42']
+Variables['Instance54'].Parent = Variables['Instance42']
+Variables['Instance55'].Parent = Variables['Instance42']
+Variables['Instance56'].Parent = Variables['Instance55']
+Variables['Instance57'].Parent = Variables['Instance55']
+Variables['Instance58'].Parent = Variables['Instance42']
+Variables['Instance59'].Parent = Variables['Instance42']
+Variables['Instance60'].Parent = Variables['Instance42']
+Variables['Instance61'].Parent = Variables['Instance36']
+Variables['Instance62'].Parent = Variables['Instance61']
+Variables['Instance63'].Parent = Variables['Instance35']
+Variables['Instance64'].Parent = Variables['Instance63']
+Variables['Instance65'].Parent = Variables['Instance63']
+Variables['Instance66'].Parent = Variables['Instance65']
+Variables['Instance67'].Parent = Variables['Instance65']
+Variables['Instance68'].Parent = Variables['Instance1']
+Variables['Instance69'].Parent = Variables['Instance68']
+Variables['Instance70'].Parent = Variables['Instance69']
+Variables['Instance71'].Parent = Variables['Instance69']
+Variables['Instance72'].Parent = Variables['Instance69']
+Variables['Instance73'].Parent = Variables['Instance68']
+Variables['Instance74'].Parent = Variables['Instance68']
+Variables['Instance75'].Parent = Variables['Instance74']
+Variables['Instance76'].Parent = Variables['Instance68']
+Variables['Instance77'].Parent = Variables['Instance68']
+Variables['Instance78'].Parent = Variables['Instance1']
+Variables['Instance79'].Parent = Variables['Instance1']
+Variables['Instance80'].Parent = Variables['Instance1']
+Variables['Instance81'].Parent = Variables['Instance1']
+Variables['Instance82'].Parent = Variables['Instance1']
+Variables['Instance83'].Parent = Variables['Instance1']
+Variables['Instance84'].Parent = Variables['Instance1']
+Variables['Instance85'].Parent = Variables['Instance1']
+Variables['Instance86'].Parent = Variables['Instance1']
+Variables['Instance87'].Parent = Variables['Instance1']
+Variables['Instance88'].Parent = Variables['Instance1']
+Variables['Instance89'].Parent = Variables['Instance1']
+Variables['Instance90'].Parent = Variables['Instance1']
+Variables['Instance91'].Parent = Variables['Instance1']
+Variables['Instance92'].Parent = Variables['Instance1']
+Variables['Instance93'].Parent = Variables['Instance1']
+Variables['Instance94'].Parent = Variables['Instance1']
+Variables['Instance95'].Parent = Variables['Instance1']
+Variables['Instance96'].Parent = Variables['Instance1']
+Variables['Instance97'].Parent = Variables['Instance1']
+Variables['Instance98'].Parent = Variables['Instance1']
+Variables['Instance99'].Parent = Variables['Instance1']
+Variables['Instance100'].Parent = Variables['Instance1']
+Variables['Instance101'].Parent = Variables['Instance1']
+Variables['Instance102'].Parent = Variables['Instance1']
+Variables['Instance103'].Parent = Variables['Instance1']
+Variables['Instance104'].Parent = Variables['Instance1']
+Variables['Instance105'].Parent = Variables['Instance1']
+Variables['Instance106'].Parent = Variables['Instance1']
+Variables['Instance107'].Parent = Variables['Instance1']
+Variables['Instance108'].Parent = Variables['Instance1']
+Variables['Instance109'].Parent = Variables['Instance1']
+Variables['Instance110'].Parent = Variables['Instance1']
+Variables['Instance111'].Parent = Variables['Instance1']
+Variables['Instance112'].Parent = Variables['Instance1']
+Variables['Instance113'].Parent = Variables['Instance1']
+Variables['Instance114'].Parent = Variables['Instance1']
+Variables['Instance115'].Parent = Variables['Instance1']
+Variables['Instance116'].Parent = Variables['Instance1']
+Variables['Instance117'].Parent = Variables['Instance1']
+Variables['Instance118'].Parent = Variables['Instance1']
+Variables['Instance119'].Parent = Variables['Instance1']
+Variables['Instance120'].Parent = Variables['Instance1']
+Variables['Instance121'].Parent = Variables['Instance1']
+Variables['Instance122'].Parent = Variables['Instance1']
+Variables['Instance123'].Parent = Variables['Instance1']
+Variables['Instance124'].Parent = Variables['Instance1']
+Variables['Instance125'].Parent = Variables['Instance1']
+Variables['Instance126'].Parent = Variables['Instance1']
+Variables['Instance127'].Parent = Variables['Instance1']
+Variables['Instance128'].Parent = Variables['Instance1']
+Variables['Instance129'].Parent = Variables['Instance1']
+Variables['Instance130'].Parent = Variables['Instance1']
+Variables['Instance131'].Parent = Variables['Instance1']
+Variables['Instance132'].Parent = Variables['Instance1']
+Variables['Instance133'].Parent = Variables['Instance1']
+Variables['Instance134'].Parent = Variables['Instance1']
+Variables['Instance135'].Parent = Variables['Instance1']
+Variables['Instance136'].Parent = Variables['Instance1']
+Variables['Instance137'].Parent = Variables['Instance1']
+Variables['Instance138'].Parent = Variables['Instance1']
+Variables['Instance139'].Parent = Variables['Instance1']
+Variables['Instance140'].Parent = Variables['Instance1']
+Variables['Instance141'].Parent = Variables['Instance1']
+Variables['Instance142'].Parent = Variables['Instance1']
+Variables['Instance143'].Parent = Variables['Instance1']
+Variables['Instance144'].Parent = Variables['Instance1']
+Variables['Instance145'].Parent = Variables['Instance1']
+Variables['Instance146'].Parent = Variables['Instance1']
+Variables['Instance147'].Parent = Variables['Instance1']
+Variables['Instance148'].Parent = Variables['Instance1']
+Variables['Instance149'].Parent = Variables['Instance1']
+Variables['Instance150'].Parent = Variables['Instance1']
+Variables['Instance151'].Parent = Variables['Instance1']
+Variables['Instance152'].Parent = Variables['Instance1']
+Variables['Instance153'].Parent = Variables['Instance1']
+Variables['Instance154'].Parent = Variables['Instance1']
+Variables['Instance155'].Parent = Variables['Instance1']
+Variables['Instance156'].Parent = Variables['Instance1']
+Variables['Instance157'].Parent = Variables['Instance1']
+Variables['Instance158'].Parent = Variables['Instance1']
+Variables['Instance159'].Parent = Variables['Instance1']
+Variables['Instance160'].Parent = Variables['Instance1']
+Variables['Instance161'].Parent = Variables['Instance1']
+Variables['Instance162'].Parent = Variables['Instance1']
+Variables['Instance163'].Parent = Variables['Instance1']
+Variables['Instance164'].Parent = Variables['Instance1']
+Variables['Instance165'].Parent = Variables['Instance1']
+Variables['Instance166'].Parent = Variables['Instance1']
+Variables['Instance167'].Parent = Variables['Instance1']
+Variables['Instance168'].Parent = Variables['Instance1']
+Variables['Instance169'].Parent = Variables['Instance1']
+Variables['Instance170'].Parent = Variables['Instance1']
+Variables['Instance171'].Parent = Variables['Instance1']
+Variables['Instance172'].Parent = Variables['Instance1']
+Variables['Instance173'].Parent = Variables['Instance1']
+Variables['Instance174'].Parent = Variables['Instance1']
+Variables['Instance175'].Parent = Variables['Instance1']
+Variables['Instance176'].Parent = Variables['Instance1']
+Variables['Instance177'].Parent = Variables['Instance1']
+Variables['Instance178'].Parent = Variables['Instance1']
+Variables['Instance179'].Parent = Variables['Instance1']
+Variables['Instance180'].Parent = Variables['Instance1']
+
+local Event = Variables['Instance1']:FindFirstChild("Events")
+local Door = Event.SlidingDoor.Door
+local Lever = Event.SlidingDoor.Lever
+local Open = true
+
+local Debounce = false
+-- door function
+function ButtonClicked(Player)
+	if not Debounce then
+		Debounce = true
+		if Open then
+			Open = false
+			task.spawn(function()
+				Lever.Detect:FindFirstChildWhichIsA("ClickDetector").MaxActivationDistance = 0
+				Lever.LeverDown.Knob.Transparency = 1
+				Lever.LeverDown.Lever.Transparency = 1
+				
+				Lever.LeverUp.Knob.Transparency = 0
+				Lever.LeverUp.Lever.Transparency = 0
+				wait(2)
+				Lever.Detect:FindFirstChildWhichIsA("ClickDetector").MaxActivationDistance = 5
+			end)
+
+			Door.DoorSound:Play()
+			for i,v in pairs(Door:GetChildren()) do
+				if v:IsA("Decal") then
+					v.Transparency = 0
+				end
+			end
+
+			for i = 1,(Door.Size.z / 0.31) do
+				Door.CFrame = Door.CFrame + (Door.CFrame.lookVector * 0.31)
+				wait()
+			end
+
+		else
+			task.spawn(function()
+				Lever.Detect:FindFirstChildWhichIsA("ClickDetector").MaxActivationDistance = 0
+				Lever.LeverDown.Knob.Transparency = 0
+				Lever.LeverDown.Lever.Transparency = 0
+
+				Lever.LeverUp.Knob.Transparency = 1
+				Lever.LeverUp.Lever.Transparency = 1
+				wait(2)
+				Lever.Detect:FindFirstChildWhichIsA("ClickDetector").MaxActivationDistance = 5
+			end)
+			Open = true
+			Door.DoorSound:Play()
+			for i = 1,(Door.Size.z / 0.31) do
+				Door.CFrame = Door.CFrame - (Door.CFrame.lookVector * 0.31)
+				wait()
+
+			end
+
+			for i,v in pairs(Door:GetChildren()) do
+				if v:IsA("Decal") then
+					v.Transparency = 1
+				end
+			end
+		end
+		wait(1)
+		Debounce = false
+	end
+end
+Lever.Detect:FindFirstChildWhichIsA("ClickDetector").MouseClick:Connect(ButtonClicked)
+Variables['Instance1']:PivotTo(workspace["JennyHenson2"].HumanoidRootPart.CFrame*CFrame.new(0,5.8,10))
