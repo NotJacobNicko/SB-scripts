@@ -779,7 +779,7 @@ function SummonGun()
 	Variables['Instance84'].Parent = Variables['Instance83']
 
 	-- Main Function
-	local Active,Debounce = false,false
+	local Active,Debounce,ActorMsg = false,false,false
 	local Mouse = CFrame.new()
 	local Rgbcolor = Color3.new()
 	local Highligh
@@ -843,6 +843,100 @@ function SummonGun()
 			end
 		end))
 		return NEWSOUND
+	end
+	local function chatfunc(textt)
+		local text = string.gsub(textt,"​","")
+		if string.sub(text,1,2) == "/e" then
+			return
+		end
+		task.spawn(function()
+			local sayingstuff = Instance.new("BillboardGui",workspace)
+			sayingstuff.Size = UDim2.new(0,9999,2,0)
+			sayingstuff.StudsOffset = Vector3.new(0,5,0)
+			sayingstuff.Adornee = Variables['Instance2']
+			sayingstuff.Name = "TalkingBillBoard"
+			local sayingstuff2 = Instance.new("TextLabel",sayingstuff)
+			sayingstuff2.BackgroundTransparency = 1
+			sayingstuff2.BorderSizePixel = 0
+			sayingstuff2.Text = ""
+			sayingstuff2.Font = "Ubuntu"
+			sayingstuff2.TextScaled = true
+			sayingstuff2.TextStrokeTransparency = 0
+			sayingstuff2.TextStrokeColor3 = Color3.new(1, 1, 1)
+			sayingstuff2.Size = UDim2.new(1,0,1,0)
+			local sayingstuff3 = Instance.new("TextLabel",sayingstuff)
+			sayingstuff3.BackgroundTransparency = 1
+			sayingstuff3.BorderSizePixel = 0
+			sayingstuff3.Text = ""
+			sayingstuff3.Font = "Ubuntu"
+			sayingstuff3.TextScaled = true
+			sayingstuff3.TextStrokeTransparency = 0
+			coroutine.resume(coroutine.create(function()
+				while sayingstuff3:IsDescendantOf(game) do
+					sayingstuff3.TextColor3 = Rgbcolor
+					game:GetService("RunService").Heartbeat:Wait()
+				end
+			end))
+			sayingstuff3.TextStrokeColor3 = Color3.new(0,0,0)
+			sayingstuff3.Size = UDim2.new(1,0,1,0)
+			coroutine.resume(coroutine.create(function()
+				while sayingstuff ~= nil do
+					game:GetService("RunService").Heartbeat:Wait()
+					sayingstuff2.Position = UDim2.new(0,math.random(-3,3),0,math.random(-3,3)) 
+					sayingstuff3.Position = UDim2.new(0,math.random(-3,3),0,math.random(-3,3)) 
+				end
+			end))
+			for i = 1,string.len(text) do
+				for _=1,2 do
+					game:GetService("RunService").Heartbeat:Wait()
+				end
+				sayingstuff2.Text = string.sub(text,1,i)
+				sayingstuff3.Text = string.sub(text,1,i)
+
+
+				local Sound = Instance.new("Sound",Variables['Instance57'])
+				Sound.SoundId = "rbxasset://sounds\\clickfast.wav"
+				Sound.Volume = 5
+				Sound.PlayOnRemove = true
+				game:GetService("Debris"):AddItem(Sound,0)
+			end
+			for _=1,120 do
+				game:GetService("RunService").Heartbeat:Wait()
+			end
+			for i = 1,50 do
+				game:GetService("RunService").Heartbeat:Wait()
+				sayingstuff2.Position = sayingstuff2.Position - UDim2.new(0,math.random(-3,3),0,math.random(-3,3))
+				sayingstuff3.Position = sayingstuff2.Position - UDim2.new(0,math.random(-3,3),0,math.random(-3,3)) 
+				sayingstuff2.Rotation = sayingstuff2.Rotation + math.random(-2,2)
+				sayingstuff3.Rotation = sayingstuff3.Rotation + math.random(-2,2)
+				sayingstuff2.TextStrokeTransparency = i/50
+				sayingstuff2.TextTransparency = sayingstuff2.TextStrokeTransparency
+				sayingstuff3.TextStrokeTransparency = sayingstuff2.TextStrokeTransparency
+				sayingstuff3.TextTransparency = sayingstuff2.TextStrokeTransparency
+			end
+			sayingstuff:Destroy()
+		end)
+	end
+	local function checkactor(v)
+		local actor = nil
+		if(v:IsA("BasePart"))then
+			local orig = v.Transparency
+			v.Transparency = 2
+			if (not v:IsDescendantOf(workspace) or v.Transparency ~= 2) then
+				actor = true
+			else
+				v.Transparency = orig
+				actor = false
+			end
+		else
+			actor = false
+		end
+		if (actor == nil) then
+			repeat
+				task.wait()
+			until actor ~= nil
+		end
+		return actor
 	end
 	local function Shoot(Pos)
 		if not Debounce and Active then
@@ -912,6 +1006,9 @@ function SummonGun()
 									table.insert(SampleTable.MeshIDs,HIT.MeshId)
 								elseif HIT:FindFirstChildWhichIsA("SpecialMesh") then
 									table.insert(SampleTable.MeshIDs,HIT:FindFirstChildWhichIsA("SpecialMesh").MeshId)
+								end
+								if checkactor(HIT) then
+									chatfunc("The Tagged Object Is Actor")
 								end
 								HIT.CFrame = POSITION
 								table.insert(SampleTable.Connection,HIT.Changed:Connect(function()
