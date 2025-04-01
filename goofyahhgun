@@ -942,7 +942,7 @@ function SummonGun()
 		if not Debounce and Active then
 			Debounce = true
 			local sucessed,Msg = pcall(function()
-				local Hole1,Effect = Variables['Instance57'],Variables['Instance1'].Parent
+				local Hole1,Effect = Variables['Instance57'],workspace.Terrain
 				local HIT,POS = workspace:FindPartOnRay(Ray.new(Hole1.Position, CFrame.new(Hole1.Position,Pos).lookVector.unit * 2000),Variables['Instance1'].Parent)
 				SpawnTrail(Hole1.Position,POS)
 				CreateSound(904440937,Hole1,1,math.random(8,11)/10,false)
