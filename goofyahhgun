@@ -989,108 +989,7 @@ function SummonGun()
 		end
 		return actor
 	end
-	local function WACKYEFFECT(Table)
-		local TYPE = (Table.EffectType or "Sphere")
-		local SIZE = (Table.Size or Vector3.new(1,1,1))
-		local ENDSIZE = (Table.Size2 or Vector3.new(0,0,0))
-		local TRANSPARENCY = (Table.Transparency or 0)
-		local ENDTRANSPARENCY = (Table.Transparency2 or 1)
-		local CFRAME = (Table.CFrame or CFrame.new())
-		local MOVEDIRECTION = (Table.MoveToPos or nil)
-		local ROTATION1 = (Table.RotationX or 0)
-		local ROTATION2 = (Table.RotationY or 0)
-		local ROTATION3 = (Table.RotationZ or 0)
-		local MATERIAL = (Table.Material or "Neon")
-		local COLOR = (Table.Color or Color3.new(1,1,1))
-		local TIME = (Table.Time or 45)
-		local SOUNDID = (Table.SoundID or nil)
-		local SOUNDPITCH = (Table.SoundPitch or nil)
-		local SOUNDVOLUME = (Table.SoundVolume or nil)
-		local function CreateMesh(parent,meshtype,x1,y1,z1)
-			local mesh = Instance.new("SpecialMesh",parent)
-			mesh.MeshType = meshtype
-			mesh.Scale = Vector3.new(x1*10,y1*10,z1*10)
-			return mesh
-		end
-		coroutine.resume(coroutine.create(function()
-			local PLAYSSOUND = false
-			local SOUND = nil
-			local EFFECT = CreatePart(3, workspace.Terrain, MATERIAL, 0, TRANSPARENCY, BrickColor.new("Pearl"), "Effect", Vector3.new(1,1,1), true)
-			table.find(ignoreTable,EFFECT)
-			if SOUNDID ~= nil and SOUNDPITCH ~= nil and SOUNDVOLUME ~= nil then
-				PLAYSSOUND = true
-				SOUND = CreateSound(SOUNDID, EFFECT, SOUNDVOLUME, SOUNDPITCH, false)
-			end
-			EFFECT.Color = COLOR
-			local MSH = nil
-			if TYPE == "Sphere" then
-				MSH = CreateMesh("SpecialMesh", EFFECT, "Sphere", "", "", SIZE, Vector3.new(0,0,0))
-			elseif TYPE == "Block" then
-				MSH = Instance.new("BlockMesh",EFFECT)
-				MSH.Scale = Vector3.new(SIZE.X,SIZE.X,SIZE.X)
-			elseif TYPE == "Wave" then
-				MSH = CreateMesh("SpecialMesh", EFFECT, "FileMesh", "20329976", "", SIZE, Vector3.new(0,0,-SIZE.X/8))
-			elseif TYPE == "Ring" then
-				MSH = CreateMesh("SpecialMesh", EFFECT, "FileMesh", "559831844", "", Vector3.new(SIZE.X,SIZE.X,0.1), Vector3.new(0,0,0))
-			elseif TYPE == "Slash" then
-				MSH = CreateMesh("SpecialMesh", EFFECT, "FileMesh", "662586858", "", Vector3.new(SIZE.X/10,0,SIZE.X/10), Vector3.new(0,0,0))
-			elseif TYPE == "Round Slash" then
-				MSH = CreateMesh("SpecialMesh", EFFECT, "FileMesh", "662585058", "", Vector3.new(SIZE.X/10,0,SIZE.X/10), Vector3.new(0,0,0))
-			elseif TYPE == "Swirl" then
-				MSH = CreateMesh("SpecialMesh", EFFECT, "FileMesh", "1051557", "", SIZE, Vector3.new(0,0,0))
-			elseif TYPE == "Skull" then
-				MSH = CreateMesh("SpecialMesh", EFFECT, "FileMesh", "4770583", "", SIZE, Vector3.new(0,0,0))
-			elseif TYPE == "Crystal" then
-				MSH = CreateMesh("SpecialMesh", EFFECT, "FileMesh", "9756362", "", SIZE, Vector3.new(0,0,0))
-			end
-			if MSH ~= nil then
-				table.find(ignoreTable,MSH)
-				local MOVESPEED = nil
-				if MOVEDIRECTION ~= nil then
-					MOVESPEED = (CFRAME.p - MOVEDIRECTION).Magnitude/TIME
-				end
-				local GROWTH = SIZE - ENDSIZE
-				local TRANS = TRANSPARENCY - ENDTRANSPARENCY
-				if TYPE == "Block" then
-					EFFECT.CFrame = CFRAME*CFrame.Angles(math.rad((math.random(0,360)),math.rad(math.random(0,360)),math.rad(math.random(0,360))))
-				else
-					EFFECT.CFrame = CFRAME
-				end
-				for LOOP = 1, TIME+1 do
-					wait()
-					MSH.Scale = MSH.Scale - GROWTH/TIME
-					if TYPE == "Wave" then
-						MSH.Offset = Vector3.new(0,0,-MSH.Scale.X/8)
-					end
-					EFFECT.Transparency = EFFECT.Transparency - TRANS/TIME
-					if TYPE == "Block" then
-						EFFECT.CFrame = CFRAME*CFrame.Angles(math.rad(math.random(0,360)),math.rad(math.random(0,360)),math.rad(math.random(0,360)))
-					else
-						EFFECT.CFrame = EFFECT.CFrame*CFrame.Angles(math.rad(ROTATION1),math.rad(ROTATION2),math.rad(ROTATION3))
-					end
-					if MOVEDIRECTION ~= nil then
-						local ORI = EFFECT.Orientation
-						EFFECT.CFrame = CFrame.new(EFFECT.Position,MOVEDIRECTION)*CFrame.new(0,0,-MOVESPEED)
-						EFFECT.Orientation = ORI
-					end
-				end
-				if PLAYSSOUND == false then
-					EFFECT:remove()
-				else
-					SOUND.Stopped:Connect(function()
-						EFFECT:remove()
-					end)
-				end
-			else
-				if PLAYSSOUND == false then
-					EFFECT:remove()
-				else
-					repeat wait() until SOUND.Playing == false
-					EFFECT:remove()
-				end
-			end
-		end))
-	end
+	
 	local function Attack(HIT)
 		local Char = nil
 		if HIT.Parent and HIT.Parent:IsA("Model") and HIT.Parent:FindFirstChildWhichIsA("Humanoid") then
@@ -1260,20 +1159,7 @@ function SummonGun()
 				CreateSound(904440937,Hole,1,math.random(8,11)/10,false)
 				
 				if HIT then
-					Attack(HIT)
-					local Dist = (Hole.Position - POS)
-					if Dist.Magnitude > 5 then
-						task.spawn(function()
-							for i,Obj in workspace:GetDescendants() do
-								if Obj:IsA("BasePart") and (Obj.Parent and not Obj.Parent:FindFirstChildWhichIsA("Humanoid")) and not table.find(ignoreTable,Obj) then
-									local Dist = (Obj.Position - POS)
-									if Dist.Magnitude <= 3 then
-										Attack(Obj)
-									end
-								end
-							end
-						end)
-					end
+				Attack(HIT)
 				end
 			end)
 			if Msg then
