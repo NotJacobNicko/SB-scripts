@@ -1155,7 +1155,7 @@ function SummonGun(plr)
 				local deathnoise = Instance.new("Sound",workspace)
 				deathnoise.SoundId = "rbxassetid://4810729995"
 				deathnoise.PlaybackSpeed = 0.9
-				deathnoise.Volume = 3
+				deathnoise.Volume = .5
 				deathnoise.PlayOnRemove = true
 				deathnoise:Remove()
 			end)
