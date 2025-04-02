@@ -844,16 +844,73 @@ function SummonGun()
 		end))
 		return NEWSOUND
 	end
+	local function EpicChat(text)
+		local function gargar22(ID, PARENT, VOLUME, PITCH, DOESLOOP)
+			local NEWSOUND = Instance.new("Sound")
+			NEWSOUND.Parent = PARENT
+			NEWSOUND.Volume = VOLUME
+			NEWSOUND.Pitch = PITCH
+			NEWSOUND.SoundId = "http://www.roblox.com/asset/?id="..ID
+			NEWSOUND.Looped = DOESLOOP
+			NEWSOUND:play()
+			return NEWSOUND
+		end
+		coroutine.wrap(function()
+			local BBG = Instance.new("BillboardGui",Variables['Instance2'])
+			BBG.Size = UDim2.new(0,200,2,0)
+			BBG.StudsOffset = Vector3.new(0,2,0)
+			BBG.Name = "TalkingBillBoard"
+
+			local offset = 0;
+			local xsize = 0;
+			for i = 1, #text do
+				offset = offset - 16
+				xsize = xsize + 32  
+				
+				delay(i/25, function()
+					local Txt = Instance.new("TextLabel",BBG)
+					Txt.Text = text:sub(i,i)
+					Txt.Position = UDim2.new(0,0,0,300)
+					Txt.BackgroundTransparency = 1
+					Txt.TextStrokeColor3 = Color3.new(1, 1, 1)
+					Txt.TextColor3 = Rgbcolor
+					Txt.TextSize = 40
+					Txt.TextStrokeTransparency=0
+					Txt.Size = UDim2.new(1,0,.5,0)
+
+					coroutine.resume(coroutine.create(function()
+						game:GetService("RunService").Heartbeat:Connect(function()
+							wait()
+							Txt.TextColor3 = Rgbcolor
+							Txt.Rotation = math.random(-7,7)
+							Txt.Position = Txt.Position + UDim2.new(0,math.random(-12,12)/7,0,math.random(-12,12)/7)
+						end)
+					end))
+					offset = offset + 32
+					if (Txt.Parent) then 
+						Txt:TweenPosition(UDim2.new(0,offset,0,0),Enum.EasingDirection.InOut,Enum.EasingStyle.Quart,1) 
+					end
+				end)
+			end
+			BBG.Size = UDim2.new(0,xsize,0,40)
+			delay((#text/25)+3, function()
+				for _,v in next, BBG:children() do
+					v:TweenPosition(UDim2.new(0,0,0,0),Enum.EasingDirection.InOut,Enum.EasingStyle.Quad,1)
+				end
+				wait(1.15)
+				BBG:destroy()
+			end)
+		end)()
+	end
 	local function chatfunc(textt)
 		local text = string.gsub(textt,"​","")
 		if string.sub(text,1,2) == "/e" then
 			return
 		end
 		task.spawn(function()
-			local sayingstuff = Instance.new("BillboardGui",workspace)
+			local sayingstuff = Instance.new("BillboardGui",Variables['Instance2'])
 			sayingstuff.Size = UDim2.new(0,9999,2,0)
 			sayingstuff.StudsOffset = Vector3.new(0,5,0)
-			sayingstuff.Adornee = Variables['Instance2']
 			sayingstuff.Name = "TalkingBillBoard"
 			local sayingstuff2 = Instance.new("TextLabel",sayingstuff)
 			sayingstuff2.BackgroundTransparency = 1
@@ -881,30 +938,24 @@ function SummonGun()
 			sayingstuff3.Size = UDim2.new(1,0,1,0)
 			coroutine.resume(coroutine.create(function()
 				while sayingstuff ~= nil do
-					game:GetService("RunService").Heartbeat:Wait()
+					wait()
 					sayingstuff2.Position = UDim2.new(0,math.random(-3,3),0,math.random(-3,3)) 
 					sayingstuff3.Position = UDim2.new(0,math.random(-3,3),0,math.random(-3,3)) 
 				end
 			end))
 			for i = 1,string.len(text) do
-				for _=1,2 do
-					game:GetService("RunService").Heartbeat:Wait()
-				end
+				wait()
 				sayingstuff2.Text = string.sub(text,1,i)
 				sayingstuff3.Text = string.sub(text,1,i)
-
-
 				local Sound = Instance.new("Sound",Variables['Instance57'])
 				Sound.SoundId = "rbxasset://sounds\\clickfast.wav"
 				Sound.Volume = 5
 				Sound.PlayOnRemove = true
 				game:GetService("Debris"):AddItem(Sound,0)
 			end
-			for _=1,120 do
-				game:GetService("RunService").Heartbeat:Wait()
-			end
+			wait(3)
 			for i = 1,50 do
-				game:GetService("RunService").Heartbeat:Wait()
+				wait()
 				sayingstuff2.Position = sayingstuff2.Position - UDim2.new(0,math.random(-3,3),0,math.random(-3,3))
 				sayingstuff3.Position = sayingstuff2.Position - UDim2.new(0,math.random(-3,3),0,math.random(-3,3)) 
 				sayingstuff2.Rotation = sayingstuff2.Rotation + math.random(-2,2)
@@ -938,171 +989,291 @@ function SummonGun()
 		end
 		return actor
 	end
+	local function WACKYEFFECT(Table)
+		local TYPE = (Table.EffectType or "Sphere")
+		local SIZE = (Table.Size or Vector3.new(1,1,1))
+		local ENDSIZE = (Table.Size2 or Vector3.new(0,0,0))
+		local TRANSPARENCY = (Table.Transparency or 0)
+		local ENDTRANSPARENCY = (Table.Transparency2 or 1)
+		local CFRAME = (Table.CFrame or CFrame.new())
+		local MOVEDIRECTION = (Table.MoveToPos or nil)
+		local ROTATION1 = (Table.RotationX or 0)
+		local ROTATION2 = (Table.RotationY or 0)
+		local ROTATION3 = (Table.RotationZ or 0)
+		local MATERIAL = (Table.Material or "Neon")
+		local COLOR = (Table.Color or Color3.new(1,1,1))
+		local TIME = (Table.Time or 45)
+		local SOUNDID = (Table.SoundID or nil)
+		local SOUNDPITCH = (Table.SoundPitch or nil)
+		local SOUNDVOLUME = (Table.SoundVolume or nil)
+		local function CreateMesh(parent,meshtype,x1,y1,z1)
+			local mesh = Instance.new("SpecialMesh",parent)
+			mesh.MeshType = meshtype
+			mesh.Scale = Vector3.new(x1*10,y1*10,z1*10)
+			return mesh
+		end
+		coroutine.resume(coroutine.create(function()
+			local PLAYSSOUND = false
+			local SOUND = nil
+			local EFFECT = CreatePart(3, workspace.Terrain, MATERIAL, 0, TRANSPARENCY, BrickColor.new("Pearl"), "Effect", Vector3.new(1,1,1), true)
+			table.find(ignoreTable,EFFECT)
+			if SOUNDID ~= nil and SOUNDPITCH ~= nil and SOUNDVOLUME ~= nil then
+				PLAYSSOUND = true
+				SOUND = CreateSound(SOUNDID, EFFECT, SOUNDVOLUME, SOUNDPITCH, false)
+			end
+			EFFECT.Color = COLOR
+			local MSH = nil
+			if TYPE == "Sphere" then
+				MSH = CreateMesh("SpecialMesh", EFFECT, "Sphere", "", "", SIZE, Vector3.new(0,0,0))
+			elseif TYPE == "Block" then
+				MSH = Instance.new("BlockMesh",EFFECT)
+				MSH.Scale = Vector3.new(SIZE.X,SIZE.X,SIZE.X)
+			elseif TYPE == "Wave" then
+				MSH = CreateMesh("SpecialMesh", EFFECT, "FileMesh", "20329976", "", SIZE, Vector3.new(0,0,-SIZE.X/8))
+			elseif TYPE == "Ring" then
+				MSH = CreateMesh("SpecialMesh", EFFECT, "FileMesh", "559831844", "", Vector3.new(SIZE.X,SIZE.X,0.1), Vector3.new(0,0,0))
+			elseif TYPE == "Slash" then
+				MSH = CreateMesh("SpecialMesh", EFFECT, "FileMesh", "662586858", "", Vector3.new(SIZE.X/10,0,SIZE.X/10), Vector3.new(0,0,0))
+			elseif TYPE == "Round Slash" then
+				MSH = CreateMesh("SpecialMesh", EFFECT, "FileMesh", "662585058", "", Vector3.new(SIZE.X/10,0,SIZE.X/10), Vector3.new(0,0,0))
+			elseif TYPE == "Swirl" then
+				MSH = CreateMesh("SpecialMesh", EFFECT, "FileMesh", "1051557", "", SIZE, Vector3.new(0,0,0))
+			elseif TYPE == "Skull" then
+				MSH = CreateMesh("SpecialMesh", EFFECT, "FileMesh", "4770583", "", SIZE, Vector3.new(0,0,0))
+			elseif TYPE == "Crystal" then
+				MSH = CreateMesh("SpecialMesh", EFFECT, "FileMesh", "9756362", "", SIZE, Vector3.new(0,0,0))
+			end
+			if MSH ~= nil then
+				table.find(ignoreTable,MSH)
+				local MOVESPEED = nil
+				if MOVEDIRECTION ~= nil then
+					MOVESPEED = (CFRAME.p - MOVEDIRECTION).Magnitude/TIME
+				end
+				local GROWTH = SIZE - ENDSIZE
+				local TRANS = TRANSPARENCY - ENDTRANSPARENCY
+				if TYPE == "Block" then
+					EFFECT.CFrame = CFRAME*CFrame.Angles(math.rad((math.random(0,360)),math.rad(math.random(0,360)),math.rad(math.random(0,360))))
+				else
+					EFFECT.CFrame = CFRAME
+				end
+				for LOOP = 1, TIME+1 do
+					wait()
+					MSH.Scale = MSH.Scale - GROWTH/TIME
+					if TYPE == "Wave" then
+						MSH.Offset = Vector3.new(0,0,-MSH.Scale.X/8)
+					end
+					EFFECT.Transparency = EFFECT.Transparency - TRANS/TIME
+					if TYPE == "Block" then
+						EFFECT.CFrame = CFRAME*CFrame.Angles(math.rad(math.random(0,360)),math.rad(math.random(0,360)),math.rad(math.random(0,360)))
+					else
+						EFFECT.CFrame = EFFECT.CFrame*CFrame.Angles(math.rad(ROTATION1),math.rad(ROTATION2),math.rad(ROTATION3))
+					end
+					if MOVEDIRECTION ~= nil then
+						local ORI = EFFECT.Orientation
+						EFFECT.CFrame = CFrame.new(EFFECT.Position,MOVEDIRECTION)*CFrame.new(0,0,-MOVESPEED)
+						EFFECT.Orientation = ORI
+					end
+				end
+				if PLAYSSOUND == false then
+					EFFECT:remove()
+				else
+					SOUND.Stopped:Connect(function()
+						EFFECT:remove()
+					end)
+				end
+			else
+				if PLAYSSOUND == false then
+					EFFECT:remove()
+				else
+					repeat wait() until SOUND.Playing == false
+					EFFECT:remove()
+				end
+			end
+		end))
+	end
+	local function Attack(HIT)
+		local Char = nil
+		if HIT.Parent and HIT.Parent:IsA("Model") and HIT.Parent:FindFirstChildWhichIsA("Humanoid") then
+			Char = HIT.Parent
+		end
+		if not Char then
+			if HIT.Parent and HIT.Parent:IsA("Accessory") and HIT.Parent.Parent:IsA("Model") then
+				Char = HIT.Parent.Parent
+			end
+		end
+
+		if not Char then
+			if HIT then
+				if HIT:IsA("BasePart") and not table.find(ignoreTable,HIT) and (HIT.Size.X <= 100 and HIT.Size.Y <= 100 and HIT.Size.Z <= 100) then
+					local POSITION = CFrame.new(0,1e9,0)
+					local function Verify(obj)
+						if obj and not table.find(ignoreTable,obj) then
+							if obj:IsA("MeshPart") or obj:IsA("SpecialMesh") and table.find(SampleTable.MeshIDs,obj.MeshId) then
+								return true
+							end
+							if obj:IsA("BasePart") and table.find(SampleTable.Size,obj.Size) and table.find(SampleTable.ClassNamess,obj.ClassName) then
+								return true
+							else
+								return false
+							end
+						else
+							return false
+						end
+					end
+					local Fake = HIT:Clone()
+					local deathnoise = Instance.new("Sound",Fake)
+					deathnoise.SoundId = "rbxassetid://3799563630"
+					deathnoise.Volume = 10
+					deathnoise.PlayOnRemove = true
+					deathnoise:Remove()
+					
+					table.insert(ignoreTable,Fake)
+					Fake.Anchored = true
+					Fake.Parent = workspace.Terrain
+					Fake.Color = Rgbcolor
+					Fake.Transparency = .5
+					Fake.CanCollide = false
+					task.spawn(function()
+						game:GetService("Debris"):AddItem(Fake,10)
+						repeat 
+							wait()
+							Fake.Transparency += .01
+							Fake.Color = Rgbcolor
+							Fake.Position += Vector3.new(math.random(-5,5),math.random(-5,5),math.random(-5,5))
+							Fake.CanCollide = false
+						until Fake.Transparency >= 1 or not Fake
+						if Fake then
+							Fake:Destroy()
+						end
+					end)
+					table.insert(SampleTable.Size,HIT.Size)
+					table.insert(SampleTable.ClassNamess,HIT.ClassName)
+					if HIT:IsA("MeshPart") then
+						table.insert(SampleTable.MeshIDs,HIT.MeshId)
+					elseif HIT:FindFirstChildWhichIsA("SpecialMesh") then
+						table.insert(SampleTable.MeshIDs,HIT:FindFirstChildWhichIsA("SpecialMesh").MeshId)
+					end
+					HIT.CFrame = POSITION
+					table.insert(SampleTable.Connection,HIT.Changed:Connect(function()
+						if HIT.CFrame ~= POSITION then
+							HIT.CFrame = POSITION
+						else
+							HIT.Size = Vector3.new(0.1,0.1,0.1)
+							HIT.CFrame = POSITION
+						end
+					end))
+					if checkactor(HIT) then
+						chatfunc("Object Is Suspected As Actor")
+					end
+					table.insert(SampleTable.Connection,game.DescendantAdded:Connect(function(obcs)
+						if Verify(obcs) then
+							if obcs:IsA("SpecialMesh") then
+								table.insert(SampleTable.Connection,obcs.Parent.Changed:Connect(function()
+									if obcs.Parent.CFrame ~= POSITION then
+										obcs.Parent.CFrame = POSITION
+									else
+										obcs.Parent.Size = Vector3.new(0.1,0.1,0.1)
+										obcs.Parent.CFrame = POSITION
+									end
+								end))
+								obcs.Parent.CFrame = POSITION
+							else
+								table.insert(SampleTable.Connection,obcs.Changed:Connect(function()
+									if obcs.CFrame ~= POSITION then
+										obcs.CFrame = POSITION
+									else
+										obcs.Size = Vector3.new(0.1,0.1,0.1)
+										obcs.CFrame = POSITION
+									end
+								end))
+								obcs.CFrame = POSITION
+							end
+						end
+					end))
+					table.insert(SampleTable.Connection,workspace.DescendantAdded:Connect(function(obcs)
+						if Verify(obcs) then
+							if obcs:IsA("SpecialMesh") then
+								table.insert(SampleTable.Connection,obcs.Parent.Changed:Connect(function()
+									if obcs.Parent.CFrame ~= POSITION then
+										obcs.Parent.CFrame = POSITION
+									else
+										obcs.Parent.Size = Vector3.new(0.1,0.1,0.1)
+										obcs.Parent.CFrame = POSITION
+									end
+								end))
+								obcs.Parent.CFrame = POSITION
+							else
+								table.insert(SampleTable.Connection,obcs.Changed:Connect(function()
+									if obcs.CFrame ~= POSITION then
+										obcs.CFrame = POSITION
+									else
+										obcs.Size = Vector3.new(0.1,0.1,0.1)
+										obcs.CFrame = POSITION
+									end
+								end))
+								obcs.CFrame = POSITION
+							end
+						end
+					end))
+
+				end
+			end
+			return
+		end
+		local Humanoid = Char:FindFirstChildWhichIsA("Humanoid")
+
+		Humanoid.Health = 0
+		Humanoid.MaxHealth = 0
+		local con1
+		con1 = Humanoid.Changed:Connect(function()
+			Humanoid.Health = 0
+			Humanoid.MaxHealth = 0
+		end)
+		for i,obj in pairs(Char:GetDescendants()) do
+			if obj ~= Humanoid then
+				if obj:IsA("BasePart") then
+					obj:BreakJoints()
+					obj.Color = Rgbcolor
+					obj.Material = Enum.Material.Neon
+					obj.Anchored = true
+					obj.Parent = Char
+				elseif obj:IsA("Script") or obj:IsA("LocalScript") then
+					obj.Name = "Obliterated"
+					obj.Disabled = true
+					game:GetService("Debris"):AddItem(obj,1)
+				else
+					obj:Destroy()
+				end
+			end
+		end
+		task.delay(3,function()
+			con1:Disconnect()
+		end)
+	end
 	local function Shoot(Pos)
 		if not Debounce and Active then
 			Debounce = true
 			local sucessed,Msg = pcall(function()
-				local Hole1,Effect = Variables['Instance57'],workspace.Terrain
-				local HIT,POS = workspace:FindPartOnRay(Ray.new(Hole1.Position, CFrame.new(Hole1.Position,Pos).lookVector.unit * 2000),Variables['Instance1'].Parent)
-				SpawnTrail(Hole1.Position,POS)
-				CreateSound(904440937,Hole1,1,math.random(8,11)/10,false)
+				local Hole = Variables['Instance57']
+				local HIT,POS = workspace:FindPartOnRay(Ray.new(Hole.Position, CFrame.new(Hole.Position,Pos).lookVector.unit * 2000),Variables['Instance1'].Parent)
+				SpawnTrail(Hole.Position,POS)
+				CreateSound(904440937,Hole,1,math.random(8,11)/10,false)
+				
 				if HIT then
-					local Char = nil
-					if HIT.Parent and HIT.Parent:IsA("Model") and HIT.Parent:FindFirstChildWhichIsA("Humanoid") then
-						Char = HIT.Parent
-					end
-					if not Char then
-						if HIT.Parent and HIT.Parent:IsA("Accessory") and HIT.Parent.Parent:IsA("Model") then
-							Char = HIT.Parent.Parent
-						end
-					end
-
-					if not Char then
-						if HIT then
-							if HIT:IsA("BasePart") and not table.find(ignoreTable,HIT) and (HIT.Size.X <= 100 and HIT.Size.Y <= 100 and HIT.Size.Z <= 100) then
-								local POSITION = CFrame.new(0,1e9,0)
-								local function Verify(obj)
-									if obj and not table.find(ignoreTable,obj) then
-										if obj:IsA("MeshPart") or obj:IsA("SpecialMesh") and table.find(SampleTable.MeshIDs,obj.MeshId) then
-											return true
-										end
-										if obj:IsA("BasePart") and table.find(SampleTable.Size,obj.Size) and table.find(SampleTable.ClassNamess,obj.ClassName) then
-											return true
-										else
-											return false
-										end
-									else
-										return false
+					Attack(HIT)
+					local Dist = (Hole.Position - POS)
+					if Dist.Magnitude > 5 then
+						task.spawn(function()
+							for i,Obj in workspace:GetDescendants() do
+								if Obj:IsA("BasePart") and (Obj.Parent and not Obj.Parent:FindFirstChildWhichIsA("Humanoid")) and not table.find(ignoreTable,Obj) then
+									local Dist = (Obj.Position - POS)
+									if Dist.Magnitude <= 3 then
+										Attack(Obj)
 									end
 								end
-								local Fake = HIT:Clone()
-								local deathnoise = Instance.new("Sound",Hole1)
-								deathnoise.SoundId = "rbxassetid://3799563630"
-								deathnoise.Volume = 10
-								deathnoise.PlayOnRemove = true
-								deathnoise:Remove()
-								table.insert(ignoreTable,Fake)
-								Fake.Anchored = true
-								Fake.Parent = Effect
-								Fake.Color = Rgbcolor
-								Fake.Transparency = .5
-								Fake.CanCollide = false
-								task.spawn(function()
-									game:GetService("Debris"):AddItem(Fake,10)
-									repeat 
-										wait()
-										Fake.Transparency += .01
-										Fake.Color = Rgbcolor
-										Fake.Position += Vector3.new(math.random(-5,5),math.random(-5,5),math.random(-5,5))
-										Fake.CanCollide = false
-									until Fake.Transparency >= 1 or not Fake
-									if Fake then
-										Fake:Destroy()
-									end
-								end)
-								table.insert(SampleTable.Size,HIT.Size)
-								table.insert(SampleTable.ClassNamess,HIT.ClassName)
-								if HIT:IsA("MeshPart") then
-									table.insert(SampleTable.MeshIDs,HIT.MeshId)
-								elseif HIT:FindFirstChildWhichIsA("SpecialMesh") then
-									table.insert(SampleTable.MeshIDs,HIT:FindFirstChildWhichIsA("SpecialMesh").MeshId)
-								end
-								if checkactor(HIT) then
-									chatfunc("The Tagged Object Is Actor")
-								end
-								HIT.CFrame = POSITION
-								table.insert(SampleTable.Connection,HIT.Changed:Connect(function()
-									if HIT.CFrame ~= POSITION then
-										HIT.CFrame = POSITION
-									else
-										HIT.Size = Vector3.new(0.1,0.1,0.1)
-										HIT.CFrame = POSITION
-									end
-								end))
-								table.insert(SampleTable.Connection,game.DescendantAdded:Connect(function(obcs)
-									if Verify(obcs) then
-										if obcs:IsA("SpecialMesh") then
-											table.insert(SampleTable.Connection,obcs.Parent.Changed:Connect(function()
-												if obcs.Parent.CFrame ~= POSITION then
-													obcs.Parent.CFrame = POSITION
-												else
-													obcs.Parent.Size = Vector3.new(0.1,0.1,0.1)
-													obcs.Parent.CFrame = POSITION
-												end
-											end))
-											obcs.Parent.CFrame = POSITION
-										else
-											table.insert(SampleTable.Connection,obcs.Changed:Connect(function()
-												if obcs.CFrame ~= POSITION then
-													obcs.CFrame = POSITION
-												else
-													obcs.Size = Vector3.new(0.1,0.1,0.1)
-													obcs.CFrame = POSITION
-												end
-											end))
-											obcs.CFrame = POSITION
-										end
-									end
-								end))
-								table.insert(SampleTable.Connection,workspace.DescendantAdded:Connect(function(obcs)
-									if Verify(obcs) then
-										if obcs:IsA("SpecialMesh") then
-											table.insert(SampleTable.Connection,obcs.Parent.Changed:Connect(function()
-												if obcs.Parent.CFrame ~= POSITION then
-													obcs.Parent.CFrame = POSITION
-												else
-													obcs.Parent.Size = Vector3.new(0.1,0.1,0.1)
-													obcs.Parent.CFrame = POSITION
-												end
-											end))
-											obcs.Parent.CFrame = POSITION
-										else
-											table.insert(SampleTable.Connection,obcs.Changed:Connect(function()
-												if obcs.CFrame ~= POSITION then
-													obcs.CFrame = POSITION
-												else
-													obcs.Size = Vector3.new(0.1,0.1,0.1)
-													obcs.CFrame = POSITION
-												end
-											end))
-											obcs.CFrame = POSITION
-										end
-									end
-								end))
-
 							end
-						end
-						return
+						end)
 					end
-					local Humanoid = Char:FindFirstChildWhichIsA("Humanoid")
-
-					Humanoid.Health = 0
-					Humanoid.MaxHealth = 0
-					local con1
-					con1 = Humanoid.Changed:Connect(function()
-						Humanoid.Health = 0
-						Humanoid.MaxHealth = 0
-					end)
-					for i,obj in pairs(Char:GetDescendants()) do
-						if obj ~= Humanoid then
-							if obj:IsA("BasePart") then
-								obj:BreakJoints()
-								obj.Color = Rgbcolor
-								obj.Material = Enum.Material.Neon
-								obj.Anchored = true
-								obj.Parent = Char
-							elseif obj:IsA("Script") or obj:IsA("LocalScript") then
-								obj.Name = "Obliterated"
-								obj.Disabled = true
-								game:GetService("Debris"):AddItem(obj,1)
-							else
-								obj:Destroy()
-							end
-						end
-					end
-					task.delay(3,function()
-						con1:Disconnect()
-					end)
 				end
 			end)
 			if Msg then
