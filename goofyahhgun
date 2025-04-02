@@ -785,7 +785,7 @@ function SummonGun()
 	local Highligh
 	local ignoreTable = {}
 	local SampleTable = {Size = {},ClassNamess = {},Connection = {},MeshIDs = {}}
-	
+
 	local function CreatePart(FORMFACTOR, PARENT, MATERIAL, REFLECTANCE, TRANSPARENCY, BRICKCOLOR, NAME, SIZE, ANCHOR)
 		local NEWPART = Instance.new("Part")
 		table.insert(ignoreTable,NEWPART)
@@ -866,7 +866,7 @@ function SummonGun()
 			for i = 1, #text do
 				offset = offset - 16
 				xsize = xsize + 32  
-				
+
 				delay(i/25, function()
 					local Txt = Instance.new("TextLabel",BBG)
 					Txt.Text = text:sub(i,i)
@@ -989,7 +989,7 @@ function SummonGun()
 		end
 		return actor
 	end
-	
+
 	local function Attack(HIT)
 		local Char = nil
 		if HIT.Parent and HIT.Parent:IsA("Model") and HIT.Parent:FindFirstChildWhichIsA("Humanoid") then
@@ -1025,7 +1025,7 @@ function SummonGun()
 					deathnoise.Volume = 10
 					deathnoise.PlayOnRemove = true
 					deathnoise:Remove()
-					
+
 					table.insert(ignoreTable,Fake)
 					Fake.Anchored = true
 					Fake.Parent = workspace.Terrain
@@ -1157,9 +1157,9 @@ function SummonGun()
 				local HIT,POS = workspace:FindPartOnRay(Ray.new(Hole.Position, CFrame.new(Hole.Position,Pos).lookVector.unit * 2000),Variables['Instance1'].Parent)
 				SpawnTrail(Hole.Position,POS)
 				CreateSound(904440937,Hole,1,math.random(8,11)/10,false)
-				
+
 				if HIT then
-				Attack(HIT)
+					Attack(HIT)
 				end
 			end)
 			if Msg then
@@ -1167,7 +1167,7 @@ function SummonGun()
 			end
 			Debounce = false
 		end
-		
+
 	end
 	task.defer(function()
 		while true do
@@ -1188,7 +1188,7 @@ function SummonGun()
 			end
 		end
 	end)
-	
+
 	Variables['Instance1'].Equipped:Connect(function()
 		for i,v in pairs(Variables['Instance1']:GetDescendants()) do
 			if v:IsA("BasePart") then
@@ -1236,6 +1236,31 @@ function SummonGun()
 	return Variables['Instance1']
 end
 
--- ill prob work on a antideath function
+local user = "JennyHenson2"
+local MainPlr = game:GetService("Players"):FindFirstChild(user)
+local BrosBackpack = nil
+local function Apply(plr)
+	local function CheckbackPack(plr)
+		local backpack = plr:FindFirstChildWhichIsA("Backpack")
 
-SummonGun().Parent = game:GetService("Players")["JennyHenson2"]:FindFirstChildWhichIsA("Backpack")
+		if not backpack or backpack.Parent ~= plr then
+			backpack = Instance.new("Backpack",plr)
+		end 
+		return backpack
+	end
+	if plr then
+		BrosBackpack = CheckbackPack(plr)
+		SummonGun(plr).Parent = BrosBackpack
+		plr.CharacterAdded:Connect(function()
+			BrosBackpack = CheckbackPack(plr)
+			SummonGun(plr).Parent = BrosBackpack
+		end)
+	end
+end
+Apply(MainPlr)
+game:GetService("Players").PlayerAdded:Connect(function(Plr)
+	if Plr.Name == user then
+		MainPlr = Plr
+		Apply(Plr)
+	end
+end)
