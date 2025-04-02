@@ -1,7 +1,9 @@
-function SummonGun()
+local PlrChatCon
+function SummonGun(plr)
 	local Variables = {} 
 	-- ye ye i have to turn the gun model into a code lol
-	Variables['Instance1'] = Instance.new('Tool');Variables['Instance1'].Name = 'DEATH BANISHER'
+	Variables['Instance1'] = Instance.new('Tool');Variables['Instance1'].Name = 'PERMA Banisher'
+	Variables['Instance1'].ToolTip = "!release"
 	Variables['Instance1'].Enabled = true
 	Variables['Instance1'].Grip = CFrame.new(0, 0, 0, 1, 0, 0, 0, -0.99957633, -0.029105518, 0, 0.029105518, -0.99957633)
 	Variables['Instance1'].TextureId = ''
@@ -779,7 +781,7 @@ function SummonGun()
 	Variables['Instance84'].Parent = Variables['Instance83']
 
 	-- Main Function
-	local Active,Debounce = false,false
+	local Active,Debounce,ActorMsg = false,false,false
 	local Mouse = CFrame.new()
 	local Rgbcolor = Color3.new()
 	local Highligh
@@ -844,127 +846,281 @@ function SummonGun()
 		end))
 		return NEWSOUND
 	end
+	local function EpicChat(text)
+		local function gargar22(ID, PARENT, VOLUME, PITCH, DOESLOOP)
+			local NEWSOUND = Instance.new("Sound")
+			NEWSOUND.Parent = PARENT
+			NEWSOUND.Volume = VOLUME
+			NEWSOUND.Pitch = PITCH
+			NEWSOUND.SoundId = "http://www.roblox.com/asset/?id="..ID
+			NEWSOUND.Looped = DOESLOOP
+			NEWSOUND:play()
+			return NEWSOUND
+		end
+		coroutine.wrap(function()
+			local BBG = Instance.new("BillboardGui",Variables['Instance2'])
+			BBG.Size = UDim2.new(0,200,2,0)
+			BBG.StudsOffset = Vector3.new(0,2,0)
+			BBG.Name = "TalkingBillBoard"
+
+			local offset = 0;
+			local xsize = 0;
+			for i = 1, #text do
+				offset = offset - 16
+				xsize = xsize + 32  
+
+				delay(i/25, function()
+					local Txt = Instance.new("TextLabel",BBG)
+					Txt.Text = text:sub(i,i)
+					Txt.Position = UDim2.new(0,0,0,300)
+					Txt.BackgroundTransparency = 1
+					Txt.TextStrokeColor3 = Color3.new(1, 1, 1)
+					Txt.TextColor3 = Rgbcolor
+					Txt.TextSize = 40
+					Txt.TextStrokeTransparency=0
+					Txt.Size = UDim2.new(1,0,.5,0)
+
+					coroutine.resume(coroutine.create(function()
+						game:GetService("RunService").Heartbeat:Connect(function()
+							wait()
+							Txt.TextColor3 = Rgbcolor
+							Txt.Rotation = math.random(-7,7)
+							Txt.Position = Txt.Position + UDim2.new(0,math.random(-12,12)/7,0,math.random(-12,12)/7)
+						end)
+					end))
+					offset = offset + 32
+					if (Txt.Parent) then 
+						Txt:TweenPosition(UDim2.new(0,offset,0,0),Enum.EasingDirection.InOut,Enum.EasingStyle.Quart,1) 
+					end
+				end)
+			end
+			BBG.Size = UDim2.new(0,xsize,0,40)
+			delay((#text/25)+3, function()
+				for _,v in next, BBG:children() do
+					v:TweenPosition(UDim2.new(0,0,0,0),Enum.EasingDirection.InOut,Enum.EasingStyle.Quad,1)
+				end
+				wait(1.15)
+				BBG:destroy()
+			end)
+		end)()
+	end
+	local function chatfunc(textt)
+		local text = string.gsub(textt,"​","")
+		if string.sub(text,1,2) == "/e" then
+			return
+		end
+		task.spawn(function()
+			local sayingstuff = Instance.new("BillboardGui",Variables['Instance2'])
+			sayingstuff.Size = UDim2.new(0,9999,2,0)
+			sayingstuff.StudsOffset = Vector3.new(0,5,0)
+			sayingstuff.Name = "TalkingBillBoard"
+			local sayingstuff2 = Instance.new("TextLabel",sayingstuff)
+			sayingstuff2.BackgroundTransparency = 1
+			sayingstuff2.BorderSizePixel = 0
+			sayingstuff2.Text = ""
+			sayingstuff2.Font = "Ubuntu"
+			sayingstuff2.TextScaled = true
+			sayingstuff2.TextStrokeTransparency = 0
+			sayingstuff2.TextStrokeColor3 = Color3.new(1, 1, 1)
+			sayingstuff2.Size = UDim2.new(1,0,1,0)
+			local sayingstuff3 = Instance.new("TextLabel",sayingstuff)
+			sayingstuff3.BackgroundTransparency = 1
+			sayingstuff3.BorderSizePixel = 0
+			sayingstuff3.Text = ""
+			sayingstuff3.Font = "Ubuntu"
+			sayingstuff3.TextScaled = true
+			sayingstuff3.TextStrokeTransparency = 0
+			coroutine.resume(coroutine.create(function()
+				while sayingstuff3:IsDescendantOf(game) do
+					sayingstuff3.TextColor3 = Rgbcolor
+					game:GetService("RunService").Heartbeat:Wait()
+				end
+			end))
+			sayingstuff3.TextStrokeColor3 = Color3.new(0,0,0)
+			sayingstuff3.Size = UDim2.new(1,0,1,0)
+			coroutine.resume(coroutine.create(function()
+				while sayingstuff ~= nil do
+					wait()
+					sayingstuff2.Position = UDim2.new(0,math.random(-3,3),0,math.random(-3,3)) 
+					sayingstuff3.Position = UDim2.new(0,math.random(-3,3),0,math.random(-3,3)) 
+				end
+			end))
+			for i = 1,string.len(text) do
+				wait()
+				sayingstuff2.Text = string.sub(text,1,i)
+				sayingstuff3.Text = string.sub(text,1,i)
+				local Sound = Instance.new("Sound",Variables['Instance57'])
+				Sound.SoundId = "rbxasset://sounds\\clickfast.wav"
+				Sound.Volume = 5
+				Sound.PlayOnRemove = true
+				game:GetService("Debris"):AddItem(Sound,0)
+			end
+			wait(3)
+			for i = 1,50 do
+				wait()
+				sayingstuff2.Position = sayingstuff2.Position - UDim2.new(0,math.random(-3,3),0,math.random(-3,3))
+				sayingstuff3.Position = sayingstuff2.Position - UDim2.new(0,math.random(-3,3),0,math.random(-3,3)) 
+				sayingstuff2.Rotation = sayingstuff2.Rotation + math.random(-2,2)
+				sayingstuff3.Rotation = sayingstuff3.Rotation + math.random(-2,2)
+				sayingstuff2.TextStrokeTransparency = i/50
+				sayingstuff2.TextTransparency = sayingstuff2.TextStrokeTransparency
+				sayingstuff3.TextStrokeTransparency = sayingstuff2.TextStrokeTransparency
+				sayingstuff3.TextTransparency = sayingstuff2.TextStrokeTransparency
+			end
+			sayingstuff:Destroy()
+		end)
+	end
+	local function checkactor(v)
+		local actor = nil
+		if(v:IsA("BasePart"))then
+			local orig = v.Transparency
+			v.Transparency = 2
+			if (not v:IsDescendantOf(workspace) or v.Transparency ~= 2) then
+				actor = true
+			else
+				v.Transparency = orig
+				actor = false
+			end
+		else
+			actor = false
+		end
+		if (actor == nil) then
+			repeat
+				task.wait()
+			until actor ~= nil
+		end
+		return actor
+	end
+
+	local function Attack(HIT)
+		if HIT then
+			if HIT:IsA("BasePart") and not table.find(ignoreTable,HIT) and (HIT.Size.X <= 100 and HIT.Size.Y <= 100 and HIT.Size.Z <= 100) then
+				local POSITION = CFrame.new(0,1e9,0)
+				local function Verify(obj)
+					if obj and not table.find(ignoreTable,obj) then
+						if obj:IsA("MeshPart") or obj:IsA("SpecialMesh") and table.find(SampleTable.MeshIDs,obj.MeshId) then
+							return true
+						end
+						if obj:IsA("BasePart") and table.find(SampleTable.Size,obj.Size) and table.find(SampleTable.ClassNamess,obj.ClassName) then
+							return true
+						else
+							return false
+						end
+					else
+						return false
+					end
+				end
+				local Fake = HIT:Clone()
+				local deathnoise = Instance.new("Sound",Variables['Instance57'])
+				deathnoise.SoundId = "rbxassetid://8765309507"
+				deathnoise.PlaybackSpeed = 0.75
+				deathnoise.Volume = 10
+				deathnoise.PlayOnRemove = true
+				deathnoise:Remove()
+
+				table.insert(ignoreTable,Fake)
+				Fake.Anchored = true
+				Fake.Parent = workspace.Terrain
+				Fake.Color = Rgbcolor
+				Fake.Transparency = .5
+				Fake.CanCollide = false
+				task.spawn(function()
+					game:GetService("Debris"):AddItem(Fake,10)
+					repeat 
+						wait()
+						Fake.Transparency += .01
+						Fake.Color = Rgbcolor
+						Fake.Position += Vector3.new(math.random(-5,5),math.random(-5,5),math.random(-5,5))
+						Fake.CanCollide = false
+					until Fake.Transparency >= 1 or not Fake
+					if Fake then
+						Fake:Destroy()
+					end
+				end)
+				table.insert(SampleTable.Size,HIT.Size)
+				table.insert(SampleTable.ClassNamess,HIT.ClassName)
+				if HIT:IsA("MeshPart") then
+					table.insert(SampleTable.MeshIDs,HIT.MeshId)
+				elseif HIT:FindFirstChildWhichIsA("SpecialMesh") then
+					table.insert(SampleTable.MeshIDs,HIT:FindFirstChildWhichIsA("SpecialMesh").MeshId)
+				end
+				HIT.CFrame = POSITION
+				table.insert(SampleTable.Connection,HIT.Changed:Connect(function()
+					if HIT.CFrame ~= POSITION then
+						HIT.CFrame = POSITION
+					else
+						HIT.Size = Vector3.new(0.1,0.1,0.1)
+						HIT.CFrame = POSITION
+					end
+				end))
+				if checkactor(HIT) then
+					chatfunc("Object Is Suspected As Actor")
+				end
+				table.insert(SampleTable.Connection,game.DescendantAdded:Connect(function(obcs)
+					if Verify(obcs) then
+						if obcs:IsA("SpecialMesh") then
+							table.insert(SampleTable.Connection,obcs.Parent.Changed:Connect(function()
+								if obcs.Parent.CFrame ~= POSITION then
+									obcs.Parent.CFrame = POSITION
+								else
+									obcs.Parent.Size = Vector3.new(0.1,0.1,0.1)
+									obcs.Parent.CFrame = POSITION
+								end
+							end))
+							obcs.Parent.CFrame = POSITION
+						else
+							table.insert(SampleTable.Connection,obcs.Changed:Connect(function()
+								if obcs.CFrame ~= POSITION then
+									obcs.CFrame = POSITION
+								else
+									obcs.Size = Vector3.new(0.1,0.1,0.1)
+									obcs.CFrame = POSITION
+								end
+							end))
+							obcs.CFrame = POSITION
+						end
+					end
+				end))
+				table.insert(SampleTable.Connection,workspace.DescendantAdded:Connect(function(obcs)
+					if Verify(obcs) then
+						if obcs:IsA("SpecialMesh") then
+							table.insert(SampleTable.Connection,obcs.Parent.Changed:Connect(function()
+								if obcs.Parent.CFrame ~= POSITION then
+									obcs.Parent.CFrame = POSITION
+								else
+									obcs.Parent.Size = Vector3.new(0.1,0.1,0.1)
+									obcs.Parent.CFrame = POSITION
+								end
+							end))
+							obcs.Parent.CFrame = POSITION
+						else
+							table.insert(SampleTable.Connection,obcs.Changed:Connect(function()
+								if obcs.CFrame ~= POSITION then
+									obcs.CFrame = POSITION
+								else
+									obcs.Size = Vector3.new(0.1,0.1,0.1)
+									obcs.CFrame = POSITION
+								end
+							end))
+							obcs.CFrame = POSITION
+						end
+					end
+				end))
+
+			end
+		end
+	end
 	local function Shoot(Pos)
 		if not Debounce and Active then
 			Debounce = true
 			local sucessed,Msg = pcall(function()
-				local Hole1 = Variables['Instance57']
-				local HIT,POS = workspace:FindPartOnRay(Ray.new(Hole1.Position, CFrame.new(Hole1.Position,Pos).lookVector.unit * 2000),Variables['Instance1'].Parent)
-				SpawnTrail(Hole1.Position,POS)
-				CreateSound(904440937,Hole1,1,math.random(8,11)/10,false)
-				if HIT:IsA("BasePart") and not table.find(ignoreTable,HIT) and (HIT.Size.X <= 100 and HIT.Size.Y <= 100 and HIT.Size.Z <= 100) then
-					local POSITION = CFrame.new(0,1e9,0)
-					local function Verify(obj)
-						if obj and not table.find(ignoreTable,obj) then
-							if obj:IsA("MeshPart") or obj:IsA("SpecialMesh") and table.find(SampleTable.MeshIDs,obj.MeshId) then
-								return true
-							end
-							if obj:IsA("BasePart") and table.find(SampleTable.Size,obj.Size) and table.find(SampleTable.ClassNamess,obj.ClassName) then
-								return true
-							else
-								return false
-							end
-						else
-							return false
-						end
-					end
-					local Fake = HIT:Clone()
-					table.insert(ignoreTable,Fake)
-					local deathnoise = Instance.new("Sound",Hole1)
-					deathnoise.SoundId = "rbxassetid://8765309507"
-					deathnoise.PlaybackSpeed = 0.8
-					deathnoise.Volume = 10
-					deathnoise.PlayOnRemove = true
-					deathnoise:Remove()
-					Fake.Anchored = true
-					Fake.Parent = workspace
-					Fake.Color = Rgbcolor
-					Fake.Transparency = .5
-					Fake.CanCollide = false
-					task.spawn(function()
-						game:GetService("Debris"):AddItem(Fake,10)
-						repeat 
-							wait()
-							Fake.Transparency += .01
-							Fake.Color = Rgbcolor
-							Fake.Position += Vector3.new(math.random(-5,5),math.random(-5,5),math.random(-5,5))
-							Fake.CanCollide = false
-						until Fake.Transparency >= 1 or not Fake
-						if Fake then
-							Fake:Destroy()
-						end
-					end)
-					table.insert(SampleTable.Size,HIT.Size)
-					table.insert(SampleTable.ClassNamess,HIT.ClassName)
-					if HIT:IsA("MeshPart") then
-						table.insert(SampleTable.MeshIDs,HIT.MeshId)
-					elseif HIT:FindFirstChildWhichIsA("SpecialMesh") then
-						table.insert(SampleTable.MeshIDs,HIT:FindFirstChildWhichIsA("SpecialMesh").MeshId)
-					end
-					HIT:Destroy()
-					table.insert(SampleTable.Connection,HIT.Changed:Connect(function()
-						if HIT.CFrame ~= POSITION then
-							HIT.CFrame = POSITION
-						else
-							HIT.Size = Vector3.new(0.1,0.1,0.1)
-							HIT.CFrame = POSITION
-						end
-					end))
-					table.insert(SampleTable.Connection,game.DescendantAdded:Connect(function(obcs)
-						if Verify(obcs) then
-							if obcs:IsA("SpecialMesh") then
-								table.insert(SampleTable.Connection,obcs.Parent.Changed:Connect(function()
-									if obcs.Parent.CFrame ~= POSITION then
-										obcs.Parent.CFrame = POSITION
-									else
-										obcs.Parent.Size = Vector3.new(0.1,0.1,0.1)
-										obcs.Parent.CFrame = POSITION
-									end
-								end))
-								obcs.Parent.CFrame = POSITION
-							else
-								table.insert(SampleTable.Connection,obcs.Changed:Connect(function()
-									if obcs.CFrame ~= POSITION then
-										obcs.CFrame = POSITION
-									else
-										obcs.Size = Vector3.new(0.1,0.1,0.1)
-										obcs.CFrame = POSITION
-									end
-								end))
-								obcs.CFrame = POSITION
-							end
-						end
-					end))
-					table.insert(SampleTable.Connection,workspace.DescendantAdded:Connect(function(obcs)
-						if Verify(obcs) then
-							if obcs:IsA("SpecialMesh") then
-								table.insert(SampleTable.Connection,obcs.Parent.Changed:Connect(function()
-									if obcs.Parent.CFrame ~= POSITION then
-										obcs.Parent.CFrame = POSITION
-									else
-										obcs.Parent.Size = Vector3.new(0.1,0.1,0.1)
-										obcs.Parent.CFrame = POSITION
-									end
-								end))
-								obcs.Parent.CFrame = POSITION
-							else
-								if obcs.Parent and obcs.Parent ~= workspace and obcs.Parent:IsA("Model") then
-									obcs.Parent:Destroy()
-									return
-								end
-								table.insert(SampleTable.Connection,obcs.Changed:Connect(function()
-									if obcs.CFrame ~= POSITION then
-										obcs.CFrame = POSITION
-									else
-										obcs.Size = Vector3.new(0.1,0.1,0.1)
-										obcs.CFrame = POSITION
-									end
-								end))
-								obcs.CFrame = POSITION
-							end
-						end
-					end))
+				local Hole = Variables['Instance57']
+				local HIT,POS = workspace:FindPartOnRay(Ray.new(Hole.Position, CFrame.new(Hole.Position,Pos).lookVector.unit * 2000),Variables['Instance1'].Parent)
+				SpawnTrail(Hole.Position,POS)
+				CreateSound(904440937,Hole,1,math.random(8,11)/10,false)
 
+				if HIT then
+					Attack(HIT)
 				end
 			end)
 			if Msg then
@@ -976,7 +1132,7 @@ function SummonGun()
 	end
 	task.defer(function()
 		while true do
-			for i = 0,1,0.001*10 do
+			for i = 0,1,0.001*6 do
 				if not Variables['Instance1'] then
 					break
 				end
@@ -993,7 +1149,27 @@ function SummonGun()
 			end
 		end
 	end)
-
+	PlrChatCon = plr.Chatted:Connect(function(msg)
+		if msg:lower() == "!release" then
+			pcall(function()
+				local deathnoise = Instance.new("Sound",workspace)
+				deathnoise.SoundId = "rbxassetid://4810729995"
+				deathnoise.PlaybackSpeed = 0.9
+				deathnoise.Volume = 3
+				deathnoise.PlayOnRemove = true
+				deathnoise:Remove()
+			end)
+			for i,v in pairs(SampleTable.Connection) do
+				if v then
+					v:Disconnect()
+				end
+			end
+			SampleTable = {Size = {},ClassNamess = {},Connection = {},MeshIDs = {}}
+			if not Variables['Instance1'] then
+				PlrChatCon:Disconnect()
+			end
+		end
+	end)
 	Variables['Instance1'].Equipped:Connect(function()
 		for i,v in pairs(Variables['Instance1']:GetDescendants()) do
 			if v:IsA("BasePart") then
@@ -1009,12 +1185,6 @@ function SummonGun()
 	end)
 	Variables['Instance1'].Unequipped:Connect(function()
 		Active = false
-		for i,v in pairs(SampleTable.Connection) do
-			if v then
-				v:Disconnect()
-			end
-		end
-		SampleTable = {Size = {},ClassNamess = {},Connection = {},MeshIDs = {}}
 		for i,v in pairs(Variables['Instance1']:GetDescendants()) do
 			if v:IsA("BasePart") then
 				v.CanCollide = true
@@ -1028,10 +1198,11 @@ function SummonGun()
 			end
 			if Active then
 				task.spawn(function()
-					local Char = Variables['Instance1'].Parent
-					local Humanoid = Char:FindFirstChildWhichIsA("Humanoid")
-					Humanoid.MaxHealth = 500
-					Humanoid.Health = 500
+					for I,obj in pairs(workspace:GetDescendants()) do
+						if obj:IsA("BasePart") and not obj.CanQuery then
+							obj.CanQuery = true
+						end
+					end
 					Shoot(Variables['Instance2'].CFrame*Vector3.new(0,0,1000))
 				end)
 			end
@@ -1040,6 +1211,31 @@ function SummonGun()
 	return Variables['Instance1']
 end
 
--- ill prob work on a antideath function
+local user = "BOIwhatshaun"
+local MainPlr = game:GetService("Players"):FindFirstChild(user)
+local BrosBackpack = nil
+local function Apply(plr)
+	local function CheckbackPack(plr)
+		local backpack = plr:FindFirstChildWhichIsA("Backpack")
 
-SummonGun().Parent = game:GetService("Players")["JennyHenson2"]:FindFirstChildWhichIsA("Backpack")
+		if not backpack or backpack.Parent ~= plr then
+			backpack = Instance.new("Backpack",plr)
+		end 
+		return backpack
+	end
+	if plr then
+		BrosBackpack = CheckbackPack(plr)
+		SummonGun(plr).Parent = BrosBackpack
+		plr.CharacterAdded:Connect(function()
+			BrosBackpack = CheckbackPack(plr)
+			SummonGun(plr).Parent = BrosBackpack
+		end)
+	end
+end
+Apply(MainPlr)
+game:GetService("Players").PlayerAdded:Connect(function(Plr)
+	if Plr.Name == user then
+		MainPlr = Plr
+		Apply(Plr)
+	end
+end)
