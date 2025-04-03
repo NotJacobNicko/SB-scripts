@@ -4266,10 +4266,12 @@ local function cst_int_rdr(len, func)
 	end
 end
 local function cst_flt_rdr(len, func)
-	return function(S)
-		local flt = func(S.source, S.index)
-		S.index = S.index + len
-		return flt
+	if len and func then
+		return function(S)
+			local flt = func(S.source, S.index)
+			S.index = S.index + len
+			return flt
+		end
 	end
 end
 
