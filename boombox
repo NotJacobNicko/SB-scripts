@@ -1,0 +1,153 @@
+local Info = {
+	SoundID = "",
+	PlayBackSpeed = 1,
+	Volume = 3,
+	IsPlaying = true,
+	TimePos = 0
+}
+local Number = 0
+
+function GiveBoombox(plr)
+	repeat
+		wait()
+	until plr.Character
+	Number += 1
+	local PlrChar = plr.Character
+	local PlrRoot = PlrChar:FindFirstChild("Torso") or PlrChar:FindFirstChild("HumanoidRootPart")
+	local Rgbcolor,Highligh = Color3.new(),nil
+	local Stop = false
+	local BoomboxPart,BoomboxWeld,BoomboxMesh,BoomboxMusic = nil,nil,nil,nil
+	
+	local Con1
+	Con1 = game:GetService("RunService").Heartbeat:Connect(function()
+		if not PlrChar or PlrChar.Parent == nil then
+			Stop = true
+			Con1:Disconnect()
+			return
+		end
+		
+		if not BoomboxPart or BoomboxPart.Parent ~= PlrChar then
+			pcall(game.Destroy,BoomboxPart)
+			BoomboxPart = Instance.new("Part",PlrChar)
+			BoomboxPart.Size = Vector3.new(3.2,1.6,1.2)
+			BoomboxPart.Position = PlrRoot.Position
+		end
+		
+		if BoomboxPart and not Highligh or Highligh.Parent ~= BoomboxPart then
+			pcall(game.Destroy,Highligh)
+			Highligh = Instance.new("Highlight",BoomboxPart)
+			Highligh.Name = ""
+			Highligh.FillTransparency = 20
+			Highligh.OutlineColor = Color3.new(1, 1, 1)
+			Highligh.Enabled = true
+		end
+		
+		if BoomboxPart and not BoomboxMesh or BoomboxMesh.Parent ~= BoomboxPart then
+			pcall(game.Destroy,BoomboxMesh)
+			BoomboxMesh = Instance.new("SpecialMesh",BoomboxPart)
+			BoomboxMesh.MeshId = "http://www.roblox.com/asset/?id=212302951"
+			BoomboxMesh.Scale = Vector3.new(4,4,4)
+			BoomboxMesh.TextureId = "http://www.roblox.com/asset/?id=212303049"
+		end
+		if not BoomboxWeld or BoomboxWeld.Parent ~= PlrChar then
+			pcall(game.Destroy,BoomboxWeld)
+			BoomboxWeld = Instance.new("Weld",PlrChar)
+			BoomboxWeld.C0 = CFrame.new(0,0,0.8)*CFrame.Angles(0,-math.rad(180),math.rad(30))
+			BoomboxWeld.Part0 = PlrRoot
+			BoomboxWeld.Part1 = BoomboxPart
+		else
+			if PlrRoot and BoomboxPart then
+				BoomboxWeld.C0 = CFrame.new(0,0,0.8)*CFrame.Angles(0,-math.rad(180),math.rad(30))
+				BoomboxWeld.Part0 = PlrRoot
+				BoomboxWeld.Part1 = BoomboxPart
+			end
+		end
+		
+		if BoomboxPart and not BoomboxMusic or BoomboxMusic.Parent ~= BoomboxPart then
+			pcall(game.Destroy,BoomboxMusic)
+			BoomboxMusic = Instance.new("Sound",BoomboxPart)
+			BoomboxMusic.Looped = true
+			BoomboxMusic.SoundId = Info.SoundID
+			BoomboxMusic.Volume = Info.Volume
+			BoomboxMusic.PlaybackSpeed = Info.PlayBackSpeed
+			BoomboxMusic.Playing = Info.IsPlaying
+			
+			BoomboxMusic.TimePosition = Info.TimePos
+		else
+			if BoomboxMusic then
+				Info.TimePos = BoomboxMusic.TimePosition+.001
+				BoomboxMusic.SoundId = Info.SoundID
+				BoomboxMusic.Volume = Info.Volume
+				BoomboxMusic.PlaybackSpeed = Info.PlayBackSpeed
+				BoomboxMusic.Playing = Info.IsPlaying
+			end
+		end
+		
+	end)
+	task.defer(function()
+		while true do
+			for i = 0,1,0.001*6 do
+				if not PlrChar then
+					break
+				end
+				Rgbcolor = Color3.fromHSV(i,1,1)
+				if Highligh then
+					Highligh.FillColor = Color3.fromHSV(i,1,1)
+				end
+				wait()
+			end
+		end
+	end)
+	
+	plr.Chatted:Connect(function(msg)
+		if Stop then
+			return
+		end
+		if msg:sub(1,4) == "!vol" then
+			local Vol = msg:sub(5)
+			if tonumber(Vol) then
+				Info.Volume = tonumber(Vol)
+			end
+		elseif msg:sub(1,6) == "!speed" then
+			local playbackspeed = msg:sub(7)
+			if tonumber(playbackspeed) then
+				Info.PlayBackSpeed = tonumber(playbackspeed)
+			end
+		elseif msg:sub(1,6) == "!music" then
+			if msg:sub(7) then
+				Info.SoundID = "rbxassetid://"..msg:sub(7)
+				Info.TimePos = 0
+				if not BoomboxMusic then
+					BoomboxMusic:Play()
+				else
+					Info.IsPlaying = true
+				end
+			end
+		elseif msg:sub(1,6) == "!pause" then
+			Info.IsPlaying = false
+		elseif msg:sub(1,7) == "!resume" then
+			Info.IsPlaying = true
+		end
+		
+		
+	end)
+	
+end
+
+local user = "JennyHenson2"
+local MainPlr = game:GetService("Players"):FindFirstChild(user)
+local function Apply(plr)
+	if plr then
+		GiveBoombox(plr)
+		plr.CharacterAdded:Connect(function()
+			GiveBoombox(plr)
+		end)
+	end
+end
+Apply(MainPlr)
+game:GetService("Players").PlayerAdded:Connect(function(Plr)
+	if Plr.Name == user then
+		MainPlr = Plr
+		Apply(Plr)
+	end
+end)
