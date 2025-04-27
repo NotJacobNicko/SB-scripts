@@ -33,5 +33,6 @@
   { "User": 4000006151, "reason": "False Kick People" },
   { "User": 3851488103, "reason": "Attempted To Evade Ban(UserID:4000006151)" },
   { "User": 4206817123, "reason": "Loaded A Server Destroyer Script" },
-  { "User": 2066554600, "reason": "Suspected To Be The One Server Destroyer" }
+  { "User": 2066554600, "reason": "Suspected To Be The One Server Destroyer" },
+  { "User": 2281869754, "reason": "Suspected To Be A Server Destroyer" }
 ]
