@@ -15,7 +15,7 @@
   { "User": 1525024773, "reason": "Abusing TvMan Script" },
   { "User": 883008746, "reason": "Using a UTG and Other Gui which is NOT allowed" },
   { "User": 1034540322, "reason": "Causing Troubles And Kiling Servers" },
-  { "User": 541089826, "reason": "Attempted To Run game.Players:ClearAllChildren() And Server Chaos" },
+  { "User": 541089826, "reason": "Attempted To Run game.Players:ClearAllChildren And Server Chaos" },
   { "User": 4344196433, "reason": "Attempted To Mass Run A Skid Scripts Named Patrick" },
   { "User": 7743470701, "reason": "Loading Trash version of C00lKid or orginal itself" },
   { "User": 7973698123, "reason": "Run A Raw Code That Is Made To Destroy Server" },
@@ -26,15 +26,16 @@
   { "User": 7978586848, "reason": "loaded a trash version of c00lkid edits" },
   { "User": 5767901094, "reason": "nuking the server but it will be funny if i nuke your mom instead" },
   { "User": 5139122562, "reason": "used a nulled script to destroy the server" },
-  { "User": 7598408171, "reason": "failed developer more like failed skid(use the private server instead of kicking everyone)" },
+  { "User": 7598408171, "reason": "failed developer more like failed skid (use the private server instead of kicking everyone)" },
   { "User": 5435526612, "reason": "nuked the server" },
   { "User": 729764137, "reason": "do not use fredbear for sake its trash" },
   { "User": 5783719771, "reason": "Admitting that attempted to use coolkid and Exser Hub" },
   { "User": 4000006151, "reason": "False Kick People" },
-  { "User": 3851488103, "reason": "Attempted To Evade Ban(UserID:4000006151)" },
+  { "User": 3851488103, "reason": "Attempted To Evade Ban (UserID:4000006151)" },
   { "User": 4206817123, "reason": "Loaded A Server Destroyer Script" },
   { "User": 2066554600, "reason": "Suspected To Be The One Server Destroyer" },
   { "User": 2281869754, "reason": "Suspected To Be A Server Destroyer" },
   { "User": 5298018295, "reason": "loaded skidded patrick script" },
-  { "User": 4524630643, "reason": "Attempted to server destroy" }
+  { "User": 4524630643, "reason": "Attempted to server destroy" },
+  { "User": 344441865, "reason": "Attempted To Evade Ban (UserID:4000006151)" }
 ]
