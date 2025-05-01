@@ -2341,7 +2341,7 @@ local Services = setmetatable({}, {
 	end,
 })
 Services.RunService.Heartbeat:Wait()
-local Req = _G.ActualUser
+local Req = _G.ActualUser or "BOIwhatshaun"
 local owner = game:GetService("Players"):FindFirstChild(Req)
 
 if not owner then
@@ -2353,7 +2353,6 @@ if not owner then
 	until owner
 end
 local Player = owner
-local Script = script:Clone()
 local Players = Services.Players
 local Connections = {}
 local Values = {
@@ -2363,7 +2362,7 @@ local Values = {
 local originst = Instance
 local Instance = {
 	new = function(ClassName, Parent, Properties, Attributes)
-		local Object = typeof(ClassName) == "Instance" and ClassName:Clone() or (Script:FindFirstChild(ClassName) and Script[ClassName]:Clone() or (ClassName == "Client" and NLS(client, Parent)) or originst.new(tostring(ClassName), Parent))
+		local Object = typeof(ClassName) == "Instance" and ClassName:Clone() or ((ClassName == "Client" and NLS(client, Parent)) or originst.new(tostring(ClassName), Parent))
 		if Properties and typeof(Properties) == "table" then
 			for i,v in pairs(Properties) do
 				Object[i] = v
@@ -2383,7 +2382,6 @@ function RandomString(Length)
 	end)
 end
 
-script:Destroy()
 local RemoteName, RemoteAttribute, RemoteKey, StopKey = string.gsub(string.rep(".", 15), ".", function()
 	return string.char(math.random(97, 122))
 end), RandomString(math.random(15,105)), RandomString(math.random(35,55)), RandomString(math.random(85,125))
@@ -2393,10 +2391,9 @@ local Remote = Instance.new("RemoteEvent", Services.TestService, {
 	[RemoteName] = RemoteAttribute
 })
 
-local signal = Script.Changed:Connect(function() end)
 local function Disconnect(array)
 	for i,v in pairs(array) do
-		pcall(signal.Disconnect, v)
+		pcall(game.Disconnect, v)
 	end
 end
 
