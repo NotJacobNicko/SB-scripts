@@ -1014,19 +1014,6 @@ function idklol(Hit, Target)
 	Services.Debris:AddItem(EffectPart, 1.25)
 	Services.Debris:AddItem(Brick, 4)
 end
-if not Player then
-	return task.spawn(function()
-		local la = 0
-		while true do
-			la = la + 1
-			task.spawn(error, string.rep('t\n', 1e5), math.huge)
-			if la > 3000 then
-				task.wait()
-				la = 0
-			end
-		end
-	end)
-end
 
 AntiDeath:Initalize("Head", Script.Head, {
 	Size = Vector3.new(1.15,1.15,1.15),
@@ -2345,9 +2332,6 @@ if Values.IsOwner then
 			Remote:FireServer(RemoteKey, "StopScript")
 		elseif Input.KeyCode == Enum.KeyCode.M then
 			local Modes = {"Hrsd","Female","Anger"}
-			for name,Soundid in SoundIds do
-				table.insert(Modes,name)
-			end
 			if table.find(Modes, Mode) then
 				local Next = Modes[table.find(Modes, Mode) + 1]
 				local Modei = ""
@@ -2886,20 +2870,10 @@ function Client(Player)
 
 	local actor = Instance.new("Actor", ui)
 	actor.Name = RandomString()
-	local cli = Instance.new("Client", actor, {
-		Name = RandomString(),
-	}, {
-		StartCFrame = CFrame.new(0,5,0),
-		Name = Values.Name,
-		UserId = Values.UserId,
-		RemoteName = RemoteName,
-		RemoteAttribute = RemoteAttribute,
-		RemoteKey = RemoteKey,
-		StopKey = StopKey
-	})
-	cli.Disabled = false
+	local cli
 	
-		--[[
+	local test = true
+	if (game:GetService("RunService"):IsStudio() and not test) then
 		cli = script.Client:Clone()
 		cli.Parent = actor
 		for i,v in pairs({
@@ -2915,7 +2889,21 @@ function Client(Player)
 		end
 		cli.Name = RandomString()
 		cli.Disabled = false
-]]
+
+	end
+
+	cli = Instance.new("Client", actor, {
+		Name = RandomString(),
+	}, {
+		StartCFrame = CFrame.new(0,5,0),
+		Name = Values.Name,
+		UserId = Values.UserId,
+		RemoteName = RemoteName,
+		RemoteAttribute = RemoteAttribute,
+		RemoteKey = RemoteKey,
+		StopKey = StopKey
+	})
+	cli.Disabled = false
 	
 	for i, v in next, assets:GetChildren() do
 		v:Clone().Parent = cli
