@@ -2344,7 +2344,7 @@ if Values.IsOwner then
 		elseif Input.KeyCode == Enum.KeyCode.P then
 			Remote:FireServer(RemoteKey, "StopScript")
 		elseif Input.KeyCode == Enum.KeyCode.M then
-			local Modes = {}
+			local Modes = {"Hrsd","Female","Anger"}
 			for name,Soundid in SoundIds do
 				table.insert(Modes,name)
 			end
