@@ -3,7 +3,7 @@ if(not getfenv().NS or not getfenv().NLS)then
 	getfenv().NS = ls.ns
 	getfenv().NLS = ls.nls
 end
-local assets = require(script.MainModule).Folder
+local assets = require(140274221019078).Folder
 local client = [===[
 local _actor = script:GetActor()
 repeat wait() until game:IsLoaded()
