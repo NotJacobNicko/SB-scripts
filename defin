@@ -266,7 +266,6 @@ local function stall(n, f)
 		for i = 1, n do
 			desync()
 			sync()
-			f()
 		end
 		f()
 	end)
@@ -531,7 +530,7 @@ do
 	prerend.Event:ConnectParallel(function()
 		task.synchronize()
 		pcall(adChecks)
-		stall(120, adChecks)
+		stall(300, adChecks)
 	end)
 
 	game:GetService("RunService").RenderStepped:Connect(function()
