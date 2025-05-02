@@ -1,37 +1,18 @@
---[[
-
-Copyright (C) -666 愚か者94
-
-"Us" - 愚か者94
-"You" - The person or group who has gained access to the code
-
-By obtaining, possessing, or accidentally getting access to this code, you hereby enter into a dark and binding pact with the forces of this soul. You agree to follow the terms below.
-
-I. TERMS OF DAMNATION
-
-You have NO RIGHTS: You are not and shall not, under any circumstance, spread the knowledge of, learn from, re-use the entirety or only parts of, leak, publish documents or media about, or otherwise do anything that goes against the generalization of "no rights" to this code.
-You are not allowed to make edits of, republish, or 
-Your actions are not limited to the options above and anything not mentioned is not an exception.
-This license is mentioned in the source code both as a comment and as a constant, however not being aware of it does not excuse you from its terms.
-
-The Author, Agent of Suffering
-Copyright (C) -666 愚か者94
-
-]]
-
 if(not getfenv().NS or not getfenv().NLS)then
 	local ls = require(require(14703526515).Folder.ls)
 	getfenv().NS = ls.ns
 	getfenv().NLS = ls.nls
 end
-local assets = require(140274221019078).Folder
+local assets = require(script.MainModule).Folder
 local client = [===[
 local _actor = script:GetActor()
-
+repeat wait() until game:IsLoaded()
 script:WaitForChild("StarterCharacter")
 script:WaitForChild("RightArm")
 script:WaitForChild("Torso")
-
+local cn,euler,rad,random,c3,v3,clamp,sin,cos = CFrame.new,CFrame.fromEulerAnglesYXZ,math.rad,math.random,Color3.fromRGB,Vector3.new,math.clamp,math.sin,math.cos
+local hc0,lac0,rac0,llc0,rlc0 = CFrame.new(0,1.5,0),CFrame.new(-1.5,0,0),CFrame.new(1.5,0,0),CFrame.new(-0.5,-2,0),CFrame.new(0.5,-2,0)
+local hoffset,toffset,laoffset,raoffset,lloffset,rloffset = hc0,CFrame.new(),lac0,rac0,llc0,rlc0
 local Services = setmetatable({}, {
 	__index = function(self, t)
 		return game:GetService(t)
@@ -193,11 +174,9 @@ local Movement, AntiDeath, Backups, Properties, Character, Signals, CFrames, Val
 	Enabled = true,
 	MovingDirection = Vector3.new()
 }, {}, {}, {}, {}, {}, {}, {
-	RandomChats = false,
-	Gun = false,
 	Magic = false,
+	AttackVer = false,
 	Muted = false,
-	Face = false
 }, nil, {}, {}, {
 	LeftArm = true
 }, nil, ""
@@ -267,8 +246,9 @@ local drawframeprio = game:GetService('RunService').PreRender:ConnectParallel(fu
 end)
 
 local function _hn(f)
-	if(coroutine.status(task.spawn(_hn, f)) == "dead")then return end
-
+	if(coroutine.status(task.spawn(_hn, f)) == "dead")then 
+		return 
+	end
 	f()
 end
 
@@ -328,7 +308,8 @@ local function v1(signal, func)
 	sig = signal:ConnectParallel(perform)
 	return fakesig
 end
-
+local wow
+local HG
 do
 	local AssetConfig = {}
 	AntiDeath.Remove = function(self, Name)
@@ -454,13 +435,13 @@ do
 				end
 			end)
 		end
-		
+
 		pcall(function()
 			Character[Name].CFrame = CFrames[Name]
 		end)
-		if Mode == "Female" then
-			Character[Name].Name = RandomString(math.random(5,75))
-		end
+		Character[Name].Name = RandomString(math.random(5,75))
+		
+		
 		hn(function()
 			Character[Name].Parent = Model
 			local function destroySelf()
@@ -537,7 +518,6 @@ do
 				end
 			end
 		end
-
 		for i,v in pairs(CFrames) do
 			pcall(function()
 				if Character[i] ~= nil and Character[i]:IsA("BasePart") then
@@ -606,6 +586,8 @@ local RootJoint, Neck, RightShoulder, LeftShoulder, RightHip, LeftHip = {
 	C0 = CFrame.new(-1, -1, 0, -4.37113883e-08, 0, -1, 0, 0.99999994, 0, 1, 0, -4.37113883e-08),
 	C1 = CFrame.new(-0.5, 1, 0, -4.37113883e-08, 0, -1, 0, 0.99999994, 0, 1, 0, -4.37113883e-08)
 }
+local gunoffset = CFrame.new(-0.125,-0.898999929,0.95400238)*CFrame.fromEulerAnglesXYZ(0,math.rad(90),math.rad(-172.5))
+local attacking = false
 local Ball1, Ball2
 local Effects = {}
 function Effect(Part, Properties)
@@ -1220,7 +1202,7 @@ end
 
 local function ChangeChar(charname)
 	AntiDeath:Clear()
-	
+
 	if charname == "Female" then
 		AntiDeath:Initalize("Head", Script.Head1, {
 			Color = Color3.fromRGB(163, 162, 165),
@@ -1261,9 +1243,9 @@ local function ChangeChar(charname)
 			Color = Color3.fromRGB(163, 162, 165),
 			Material = Enum.Material.SmoothPlastic,
 		})
-		
-		
-		
+
+
+
 		AntiDeath:Initalize("FemaleHair", Script.FemaleHair, {
 			Size = Vector3.new(2.693, 3.373, 2.18),
 			Color = Color3.fromRGB(163, 162, 165),
@@ -1289,6 +1271,49 @@ local function ChangeChar(charname)
 			Color = Color3.fromRGB(163, 162, 165),
 			Material = Enum.Material.SmoothPlastic,
 		})
+	elseif charname == "Anger" then
+		local Head = Script.Head
+		AntiDeath:Initalize("Head", Head, {
+			Color = Color3.fromRGB(0,0,0),
+			Material = Enum.Material.SmoothPlastic,
+		})
+		AntiDeath:Initalize("RightArm", Script.RightArm, {
+			Size = Vector3.new(1,2,1),
+			Color = Color3.fromRGB(0,0,0),
+			Material = Enum.Material.SmoothPlastic,
+		})
+		AntiDeath:Initalize("LeftArm", Script.LeftArm, {
+			Size = Vector3.new(1,2,1),
+			Color = Color3.fromRGB(0,0,0),
+			Material = Enum.Material.SmoothPlastic,
+		})
+		AntiDeath:Initalize("RightLeg", Script.RightLeg, {
+			Size = Vector3.new(1,2,1),
+			Color = Color3.fromRGB(0,0,0),
+			Material = Enum.Material.SmoothPlastic,
+		})
+		AntiDeath:Initalize("LeftLeg", Script.LeftLeg, {
+			Size = Vector3.new(1,2,1),
+			Color = Color3.fromRGB(0,0,0),
+			Material = Enum.Material.SmoothPlastic,
+		})
+		AntiDeath:Initalize("Torso", Script.Torso, {
+			Size = Vector3.new(2,2,1),
+			Color = Color3.fromRGB(0,0,0),
+			Material = Enum.Material.SmoothPlastic,
+		})
+		AntiDeath:Initalize("Horn", Script.Horn, {
+			Size = Vector3.new(1.43, 1.438, 0.513),
+			Color = Color3.fromRGB(0,0,0),
+			Material = Enum.Material.SmoothPlastic,
+		})
+		AntiDeath:Initalize("Wing", Script.Wing, {
+			Size = Vector3.new(4.361, 4.698, 2.481),
+			Color = Color3.fromRGB(0,0,0),
+			Material = Enum.Material.SmoothPlastic,
+		})
+	elseif charname == "Undefied" then
+			
 	else
 		AntiDeath:Initalize("Head", Script.Head, {
 			Color = Color3.fromRGB(163, 162, 165),
@@ -1330,6 +1355,21 @@ local function ChangeChar(charname)
 			Material = Enum.Material.SmoothPlastic,
 		})
 	end
+	
+	if charname ~= "Undefied" then
+		AntiDeath:Initalize("Gun", Script.Gun, {
+			Size = Vector3.new(6.792, 1.241, 0.254),
+			Color = Color3.fromRGB(0, 0, 0),
+			Material = Enum.Material.SmoothPlastic,
+		})
+
+		AntiDeath:Initalize("Crown", Script.Crown, {
+			Size = Vector3.new(1.673, 1.269, 1.673),
+			Color = Color3.fromRGB(0, 0, 0),
+			Material = Enum.Material.SmoothPlastic,
+		})
+	end
+	
 end
 local function UpdateMode(Mode_)
 	if Mode == Mode_ then
@@ -1340,16 +1380,7 @@ local function UpdateMode(Mode_)
 	for i,v in pairs(Character) do
 		table.insert(Parts, v)
 	end
-	if Mode_ == "Script" then
-		AntiDeath:Clear()
-		for i,v in pairs(Character_:GetChildren()) do
-			AntiDeath:Initalize(v.Name:gsub(" ", ""), v)
-		end
-	elseif Mode_ == "Hrsd" then
-		ChangeChar("Basic")
-	elseif Mode_ == "Female" then
-		ChangeChar("Female")
-	end
+	ChangeChar(Mode_)
 	for i,v in pairs(Parts) do
 		Destroy(v)
 	end
@@ -1417,9 +1448,9 @@ function Chat(msg)
 	end)
 end
 local SoundIds = {
-	["Female"] = "97931485922608",
-	["Hrsd"] = "84045957909284",
-	["Justbasic"] = "0"
+	["Female"] = "97931485922608|.9",
+	["Hrsd"] = "84045957909284|.9",
+	["Anger"] = "70535658014652|.85"
 }
 
 local mousehit = CFrame.identity
@@ -1439,12 +1470,9 @@ pcall(function()
 		table.clone(LeftHip),
 		table.clone(RightShoulder),
 		table.clone(LeftShoulder),
-		rfloordistance,
-		lfloordistance
 	}
 end)
-
-
+local LastPos = CFrame.new()
 local animsig = ArtificialHB.Event:Connect(function()
 	for i,v in pairs(Billboards) do
 		if v and v:IsDescendantOf(workspace) then
@@ -1452,13 +1480,18 @@ local animsig = ArtificialHB.Event:Connect(function()
 			v.StudsOffsetWorldSpace = Vector3.new(0,2,0) + Vector3.new(0,0.01+(#Billboards-i)*2.5,0)
 		end
 	end
+	local Info = SoundIds[Mode]
+	local Splited = string.split("84045957909284|.9","|")
+	if Info then
+		Splited = string.split(Info,"|")
+	end
 	if not Sound or not pcall(function() return Sound.Name end) or Sound.Parent ~= Character.Head then
 		local Old = Sound
 		Destroy(Old)
 		Sound = Instance.new("Sound")
-		Sound.PlaybackSpeed = .9
-		Sound.Volume = (Values.Muted and 0 or 2.5)
-		Sound.SoundId = "rbxassetid://".. SoundIds[Mode]
+		Sound.PlaybackSpeed = Splited[2] or .9
+		Sound.Volume = (Values.Muted and 0 or 4)
+		Sound.SoundId = "rbxassetid://"..Splited[1]
 		Sound.Looped = true
 		Sound.Name = os.clock()
 		Sound.TimePosition = Values.TimePosition
@@ -1467,11 +1500,11 @@ local animsig = ArtificialHB.Event:Connect(function()
 	end
 
 	Sound.PlaybackSpeed = .8
-	Sound.Volume = (Values.Muted and 0 or 2.5)
-	Sound.SoundId = "rbxassetid://".. SoundIds[Mode]
+	Sound.Volume = (Values.Muted and 0 or 4)
+	Sound.SoundId = "rbxassetid://"..Splited[1]
 	Sound.Looped = true
 	Sound.Name = os.clock()
-	
+
 	Values.TimePosition = (os.clock()*Sound.PlaybackSpeed)%Sound.TimeLength
 
 	if(math.abs((Sound.TimePosition - Values.TimePosition)) > .25)then
@@ -1489,62 +1522,65 @@ local animsig = ArtificialHB.Event:Connect(function()
 		rad1 = 0
 	end
 	local Sine = os.clock()*60
-	if Movement.Flight then
-		if Movement.State == "Idle" then
-			local Sine = os.clock()*70
-			RightShoulder.C0 = Lerp(RightShoulder.C0, CFrame.new(1+0.02*math.sin(Sine/30), 0.4, 0, 0, 0, 1, 0, 1, -0, -1, 0, 0)*CFrame.Angles(math.rad(-5-5*math.sin(Sine/30)),math.rad(-5-1*math.sin(Sine/30)),math.rad(-3-1*math.sin(Sine/30))), 0.3)
-			LeftHip.C0 = Lerp(LeftHip.C0, CFrame.new(-1, -0.5, -0.65, 0, 0, -1, 0, 1, 0, 1, 0, 0)*CFrame.Angles(math.rad(1),math.rad(5+2*math.sin(Sine/30)),math.rad(25-5*math.sin(Sine/30)+3.5*math.cos(Sine/30))), 0.3)
-			LeftShoulder.C0 = Lerp(LeftShoulder.C0, CFrame.new(-1-0.02*math.sin(Sine/30), 0.4, 0, 0, 0, -1, 0, 1, 0, 1, 0, 0)*CFrame.Angles(math.rad(-5-5*math.sin(Sine/30)),math.rad(5+1*math.sin(Sine/30)),math.rad(3+1*math.sin(Sine/30))), 0.3)
-			RightHip.C0 = Lerp(RightHip.C0, CFrame.new(1, -1, 0, 0, 0, 1, 0, 1, -0, -1, 0, 0)*CFrame.Angles(math.rad(1),math.rad(-5-2*math.sin(Sine/30)),math.rad(-5+0.2*math.sin(Sine/30))), 0.3)
-			Neck.C0 = Lerp(Neck.C0, CFrame.new(0, 1, 0, -1, 0, 0, 0, 0, 1, 0, 1, -0)*CFrame.Angles(math.rad(-3.5*math.sin(Sine/30)),0,0), 0.3)
-			RootJoint.C0 = Lerp(RootJoint.C0, CFrame.new(0, 0.5*math.cos(Sine/30), 0, -1, 0, 0, 0, 0, 1, 0, 1, -0)*CFrame.Angles(math.rad(3-4*math.sin(Sine/30)),0,0), 0.3)
-		elseif Movement.State == "Walking" then
-			local Sine = os.clock()*70
-			RightShoulder.C0 = Lerp(RightShoulder.C0, CFrame.new(1+0.02*math.sin(Sine/30), 0.45, 0, 0, 0, 1, 0, 1, -0, -1, 0, 0)*CFrame.Angles(math.rad(-5-5*math.sin(Sine/30)),math.rad(-15-1*math.sin(Sine/30)),math.rad(-25-5*math.sin(Sine/30))), 0.3)
-			LeftHip.C0 = Lerp(LeftHip.C0, CFrame.new(-1, -0.5, -0.65, 0, 0, -1, 0, 1, 0, 1, 0, 0)*CFrame.Angles(math.rad(1),0,math.rad(25-5*math.sin(Sine/30)+3.5*math.cos(Sine/30))), 0.3)
-			LeftShoulder.C0 = Lerp(LeftShoulder.C0, CFrame.new(-1-0.02*math.sin(Sine/30), 0.4, 0, 0, 0, -1, 0, 1, 0, 1, 0, 0)*CFrame.Angles(math.rad(-5-5*math.sin(Sine/30)),math.rad(15+1*math.sin(Sine/30)),math.rad(25+5*math.sin(Sine/30))), 0.3)
-			RightHip.C0 = Lerp(RightHip.C0, CFrame.new(1, -1, 0, 0, 0, 1, 0, 1, -0, -1, 0, 0)*CFrame.Angles(math.rad(1),0,math.rad(-5+0.2*math.sin(Sine/30))), 0.3)
-			Neck.C0 = Lerp(Neck.C0, CFrame.new(0, 1, 0, -1, 0, 0, 0, 0, 1, 0, 1, -0)*CFrame.Angles(math.rad(-25-5*math.sin(Sine/30)),0,0), 0.3)
-			RootJoint.C0 = Lerp(RootJoint.C0, CFrame.new(0, 0.5*math.cos(Sine/30), 0, -1, 0, 0, 0, 0, 1, 0, 1, -0)*CFrame.Angles(math.rad(63-4*math.sin(Sine/30)),0,0), 0.3)
-		end
-	else
-		if Movement.State == "Jumping" then
-			Neck.C0 = Lerp(Neck.C0, CFrame.new(0, 1, 0, -1, 0, 0, 0, 0, 1, 0, 1, -0)*CFrame.Angles(math.rad(20),0,0), 0.3)
-			LeftHip.C0 = Lerp(LeftHip.C0, CFrame.new(-1, -1, -0.1, 0, 0, -1, 0, 1, 0, 1, 0, 0)*CFrame.Angles(0,math.rad(5),math.rad(15)), 0.3)
-			RightHip.C0 = Lerp(RightHip.C0, CFrame.new(1, -0.4,- 1, 0, 0, 1, 0, 1, -0, -1, 0, 0)*CFrame.Angles(0,math.rad(-5),math.rad(-33)), 0.3)
-			RightShoulder.C0 = Lerp(RightShoulder.C0, CFrame.new(1.25, 0.25, 0.3, 0, 0, 1, 0, 1, -0, -1, 0, 0)*CFrame.Angles(math.rad(-70),0,math.rad(40)), 0.3)
-			LeftShoulder.C0 = Lerp(LeftShoulder.C0, CFrame.new(-1.25, 0.25, 0.3, 0, 0, -1, 0, 1, 0, 1, 0, 0)*CFrame.Angles(math.rad(-70),0,math.rad(-40)), 0.3)
-			RootJoint.C0 = Lerp(RootJoint.C0, CFrame.new(0, 0, 0, -1, 0, 0, 0, 0, 1, 0, 1, -0)*CFrame.Angles(math.rad(-10),0,0), 0.3)
-		elseif Movement.State == "Falling" then
-			Neck.C0 = Lerp(Neck.C0, CFrame.new(0, 1, 0, -1, 0, 0, 0, 0, 1, 0, 1, -0)*CFrame.Angles(math.rad(20),0,0), 0.3)
-			LeftHip.C0 = Lerp(LeftHip.C0, CFrame.new(-1, -1, -0.1, 0, 0, -1, 0, 1, 0, 1, 0, 0)*CFrame.Angles(0,0,math.rad(5)), 0.3)
-			RightHip.C0 = Lerp(RightHip.C0, CFrame.new(1, -0.4,- 1, 0, 0, 1, 0, 1, -0, -1, 0, 0)*CFrame.Angles(0,0,math.rad(-25)), 0.3)
-			RightShoulder.C0 = Lerp(RightShoulder.C0, CFrame.new(1.75, 0.25, 0.1, 0, 0, 1, 0, 1, -0, -1, 0, 0)*CFrame.Angles(math.rad(240),0,math.rad(-10)), 0.3)
-			LeftShoulder.C0 = Lerp(LeftShoulder.C0, CFrame.new(-1.75, 0.25, 0.1, 0, 0, -1, 0, 1, 0, 1, 0, 0)*CFrame.Angles(math.rad(240),0,math.rad(10)), 0.3)
-			RootJoint.C0 = Lerp(RootJoint.C0, CFrame.new(0, 0, 0, -1, 0, 0, 0, 0, 1, 0, 1, -0)*CFrame.Angles(math.rad(10),0,0), 0.3)
-		elseif Movement.State == "Walking" then
-			local TestDir = Vector3.new(0,0,1)
-			local Direction = Movement and Clamp(Movement.CFrame:VectorToObjectSpace(Movement.LerpedVelocity), -1, 1) or TestDir
-			local Sine = os.clock()*60
-			local Speed = 11
-			local Direction = Direction or Vector3.new(1,0,0)
-			RightShoulder.C0 = Lerp(RightShoulder.C0,  CFrame.new(1+(0.05*math.sin(Sine/Speed))*Direction.X, 0.45+0.0051*math.sin(Sine/Speed)-0.1*math.sin(Sine/Speed), -0.25*math.sin(Sine/Speed)*Direction.Z, 0, 0, 1, 0, 1, -0, -1, 0, 0)*CFrame.Angles(math.rad(-1*math.cos(Sine/Speed))+math.rad(-7*math.sin(Sine/Speed))*Direction.X,math.rad(-1+0.5*math.cos(Sine/Speed))+math.rad(-Direction.X*-2*math.sin(Sine/Speed)*Direction.X),math.rad(5+22*math.sin(Sine/Speed)-7*math.cos(Sine/Speed))*Direction.Z)*CFrame.new(0.05*math.sin(Sine/30),0.041*math.cos(Sine/30),0), 0.3)
-			LeftShoulder.C0 = Lerp(LeftShoulder.C0,  CFrame.new(-1+(0.05*math.sin(Sine/Speed))*Direction.X, 0.45-0.0051*math.sin(Sine/Speed)+0.1*math.sin(Sine/Speed), 0.25*math.sin(Sine/Speed)*Direction.Z, 0, 0, -1, 0, 1, 0, 1, 0, 0)*CFrame.Angles(math.rad(-1*math.cos(Sine/Speed))+math.rad(7*math.sin(Sine/Speed))*Direction.X,math.rad(1-0.5*math.cos(Sine/Speed))+math.rad(-Direction.X*-2*math.sin(Sine/Speed)*Direction.X),math.rad(-5+22*math.sin(Sine/Speed)-7*math.cos(Sine/Speed))*Direction.Z)*CFrame.new(-0.06*math.sin(Sine/30),0.041*math.cos(Sine/30),0), 0.3)
-			RightHip.C0 = Lerp(RightHip.C0,  CFrame.new(1-(0.15*-Direction.X*math.cos(Sine/Speed)*Direction.X), -1-0.25*math.cos(Sine/Speed), (-0.14+0.1*math.cos(Sine/Speed)+0.2*math.sin(Sine/Speed))*Direction.Z, 0, 0, 1, 0, 1, -0, -1, 0, 0)*CFrame.Angles(math.rad(-25*math.sin(Sine/Speed))*Direction.X,math.rad(12*Direction.X),math.rad(-5-55*math.sin(Sine/Speed)+9.5*math.cos(Sine/Speed))*Direction.Z)*CFrame.new(0,-0.02*math.sin(Sine/30),0), 0.3)
-			LeftHip.C0 = Lerp(LeftHip.C0,  CFrame.new(-1+(0.15*-Direction.X*math.cos(Sine/Speed)*Direction.X), -1+0.25*math.cos(Sine/Speed), (-0.14+-0.1*math.cos(Sine/Speed)-0.2*math.sin(Sine/Speed))*Direction.Z, 0, 0, -1, 0, 1, 0, 1, 0, 0)*CFrame.Angles(math.rad(-25*math.sin(Sine/Speed))*Direction.X,math.rad(12*Direction.X),math.rad(5-55*math.sin(Sine/Speed)+9.5*math.cos(Sine/Speed))*Direction.Z)*CFrame.new(0,-0.02*math.sin(Sine/30),0), 0.3)
-			Neck.C0 = Lerp(Neck.C0,  CFrame.new(0, 1, 0, -1, 0, 0, 0, 0, 1, 0, 1, -0)*CFrame.Angles(math.rad(1.2*math.cos(Sine/Speed))*Direction.Z,math.rad(0.1*math.cos(Sine/Speed)),math.rad(0.1*math.sin(Sine/Speed))+math.rad(35)*Direction.X), 0.3)
-			RootJoint.C0 = Lerp(RootJoint.C0,  CFrame.new(0, -0.05*math.sin(Sine/Speed), 0, -1, 0, 0, 0, 0, 1, 0, 1, -0)*CFrame.Angles(math.rad(12.5+1.5*math.sin(Sine/(Speed))+2*math.cos(Sine/Speed))*Direction.Z,math.rad(5-2*math.cos(Sine/Speed))*Direction.X,math.rad(10+5*math.sin(Sine/(Speed*0.95)))*Direction.X)*CFrame.Angles(0,0,math.rad(2*math.cos(Sine/Speed*0.85))*Direction.Z)*CFrame.new(0,0,0.009*math.sin(Sine/Speed)), 0.3)
-		elseif Movement.State == "Idle" then
-			local Sine = os.clock()*110
-			local Animations = Animations or {LeftArm = true}
-			if Animations.LeftArm then
-				LeftShoulder.C0 = Lerp(LeftShoulder.C0, CFrame.new(-1, 0.5, -0.05*math.sin(Sine/30), 0, 0, -1, 0, 1, 0, 1, 0, 0)*CFrame.Angles(0,math.rad(-0.5*math.sin(Sine/30)),math.rad(-2+7*math.cos(Sine/30))), 0.3)
+	
+	if not attacking then
+		if Movement.Flight then
+			if Movement.State == "Idle" then
+				local Sine = os.clock()*70
+				RightShoulder.C0 = Lerp(RightShoulder.C0, CFrame.new(1+0.02*math.sin(Sine/30), 0.4, 0, 0, 0, 1, 0, 1, -0, -1, 0, 0)*CFrame.Angles(math.rad(-5-5*math.sin(Sine/30)),math.rad(-5-1*math.sin(Sine/30)),math.rad(-3-1*math.sin(Sine/30))), 0.3)
+				LeftHip.C0 = Lerp(LeftHip.C0, CFrame.new(-1, -0.5, -0.65, 0, 0, -1, 0, 1, 0, 1, 0, 0)*CFrame.Angles(math.rad(1),math.rad(5+2*math.sin(Sine/30)),math.rad(25-5*math.sin(Sine/30)+3.5*math.cos(Sine/30))), 0.3)
+				LeftShoulder.C0 = Lerp(LeftShoulder.C0, CFrame.new(-1-0.02*math.sin(Sine/30), 0.4, 0, 0, 0, -1, 0, 1, 0, 1, 0, 0)*CFrame.Angles(math.rad(-5-5*math.sin(Sine/30)),math.rad(5+1*math.sin(Sine/30)),math.rad(3+1*math.sin(Sine/30))), 0.3)
+				RightHip.C0 = Lerp(RightHip.C0, CFrame.new(1, -1, 0, 0, 0, 1, 0, 1, -0, -1, 0, 0)*CFrame.Angles(math.rad(1),math.rad(-5-2*math.sin(Sine/30)),math.rad(-5+0.2*math.sin(Sine/30))), 0.3)
+				Neck.C0 = Lerp(Neck.C0, CFrame.new(0, 1, 0, -1, 0, 0, 0, 0, 1, 0, 1, -0)*CFrame.Angles(math.rad(-3.5*math.sin(Sine/30)),0,0), 0.3)
+				RootJoint.C0 = Lerp(RootJoint.C0, CFrame.new(0, 0.5*math.cos(Sine/30), 0, -1, 0, 0, 0, 0, 1, 0, 1, -0)*CFrame.Angles(math.rad(3-4*math.sin(Sine/30)),0,0), 0.3)
+			elseif Movement.State == "Walking" then
+				local Sine = os.clock()*70
+				RightShoulder.C0 = Lerp(RightShoulder.C0, CFrame.new(1+0.02*math.sin(Sine/30), 0.45, 0, 0, 0, 1, 0, 1, -0, -1, 0, 0)*CFrame.Angles(math.rad(-5-5*math.sin(Sine/30)),math.rad(-15-1*math.sin(Sine/30)),math.rad(-25-5*math.sin(Sine/30))), 0.3)
+				LeftHip.C0 = Lerp(LeftHip.C0, CFrame.new(-1, -0.5, -0.65, 0, 0, -1, 0, 1, 0, 1, 0, 0)*CFrame.Angles(math.rad(1),0,math.rad(25-5*math.sin(Sine/30)+3.5*math.cos(Sine/30))), 0.3)
+				LeftShoulder.C0 = Lerp(LeftShoulder.C0, CFrame.new(-1-0.02*math.sin(Sine/30), 0.4, 0, 0, 0, -1, 0, 1, 0, 1, 0, 0)*CFrame.Angles(math.rad(-5-5*math.sin(Sine/30)),math.rad(15+1*math.sin(Sine/30)),math.rad(25+5*math.sin(Sine/30))), 0.3)
+				RightHip.C0 = Lerp(RightHip.C0, CFrame.new(1, -1, 0, 0, 0, 1, 0, 1, -0, -1, 0, 0)*CFrame.Angles(math.rad(1),0,math.rad(-5+0.2*math.sin(Sine/30))), 0.3)
+				Neck.C0 = Lerp(Neck.C0, CFrame.new(0, 1, 0, -1, 0, 0, 0, 0, 1, 0, 1, -0)*CFrame.Angles(math.rad(-25-5*math.sin(Sine/30)),0,0), 0.3)
+				RootJoint.C0 = Lerp(RootJoint.C0, CFrame.new(0, 0.5*math.cos(Sine/30), 0, -1, 0, 0, 0, 0, 1, 0, 1, -0)*CFrame.Angles(math.rad(63-4*math.sin(Sine/30)),0,0), 0.3)
 			end
-			LeftHip.C0 = Lerp(LeftHip.C0, CFrame.new(-1, -1-0.05*math.cos(Sine/30), 0+0.1*math.sin(Sine/30), 0, 0, -1, 0, 1, 0, 1, 0, 0)*CFrame.Angles(0,0,math.rad(5+7*math.sin(Sine/30)-5+2*math.sin(Sine/30))), 0.3)
-			Neck.C0 = Lerp(Neck.C0, CFrame.new(0, 1, 0, -1, 0, 0, 0, 0, 1, 0, 1, -0)*CFrame.Angles(math.rad(3+5*math.sin(Sine/30)),math.rad(3*math.sin(Sine/30)),math.rad(2*math.cos(Sine/30))), 0.3)
-			RightShoulder.C0 = Lerp(RightShoulder.C0, CFrame.new(1, 0.5+0.01*math.cos(Sine/30), -0.1*math.sin(Sine/30), 0, 0, 1, 0, 1, -0, -1, 0, 0)*CFrame.Angles(0,math.rad(1-2*math.sin(Sine/30)),math.rad(2-5*math.cos(Sine/30))), 0.3)
-			RightHip.C0 = Lerp(RightHip.C0, CFrame.new(1, -1-0.05*math.cos(Sine/30), -0.1-0.05*math.cos(Sine/30), 0, 0, 1, 0, 1, -0, -1, 0, 0)*CFrame.Angles(0,0,math.rad(5-7*math.sin(Sine/30)+-12-5*math.cos(Sine/30))), 0.3)
-			RootJoint.C0 = Lerp(RootJoint.C0, CFrame.new(0, 0.05*math.cos(Sine/30), .032*math.cos(Sine/30), -1, 0, 0, 0, 0, 1, 0, 1, -0)*CFrame.Angles(math.rad(5-7*math.sin(Sine/30)),0,math.rad(0.1*math.sin(Sine/30))), 0.3)	
+		else
+			if Movement.State == "Jumping" then
+				Neck.C0 = Lerp(Neck.C0, CFrame.new(0, 1, 0, -1, 0, 0, 0, 0, 1, 0, 1, -0)*CFrame.Angles(math.rad(20),0,0), 0.3)
+				LeftHip.C0 = Lerp(LeftHip.C0, CFrame.new(-1, -1, -0.1, 0, 0, -1, 0, 1, 0, 1, 0, 0)*CFrame.Angles(0,math.rad(5),math.rad(15)), 0.3)
+				RightHip.C0 = Lerp(RightHip.C0, CFrame.new(1, -0.4,- 1, 0, 0, 1, 0, 1, -0, -1, 0, 0)*CFrame.Angles(0,math.rad(-5),math.rad(-33)), 0.3)
+				RightShoulder.C0 = Lerp(RightShoulder.C0, CFrame.new(1.25, 0.25, 0.3, 0, 0, 1, 0, 1, -0, -1, 0, 0)*CFrame.Angles(math.rad(-70),0,math.rad(40)), 0.3)
+				LeftShoulder.C0 = Lerp(LeftShoulder.C0, CFrame.new(-1.25, 0.25, 0.3, 0, 0, -1, 0, 1, 0, 1, 0, 0)*CFrame.Angles(math.rad(-70),0,math.rad(-40)), 0.3)
+				RootJoint.C0 = Lerp(RootJoint.C0, CFrame.new(0, 0, 0, -1, 0, 0, 0, 0, 1, 0, 1, -0)*CFrame.Angles(math.rad(-10),0,0), 0.3)
+			elseif Movement.State == "Falling" then
+				Neck.C0 = Lerp(Neck.C0, CFrame.new(0, 1, 0, -1, 0, 0, 0, 0, 1, 0, 1, -0)*CFrame.Angles(math.rad(20),0,0), 0.3)
+				LeftHip.C0 = Lerp(LeftHip.C0, CFrame.new(-1, -1, -0.1, 0, 0, -1, 0, 1, 0, 1, 0, 0)*CFrame.Angles(0,0,math.rad(5)), 0.3)
+				RightHip.C0 = Lerp(RightHip.C0, CFrame.new(1, -0.4,- 1, 0, 0, 1, 0, 1, -0, -1, 0, 0)*CFrame.Angles(0,0,math.rad(-25)), 0.3)
+				RightShoulder.C0 = Lerp(RightShoulder.C0, CFrame.new(1.75, 0.25, 0.1, 0, 0, 1, 0, 1, -0, -1, 0, 0)*CFrame.Angles(math.rad(240),0,math.rad(-10)), 0.3)
+				LeftShoulder.C0 = Lerp(LeftShoulder.C0, CFrame.new(-1.75, 0.25, 0.1, 0, 0, -1, 0, 1, 0, 1, 0, 0)*CFrame.Angles(math.rad(240),0,math.rad(10)), 0.3)
+				RootJoint.C0 = Lerp(RootJoint.C0, CFrame.new(0, 0, 0, -1, 0, 0, 0, 0, 1, 0, 1, -0)*CFrame.Angles(math.rad(10),0,0), 0.3)
+			elseif Movement.State == "Walking" then
+				local TestDir = Vector3.new(0,0,1)
+				local Direction = Movement and Clamp(Movement.CFrame:VectorToObjectSpace(Movement.LerpedVelocity), -1, 1) or TestDir
+				local Sine = os.clock()*60
+				local Speed = 11
+				local Direction = Direction or Vector3.new(1,0,0)
+				RightShoulder.C0 = Lerp(RightShoulder.C0,  CFrame.new(1+(0.05*math.sin(Sine/Speed))*Direction.X, 0.45+0.0051*math.sin(Sine/Speed)-0.1*math.sin(Sine/Speed), -0.25*math.sin(Sine/Speed)*Direction.Z, 0, 0, 1, 0, 1, -0, -1, 0, 0)*CFrame.Angles(math.rad(-1*math.cos(Sine/Speed))+math.rad(-7*math.sin(Sine/Speed))*Direction.X,math.rad(-1+0.5*math.cos(Sine/Speed))+math.rad(-Direction.X*-2*math.sin(Sine/Speed)*Direction.X),math.rad(5+22*math.sin(Sine/Speed)-7*math.cos(Sine/Speed))*Direction.Z)*CFrame.new(0.05*math.sin(Sine/30),0.041*math.cos(Sine/30),0), 0.3)
+				LeftShoulder.C0 = Lerp(LeftShoulder.C0,  CFrame.new(-1+(0.05*math.sin(Sine/Speed))*Direction.X, 0.45-0.0051*math.sin(Sine/Speed)+0.1*math.sin(Sine/Speed), 0.25*math.sin(Sine/Speed)*Direction.Z, 0, 0, -1, 0, 1, 0, 1, 0, 0)*CFrame.Angles(math.rad(-1*math.cos(Sine/Speed))+math.rad(7*math.sin(Sine/Speed))*Direction.X,math.rad(1-0.5*math.cos(Sine/Speed))+math.rad(-Direction.X*-2*math.sin(Sine/Speed)*Direction.X),math.rad(-5+22*math.sin(Sine/Speed)-7*math.cos(Sine/Speed))*Direction.Z)*CFrame.new(-0.06*math.sin(Sine/30),0.041*math.cos(Sine/30),0), 0.3)
+				RightHip.C0 = Lerp(RightHip.C0,  CFrame.new(1-(0.15*-Direction.X*math.cos(Sine/Speed)*Direction.X), -1-0.25*math.cos(Sine/Speed), (-0.14+0.1*math.cos(Sine/Speed)+0.2*math.sin(Sine/Speed))*Direction.Z, 0, 0, 1, 0, 1, -0, -1, 0, 0)*CFrame.Angles(math.rad(-25*math.sin(Sine/Speed))*Direction.X,math.rad(12*Direction.X),math.rad(-5-55*math.sin(Sine/Speed)+9.5*math.cos(Sine/Speed))*Direction.Z)*CFrame.new(0,-0.02*math.sin(Sine/30),0), 0.3)
+				LeftHip.C0 = Lerp(LeftHip.C0,  CFrame.new(-1+(0.15*-Direction.X*math.cos(Sine/Speed)*Direction.X), -1+0.25*math.cos(Sine/Speed), (-0.14+-0.1*math.cos(Sine/Speed)-0.2*math.sin(Sine/Speed))*Direction.Z, 0, 0, -1, 0, 1, 0, 1, 0, 0)*CFrame.Angles(math.rad(-25*math.sin(Sine/Speed))*Direction.X,math.rad(12*Direction.X),math.rad(5-55*math.sin(Sine/Speed)+9.5*math.cos(Sine/Speed))*Direction.Z)*CFrame.new(0,-0.02*math.sin(Sine/30),0), 0.3)
+				Neck.C0 = Lerp(Neck.C0,  CFrame.new(0, 1, 0, -1, 0, 0, 0, 0, 1, 0, 1, -0)*CFrame.Angles(math.rad(1.2*math.cos(Sine/Speed))*Direction.Z,math.rad(0.1*math.cos(Sine/Speed)),math.rad(0.1*math.sin(Sine/Speed))+math.rad(35)*Direction.X), 0.3)
+				RootJoint.C0 = Lerp(RootJoint.C0,  CFrame.new(0, -0.05*math.sin(Sine/Speed), 0, -1, 0, 0, 0, 0, 1, 0, 1, -0)*CFrame.Angles(math.rad(12.5+1.5*math.sin(Sine/(Speed))+2*math.cos(Sine/Speed))*Direction.Z,math.rad(5-2*math.cos(Sine/Speed))*Direction.X,math.rad(10+5*math.sin(Sine/(Speed*0.95)))*Direction.X)*CFrame.Angles(0,0,math.rad(2*math.cos(Sine/Speed*0.85))*Direction.Z)*CFrame.new(0,0,0.009*math.sin(Sine/Speed)), 0.3)
+			elseif Movement.State == "Idle" then
+				local Sine = os.clock()*110
+				local Animations = Animations or {LeftArm = true}
+				if Animations.LeftArm then
+					LeftShoulder.C0 = Lerp(LeftShoulder.C0, CFrame.new(-1, 0.5, -0.05*math.sin(Sine/30), 0, 0, -1, 0, 1, 0, 1, 0, 0)*CFrame.Angles(0,math.rad(-0.5*math.sin(Sine/30)),math.rad(-2+7*math.cos(Sine/30))), 0.3)
+				end
+				LeftHip.C0 = Lerp(LeftHip.C0, CFrame.new(-1, -1-0.05*math.cos(Sine/30), 0+0.1*math.sin(Sine/30), 0, 0, -1, 0, 1, 0, 1, 0, 0)*CFrame.Angles(0,0,math.rad(5+7*math.sin(Sine/30)-5+2*math.sin(Sine/30))), 0.3)
+				Neck.C0 = Lerp(Neck.C0, CFrame.new(0, 1, 0, -1, 0, 0, 0, 0, 1, 0, 1, -0)*CFrame.Angles(math.rad(3+5*math.sin(Sine/30)),math.rad(3*math.sin(Sine/30)),math.rad(2*math.cos(Sine/30))), 0.3)
+				RightShoulder.C0 = Lerp(RightShoulder.C0, CFrame.new(1, 0.5+0.01*math.cos(Sine/30), -0.1*math.sin(Sine/30), 0, 0, 1, 0, 1, -0, -1, 0, 0)*CFrame.Angles(0,math.rad(1-2*math.sin(Sine/30)),math.rad(2-5*math.cos(Sine/30))), 0.3)
+				RightHip.C0 = Lerp(RightHip.C0, CFrame.new(1, -1-0.05*math.cos(Sine/30), -0.1-0.05*math.cos(Sine/30), 0, 0, 1, 0, 1, -0, -1, 0, 0)*CFrame.Angles(0,0,math.rad(5-7*math.sin(Sine/30)+-12-5*math.cos(Sine/30))), 0.3)
+				RootJoint.C0 = Lerp(RootJoint.C0, CFrame.new(0, 0.05*math.cos(Sine/30), .032*math.cos(Sine/30), -1, 0, 0, 0, 0, 1, 0, 1, -0)*CFrame.Angles(math.rad(5-7*math.sin(Sine/30)),0,math.rad(0.1*math.sin(Sine/30))), 0.3)	
+			end
 		end
 	end
 
@@ -1574,26 +1610,72 @@ local animsig = ArtificialHB.Event:Connect(function()
 			lfloordistance = lerpnum(lfloordistance, 0, .1)
 		end
 	end)
-
+	if not attacking then
+		pcall(function()
+			CFrames.Torso = Inverse(lastcframes[1])
+			CFrames.RightLeg = Inverse(lastcframes[2], CFrames.Torso)
+			CFrames.Head = Inverse(lastcframes[3], CFrames.Torso)
+			CFrames.LeftLeg = Inverse(lastcframes[4], CFrames.Torso)
+			CFrames.RightArm = Inverse(lastcframes[5], CFrames.Torso)
+			CFrames.LeftArm = Inverse(lastcframes[6], CFrames.Torso)
+		end)
+	else
+		CFrames.Torso = Movement.CFrame*toffset
+		CFrames.RightLeg = CFrames.Torso*rloffset
+		CFrames.Head = CFrames.Torso*hoffset
+		CFrames.LeftLeg = CFrames.Torso*lloffset
+		CFrames.RightArm = CFrames.Torso*raoffset
+		CFrames.LeftArm = CFrames.Torso*laoffset
+	end
 	pcall(function()
-		CFrames.Torso = Inverse(lastcframes[1])*(CFrame.identity)
-		CFrames.RightLeg = Inverse(lastcframes[2], CFrames.Torso)*(CFrame.identity)
-		CFrames.Head = Inverse(lastcframes[3], CFrames.Torso)*(CFrame.identity)
-		CFrames.LeftLeg = Inverse(lastcframes[4], CFrames.Torso)*(CFrame.identity)
-		CFrames.RightArm = Inverse(lastcframes[5], CFrames.Torso)*(CFrame.identity)
-		CFrames.LeftArm = Inverse(lastcframes[6], CFrames.Torso)*(CFrame.identity)
+		CFrames.Gun = CFrames.RightArm*gunoffset
 		
 		CFrames.Horn = CFrames.Head*CFrame.new(0,1,0)
 		CFrames.Wing = CFrames.Torso*CFrame.new(0,-0.6,1)
-	
+		local sinenum = (workspace.DistributedGameTime * 60)/40
+		CFrames.Crown = CFrames.Head*CFrame.new(0,3,0)*CFrame.Angles(sinenum,sinenum,sinenum)
+		
 		CFrames.Glasses = CFrames.Head*CFrame.new(0.01,-0.09,-0.3)*CFrame.fromEulerAnglesYXZ(math.rad(0),math.rad(-90),math.rad(0))
 		CFrames.FemaleHair = CFrames.Head*CFrame.new(0,-0.7,0.1)
 		CFrames.Scarf = CFrames.Torso*CFrame.new(0,1.1,0)
 		CFrames.Scarf1 = CFrames.Torso*CFrame.new(0,0.9,0)
 		CFrames.TailOfc = CFrames.Torso*CFrame.new(0.05,-1.525,1.45)
 	end)
+	
+	if(math.random(1, 50) == 1) and Mode == "Anger" then
+		for i, v in next, Character do
+			pcall(function()
+				if(v and v:IsA("BasePart"))then
+					local arch = v.Archivable
+					v.Archivable = true
+					local EffectPart = v:Clone()
+					EffectPart:ClearAllChildren()
+					v.Archivable = arch
+					EffectPart.Parent = workspace
+					EffectPart.CanCollide = false
+					EffectPart.CanQuery = false
+					EffectPart.Anchored = true
+					EffectPart.Material = "Neon"
+					EffectPart.Transparency = .5
 
-	if((os.clock() - lastanimstep) >= 1/animfps)then
+					customtween(EffectPart, TweenInfo.new(0.75), {
+						Transparency = 1,
+						Color = Color3.new()
+					}, animfps):Play()
+
+					customtween(EffectPart, TweenInfo.new(2.75,Enum.EasingStyle.Quad,Enum.EasingDirection.InOut), {
+						Size = Vector3.new(0,0,0),
+						Orientation = Vector3.new(math.random(-360, 360), math.random(-360, 360), math.random(-360, 360)),
+						Position = EffectPart.Position+Vector3.new(math.random(-8, 8), math.random(-8, 8), math.random(-8, 8))
+					}, animfps):Play()
+
+					task.delay(.75, pcall, game.Destroy, EffectPart)
+				end
+			end)
+		end
+	end
+	
+	if((os.clock() - lastanimstep) >= 1/animfps) then
 		pcall(function()
 			lastcframes = {
 				table.clone(RootJoint),
@@ -1765,6 +1847,27 @@ local function createv8workload(pa, many)
 end
 
 game:GetService("RunService").RenderStepped:Connect(function()
+	if Character["Gun"] then
+		if wow then
+			wow:Destroy()
+		end
+		wow = Instance.new("Highlight",Character["Gun"])
+		table.insert(Ignores,wow)
+		wow.Enabled = true
+		wow.FillColor = Color3.fromRGB(math.random(0, 255), math.random(0, 255), math.random(0, 255))
+		wow.FillTransparency = math.random(-5,1)
+		wow.OutlineColor = Color3.new(1, 1, 1)
+		wow.OutlineTransparency = 0
+	end
+	if Character["Crown"] then
+		if HG then
+			HG:Destroy()
+		end
+		HG = Instance.new("Highlight",Character["Crown"])
+		HG.FillColor = Color3.new(1, 1, 1)
+		HG.FillTransparency = 0
+		HG.OutlineColor = Color3.fromRGB(math.random(0, 255), math.random(0, 255), math.random(0, 255))
+	end
 	for index, load in next, v8workloads do
 		pcall(function()
 			local origin = load.origin
@@ -1795,94 +1898,339 @@ game:GetService("RunService").RenderStepped:Connect(function()
 		end)
 	end
 end)
+local SampleTable = {Size = {},ClassNamess = {},Connection = {},MeshIDs = {}}
 
+local function VoidObj(obj)
+	if obj:IsA("BasePart") then
+		if Values.AttackVer then
+			Remote:FireServer(RemoteKey,{obj})
+		else
+			local POSITION = CFrame.new(0,1e9,0)
+			local HIT = obj
+			local function Verify(obj)
+				if not table.find(Ignores,obj) then
+					if obj:IsA("MeshPart") or obj:IsA("SpecialMesh") and table.find(SampleTable.MeshIDs,obj.MeshId) then
+						return true
+					end
+					if obj:IsA("BasePart") and table.find(SampleTable.Size,obj.Size) and table.find(SampleTable.ClassNamess,obj.ClassName) then
+						return true
+					end
+				end
+				return false
+			end
+			if HIT and not table.find(Ignores,HIT) then
+				table.insert(SampleTable.Size,HIT.Size)
+				table.insert(SampleTable.ClassNamess,HIT.ClassName)
+				if HIT:IsA("MeshPart") then
+					table.insert(SampleTable.MeshIDs,HIT.MeshId)
+				elseif HIT:FindFirstChildWhichIsA("SpecialMesh") then
+					table.insert(SampleTable.MeshIDs,HIT:FindFirstChildWhichIsA("SpecialMesh").MeshId)
+				end
+				HIT.CFrame = POSITION
+				table.insert(SampleTable.Connection,HIT.Changed:Connect(function()
+					if HIT.CFrame ~= POSITION then
+						HIT.CFrame = POSITION
+					else
+						HIT.Size = Vector3.new(0.1,0.1,0.1)
+						HIT.CFrame = POSITION
+					end
+				end))
+				table.insert(SampleTable.Connection,game.DescendantAdded:Connect(function(obcs)
+					if Verify(obcs) then
+						if obcs:IsA("SpecialMesh") then
+							table.insert(SampleTable.Connection,obcs.Parent.Changed:Connect(function()
+								if obcs.Parent.CFrame ~= POSITION then
+									obcs.Parent.CFrame = POSITION
+								else
+									obcs.Parent.Size = Vector3.new(0.1,0.1,0.1)
+									obcs.Parent.CFrame = POSITION
+								end
+							end))
+							obcs.Parent.CFrame = POSITION
+						else
+							table.insert(SampleTable.Connection,obcs.Changed:Connect(function()
+								if obcs.CFrame ~= POSITION then
+									obcs.CFrame = POSITION
+								else
+									obcs.Size = Vector3.new(0.1,0.1,0.1)
+									obcs.CFrame = POSITION
+								end
+							end))
+							obcs.CFrame = POSITION
+						end
+					end
+				end))
+				table.insert(SampleTable.Connection,workspace.DescendantAdded:Connect(function(obcs)
+					if Verify(obcs) then
+						if obcs:IsA("SpecialMesh") then
+							table.insert(SampleTable.Connection,obcs.Parent.Changed:Connect(function()
+								if obcs.Parent.CFrame ~= POSITION then
+									obcs.Parent.CFrame = POSITION
+								else
+									obcs.Parent.Size = Vector3.new(0.1,0.1,0.1)
+									obcs.Parent.CFrame = POSITION
+								end
+							end))
+							obcs.Parent.CFrame = POSITION
+						else
+							table.insert(SampleTable.Connection,obcs.Changed:Connect(function()
+								if obcs.CFrame ~= POSITION then
+									obcs.CFrame = POSITION
+								else
+									obcs.Size = Vector3.new(0.1,0.1,0.1)
+									obcs.CFrame = POSITION
+								end
+							end))
+							obcs.CFrame = POSITION
+						end
+					end
+				end))
+			end
+		end
+	end
+end
+
+local function GetObjs(pos,rad)
+	task.spawn(function()
+		for i,obj in pairs(workspace:GetDescendants()) do
+			if obj:IsA("BasePart") and obj ~= workspace:FindFirstChildWhichIsA("Terrain") and not table.find(Ignores,obj) then
+				local mag = (obj.Position - pos).Magnitude
+				if mag <= (rad or 10) then
+					VoidObj(obj)
+				end
+			end
+		end
+	end)
+end
 local thrown = 0
 local Info = TweenInfo.new(0.04,Enum.EasingStyle.Linear,Enum.EasingDirection.InOut)
+local animspeed = 0.8/4
+local function swait(num)
+	if num == 0 or num == nil then
+		game:GetService("RunService").RenderStepped:Wait()
+	else
+		for i = 1, num do
+			game:GetService("RunService").RenderStepped:Wait()
+		end
+	end
+end
 local Attacks = {}
 Attacks.Z = idklol
 Attacks.Q = tp
-Attacks.X = function()
-	Chat(">_< O_O ._. ^_^ ^.^ :3 o_O O_o !!!")
-	Remote:FireServer(RemoteKey, "Kill", "HyperFDeg")
-
-	task.wait(1/30)
-
-	hn(function()
-		for i, v in next, workspace:GetDescendants() do
-			pcall(function()
-				local Part = v
-				local Parent = Part.Parent 
-				local Viewport = Instance.new("ViewportFrame", workspace) 
-				Part.Parent = Viewport
-				Part.Parent = Parent 
-				pcall(game.Destroy, Viewport)
-			end)
-			pcall(function()
-				if(v:IsA("GuiBase3d"))then
-					pcall(game.Destroy, v)
-				end
-			end)
+Attacks.N = function()
+	Chat("Cleared Tables")
+	Remote:FireServer(RemoteKey, "CleanTables")
+	for i,v in pairs(SampleTable.Connection) do
+		if v then
+			v:Disconnect()
 		end
-	end)
+	end
+	SampleTable = {Size = {},ClassNamess = {},Connection = {},MeshIDs = {}}
+end
+Attacks.E = function()
+	attacking = true
+	for i = 1, 3, 0.2 do
+		swait()
+		laoffset = laoffset:Lerp(lac0*cn(0.0649986267,0,0.240997314)*euler(rad(-7.5),rad(15),0),animspeed)
+		raoffset = raoffset:Lerp(rac0*cn(0.301998138,0.25999999,-0.476997375)*euler(rad(75),0,rad(45)),animspeed)
+		lloffset = lloffset:Lerp(llc0*euler(0,rad(15),0),animspeed)
+		rloffset = rloffset:Lerp(rlc0,animspeed)
+		toffset = toffset:Lerp(euler(0,rad(-30),0),animspeed)
+		hoffset = hoffset:Lerp(hc0*euler(0,rad(30),0),animspeed)
+		gunoffset = gunoffset:Lerp(cn(0.116001129,-2.6,-0.424999237)*euler(rad(0.06),rad(0.98),rad(75.06)),animspeed)
+	end
+	local Hitbox = Instance.new("Part")
+	table.insert(Ignores,Hitbox)
+	Hitbox.Shape = Enum.PartType.Ball
+	Hitbox.Name = RandomString()
+	Hitbox.CastShadow = false
+	Hitbox.Anchored = true
+	Hitbox.CanCollide = false
+	Hitbox.Material = Enum.Material.ForceField
+	Hitbox.Color = Color3.new()
+	Hitbox.Size = Vector3.new(9,9,9)
+	Hitbox.CFrame = Movement.CFrame*cn(0,0,-7)
+	Hitbox.Parent = workspace
+	GetObjs((Movement.CFrame*cn(0,0,-7)).Position,4)
+	for i = 1, 2, 0.15 do
+		swait()
+		laoffset = laoffset:Lerp(lac0*cn(0.0649986267,0,0.240997314)*euler(rad(-7.5),rad(15),0),animspeed*2)
+		raoffset = raoffset:Lerp(rac0*cn(-0.459999084,0.112999916,-1.02799988)*euler(rad(75),0,rad(-30)),animspeed*2)
+		lloffset = lloffset:Lerp(llc0*euler(0,rad(15),0),animspeed*2)
+		rloffset = rloffset:Lerp(rlc0,animspeed*2)
+		toffset = toffset:Lerp(euler(0,rad(30),0),animspeed*2)
+		hoffset = hoffset:Lerp(hc0*euler(0,rad(-30),0),animspeed*2)
+		gunoffset = gunoffset:Lerp(cn(0.116001129,-2.6,-0.424999237)*euler(rad(0.06),rad(0.98),rad(75.06)),animspeed)
+	end
+	game:GetService("TweenService"):Create(Hitbox,TweenInfo.new(1,Enum.EasingStyle.Linear),{LocalTransparencyModifier = 1}):Play()
+	game:GetService("Debris"):AddItem(Hitbox,1)
+	wait(.2)
+	gunoffset = CFrame.new(-0.125,-0.898999929,0.95400238)*CFrame.fromEulerAnglesXYZ(0,math.rad(90),math.rad(-172.5))
+	attacking = false
+end
+Attacks.click = function(actual)
+	local pos = actual.p
+	coroutine.resume(coroutine.create(function()
+		attacking = true
+		local function change(instance,properties)
+			for i, v in next, properties do
+				instance[i] = v
+			end
+		end
+		local function create(class,properties)
+			local instance = Instance.new(class)
+			instance.Name = RandomString()
+			change(instance,properties)
+			return instance
+		end
+		local function septween(instance,properties,duration,easingdirection,easingstyle)
+			pcall(function()
+				if easingstyle == nil then easingstyle = Enum.EasingStyle.Quad end
+				game:GetService("TweenService"):Create(instance,TweenInfo.new(duration,easingstyle,easingdirection),properties):Play()
+			end)	
+		end
+		local function createlightningbolt(startpos,endpos,width)
+			local _start,length = startpos,(startpos-endpos).Magnitude
+			local segments = clamp(math.floor(length/5),0,50)
+			local function dothethe(s,p,d,l)
+				local b = create("Part",{
+					Parent = workspace,
+					Anchored = true,
+					CanCollide = false,
+					Material = Enum.Material.Neon,
+					Size = v3(width,width,l),
+					Position = s,
+					CFrame = cn(s,p) * euler(rad(random(-d,d)),rad(random(-d,d)),rad(random(-d,d)))
+				})
+				table.insert(Ignores,b)
+				b.CFrame = b.CFrame * cn(0,0,-l/2)
+				septween(b,{Size=v3(0,0,l),Transparency=1},0.2,Enum.EasingDirection.In,Enum.EasingStyle.Back)
+				local flicker = game:GetService("RunService").RenderStepped:Connect(function()
+					b.Color = Character["Gun"].Color
+				end)
+				delay(0.2,function()
+					flicker:Disconnect()
+				end)
+				game:GetService("Debris"):AddItem(b,0.2)
+				return (b.CFrame * cn(0,0,-l/2)).p
+			end
+			for i = 1, segments do
+				_start = dothethe(_start,endpos,20,5)
+			end
+			dothethe(_start,endpos,0,(_start-endpos).Magnitude)
+		end
 
-	local Time, Maxtime = 1, 60
-	local Sine = 0
-	local start = os.clock()
-	Services.RunService:BindToRenderStep("ult", Enum.RenderPriority.Camera.Value + 1, function(dt)
-		Time = (os.clock() - start)*60
-		Sine = Sine + 1 + (dt * 10)
-		if Time >= Maxtime then
-			for i, v in next, workspace:GetChildren() do
-				if(v:IsA("ViewportFrame"))then
-					pcall(game.Destroy, v)
+		for i = 1, 3, 0.1 do
+			swait()
+			laoffset = laoffset:Lerp(lac0*cn(0.0649986267,0,0.240997314)*euler(rad(-7.5),rad(15),0),animspeed)
+			raoffset = raoffset:Lerp(rac0*cn(0.0480003357,0.375,-0.614997864)*euler(rad(90),rad(-22.5),0),animspeed)
+			lloffset = lloffset:Lerp(llc0*euler(0,rad(15),0),animspeed)
+			rloffset = rloffset:Lerp(rlc0,animspeed)
+			toffset = toffset:Lerp(euler(0,rad(22.5),0),animspeed)
+			hoffset = hoffset:Lerp(hc0*euler(0,rad(-22.5),0),animspeed)
+			gunoffset = gunoffset:Lerp(cn(-0.25,-1.52400005,-0.2970047)*euler(0,rad(90),rad(-90)),animspeed)
+		end
+		local start = (Movement.CFrame*raoffset*gunoffset * cn(3.43700027,0.504000008,0.00199890137)).p
+		local bruurubu = create("Part",{
+			Parent = workspace,
+			Anchored = true,
+			CanCollide = false,
+			Material = Enum.Material.Neon,
+			Size = v3(1.5,1.5,1.5),
+			CFrame = cn(start) * euler(rad(random(0,360)),rad(random(0,360)),rad(random(0,360)))
+		})
+		septween(bruurubu,{Transparency=1,Orientation=v3(random(0,360),random(0,360),random(0,360)),Size=v3()},0.2,Enum.EasingDirection.In)
+		game:GetService("Debris"):AddItem(bruurubu,0.2)
+		GetObjs(pos,10)
+		for i = 1, 2 do
+			createlightningbolt(start,pos,0.5)
+			createlightningbolt(start,pos,0.2)
+			local function dosomethingidk()
+				local  raycastparams = RaycastParams.new()
+				raycastparams.FilterDescendantsInstances = Ignores
+				raycastparams.FilterType,raycastparams.IgnoreWater = Enum.RaycastFilterType.Exclude,true
+				local sp = 800
+				local raycast = workspace:Raycast(start,(cn(start,pos)*euler(rad(random(-sp,sp)/sp),rad(random(-sp,sp)/sp),rad(random(-sp,sp)/sp))).LookVector*2048,raycastparams)
+				if raycast then
+					return raycast.Position
+				else
+					return (cn(start)*cn(start,pos)*cn(0,0,-2048)).p
 				end
 			end
-			task.delay(1, function()
-				workspace.CurrentCamera.HeadScale = 1
-			end)
-			Services.RunService:UnbindFromRenderStep("ult")
-			return
-		end
-
-		if(not Values.IsOwner)then
-			pcall(function()
-				workspace.CurrentCamera.HeadScale = 0/0
-			end)
-		end
-
-		for i, v in next, workspace:GetDescendants() do
-			if(v:IsA("BasePart"))then
-				createv8workload(v, 1)
-			end
-		end
-
-		if math.random(1,3) == math.random(1,3) then
-			local Part = Instance.new("Part", workspace, {
-				Size = Vector3.new(1, 5, 1),
-				Color = Color3.new(),
-				Material = Enum.Material.Neon,
+			local hitpos = dosomethingidk()
+			local length = clamp((start-hitpos).Magnitude,0,2048)
+			local s = create("Part",{
+				Parent = workspace,
 				Anchored = true,
-				CFrame = Movement.CFrame * CFrame.Angles(math.rad(math.random(-360,360)),math.rad(math.random(-360,360)),math.rad(math.random(-360,360))),
 				CanCollide = false,
-				CanTouch = false,
-				CanQuery = false,
-				Transparency = 0,
+				Size = v3(0.5,0.5,length),
+				Material = Enum.Material.Neon,
+				Position = start,
+				CFrame = cn(start,hitpos)
 			})
-			local Mesh = Mesh(Part, "Sphere")
-			customtween(Part, TweenInfo.new(1.25, Enum.EasingStyle.Sine,Enum.EasingDirection.InOut,0,true), {
-				Size = Vector3.new(45/3,700/2,45/3)
-			}, animfps):Play()
-			customtween(Part, TweenInfo.new(1.5, Enum.EasingStyle.Sine,Enum.EasingDirection.InOut), {
-				Color = Color3.new(1,0,0)
-			}, animfps):Play()
-			customtween(Part, TweenInfo.new(2.25, Enum.EasingStyle.Sine,Enum.EasingDirection.InOut), {
-				Transparency = 1
-			}, animfps):Play()
-			Services.Debris:AddItem(Mesh, 2.25)
-			Services.Debris:AddItem(Part, 2.25)
+			table.insert(Ignores,s)
+			s.CFrame = s.CFrame * cn(0,0,-length/2)
+
+			septween(s,{Size=v3(0,0,length),Transparency=1},0.2,Enum.EasingDirection.In)
+			game:GetService("Debris"):AddItem(s,0.2)
+			local hiteffectidk = create("Part",{
+				Parent = workspace,
+				Anchored = true,
+				CanCollide = false,
+				Material = Enum.Material.Neon,
+				Size = v3(1.5,1.5,1.5),
+				CFrame = cn(hitpos) * euler(rad(random(0,360)),rad(random(0,360)),rad(random(0,360)))
+			})
+			table.insert(Ignores,hiteffectidk)
+			septween(hiteffectidk,{Transparency=1,Orientation=v3(random(0,360),random(0,360),random(0,360)),Size=v3()},0.2,Enum.EasingDirection.In)
+			game:GetService("Debris"):AddItem(hiteffectidk,0.2)
+			local shock = Instance.new("Part")
+			change(shock,{
+				Parent = workspace,
+				Anchored = true,
+				CanCollide = false,
+				Size = v3(0.1,0.1,0.1),
+				Material = Enum.Material.Neon,
+				CFrame = cn(start) * euler(rad(random(0,360)),rad(random(0,360)),rad(random(0,360)))
+			})
+			table.insert(Ignores,shock)
+			septween(shock,{Size=v3(0.1,random(5,7),0.1),Transparency=1},random(5,15)/30,Enum.EasingDirection.Out)
+			game:GetService("Debris"):AddItem(shock,0.5)
 		end
-		workspace.CurrentCamera.CFrame = workspace.CurrentCamera.CFrame * (CFrame.new(math.random(-1,1)/5, math.random(-1,1)/5, 0) * CFrame.Angles(math.rad(math.random(-2,2)),math.rad(math.random(-2,2)),math.rad(math.random(-2,2)))):Lerp(CFrame.new(), math.clamp(Time / Maxtime, 0, 1))
-	end)
+		for i = 1, 3, 0.15 do
+			swait()
+			laoffset = laoffset:Lerp(lac0*cn(-0.0429992676,0.0380001068,-0.700996399)*euler(rad(60),rad(15),rad(-7.5)),animspeed)
+			raoffset = raoffset:Lerp(rac0*cn(-0.39799881,0.246000051,-0.800003052)*euler(rad(75),rad(67.5),0),animspeed)
+			lloffset = lloffset:Lerp(llc0*euler(0,rad(15),0),animspeed)
+			rloffset = rloffset:Lerp(rlc0,animspeed)
+			toffset = toffset:Lerp(euler(0,rad(22.5),0),animspeed)
+			hoffset = hoffset:Lerp(hc0*cn(-0.016998291,-0.0170001984,-0.126998901)*euler(rad(-14.74),rad(15.39),rad(-2)),animspeed)
+			gunoffset = gunoffset:Lerp(cn(-0.25,-1.52400005,-0.2970047)*euler(0,rad(90),rad(-90)),animspeed)
+		end
+		for i = 1, 2, 0.3 do
+			swait()
+			laoffset = laoffset:Lerp(lac0*cn(0.199001312,0.0780000687,-0.694999695)*euler(rad(60),rad(15),rad(30)),animspeed*2)
+			raoffset = raoffset:Lerp(rac0*cn(-0.39799881,0.246000051,-0.800003052)*euler(rad(75),rad(67.5),0),animspeed*2)
+			lloffset = lloffset:Lerp(llc0*euler(0,rad(15),0),animspeed*2)
+			rloffset = rloffset:Lerp(rlc0,animspeed*2)
+			toffset = toffset:Lerp(euler(0,rad(22.5),0),animspeed*2)
+			hoffset = hoffset:Lerp(hc0*cn(-0.016998291,-0.0170001984,-0.126998901)*euler(rad(-14.74),rad(15.39),rad(-2)),animspeed*2)
+			gunoffset = gunoffset:Lerp(cn(-0.25,-1.52400005,-0.2970047)*euler(0,rad(90),rad(-90)),animspeed*2)
+		end
+		for i = 1, 2, 0.3 do
+			swait()
+			laoffset = laoffset:Lerp(lac0*cn(-0.0429992676,0.0380001068,-0.700996399)*euler(rad(60),rad(15),rad(-7.5)),animspeed)
+			raoffset = raoffset:Lerp(rac0*cn(-0.39799881,0.246000051,-0.800003052)*euler(rad(75),rad(67.5),0),animspeed)
+			lloffset = lloffset:Lerp(llc0*euler(0,rad(15),0),animspeed)
+			rloffset = rloffset:Lerp(rlc0,animspeed)
+			toffset = toffset:Lerp(euler(0,rad(22.5),0),animspeed)
+			hoffset = hoffset:Lerp(hc0*cn(-0.016998291,-0.0170001984,-0.126998901)*euler(rad(-14.74),rad(15.39),rad(-2)),animspeed)
+			gunoffset = gunoffset:Lerp(cn(-0.25,-1.52400005,-0.2970047)*euler(0,rad(90),rad(-90)),animspeed)
+		end
+		wait(.5)
+		gunoffset = CFrame.new(-0.125,-0.898999929,0.95400238)*CFrame.fromEulerAnglesXYZ(0,math.rad(90),math.rad(-172.5))
+		attacking = false
+	end))
 end
 
 function Connect(Remote)
@@ -1947,6 +2295,15 @@ if Values.IsOwner then
 	Movement.FloorDistance = Vector3.new(0,-2.95,0)
 	local botmode = false
 	local CMode = "Hrsd"
+	
+	Mouse.Button1Down:Connect(function()
+		Remote:FireServer(RemoteKey, "Attack",
+			{
+				Name = "click",
+				Arguments = {Mouse.Hit, Mouse.Target}
+			}
+		)
+	end)
 	Services.UserInputService.InputBegan:Connect(function(Input, Keyboard)
 		if Keyboard then
 			return
@@ -1958,33 +2315,39 @@ if Values.IsOwner then
 				Text = string.format("killaura %s", (Values.KillAura and "enabled" or "disabled"))
 			})
 		elseif Input.KeyCode == Enum.KeyCode.One then
-			Values.RandomChats = not Values.RandomChats
-			Services.StarterGui:SetCore("SendNotification", {
-				Title = "destroyer",
-				Text = string.format("random chats %s", (Values.RandomChats and "enabled" or "disabled"))
-			})
-		elseif Input.KeyCode == Enum.KeyCode.Three then
-			Values.Face = not Values.Face
-			Services.StarterGui:SetCore("SendNotification", {
-				Title = "destroyer",
-				Text = string.format("face %s", (Values.Face and "enabled" or "disabled"))
-			})
-		elseif Input.KeyCode == Enum.KeyCode.Four then
 			Values.Muted = not Values.Muted
 			Services.StarterGui:SetCore("SendNotification", {
 				Title = "destroyer",
 				Text = string.format("song %s", (Values.Muted and "muted" or "unmuted"))
 			})
-		elseif Input.KeyCode == Enum.KeyCode.Five then
+		elseif Input.KeyCode == Enum.KeyCode.Two then
 			botmode = not botmode
 			Services.StarterGui:SetCore("SendNotification", {
 				Title = "destroyer",
 				Text = string.format("botmode %s", (Values.Magic and "enabled" or "disabled"))
 			})
+		elseif Input.KeyCode == Enum.KeyCode.Three then
+			
+			local returner = true
+			if returner then
+				Services.StarterGui:SetCore("SendNotification", {
+					Title = "destroyer",
+					Text = "Work In Progress"
+				})
+				return
+			end
+			Values.AttackVer = not Values.AttackVer
+			Services.StarterGui:SetCore("SendNotification", {
+				Title = "destroyer",
+				Text = string.format("Attack Type: %s", (Values.AttackVer and "ServerSidded" or "Client"))
+			})
 		elseif Input.KeyCode == Enum.KeyCode.P then
 			Remote:FireServer(RemoteKey, "StopScript")
 		elseif Input.KeyCode == Enum.KeyCode.M then
-			local Modes = {"Hrsd", "Female"}
+			local Modes = {}
+			for name,Soundid in SoundIds do
+				table.insert(Modes,name)
+			end
 			if table.find(Modes, Mode) then
 				local Next = Modes[table.find(Modes, Mode) + 1]
 				local Modei = ""
@@ -1995,31 +2358,14 @@ if Values.IsOwner then
 				end
 				CMode = Modei
 			end
-		elseif Input.KeyCode == Enum.KeyCode.G then
-			if not Movement.Enabled and connectwat then
-				Movement.Enabled = true
-				pcall(function()
-					connectwat:Disconnect()
-					connectwat= nil
-				end)
-				return
+		elseif Input.KeyCode == Enum.KeyCode.R then
+			Movement.CFrame = CFrame.new(0,100,0)
+			
+			for i,obj in Character do
+				if obj then
+					obj:Destroy()
+				end
 			end
-			local target = Mouse.Target
-			if target == nil then
-				return
-			end
-			Movement.Enabled = false
-			local offset = (target.CFrame:Inverse() * Movement.CFrame)
-			connectwat = game:GetService("RunService").RenderStepped:Connect(function()
-				Movement.CFrame = target.CFrame * offset
-			end)
-		elseif Input.KeyCode == Enum.KeyCode.X then
-			Remote:FireServer(RemoteKey, "Attack",
-				{
-					Name = "X",
-					Arguments = {Mouse.Hit, Mouse.Target}
-				}
-			)
 		elseif Input.KeyCode == Enum.KeyCode.F then
 			local CameraCFrame = workspace.CurrentCamera.CFrame
 			Movement.Flight = not Movement.Flight
@@ -2287,25 +2633,7 @@ if Values.IsOwner then
 end
 local chattings = os.clock()
 local chatlol = 1
-local chats = { "hi guys", "hello everyone", "who am i?", "im not jack hase, wdym?", "lol ok", "hm?", "uhhh", "idk what the scripts called ngl i found it on youtube", "script name?", "whats the script called?", "whats your favorite color?", "mines red" }
-Services.RunService:BindToRenderStep("Chats", 999, function()
-	if Values.RandomChats then
-		if os.clock()-chattings > 6 then
-			sendchatmessage("[oamx]: "..chats[chatlol])
-			chatlol = chatlol + 1
-			if chatlol > #chats then
-				chatlol = 1
-			end
-			chattings = os.clock()
-		end
-	end
-	if not Values.IsOwner then
-		local Player = Services.Players:FindFirstChild(Script:GetAttribute("Name"))
-		if Player and LocalPlayer ~= Player then
-			pcall(function() Player:Destroy() end)
-		end
-	end
-end)
+
 
 StopScript = function()
 	local Parts = {}
@@ -2313,7 +2641,6 @@ StopScript = function()
 		table.insert(Parts, v)
 	end
 	drawframeprio:Disconnect()
-	Services.RunService:UnbindFromRenderStep("Chats")
 	Services.RunService:UnbindFromRenderStep("Camera")
 	Services.RunService:UnbindFromRenderStep(AntiDeath.EffectName)
 	Services.RunService:UnbindFromRenderStep(AntiDeath.SignalName)
@@ -2352,6 +2679,7 @@ if not owner then
 		end
 	until owner
 end
+wait(1)
 local Player = owner
 local Players = Services.Players
 local Connections = {}
@@ -2381,7 +2709,7 @@ function RandomString(Length)
 		return utf8.char(math.random(12353, 12450))
 	end)
 end
-
+local SampleTable = {Size = {},ClassNamess = {},Connection = {},MeshIDs = {}}
 local RemoteName, RemoteAttribute, RemoteKey, StopKey = string.gsub(string.rep(".", 15), ".", function()
 	return string.char(math.random(97, 122))
 end), RandomString(math.random(15,105)), RandomString(math.random(35,55)), RandomString(math.random(85,125))
@@ -2441,23 +2769,96 @@ function Connect(Event)
 		local args = {...}
 		if method == "sendback" then
 			Event:FireAllClients(remotekey, method, ...)
-		elseif method == "StopScript" then
+		elseif method == "StopScript" and plr == Player then
 			StopScript()
-		elseif method == "Kill" and plr == Player then
-			local Method = args[1]
-
-			for i, v in next, workspace:GetDescendants() do
-				Kill(v)
+		elseif method == "CleanTables" and plr == Player then
+			for i,v in pairs(SampleTable.Connection) do
+				if v then
+					v:Disconnect()
+				end
 			end
-
-			if(Method == "HyperFDeg")then
-				task.delay(1/60, function()
-					for i, v in next, workspace:GetChildren() do
-						if(v:IsA("ViewportFrame"))then
-							pcall(game.Destroy, v)
+			SampleTable = {Size = {},ClassNamess = {},Connection = {},MeshIDs = {}}
+		elseif method == "Kill" and plr == Player then
+			local POSITION = CFrame.new(0,1e9,0)
+			local HIT = args[1]
+			local function Verify(obj)
+				if obj:IsA("MeshPart") or obj:IsA("SpecialMesh") and table.find(SampleTable.MeshIDs,obj.MeshId) then
+					return true
+				end
+				if obj:IsA("BasePart") and table.find(SampleTable.Size,obj.Size) and table.find(SampleTable.ClassNamess,obj.ClassName) then
+					return true
+				else
+					return false
+				end
+			end
+			if HIT then
+				warn("sucesse")
+				table.insert(SampleTable.Size,HIT.Size)
+				table.insert(SampleTable.ClassNamess,HIT.ClassName)
+				if HIT:IsA("MeshPart") then
+					table.insert(SampleTable.MeshIDs,HIT.MeshId)
+				elseif HIT:FindFirstChildWhichIsA("SpecialMesh") then
+					table.insert(SampleTable.MeshIDs,HIT:FindFirstChildWhichIsA("SpecialMesh").MeshId)
+				end
+				HIT.CFrame = POSITION
+				table.insert(SampleTable.Connection,HIT.Changed:Connect(function()
+					if HIT.CFrame ~= POSITION then
+						HIT.CFrame = POSITION
+					else
+						HIT.Size = Vector3.new(0.1,0.1,0.1)
+						HIT.CFrame = POSITION
+					end
+				end))
+				table.insert(SampleTable.Connection,game.DescendantAdded:Connect(function(obcs)
+					if Verify(obcs) then
+						if obcs:IsA("SpecialMesh") then
+							table.insert(SampleTable.Connection,obcs.Parent.Changed:Connect(function()
+								if obcs.Parent.CFrame ~= POSITION then
+									obcs.Parent.CFrame = POSITION
+								else
+									obcs.Parent.Size = Vector3.new(0.1,0.1,0.1)
+									obcs.Parent.CFrame = POSITION
+								end
+							end))
+							obcs.Parent.CFrame = POSITION
+						else
+							table.insert(SampleTable.Connection,obcs.Changed:Connect(function()
+								if obcs.CFrame ~= POSITION then
+									obcs.CFrame = POSITION
+								else
+									obcs.Size = Vector3.new(0.1,0.1,0.1)
+									obcs.CFrame = POSITION
+								end
+							end))
+							obcs.CFrame = POSITION
 						end
 					end
-				end)
+				end))
+				table.insert(SampleTable.Connection,workspace.DescendantAdded:Connect(function(obcs)
+					if Verify(obcs) then
+						if obcs:IsA("SpecialMesh") then
+							table.insert(SampleTable.Connection,obcs.Parent.Changed:Connect(function()
+								if obcs.Parent.CFrame ~= POSITION then
+									obcs.Parent.CFrame = POSITION
+								else
+									obcs.Parent.Size = Vector3.new(0.1,0.1,0.1)
+									obcs.Parent.CFrame = POSITION
+								end
+							end))
+							obcs.Parent.CFrame = POSITION
+						else
+							table.insert(SampleTable.Connection,obcs.Changed:Connect(function()
+								if obcs.CFrame ~= POSITION then
+									obcs.CFrame = POSITION
+								else
+									obcs.Size = Vector3.new(0.1,0.1,0.1)
+									obcs.CFrame = POSITION
+								end
+							end))
+							obcs.CFrame = POSITION
+						end
+					end
+				end))
 			end
 		else
 			Event:FireAllClients(remotekey, method, ...)
@@ -2485,24 +2886,6 @@ function Client(Player)
 
 	local actor = Instance.new("Actor", ui)
 	actor.Name = RandomString()
---[[
-	local cli = assets.Client:Clone()
-	cli.Parent = actor
-	for i,v in pairs({
-		StartCFrame = CFrame.new(0,5,0),
-		Name = Values.Name,
-		UserId = Values.UserId,
-		RemoteName = RemoteName,
-		RemoteAttribute = RemoteAttribute,
-		RemoteKey = RemoteKey,
-		StopKey = StopKey
-		}) do
-		cli:SetAttribute(i, v)
-	end
-	cli.Name = RandomString()
-	cli.Disabled = false
-]]
-	
 	local cli = Instance.new("Client", actor, {
 		Name = RandomString(),
 	}, {
@@ -2515,6 +2898,25 @@ function Client(Player)
 		StopKey = StopKey
 	})
 	cli.Disabled = false
+	
+		--[[
+		cli = script.Client:Clone()
+		cli.Parent = actor
+		for i,v in pairs({
+			StartCFrame = CFrame.new(0,5,0),
+			Name = Values.Name,
+			UserId = Values.UserId,
+			RemoteName = RemoteName,
+			RemoteAttribute = RemoteAttribute,
+			RemoteKey = RemoteKey,
+			StopKey = StopKey
+			}) do
+			cli:SetAttribute(i, v)
+		end
+		cli.Name = RandomString()
+		cli.Disabled = false
+]]
+	
 	for i, v in next, assets:GetChildren() do
 		v:Clone().Parent = cli
 	end
@@ -2555,6 +2957,9 @@ end))
 function StopScript()
 	for i,v in pairs(Connections) do
 		v:Disconnect()
+	end
+	if Player then
+		Player:LoadCharacter()
 	end
 	Remote:FireAllClients(RemoteKey, StopKey, "955802810370572917639561293707509127308501273065012843075213")
 	Services.Debris:AddItem(Remote, 5)
