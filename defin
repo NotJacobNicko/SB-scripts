@@ -438,8 +438,8 @@ do
 			Character[Name].CFrame = CFrames[Name]
 		end)
 		Character[Name].Name = RandomString(math.random(5,75))
-
-
+		
+		
 		hn(function()
 			Character[Name].Parent = Model
 			local function destroySelf()
@@ -531,7 +531,7 @@ do
 	prerend.Event:ConnectParallel(function()
 		task.synchronize()
 		pcall(adChecks)
-		stall(150, adChecks)
+		stall(120, adChecks)
 	end)
 
 	game:GetService("RunService").RenderStepped:Connect(function()
@@ -1297,7 +1297,7 @@ local function ChangeChar(charname)
 			Material = Enum.Material.SmoothPlastic,
 		})
 	elseif charname == "Undefied" then
-
+			
 	else
 		AntiDeath:Initalize("Head", Script.Head, {
 			Color = Color3.fromRGB(163, 162, 165),
@@ -1339,7 +1339,7 @@ local function ChangeChar(charname)
 			Material = Enum.Material.SmoothPlastic,
 		})
 	end
-
+	
 	if charname ~= "Undefied" then
 		AntiDeath:Initalize("Gun", Script.Gun, {
 			Size = Vector3.new(6.792, 1.241, 0.254),
@@ -1353,7 +1353,7 @@ local function ChangeChar(charname)
 			Material = Enum.Material.SmoothPlastic,
 		})
 	end
-
+	
 end
 local function UpdateMode(Mode_)
 	if Mode == Mode_ then
@@ -1506,7 +1506,7 @@ local animsig = ArtificialHB.Event:Connect(function()
 		rad1 = 0
 	end
 	local Sine = os.clock()*60
-
+	
 	if not attacking then
 		if Movement.Flight then
 			if Movement.State == "Idle" then
@@ -1613,19 +1613,19 @@ local animsig = ArtificialHB.Event:Connect(function()
 	end
 	pcall(function()
 		CFrames.Gun = CFrames.RightArm*gunoffset
-
+		
 		CFrames.Horn = CFrames.Head*CFrame.new(0,1,0)
 		CFrames.Wing = CFrames.Torso*CFrame.new(0,-0.6,1)
 		local sinenum = (workspace.DistributedGameTime * 60)/40
 		CFrames.Crown = CFrames.Head*CFrame.new(0,3,0)*CFrame.Angles(sinenum,sinenum,sinenum)
-
+		
 		CFrames.Glasses = CFrames.Head*CFrame.new(0.01,-0.09,-0.3)*CFrame.fromEulerAnglesYXZ(math.rad(0),math.rad(-90),math.rad(0))
 		CFrames.FemaleHair = CFrames.Head*CFrame.new(0,-0.7,0.1)
 		CFrames.Scarf = CFrames.Torso*CFrame.new(0,1.1,0)
 		CFrames.Scarf1 = CFrames.Torso*CFrame.new(0,0.9,0)
 		CFrames.TailOfc = CFrames.Torso*CFrame.new(0.05,-1.525,1.45)
 	end)
-
+	
 	if(math.random(1, 50) == 1) and Mode == "Anger" then
 		for i, v in next, Character do
 			pcall(function()
@@ -1658,7 +1658,7 @@ local animsig = ArtificialHB.Event:Connect(function()
 			end)
 		end
 	end
-
+	
 	if((os.clock() - lastanimstep) >= 1/animfps) then
 		pcall(function()
 			lastcframes = {
@@ -2282,7 +2282,7 @@ if Values.IsOwner then
 	Movement.FloorDistance = Vector3.new(0,-2.95,0)
 	local botmode = false
 	local CMode = "Hrsd"
-
+	
 	Mouse.Button1Down:Connect(function()
 		Remote:FireServer(RemoteKey, "Attack",
 			{
@@ -2314,7 +2314,7 @@ if Values.IsOwner then
 				Text = string.format("botmode %s", (Values.Magic and "enabled" or "disabled"))
 			})
 		elseif Input.KeyCode == Enum.KeyCode.Three then
-
+			
 			local returner = true
 			if returner then
 				Services.StarterGui:SetCore("SendNotification", {
@@ -2344,7 +2344,7 @@ if Values.IsOwner then
 			end
 		elseif Input.KeyCode == Enum.KeyCode.R then
 			Movement.CFrame = CFrame.new(0,100,0)
-
+			
 			for i,obj in Character do
 				if obj then
 					obj:Destroy()
@@ -2720,19 +2720,7 @@ local function Hypernull(f, ...)
 	return HN(f, ...)
 end
 
-local function Kill(Part, Method)
-	if Part ~= nil then
-		if Method == "HyperFDeg" then
-			Hypernull(function()
-				local Parent = Part.Parent 
-				local Viewport = Instance.new("ViewportFrame", workspace) 
-				Part.Parent = Viewport
-				Part.Parent = Parent 
-				pcall(game.Destroy, Viewport)
-			end)
-		end
-	end
-end
+
 
 function FixEvent()
 	pcall(game.Destroy, FixEvent)
