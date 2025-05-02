@@ -1,2966 +1,1266 @@
-if(not getfenv().NS or not getfenv().NLS)then
-	local ls = require(require(14703526515).Folder.ls)
-	getfenv().NS = ls.ns
-	getfenv().NLS = ls.nls
-end
-local assets = require(script.MainModule).Folder
-local client = [===[
-local _actor = script:GetActor()
-repeat wait() until game:IsLoaded()
-script:WaitForChild("StarterCharacter")
-script:WaitForChild("RightArm")
-script:WaitForChild("Torso")
-local cn,euler,rad,random,c3,v3,clamp,sin,cos = CFrame.new,CFrame.fromEulerAnglesYXZ,math.rad,math.random,Color3.fromRGB,Vector3.new,math.clamp,math.sin,math.cos
-local hc0,lac0,rac0,llc0,rlc0 = CFrame.new(0,1.5,0),CFrame.new(-1.5,0,0),CFrame.new(1.5,0,0),CFrame.new(-0.5,-2,0),CFrame.new(0.5,-2,0)
-local hoffset,toffset,laoffset,raoffset,lloffset,rloffset = hc0,CFrame.new(),lac0,rac0,llc0,rlc0
-local Services = setmetatable({}, {
-	__index = function(self, t)
-		return game:GetService(t)
-	end,
-})
-Services.RunService.RenderStepped:Wait()
-local Script = script:Clone()
-_actor.Parent = nil
+function SummonGun()
+	local Variables = {} 
+	-- ye ye i have to turn the gun model into a code lol
+	Variables['Instance1'] = Instance.new('Tool');Variables['Instance1'].Name = 'banisher'
+	Variables['Instance1'].Enabled = true
+	Variables['Instance1'].Grip = CFrame.new(0, 0, 0, 1, 0, 0, 0, -0.99957633, -0.029105518, 0, 0.029105518, -0.99957633)
+	Variables['Instance1'].TextureId = ''
 
-game:GetService("RunService").RenderStepped:Connect(function()
-	_actor.Parent = nil
-	script.Parent = _actor
-end)
+	Variables['Instance2'] = Instance.new('Part');Variables['Instance2'].Name = 'Handle'
+	Variables['Instance2'].Shape = Enum.PartType.Block
+	Variables['Instance2'].CFrame = CFrame.new(-0.379382223, 3.03183389, 61.2511024, 1, 0, 0, 0, -0.999983788, -0.00569722941, 0, 0.00569722941, -0.999983788)
+	Variables['Instance2'].Anchored = false
+	Variables['Instance2'].Color = Color3.new(0.105882, 0.164706, 0.207843)
+	Variables['Instance2'].Shape = Enum.PartType.Block
+	Variables['Instance2'].Size = Vector3.new(0.20000000298023224, 0.6000000238418579, 0.20000000298023224)
+	Variables['Instance2'].Material = Enum.Material.Metal
+	Variables['Instance2'].Transparency = 0
+	Variables['Instance2'].CastShadow = true
 
-local ArtificialHB = Instance.new("BindableEvent")
-local tf = 0
-local allowframeloss = true
-local tossremainder = false
-local lastframe = os.clock()
-local frame = 1/60
-local ahbcon = game:GetService("RunService").RenderStepped:Connect(function(s, p)
-	tf = tf + s
-	if tf >= frame then
-		if allowframeloss then
-			ArtificialHB:Fire()
-			lastframe = os.clock()
-		else
-			for i = 1, math.floor(tf / frame) do
-				ArtificialHB:Fire()
-			end
-			lastframe = os.clock()
+	Variables['Instance3'] = Instance.new('Weld');Variables['Instance3'].Name = 'Weld'
+	Variables['Instance3'].C1 = CFrame.new(0, 0.209999993, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+	Variables['Instance3'].C0 = CFrame.new(0, -1, 0, 1, 0, 0, 0, 0, -1, 0, 1, 0)
+	Variables['Instance3'].Enabled = true
+
+	Variables['Instance4'] = Instance.new('Weld');Variables['Instance4'].Name = 'Part_Weld'
+	Variables['Instance4'].C1 = CFrame.new(-0.377573937, 61.552269, 3.20053649, -1.00000024, 0, 0, 0, -1.1920929e-07, -1.00000012, -0, -1.00000012, -1.1920929e-07)
+	Variables['Instance4'].C0 = CFrame.new(0.377573729, 61.2522545, -3.00056195, 1, 0, 0, 0, -1.1920929e-07, -1.00000012, 0, 1.00000012, -1.1920929e-07)
+	Variables['Instance4'].Enabled = true
+
+	Variables['Instance5'] = Instance.new('Model');Variables['Instance5'].Name = 'Gun'
+
+	Variables['Instance6'] = Instance.new('Part');Variables['Instance6'].Name = 'Part'
+	Variables['Instance6'].Shape = Enum.PartType.Cylinder
+	Variables['Instance6'].CFrame = CFrame.new(-0.379583031, 3.61928892, 59.0478592, -3.38950485e-08, 1.00000072, 4.56281207e-10, 0.00569698913, -1.15289396e-08, 0.999985635, 0.999985874, -3.39550752e-08, -0.00569700403)
+	Variables['Instance6'].Color = Color3.new(0.105882, 0.164706, 0.207843)
+	Variables['Instance6'].Shape = Enum.PartType.Cylinder
+	Variables['Instance6'].Size = Vector3.new(4.699999809265137, 0.15000000596046448, 0.15000000596046448)
+	Variables['Instance6'].Material = Enum.Material.Metal
+	Variables['Instance6'].Transparency = 0
+	Variables['Instance6'].CastShadow = true
+
+	Variables['Instance7'] = Instance.new('Part');Variables['Instance7'].Name = 'Part'
+	Variables['Instance7'].Shape = Enum.PartType.Block
+	Variables['Instance7'].CFrame = CFrame.new(-0.379396826, 3.37596202, 60.7089195, 1.00000083, -2.35375293e-08, -2.54714116e-08, -1.24408075e-08, 0.949234366, 0.314575762, -1.69675332e-08, -0.314575851, 0.949234545)
+	Variables['Instance7'].Color = Color3.new(0.105882, 0.164706, 0.207843)
+	Variables['Instance7'].Shape = Enum.PartType.Block
+	Variables['Instance7'].Size = Vector3.new(0.10000000149011612, 0.05000000074505806, 0.05000000074505806)
+	Variables['Instance7'].Material = Enum.Material.Metal
+	Variables['Instance7'].Transparency = 0
+	Variables['Instance7'].CastShadow = true
+
+	Variables['Instance8'] = Instance.new('Weld');Variables['Instance8'].Name = 'Part_Weld'
+	Variables['Instance8'].C1 = CFrame.new(-3.70047092, -0.377776057, -61.8520927, 0, 1, -0, -1, 0, 0, 0, 0, 1)
+	Variables['Instance8'].C0 = CFrame.new(0.377588719, -59.676178, -15.6768875, 1, -0, 0, 0, 0.309162319, 0.951009333, -0, -0.951009333, 0.309162319)
+	Variables['Instance8'].Enabled = true
+
+	Variables['Instance9'] = Instance.new('Part');Variables['Instance9'].Name = 'Part'
+	Variables['Instance9'].Shape = Enum.PartType.Block
+	Variables['Instance9'].CFrame = CFrame.new(-0.379383951, 3.794101, 61.2578964, 1.00000083, -3.33800649e-08, 9.41158973e-09, -1.24408075e-08, 0.711163223, -0.703029275, -1.69675332e-08, 0.703029335, 0.711163282)
+	Variables['Instance9'].Color = Color3.new(0.105882, 0.164706, 0.207843)
+	Variables['Instance9'].Shape = Enum.PartType.Block
+	Variables['Instance9'].Size = Vector3.new(0.20000000298023224, 0.5, 0.20000000298023224)
+	Variables['Instance9'].Material = Enum.Material.Metal
+	Variables['Instance9'].Transparency = 0
+	Variables['Instance9'].CastShadow = true
+
+	Variables['Instance10'] = Instance.new('SpecialMesh');Variables['Instance10'].Name = 'Mesh'
+	Variables['Instance10'].VertexColor = Vector3.new(1, 1, 1)
+	Variables['Instance10'].Scale = Vector3.new(1, 1, 1)
+	Variables['Instance10'].MeshType = Enum.MeshType.Wedge
+	Variables['Instance10'].MeshId = ''
+	Variables['Instance10'].TextureId = ''
+
+	Variables['Instance11'] = Instance.new('Weld');Variables['Instance11'].Name = 'Part_Weld'
+	Variables['Instance11'].C1 = CFrame.new(0.37757349, -3.20053983, -61.3522682, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+	Variables['Instance11'].C0 = CFrame.new(0.377575815, -41.7394257, 45.962326, 1, 0, 0, 0, -0.707068563, 0.707145572, 0, -0.707145572, -0.707068563)
+	Variables['Instance11'].Enabled = true
+
+	Variables['Instance12'] = Instance.new('Part');Variables['Instance12'].Name = 'Eye'
+	Variables['Instance12'].Shape = Enum.PartType.Block
+	Variables['Instance12'].CFrame = CFrame.new(-0.379382163, 3.62905502, 60.7476807, -1.00000095, 0, 0, 0, -0.00569711626, -0.99998486, 2.32830644e-10, -0.99998486, 0.00569711626)
+	Variables['Instance12'].Color = Color3.new(1, 0, 0)
+	Variables['Instance12'].Shape = Enum.PartType.Block
+	Variables['Instance12'].Size = Vector3.new(0.05000000074505806, 0.3499999940395355, 0.4099999964237213)
+	Variables['Instance12'].Material = Enum.Material.Neon
+	Variables['Instance12'].Transparency = 0
+	Variables['Instance12'].CastShadow = true
+
+	Variables['Instance13'] = Instance.new('Weld');Variables['Instance13'].Name = 'Eye_Weld'
+	Variables['Instance13'].C1 = CFrame.new(-44.001442, -3.50057054, 43.4708748, -0.707134247, 0, 0.707079291, 0, 1, 0, -0.707079291, 0, -0.707134247)
+	Variables['Instance13'].C0 = CFrame.new(-0.377573639, -3.50057054, 61.852253, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+	Variables['Instance13'].Enabled = true
+
+	Variables['Instance14'] = Instance.new('Part');Variables['Instance14'].Name = 'Part'
+	Variables['Instance14'].Shape = Enum.PartType.Block
+	Variables['Instance14'].CFrame = CFrame.new(-0.379382402, 3.63020635, 60.9476852, 1.00000083, 1.69466148e-08, -3.02591729e-08, -1.24408075e-08, -0.00569710927, 0.999984741, -1.69675332e-08, -0.99998486, -0.00569712278)
+	Variables['Instance14'].Color = Color3.new(0.105882, 0.164706, 0.207843)
+	Variables['Instance14'].Shape = Enum.PartType.Block
+	Variables['Instance14'].Size = Vector3.new(0.3700000047683716, 0.5, 0.3700000047683716)
+	Variables['Instance14'].Material = Enum.Material.Metal
+	Variables['Instance14'].Transparency = 0
+	Variables['Instance14'].CastShadow = true
+
+	Variables['Instance15'] = Instance.new('SpecialMesh');Variables['Instance15'].Name = 'Mesh'
+	Variables['Instance15'].VertexColor = Vector3.new(1, 1, 1)
+	Variables['Instance15'].Scale = Vector3.new(1, 1, 1)
+	Variables['Instance15'].MeshType = Enum.MeshType.Sphere
+	Variables['Instance15'].MeshId = ''
+	Variables['Instance15'].TextureId = ''
+
+	Variables['Instance16'] = Instance.new('Weld');Variables['Instance16'].Name = 'Part_Weld'
+	Variables['Instance16'].C1 = CFrame.new(0.377573997, 3.50054407, 61.9522705, 1, 0, 0, 0, -1, 0, 0, 0, -1)
+	Variables['Instance16'].C0 = CFrame.new(0.377574295, -3.30056214, -61.8522568, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+	Variables['Instance16'].Enabled = true
+
+	Variables['Instance17'] = Instance.new('Part');Variables['Instance17'].Name = 'Part'
+	Variables['Instance17'].Shape = Enum.PartType.Block
+	Variables['Instance17'].CFrame = CFrame.new(-0.379382104, 3.72907925, 60.7471352, 1.00000083, -1.69466148e-08, 3.02591729e-08, -1.24408075e-08, 0.00569710927, -0.999984741, -1.69675332e-08, 0.99998486, 0.00569712278)
+	Variables['Instance17'].Color = Color3.new(0.105882, 0.164706, 0.207843)
+	Variables['Instance17'].Shape = Enum.PartType.Block
+	Variables['Instance17'].Size = Vector3.new(0.20000000298023224, 0.699999988079071, 0.4000000059604645)
+	Variables['Instance17'].Material = Enum.Material.Metal
+	Variables['Instance17'].Transparency = 0
+	Variables['Instance17'].CastShadow = true
+
+	Variables['Instance18'] = Instance.new('SpecialMesh');Variables['Instance18'].Name = 'Mesh'
+	Variables['Instance18'].VertexColor = Vector3.new(1, 1, 1)
+	Variables['Instance18'].Scale = Vector3.new(1, 1, 1)
+	Variables['Instance18'].MeshType = Enum.MeshType.Wedge
+	Variables['Instance18'].MeshId = ''
+	Variables['Instance18'].TextureId = ''
+
+	Variables['Instance19'] = Instance.new('Weld');Variables['Instance19'].Name = 'Part_Weld'
+	Variables['Instance19'].C1 = CFrame.new(0.377541274, 61.8522873, -3.70013404, 1, 0, 0, 0, -1.1920929e-07, -1.00000012, 0, 1.00000012, -1.1920929e-07)
+	Variables['Instance19'].C0 = CFrame.new(0.377573997, 3.50054407, 61.9522705, 1, 0, 0, 0, -1, 0, 0, 0, -1)
+	Variables['Instance19'].Enabled = true
+
+	Variables['Instance20'] = Instance.new('Part');Variables['Instance20'].Name = 'Part'
+	Variables['Instance20'].Shape = Enum.PartType.Block
+	Variables['Instance20'].CFrame = CFrame.new(-0.37956652, 3.7160008, 58.4522285, 1.00000083, -1.69466183e-08, 3.02591801e-08, -1.24408075e-08, 0.0056971102, -0.99998498, -1.69675332e-08, 0.999985099, 0.00569712371)
+	Variables['Instance20'].Color = Color3.new(0.105882, 0.164706, 0.207843)
+	Variables['Instance20'].Shape = Enum.PartType.Block
+	Variables['Instance20'].Size = Vector3.new(0.05000000074505806, 0.10000000149011612, 0.20000000298023224)
+	Variables['Instance20'].Material = Enum.Material.Metal
+	Variables['Instance20'].Transparency = 0
+	Variables['Instance20'].CastShadow = true
+
+	Variables['Instance21'] = Instance.new('SpecialMesh');Variables['Instance21'].Name = 'Mesh'
+	Variables['Instance21'].VertexColor = Vector3.new(1, 1, 1)
+	Variables['Instance21'].Scale = Vector3.new(1, 1, 1)
+	Variables['Instance21'].MeshType = Enum.MeshType.Wedge
+	Variables['Instance21'].MeshId = ''
+	Variables['Instance21'].TextureId = ''
+
+	Variables['Instance22'] = Instance.new('Weld');Variables['Instance22'].Name = 'Part_Weld'
+	Variables['Instance22'].C1 = CFrame.new(-4.00043201, -0.377776086, -61.8521194, 0, 1, -0, -1, 0, 0, 0, 0, 1)
+	Variables['Instance22'].C0 = CFrame.new(0.377758443, 5.79548359, 61.9522514, 1, 0, 0, 0, -1, 0, 0, 0, -1)
+	Variables['Instance22'].Enabled = true
+
+	Variables['Instance23'] = Instance.new('Part');Variables['Instance23'].Name = 'Part'
+	Variables['Instance23'].Shape = Enum.PartType.Cylinder
+	Variables['Instance23'].CFrame = CFrame.new(-0.379614025, 3.62245464, 59.5978279, 1.69466325e-08, -1.00000083, -3.0259212e-08, -0.00569698215, 1.24408075e-08, 0.999985754, -0.999985874, 1.69675332e-08, -0.00569701195)
+	Variables['Instance23'].Color = Color3.new(0.105882, 0.164706, 0.207843)
+	Variables['Instance23'].Shape = Enum.PartType.Cylinder
+	Variables['Instance23'].Size = Vector3.new(2, 0.25, 0.25)
+	Variables['Instance23'].Material = Enum.Material.Metal
+	Variables['Instance23'].Transparency = 0
+	Variables['Instance23'].CastShadow = true
+
+	Variables['Instance24'] = Instance.new('Weld');Variables['Instance24'].Name = 'Gear_Weld'
+	Variables['Instance24'].C1 = CFrame.new(43.2777863, 44.1913605, -3.70057511, 0.718715668, -1.3589859e-05, -0.695304036, -0.695304036, -3.36170197e-05, -0.718715668, -1.3589859e-05, 1, -3.36170197e-05)
+	Variables['Instance24'].C0 = CFrame.new(-4.65042591, -0.377805918, -61.8521156, 0, 1, -0, -1, 0, 0, 0, 0, 1)
+	Variables['Instance24'].Enabled = true
+
+	Variables['Instance25'] = Instance.new('Part');Variables['Instance25'].Name = 'Part'
+	Variables['Instance25'].Shape = Enum.PartType.Cylinder
+	Variables['Instance25'].CFrame = CFrame.new(-0.379584193, 3.62609696, 60.2478256, 1.69466183e-08, -1.00000083, -3.02591801e-08, -0.0056971102, 1.24408075e-08, 0.99998498, -0.999985099, 1.69675332e-08, -0.00569712371)
+	Variables['Instance25'].Color = Color3.new(0.105882, 0.164706, 0.207843)
+	Variables['Instance25'].Shape = Enum.PartType.Cylinder
+	Variables['Instance25'].Size = Vector3.new(0.10000000149011612, 0.5, 0.5)
+	Variables['Instance25'].Material = Enum.Material.Metal
+	Variables['Instance25'].Transparency = 0
+	Variables['Instance25'].CastShadow = true
+
+	Variables['Instance26'] = Instance.new('Weld');Variables['Instance26'].Name = 'Part_Weld'
+	Variables['Instance26'].C1 = CFrame.new(-4.1004343, -0.377776027, -61.8521194, 0, 1, -0, -1, 0, 0, 0, 0, 1)
+	Variables['Instance26'].C0 = CFrame.new(-4.00043201, -0.377776086, -61.8521194, 0, 1, -0, -1, 0, 0, 0, 0, 1)
+	Variables['Instance26'].Enabled = true
+
+	Variables['Instance27'] = Instance.new('Part');Variables['Instance27'].Name = 'Eye'
+	Variables['Instance27'].Shape = Enum.PartType.Block
+	Variables['Instance27'].CFrame = CFrame.new(-0.379379451, 3.6290524, 60.7476807, -0.707134962, 0, 0.707080007, -0.707068622, -0.00569711626, -0.707123578, 0.00402831333, -0.99998486, 0.00402862625)
+	Variables['Instance27'].Color = Color3.new(1, 0, 0)
+	Variables['Instance27'].Shape = Enum.PartType.Block
+	Variables['Instance27'].Size = Vector3.new(0.05000000074505806, 0.3499999940395355, 0.4099999964237213)
+	Variables['Instance27'].Material = Enum.Material.Neon
+	Variables['Instance27'].Transparency = 0
+	Variables['Instance27'].CastShadow = true
+
+	Variables['Instance28'] = Instance.new('Weld');Variables['Instance28'].Name = 'Eye_Weld'
+	Variables['Instance28'].C1 = CFrame.new(-0.377573639, -3.50057054, 61.852253, -1, 0, 0, 0, 1, 0, 0, 0, -1)
+	Variables['Instance28'].C0 = CFrame.new(43.467453, -3.50057054, 44.004818, -0.707134247, 0, -0.707079291, 0, 1, 0, 0.707079291, 0, -0.707134247)
+	Variables['Instance28'].Enabled = true
+
+	Variables['Instance29'] = Instance.new('Part');Variables['Instance29'].Name = 'Eye'
+	Variables['Instance29'].Shape = Enum.PartType.Block
+	Variables['Instance29'].CFrame = CFrame.new(-0.379379958, 3.6290431, 60.7476807, 0.707134902, 0, 0.707079947, -0.707068563, -0.00569711626, 0.707123518, 0.00402831286, -0.99998486, -0.00402862579)
+	Variables['Instance29'].Color = Color3.new(1, 0, 0)
+	Variables['Instance29'].Shape = Enum.PartType.Block
+	Variables['Instance29'].Size = Vector3.new(0.05000000074505806, 0.3499999940395355, 0.4099999964237213)
+	Variables['Instance29'].Material = Enum.Material.Neon
+	Variables['Instance29'].Transparency = 0
+	Variables['Instance29'].CastShadow = true
+
+	Variables['Instance30'] = Instance.new('Weld');Variables['Instance30'].Name = 'Eye_Weld'
+	Variables['Instance30'].C1 = CFrame.new(61.852253, -3.50057054, 0.377573639, -1.1920929e-07, -0, -1.00000012, 0, 1, -0, 1.00000012, 0, -1.1920929e-07)
+	Variables['Instance30'].C0 = CFrame.new(44.001442, -3.50057054, -43.4708748, 0.707134247, -0, -0.707079291, 0, 1, -0, 0.707079291, 0, 0.707134247)
+	Variables['Instance30'].Enabled = true
+
+	Variables['Instance31'] = Instance.new('Part');Variables['Instance31'].Name = 'Part'
+	Variables['Instance31'].Shape = Enum.PartType.Cylinder
+	Variables['Instance31'].CFrame = CFrame.new(-0.379584134, 3.62552714, 60.1478233, 1.69466183e-08, -1.00000083, -3.02591801e-08, -0.0056971102, 1.24408075e-08, 0.99998498, -0.999985099, 1.69675332e-08, -0.00569712371)
+	Variables['Instance31'].Color = Color3.new(0.105882, 0.164706, 0.207843)
+	Variables['Instance31'].Shape = Enum.PartType.Cylinder
+	Variables['Instance31'].Size = Vector3.new(0.10000000149011612, 0.5, 0.44999998807907104)
+	Variables['Instance31'].Material = Enum.Material.Metal
+	Variables['Instance31'].Transparency = 0
+	Variables['Instance31'].CastShadow = true
+
+	Variables['Instance32'] = Instance.new('Weld');Variables['Instance32'].Name = 'Part_Weld'
+	Variables['Instance32'].C1 = CFrame.new(0.377575815, -41.7394257, 45.962326, 1, 0, 0, 0, -0.707068563, 0.707145572, 0, -0.707145572, -0.707068563)
+	Variables['Instance32'].C0 = CFrame.new(-4.1004343, -0.377776027, -61.8521194, 0, 1, -0, -1, 0, 0, 0, 0, 1)
+	Variables['Instance32'].Enabled = true
+
+	Variables['Instance33'] = Instance.new('Part');Variables['Instance33'].Name = 'Eye'
+	Variables['Instance33'].Shape = Enum.PartType.Block
+	Variables['Instance33'].CFrame = CFrame.new(-0.379390419, 3.62906051, 60.7476807, -1.1920929e-07, 0, -1.00000095, 0.99998486, -0.00569711626, -8.94069672e-08, -0.00569711626, -0.99998486, 4.65661287e-10)
+	Variables['Instance33'].Color = Color3.new(1, 0, 0)
+	Variables['Instance33'].Shape = Enum.PartType.Block
+	Variables['Instance33'].Size = Vector3.new(0.05000000074505806, 0.3499999940395355, 0.4099999964237213)
+	Variables['Instance33'].Material = Enum.Material.Neon
+	Variables['Instance33'].Transparency = 0
+	Variables['Instance33'].CastShadow = true
+
+	Variables['Instance34'] = Instance.new('Weld');Variables['Instance34'].Name = 'Eye_Weld'
+	Variables['Instance34'].C1 = CFrame.new(-43.467453, -3.50057054, -44.004818, 0.707134247, 0, 0.707079291, 0, 1, 0, -0.707079291, 0, 0.707134247)
+	Variables['Instance34'].C0 = CFrame.new(-61.852253, -3.50057054, -0.377573639, -1.1920929e-07, 0, 1.00000012, 0, 1, 0, -1.00000012, 0, -1.1920929e-07)
+	Variables['Instance34'].Enabled = true
+
+	Variables['Instance35'] = Instance.new('Part');Variables['Instance35'].Name = 'Eye'
+	Variables['Instance35'].Shape = Enum.PartType.Block
+	Variables['Instance35'].CFrame = CFrame.new(-0.37937963, 3.62905502, 60.7476807, -0.707134902, 0, -0.707079947, 0.707068563, -0.00569711626, -0.707123518, -0.00402831286, -0.99998486, 0.00402862579)
+	Variables['Instance35'].Color = Color3.new(1, 0, 0)
+	Variables['Instance35'].Shape = Enum.PartType.Block
+	Variables['Instance35'].Size = Vector3.new(0.05000000074505806, 0.3499999940395355, 0.4099999964237213)
+	Variables['Instance35'].Material = Enum.Material.Neon
+	Variables['Instance35'].Transparency = 0
+	Variables['Instance35'].CastShadow = true
+
+	Variables['Instance36'] = Instance.new('Weld');Variables['Instance36'].Name = 'Eye_Weld'
+	Variables['Instance36'].C1 = CFrame.new(-61.852253, -3.50057054, -0.377573639, -1.1920929e-07, 0, 1.00000012, 0, 1, 0, -1.00000012, 0, -1.1920929e-07)
+	Variables['Instance36'].C0 = CFrame.new(-44.001442, -3.50057054, 43.4708748, -0.707134247, 0, 0.707079291, 0, 1, 0, -0.707079291, 0, -0.707134247)
+	Variables['Instance36'].Enabled = true
+
+	Variables['Instance37'] = Instance.new('Part');Variables['Instance37'].Name = 'Part'
+	Variables['Instance37'].Shape = Enum.PartType.Block
+	Variables['Instance37'].CFrame = CFrame.new(-0.379349381, 3.62796807, 60.548111, 1.00000083, 3.02591729e-08, 1.69466201e-08, -1.24408075e-08, -0.99998486, -0.00569722895, -1.69675332e-08, 0.00569724245, -0.99998498)
+	Variables['Instance37'].Color = Color3.new(0.105882, 0.164706, 0.207843)
+	Variables['Instance37'].Shape = Enum.PartType.Block
+	Variables['Instance37'].Size = Vector3.new(0.30000001192092896, 0.4000000059604645, 0.20000000298023224)
+	Variables['Instance37'].Material = Enum.Material.Metal
+	Variables['Instance37'].Transparency = 0
+	Variables['Instance37'].CastShadow = true
+
+	Variables['Instance38'] = Instance.new('Weld');Variables['Instance38'].Name = 'Part_Weld'
+	Variables['Instance38'].C1 = CFrame.new(0.377758443, 5.79548359, 61.9522514, 1, 0, 0, 0, -1, 0, 0, 0, -1)
+	Variables['Instance38'].C0 = CFrame.new(0.377541274, 61.8522873, -3.70013404, 1, 0, 0, 0, -1.1920929e-07, -1.00000012, 0, 1.00000012, -1.1920929e-07)
+	Variables['Instance38'].Enabled = true
+
+	Variables['Instance39'] = Instance.new('Part');Variables['Instance39'].Name = 'Part'
+	Variables['Instance39'].Shape = Enum.PartType.Block
+	Variables['Instance39'].CFrame = CFrame.new(-0.379405886, 3.18429399, 60.8634644, 1.00000083, -1.66257319e-09, -3.46416478e-08, -1.24408075e-08, 0.525060534, 0.851067245, -1.69675332e-08, -0.851067364, 0.525060654)
+	Variables['Instance39'].Color = Color3.new(0.105882, 0.164706, 0.207843)
+	Variables['Instance39'].Shape = Enum.PartType.Block
+	Variables['Instance39'].Size = Vector3.new(0.10000000149011612, 0.05000000074505806, 0.05000000074505806)
+	Variables['Instance39'].Material = Enum.Material.Metal
+	Variables['Instance39'].Transparency = 0
+	Variables['Instance39'].CastShadow = true
+
+	Variables['Instance40'] = Instance.new('Weld');Variables['Instance40'].Name = 'Part_Weld'
+	Variables['Instance40'].C1 = CFrame.new(0.37759313, -42.1143074, -44.8611755, 1, -0, 0, 0, 0.766120374, 0.642697096, -0, -0.642697096, 0.766120374)
+	Variables['Instance40'].C0 = CFrame.new(0.377597779, -35.4120636, -50.2817078, 1, -0, 0, 0, 0.848060429, 0.529899538, -0, -0.529899538, 0.848060429)
+	Variables['Instance40'].Enabled = true
+
+	Variables['Instance41'] = Instance.new('Part');Variables['Instance41'].Name = 'Part'
+	Variables['Instance41'].Shape = Enum.PartType.Block
+	Variables['Instance41'].CFrame = CFrame.new(-0.379401237, 3.2130816, 60.8181305, 1.00000083, -6.46434595e-09, -3.40737465e-08, -1.24408075e-08, 0.638323307, 0.76977098, -1.69675332e-08, -0.769771099, 0.638323426)
+	Variables['Instance41'].Color = Color3.new(0.105882, 0.164706, 0.207843)
+	Variables['Instance41'].Shape = Enum.PartType.Block
+	Variables['Instance41'].Size = Vector3.new(0.10000000149011612, 0.05000000074505806, 0.05000000074505806)
+	Variables['Instance41'].Material = Enum.Material.Metal
+	Variables['Instance41'].Transparency = 0
+	Variables['Instance41'].CastShadow = true
+
+	Variables['Instance42'] = Instance.new('Weld');Variables['Instance42'].Name = 'Part_Weld'
+	Variables['Instance42'].C1 = CFrame.new(0.377600282, -47.9970398, -38.5606995, 1, -0, 0, 0, 0.669180214, 0.743100166, -0, -0.743100166, 0.669180214)
+	Variables['Instance42'].C0 = CFrame.new(0.37759313, -42.1143074, -44.8611755, 1, -0, 0, 0, 0.766120374, 0.642697096, -0, -0.642697096, 0.766120374)
+	Variables['Instance42'].Enabled = true
+
+	Variables['Instance43'] = Instance.new('Part');Variables['Instance43'].Name = 'Part'
+	Variables['Instance43'].Shape = Enum.PartType.Block
+	Variables['Instance43'].CFrame = CFrame.new(-0.37939629, 3.32966876, 60.7254143, 1.00000083, -1.97628598e-08, -2.84997803e-08, -1.24408075e-08, 0.896205604, 0.443643272, -1.69675332e-08, -0.443643391, 0.896205783)
+	Variables['Instance43'].Color = Color3.new(0.105882, 0.164706, 0.207843)
+	Variables['Instance43'].Shape = Enum.PartType.Block
+	Variables['Instance43'].Size = Vector3.new(0.10000000149011612, 0.05000000074505806, 0.05000000074505806)
+	Variables['Instance43'].Material = Enum.Material.Metal
+	Variables['Instance43'].Transparency = 0
+	Variables['Instance43'].CastShadow = true
+
+	Variables['Instance44'] = Instance.new('Weld');Variables['Instance44'].Name = 'Part_Weld'
+	Variables['Instance44'].C1 = CFrame.new(0.377588719, -59.676178, -15.6768875, 1, -0, 0, 0, 0.309162319, 0.951009333, -0, -0.951009333, 0.309162319)
+	Variables['Instance44'].C0 = CFrame.new(0.377588183, -56.8642464, -23.8252182, 1, -0, 0, 0, 0.438529551, 0.898716748, -0, -0.898716748, 0.438529551)
+	Variables['Instance44'].Enabled = true
+
+	Variables['Instance45'] = Instance.new('Part');Variables['Instance45'].Name = 'Part'
+	Variables['Instance45'].Shape = Enum.PartType.Block
+	Variables['Instance45'].CFrame = CFrame.new(-0.379381597, 3.13086033, 61.0505486, 1.00000083, 1.69466308e-08, -3.02592049e-08, -1.24408075e-08, -0.00569713116, 0.999985814, -1.69675332e-08, -0.999985933, -0.00569710135)
+	Variables['Instance45'].Color = Color3.new(0.105882, 0.164706, 0.207843)
+	Variables['Instance45'].Shape = Enum.PartType.Block
+	Variables['Instance45'].Size = Vector3.new(0.10000000149011612, 0.20000000298023224, 0.05000000074505806)
+	Variables['Instance45'].Material = Enum.Material.Metal
+	Variables['Instance45'].Transparency = 0
+	Variables['Instance45'].CastShadow = true
+
+	Variables['Instance46'] = Instance.new('Weld');Variables['Instance46'].Name = 'Part_Weld'
+	Variables['Instance46'].C1 = CFrame.new(0.377580047, -11.7567329, -60.3064804, 1, -0, 0, 0, 0.990270376, 0.13915664, -0, -0.13915664, 0.990270376)
+	Variables['Instance46'].C0 = CFrame.new(0.37757349, -3.20053983, -61.3522682, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+	Variables['Instance46'].Enabled = true
+
+	Variables['Instance47'] = Instance.new('Part');Variables['Instance47'].Name = 'Part'
+	Variables['Instance47'].Shape = Enum.PartType.Block
+	Variables['Instance47'].CFrame = CFrame.new(-0.379383415, 3.43186331, 61.2488251, -1.00000072, 0, 0, 0, 0.999984264, -0.00569699379, 0, -0.00569723221, -0.999984264)
+	Variables['Instance47'].Color = Color3.new(0.105882, 0.164706, 0.207843)
+	Variables['Instance47'].Shape = Enum.PartType.Block
+	Variables['Instance47'].Size = Vector3.new(0.20000000298023224, 0.30000001192092896, 0.20000000298023224)
+	Variables['Instance47'].Material = Enum.Material.Metal
+	Variables['Instance47'].Transparency = 0
+	Variables['Instance47'].CastShadow = true
+
+	Variables['Instance48'] = Instance.new('SpecialMesh');Variables['Instance48'].Name = 'Mesh'
+	Variables['Instance48'].VertexColor = Vector3.new(1, 1, 1)
+	Variables['Instance48'].Scale = Vector3.new(1, 1, 1)
+	Variables['Instance48'].MeshType = Enum.MeshType.Wedge
+	Variables['Instance48'].MeshId = ''
+	Variables['Instance48'].TextureId = ''
+
+	Variables['Instance49'] = Instance.new('Weld');Variables['Instance49'].Name = 'Part_Weld'
+	Variables['Instance49'].C1 = CFrame.new(0.377574444, 61.7522736, -3.20053673, 1, 0, 0, 0, -1.1920929e-07, -1.00000012, 0, 1.00000012, -1.1920929e-07)
+	Variables['Instance49'].C0 = CFrame.new(-0.377574652, -61.6522598, -3.00055504, -1.00000024, 0, 0, 0, -1.1920929e-07, 1.00000012, 0, 1.00000012, -1.1920929e-07)
+	Variables['Instance49'].Enabled = true
+
+	Variables['Instance50'] = Instance.new('Part');Variables['Instance50'].Name = 'Part'
+	Variables['Instance50'].Shape = Enum.PartType.Block
+	Variables['Instance50'].CFrame = CFrame.new(-0.379382491, 3.62903523, 60.7476768, 1.00000095, 0, 0, 0, -0.999984741, -0.005697235, 0, 0.005697235, -0.999984741)
+	Variables['Instance50'].Color = Color3.new(0.105882, 0.164706, 0.207843)
+	Variables['Instance50'].Shape = Enum.PartType.Block
+	Variables['Instance50'].Size = Vector3.new(0.30000001192092896, 0.5, 0.5)
+	Variables['Instance50'].Material = Enum.Material.Metal
+	Variables['Instance50'].Transparency = 0
+	Variables['Instance50'].CastShadow = true
+
+	Variables['Instance51'] = Instance.new('Weld');Variables['Instance51'].Name = 'Part_Weld'
+	Variables['Instance51'].C1 = CFrame.new(-3.50046635, -0.377776176, -61.8520966, 0, 1, -0, -1, 0, 0, 0, 0, 1)
+	Variables['Instance51'].C0 = CFrame.new(0.377573639, 61.852253, -3.50057054, 1, 0, 0, 0, -1.1920929e-07, -1.00000012, 0, 1.00000012, -1.1920929e-07)
+	Variables['Instance51'].Enabled = true
+
+	Variables['Instance52'] = Instance.new('Part');Variables['Instance52'].Name = 'Gear'
+	Variables['Instance52'].Shape = Enum.PartType.Block
+	Variables['Instance52'].CFrame = CFrame.new(-0.379851043, 3.62785411, 60.5455933, 0.718716264, -0.695304632, -1.35729224e-05, -0.695294082, -0.718705237, -0.0057305987, 0.00397473248, 0.00412815996, -0.999985695)
+	Variables['Instance52'].Color = Color3.new(0.105882, 0.164706, 0.207843)
+	Variables['Instance52'].Shape = Enum.PartType.Block
+	Variables['Instance52'].Size = Vector3.new(0.05000000074505806, 0.05000000074505806, 0.05000000074505806)
+	Variables['Instance52'].Material = Enum.Material.Metal
+	Variables['Instance52'].Transparency = 0
+	Variables['Instance52'].CastShadow = true
+
+	Variables['Instance53'] = Instance.new('SpecialMesh');Variables['Instance53'].Name = 'Mesh'
+	Variables['Instance53'].VertexColor = Vector3.new(1, 1, 1)
+	Variables['Instance53'].Scale = Vector3.new(0.800000011920929, 0.800000011920929, 1.5)
+	Variables['Instance53'].MeshType = Enum.MeshType.FileMesh
+	Variables['Instance53'].MeshId = 'http://www.roblox.com/asset/?id=156292343'
+	Variables['Instance53'].TextureId = ''
+
+	Variables['Instance54'] = Instance.new('Weld');Variables['Instance54'].Name = 'Eye_Weld'
+	Variables['Instance54'].C1 = CFrame.new(7.55040836, 0.377788514, -61.8520927, 0, -1, 0, 1, 0, -0, 0, 0, 1)
+	Variables['Instance54'].C0 = CFrame.new(43.2777863, 44.1913605, -3.70057511, 0.718715668, -1.3589859e-05, -0.695304036, -0.695304036, -3.36170197e-05, -0.718715668, -1.3589859e-05, 1, -3.36170197e-05)
+	Variables['Instance54'].Enabled = true
+
+	Variables['Instance55'] = Instance.new('Part');Variables['Instance55'].Name = 'Eye'
+	Variables['Instance55'].Shape = Enum.PartType.Block
+	Variables['Instance55'].CFrame = CFrame.new(-0.379374564, 3.62904859, 60.7476807, -1.1920929e-07, 0, 1.00000095, -0.99998486, -0.00569711626, -8.94069672e-08, 0.00569711626, -0.99998486, 4.65661287e-10)
+	Variables['Instance55'].Color = Color3.new(1, 0, 0)
+	Variables['Instance55'].Shape = Enum.PartType.Block
+	Variables['Instance55'].Size = Vector3.new(0.05000000074505806, 0.3499999940395355, 0.4099999964237213)
+	Variables['Instance55'].Material = Enum.Material.Neon
+	Variables['Instance55'].Transparency = 0
+	Variables['Instance55'].CastShadow = true
+
+	Variables['Instance56'] = Instance.new('Weld');Variables['Instance56'].Name = 'Eye_Weld'
+	Variables['Instance56'].C1 = CFrame.new(43.467453, -3.50057054, 44.004818, -0.707134247, 0, -0.707079291, 0, 1, 0, 0.707079291, 0, -0.707134247)
+	Variables['Instance56'].C0 = CFrame.new(61.852253, -3.50057054, 0.377573639, -1.1920929e-07, -0, -1.00000012, 0, 1, -0, 1.00000012, 0, -1.1920929e-07)
+	Variables['Instance56'].Enabled = true
+
+	Variables['Instance57'] = Instance.new('Part');Variables['Instance57'].Name = 'Eye'
+	Variables['Instance57'].Shape = Enum.PartType.Cylinder
+	Variables['Instance57'].CFrame = CFrame.new(-0.379597336, 3.605901, 56.6978874, -3.38950485e-08, 1.00000072, 4.56281207e-10, 0.00569698913, -1.15289396e-08, 0.999985635, 0.999985874, -3.39550752e-08, -0.00569700403)
+	Variables['Instance57'].Color = Color3.new(1, 0, 0)
+	Variables['Instance57'].Shape = Enum.PartType.Cylinder
+	Variables['Instance57'].Size = Vector3.new(0.05000000074505806, 0.125, 0.125)
+	Variables['Instance57'].Material = Enum.Material.Neon
+	Variables['Instance57'].Transparency = 0
+	Variables['Instance57'].CastShadow = true
+
+	Variables['Instance58'] = Instance.new('Weld');Variables['Instance58'].Name = 'Part_Weld'
+	Variables['Instance58'].C1 = CFrame.new(5.20040226, 0.377774119, -61.8520927, 0, -1, 0, 1, 0, -0, 0, 0, 1)
+	Variables['Instance58'].C0 = CFrame.new(7.55040836, 0.377788514, -61.8520927, 0, -1, 0, 1, 0, -0, 0, 0, 1)
+	Variables['Instance58'].Enabled = true
+
+	Variables['Instance59'] = Instance.new('Part');Variables['Instance59'].Name = 'Part'
+	Variables['Instance59'].Shape = Enum.PartType.Block
+	Variables['Instance59'].CFrame = CFrame.new(-0.37940079, 3.28676891, 60.753109, 1.00000083, -1.56059059e-08, -3.09719859e-08, -1.24408075e-08, 0.825773001, 0.56400609, -1.69675332e-08, -0.564006209, 0.82577312)
+	Variables['Instance59'].Color = Color3.new(0.105882, 0.164706, 0.207843)
+	Variables['Instance59'].Shape = Enum.PartType.Block
+	Variables['Instance59'].Size = Vector3.new(0.10000000149011612, 0.05000000074505806, 0.05000000074505806)
+	Variables['Instance59'].Material = Enum.Material.Metal
+	Variables['Instance59'].Transparency = 0
+	Variables['Instance59'].CastShadow = true
+
+	Variables['Instance60'] = Instance.new('Weld');Variables['Instance60'].Name = 'Part_Weld'
+	Variables['Instance60'].C1 = CFrame.new(0.377588183, -56.8642464, -23.8252182, 1, -0, 0, 0, 0.438529551, 0.898716748, -0, -0.898716748, 0.438529551)
+	Variables['Instance60'].C0 = CFrame.new(0.377592683, -52.9457855, -31.5029526, 1, -0, 0, 0, 0.559291363, 0.828971148, -0, -0.828971148, 0.559291363)
+	Variables['Instance60'].Enabled = true
+
+	Variables['Instance61'] = Instance.new('Part');Variables['Instance61'].Name = 'Part'
+	Variables['Instance61'].Shape = Enum.PartType.Block
+	Variables['Instance61'].CFrame = CFrame.new(-0.379388154, 3.13405967, 61.0007706, 1.00000083, 1.25709771e-08, -3.23230296e-08, -1.24408075e-08, 0.133512974, 0.991049111, -1.69675332e-08, -0.99104923, 0.133513018)
+	Variables['Instance61'].Color = Color3.new(0.105882, 0.164706, 0.207843)
+	Variables['Instance61'].Shape = Enum.PartType.Block
+	Variables['Instance61'].Size = Vector3.new(0.10000000149011612, 0.05000000074505806, 0.05000000074505806)
+	Variables['Instance61'].Material = Enum.Material.Metal
+	Variables['Instance61'].Transparency = 0
+	Variables['Instance61'].CastShadow = true
+
+	Variables['Instance62'] = Instance.new('Weld');Variables['Instance62'].Name = 'Part_Weld'
+	Variables['Instance62'].C1 = CFrame.new(0.377586335, -20.0841351, -58.0802345, 1, -0, 0, 0, 0.961273968, 0.275594592, -0, -0.275594592, 0.961273968)
+	Variables['Instance62'].C0 = CFrame.new(0.377580047, -11.7567329, -60.3064804, 1, -0, 0, 0, 0.990270376, 0.13915664, -0, -0.13915664, 0.990270376)
+	Variables['Instance62'].Enabled = true
+
+	Variables['Instance63'] = Instance.new('Part');Variables['Instance63'].Name = 'Eye'
+	Variables['Instance63'].Shape = Enum.PartType.Block
+	Variables['Instance63'].CFrame = CFrame.new(-0.379380584, 3.62906432, 60.7476807, 0.707134962, 0, -0.707080007, 0.707068622, -0.00569711626, 0.707123578, -0.00402831333, -0.99998486, -0.00402862625)
+	Variables['Instance63'].Color = Color3.new(1, 0, 0)
+	Variables['Instance63'].Shape = Enum.PartType.Block
+	Variables['Instance63'].Size = Vector3.new(0.05000000074505806, 0.3499999940395355, 0.4099999964237213)
+	Variables['Instance63'].Material = Enum.Material.Neon
+	Variables['Instance63'].Transparency = 0
+	Variables['Instance63'].CastShadow = true
+
+	Variables['Instance64'] = Instance.new('Weld');Variables['Instance64'].Name = 'Eye_Weld'
+	Variables['Instance64'].C1 = CFrame.new(0.377573639, -3.50057054, -61.852253, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+	Variables['Instance64'].C0 = CFrame.new(-43.467453, -3.50057054, -44.004818, 0.707134247, 0, 0.707079291, 0, 1, 0, -0.707079291, 0, 0.707134247)
+	Variables['Instance64'].Enabled = true
+
+	Variables['Instance65'] = Instance.new('Part');Variables['Instance65'].Name = 'Part'
+	Variables['Instance65'].Shape = Enum.PartType.Block
+	Variables['Instance65'].CFrame = CFrame.new(-0.379383296, 3.53075147, 61.048275, 1.00000095, 0, 0, 0, -0.999984503, -0.0056972336, -0, 0.0056972336, -0.999984503)
+	Variables['Instance65'].Color = Color3.new(0.105882, 0.164706, 0.207843)
+	Variables['Instance65'].Shape = Enum.PartType.Block
+	Variables['Instance65'].Size = Vector3.new(0.30000001192092896, 0.30000001192092896, 0.30000001192092896)
+	Variables['Instance65'].Material = Enum.Material.Metal
+	Variables['Instance65'].Transparency = 0
+	Variables['Instance65'].CastShadow = true
+
+	Variables['Instance66'] = Instance.new('Weld');Variables['Instance66'].Name = 'Part_Weld'
+	Variables['Instance66'].C1 = CFrame.new(0.377573639, 61.852253, -3.50057054, 1, 0, 0, 0, -1.1920929e-07, -1.00000012, 0, 1.00000012, -1.1920929e-07)
+	Variables['Instance66'].C0 = CFrame.new(0.377574444, 61.7522736, -3.20053673, 1, 0, 0, 0, -1.1920929e-07, -1.00000012, 0, 1.00000012, -1.1920929e-07)
+	Variables['Instance66'].Enabled = true
+
+	Variables['Instance67'] = Instance.new('Part');Variables['Instance67'].Name = 'Part'
+	Variables['Instance67'].Shape = Enum.PartType.Cylinder
+	Variables['Instance67'].CFrame = CFrame.new(-0.379585028, 3.62888718, 60.7477875, 0, -1.00000095, 0, -0.00569711626, 0, 0.99998486, -0.99998486, -0, -0.00569711626)
+	Variables['Instance67'].Color = Color3.new(0.105882, 0.164706, 0.207843)
+	Variables['Instance67'].Shape = Enum.PartType.Cylinder
+	Variables['Instance67'].Size = Vector3.new(0.4000000059604645, 0.4000000059604645, 0.4000000059604645)
+	Variables['Instance67'].Material = Enum.Material.Metal
+	Variables['Instance67'].Transparency = 0
+	Variables['Instance67'].CastShadow = true
+
+	Variables['Instance68'] = Instance.new('Weld');Variables['Instance68'].Name = 'Eye_Weld'
+	Variables['Instance68'].C1 = CFrame.new(44.001442, -3.50057054, -43.4708748, 0.707134247, -0, -0.707079291, 0, 1, -0, 0.707079291, 0, 0.707134247)
+	Variables['Instance68'].C0 = CFrame.new(-3.50046635, -0.377776176, -61.8520966, 0, 1, -0, -1, 0, 0, 0, 0, 1)
+	Variables['Instance68'].Enabled = true
+
+	Variables['Instance69'] = Instance.new('Part');Variables['Instance69'].Name = 'Part'
+	Variables['Instance69'].Shape = Enum.PartType.Block
+	Variables['Instance69'].CFrame = CFrame.new(-0.379394442, 3.1441257, 60.951252, 1.00000083, 7.95108157e-09, -3.37577859e-08, -1.24408075e-08, 0.270114183, 0.962830365, -1.69675332e-08, -0.962830484, 0.270114243)
+	Variables['Instance69'].Color = Color3.new(0.105882, 0.164706, 0.207843)
+	Variables['Instance69'].Shape = Enum.PartType.Block
+	Variables['Instance69'].Size = Vector3.new(0.10000000149011612, 0.05000000074505806, 0.05000000074505806)
+	Variables['Instance69'].Material = Enum.Material.Metal
+	Variables['Instance69'].Transparency = 0
+	Variables['Instance69'].CastShadow = true
+
+	Variables['Instance70'] = Instance.new('Weld');Variables['Instance70'].Name = 'Part_Weld'
+	Variables['Instance70'].C1 = CFrame.new(0.377593189, -28.0207405, -54.7168045, 1, -0, 0, 0, 0.913549721, 0.406727046, -0, -0.406727046, 0.913549721)
+	Variables['Instance70'].C0 = CFrame.new(0.377586335, -20.0841351, -58.0802345, 1, -0, 0, 0, 0.961273968, 0.275594592, -0, -0.275594592, 0.961273968)
+	Variables['Instance70'].Enabled = true
+
+	Variables['Instance71'] = Instance.new('Part');Variables['Instance71'].Name = 'Eye'
+	Variables['Instance71'].Shape = Enum.PartType.Block
+	Variables['Instance71'].CFrame = CFrame.new(-0.379383296, 3.62906694, 60.7476807, 1.00000095, 0, 0, 0, -0.00569711626, 0.99998486, -2.32830644e-10, -0.99998486, -0.00569711626)
+	Variables['Instance71'].Color = Color3.new(1, 0, 0)
+	Variables['Instance71'].Shape = Enum.PartType.Block
+	Variables['Instance71'].Size = Vector3.new(0.05000000074505806, 0.3499999940395355, 0.4099999964237213)
+	Variables['Instance71'].Material = Enum.Material.Neon
+	Variables['Instance71'].Transparency = 0
+	Variables['Instance71'].CastShadow = true
+
+	Variables['Instance72'] = Instance.new('Weld');Variables['Instance72'].Name = 'Gear2_Weld'
+	Variables['Instance72'].C1 = CFrame.new(-42.735054, 44.7164268, -3.70057511, 0.718715668, -1.3589859e-05, 0.695304036, 0.695304036, 3.36170197e-05, -0.718715668, -1.3589859e-05, 1, 3.36170197e-05)
+	Variables['Instance72'].C0 = CFrame.new(0.377573639, -3.50057054, -61.852253, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+	Variables['Instance72'].Enabled = true
+
+	Variables['Instance73'] = Instance.new('Part');Variables['Instance73'].Name = 'Part'
+	Variables['Instance73'].Shape = Enum.PartType.Cylinder
+	Variables['Instance73'].CFrame = CFrame.new(-0.379584163, 3.62784362, 60.5477715, 1.69466325e-08, -1.00000083, -3.0259212e-08, -0.00569698215, 1.24408075e-08, 0.999985754, -0.999985874, 1.69675332e-08, -0.00569701195)
+	Variables['Instance73'].Color = Color3.new(0.105882, 0.164706, 0.207843)
+	Variables['Instance73'].Shape = Enum.PartType.Cylinder
+	Variables['Instance73'].Size = Vector3.new(0.3499999940395355, 0.3499999940395355, 0.3499999940395355)
+	Variables['Instance73'].Material = Enum.Material.Metal
+	Variables['Instance73'].Transparency = 0
+	Variables['Instance73'].CastShadow = true
+
+	Variables['Instance74'] = Instance.new('Weld');Variables['Instance74'].Name = 'Part_Weld'
+	Variables['Instance74'].C1 = CFrame.new(-4.65042591, -0.377805948, -61.8521156, 0, 1, -0, -1, 0, 0, 0, 0, 1)
+	Variables['Instance74'].C0 = CFrame.new(-3.70047092, -0.377776057, -61.8520927, 0, 1, -0, -1, 0, 0, 0, 0, 1)
+	Variables['Instance74'].Enabled = true
+
+	Variables['Instance75'] = Instance.new('Part');Variables['Instance75'].Name = 'Part'
+	Variables['Instance75'].Shape = Enum.PartType.Block
+	Variables['Instance75'].CFrame = CFrame.new(-0.379382521, 3.33071947, 61.0494194, -1.00000024, 0, 0, 0, -0.999984026, 0.00569699239, -0, 0.00569723081, 0.999984026)
+	Variables['Instance75'].Color = Color3.new(0.105882, 0.164706, 0.207843)
+	Variables['Instance75'].Shape = Enum.PartType.Block
+	Variables['Instance75'].Size = Vector3.new(0.20000000298023224, 0.5, 0.20000000298023224)
+	Variables['Instance75'].Material = Enum.Material.Metal
+	Variables['Instance75'].Transparency = 0
+	Variables['Instance75'].CastShadow = true
+
+	Variables['Instance76'] = Instance.new('SpecialMesh');Variables['Instance76'].Name = 'Mesh'
+	Variables['Instance76'].VertexColor = Vector3.new(1, 1, 1)
+	Variables['Instance76'].Scale = Vector3.new(1, 1, 1)
+	Variables['Instance76'].MeshType = Enum.MeshType.Wedge
+	Variables['Instance76'].MeshId = ''
+	Variables['Instance76'].TextureId = ''
+
+	Variables['Instance77'] = Instance.new('Weld');Variables['Instance77'].Name = 'Part_Weld'
+	Variables['Instance77'].C1 = CFrame.new(-0.377574652, -61.6522598, -3.00055504, -1.00000024, 0, 0, 0, -1.1920929e-07, 1.00000012, 0, 1.00000012, -1.1920929e-07)
+	Variables['Instance77'].C0 = CFrame.new(-0.377573937, 61.552269, 3.20053649, -1.00000024, 0, 0, 0, -1.1920929e-07, -1.00000012, -0, -1.00000012, -1.1920929e-07)
+	Variables['Instance77'].Enabled = true
+
+	Variables['Instance78'] = Instance.new('Part');Variables['Instance78'].Name = 'Gear2'
+	Variables['Instance78'].Shape = Enum.PartType.Block
+	Variables['Instance78'].CFrame = CFrame.new(-0.379019052, 3.62806535, 60.5497627, 0.718716323, 0.695304692, -1.35898717e-05, 0.695293546, -0.718704939, -0.0056634997, -0.00394763844, 0.00406099018, -0.999985039)
+	Variables['Instance78'].Color = Color3.new(1, 0, 0)
+	Variables['Instance78'].Shape = Enum.PartType.Block
+	Variables['Instance78'].Size = Vector3.new(0.05000000074505806, 0.05000000074505806, 0.05000000074505806)
+	Variables['Instance78'].Material = Enum.Material.Neon
+	Variables['Instance78'].Transparency = 0.5
+	Variables['Instance78'].CastShadow = true
+
+	Variables['Instance79'] = Instance.new('SpecialMesh');Variables['Instance79'].Name = 'Mesh'
+	Variables['Instance79'].VertexColor = Vector3.new(1, 1, 1)
+	Variables['Instance79'].Scale = Vector3.new(0.8999999761581421, 0.8999999761581421, 0.30000001192092896)
+	Variables['Instance79'].MeshType = Enum.MeshType.FileMesh
+	Variables['Instance79'].MeshId = 'http://www.roblox.com/asset/?id=156292343'
+	Variables['Instance79'].TextureId = ''
+
+	Variables['Instance80'] = Instance.new('Weld');Variables['Instance80'].Name = 'Part_Weld'
+	Variables['Instance80'].C1 = CFrame.new(0.377574295, -3.30056214, -61.8522568, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+	Variables['Instance80'].C0 = CFrame.new(-42.735054, 44.7164268, -3.70057511, 0.718715668, -1.3589859e-05, 0.695304036, 0.695304036, 3.36170197e-05, -0.718715668, -1.3589859e-05, 1, 3.36170197e-05)
+	Variables['Instance80'].Enabled = true
+
+	Variables['Instance81'] = Instance.new('Part');Variables['Instance81'].Name = 'Part'
+	Variables['Instance81'].Shape = Enum.PartType.Block
+	Variables['Instance81'].CFrame = CFrame.new(-0.379408389, 3.24776387, 60.7862091, 1.00000083, -1.11452723e-08, -3.28419105e-08, -1.24408075e-08, 0.739277244, 0.673404217, -1.69675332e-08, -0.673404336, 0.739277363)
+	Variables['Instance81'].Color = Color3.new(0.105882, 0.164706, 0.207843)
+	Variables['Instance81'].Shape = Enum.PartType.Block
+	Variables['Instance81'].Size = Vector3.new(0.10000000149011612, 0.05000000074505806, 0.05000000074505806)
+	Variables['Instance81'].Material = Enum.Material.Metal
+	Variables['Instance81'].Transparency = 0
+	Variables['Instance81'].CastShadow = true
+
+	Variables['Instance82'] = Instance.new('Weld');Variables['Instance82'].Name = 'Part_Weld'
+	Variables['Instance82'].C1 = CFrame.new(0.377592683, -52.9457855, -31.5029526, 1, -0, 0, 0, 0.559291363, 0.828971148, -0, -0.828971148, 0.559291363)
+	Variables['Instance82'].C0 = CFrame.new(0.377600282, -47.9970398, -38.5606995, 1, -0, 0, 0, 0.669180214, 0.743100166, -0, -0.743100166, 0.669180214)
+	Variables['Instance82'].Enabled = true
+
+	Variables['Instance83'] = Instance.new('Part');Variables['Instance83'].Name = 'Part'
+	Variables['Instance83'].Shape = Enum.PartType.Block
+	Variables['Instance83'].CFrame = CFrame.new(-0.379401296, 3.16109753, 60.9073792, 1.00000083, 3.17435234e-09, -3.45359439e-08, -1.24408075e-08, 0.401516676, 0.915853918, -1.69675332e-08, -0.915854037, 0.401516765)
+	Variables['Instance83'].Color = Color3.new(0.105882, 0.164706, 0.207843)
+	Variables['Instance83'].Shape = Enum.PartType.Block
+	Variables['Instance83'].Size = Vector3.new(0.10000000149011612, 0.05000000074505806, 0.05000000074505806)
+	Variables['Instance83'].Material = Enum.Material.Metal
+	Variables['Instance83'].Transparency = 0
+	Variables['Instance83'].CastShadow = true
+
+	Variables['Instance84'] = Instance.new('Weld');Variables['Instance84'].Name = 'Part_Weld'
+	Variables['Instance84'].C1 = CFrame.new(0.377597779, -35.4120636, -50.2817078, 1, -0, 0, 0, 0.848060429, 0.529899538, -0, -0.529899538, 0.848060429)
+	Variables['Instance84'].C0 = CFrame.new(0.377593189, -28.0207405, -54.7168045, 1, -0, 0, 0, 0.913549721, 0.406727046, -0, -0.406727046, 0.913549721)
+	Variables['Instance84'].Enabled = true
+
+	Variables['Instance3'].Part1 = Variables['Instance2']
+	Variables['Instance4'].Part1 = Variables['Instance75']
+	Variables['Instance4'].Part0 = Variables['Instance2']
+	Variables['Instance8'].Part1 = Variables['Instance73']
+	Variables['Instance8'].Part0 = Variables['Instance7']
+	Variables['Instance11'].Part1 = Variables['Instance45']
+	Variables['Instance11'].Part0 = Variables['Instance9']
+	Variables['Instance13'].Part1 = Variables['Instance35']
+	Variables['Instance13'].Part0 = Variables['Instance12']
+	Variables['Instance16'].Part1 = Variables['Instance17']
+	Variables['Instance16'].Part0 = Variables['Instance14']
+	Variables['Instance19'].Part1 = Variables['Instance37']
+	Variables['Instance19'].Part0 = Variables['Instance17']
+	Variables['Instance22'].Part1 = Variables['Instance25']
+	Variables['Instance22'].Part0 = Variables['Instance20']
+	Variables['Instance24'].Part1 = Variables['Instance52']
+	Variables['Instance24'].Part0 = Variables['Instance23']
+	Variables['Instance26'].Part1 = Variables['Instance31']
+	Variables['Instance26'].Part0 = Variables['Instance25']
+	Variables['Instance28'].Part1 = Variables['Instance12']
+	Variables['Instance28'].Part0 = Variables['Instance27']
+	Variables['Instance30'].Part1 = Variables['Instance55']
+	Variables['Instance30'].Part0 = Variables['Instance29']
+	Variables['Instance32'].Part1 = Variables['Instance9']
+	Variables['Instance32'].Part0 = Variables['Instance31']
+	Variables['Instance34'].Part1 = Variables['Instance63']
+	Variables['Instance34'].Part0 = Variables['Instance33']
+	Variables['Instance36'].Part1 = Variables['Instance33']
+	Variables['Instance36'].Part0 = Variables['Instance35']
+	Variables['Instance38'].Part1 = Variables['Instance20']
+	Variables['Instance38'].Part0 = Variables['Instance37']
+	Variables['Instance40'].Part1 = Variables['Instance41']
+	Variables['Instance40'].Part0 = Variables['Instance39']
+	Variables['Instance42'].Part1 = Variables['Instance81']
+	Variables['Instance42'].Part0 = Variables['Instance41']
+	Variables['Instance44'].Part1 = Variables['Instance7']
+	Variables['Instance44'].Part0 = Variables['Instance43']
+	Variables['Instance46'].Part1 = Variables['Instance61']
+	Variables['Instance46'].Part0 = Variables['Instance45']
+	Variables['Instance49'].Part1 = Variables['Instance65']
+	Variables['Instance49'].Part0 = Variables['Instance47']
+	Variables['Instance51'].Part1 = Variables['Instance67']
+	Variables['Instance51'].Part0 = Variables['Instance50']
+	Variables['Instance54'].Part1 = Variables['Instance57']
+	Variables['Instance54'].Part0 = Variables['Instance52']
+	Variables['Instance56'].Part1 = Variables['Instance27']
+	Variables['Instance56'].Part0 = Variables['Instance55']
+	Variables['Instance58'].Part1 = Variables['Instance6']
+	Variables['Instance58'].Part0 = Variables['Instance57']
+	Variables['Instance60'].Part1 = Variables['Instance43']
+	Variables['Instance60'].Part0 = Variables['Instance59']
+	Variables['Instance62'].Part1 = Variables['Instance69']
+	Variables['Instance62'].Part0 = Variables['Instance61']
+	Variables['Instance64'].Part1 = Variables['Instance71']
+	Variables['Instance64'].Part0 = Variables['Instance63']
+	Variables['Instance66'].Part1 = Variables['Instance50']
+	Variables['Instance66'].Part0 = Variables['Instance65']
+	Variables['Instance68'].Part1 = Variables['Instance29']
+	Variables['Instance68'].Part0 = Variables['Instance67']
+	Variables['Instance70'].Part1 = Variables['Instance83']
+	Variables['Instance70'].Part0 = Variables['Instance69']
+	Variables['Instance72'].Part1 = Variables['Instance78']
+	Variables['Instance72'].Part0 = Variables['Instance71']
+	Variables['Instance74'].Part1 = Variables['Instance23']
+	Variables['Instance74'].Part0 = Variables['Instance73']
+	Variables['Instance77'].Part1 = Variables['Instance47']
+	Variables['Instance77'].Part0 = Variables['Instance75']
+	Variables['Instance80'].Part1 = Variables['Instance14']
+	Variables['Instance80'].Part0 = Variables['Instance78']
+	Variables['Instance82'].Part1 = Variables['Instance59']
+	Variables['Instance82'].Part0 = Variables['Instance81']
+	Variables['Instance84'].Part1 = Variables['Instance39']
+	Variables['Instance84'].Part0 = Variables['Instance83']
+	Variables['Instance1'].Parent = workspace
+	Variables['Instance2'].Parent = Variables['Instance1']
+	Variables['Instance3'].Parent = Variables['Instance2']
+	Variables['Instance4'].Parent = Variables['Instance2']
+	Variables['Instance5'].Parent = Variables['Instance2']
+	Variables['Instance6'].Parent = Variables['Instance5']
+	Variables['Instance7'].Parent = Variables['Instance5']
+	Variables['Instance8'].Parent = Variables['Instance7']
+	Variables['Instance9'].Parent = Variables['Instance5']
+	Variables['Instance10'].Parent = Variables['Instance9']
+	Variables['Instance11'].Parent = Variables['Instance9']
+	Variables['Instance12'].Parent = Variables['Instance5']
+	Variables['Instance13'].Parent = Variables['Instance12']
+	Variables['Instance14'].Parent = Variables['Instance5']
+	Variables['Instance15'].Parent = Variables['Instance14']
+	Variables['Instance16'].Parent = Variables['Instance14']
+	Variables['Instance17'].Parent = Variables['Instance5']
+	Variables['Instance18'].Parent = Variables['Instance17']
+	Variables['Instance19'].Parent = Variables['Instance17']
+	Variables['Instance20'].Parent = Variables['Instance5']
+	Variables['Instance21'].Parent = Variables['Instance20']
+	Variables['Instance22'].Parent = Variables['Instance20']
+	Variables['Instance23'].Parent = Variables['Instance5']
+	Variables['Instance24'].Parent = Variables['Instance23']
+	Variables['Instance25'].Parent = Variables['Instance5']
+	Variables['Instance26'].Parent = Variables['Instance25']
+	Variables['Instance27'].Parent = Variables['Instance5']
+	Variables['Instance28'].Parent = Variables['Instance27']
+	Variables['Instance29'].Parent = Variables['Instance5']
+	Variables['Instance30'].Parent = Variables['Instance29']
+	Variables['Instance31'].Parent = Variables['Instance5']
+	Variables['Instance32'].Parent = Variables['Instance31']
+	Variables['Instance33'].Parent = Variables['Instance5']
+	Variables['Instance34'].Parent = Variables['Instance33']
+	Variables['Instance35'].Parent = Variables['Instance5']
+	Variables['Instance36'].Parent = Variables['Instance35']
+	Variables['Instance37'].Parent = Variables['Instance5']
+	Variables['Instance38'].Parent = Variables['Instance37']
+	Variables['Instance39'].Parent = Variables['Instance5']
+	Variables['Instance40'].Parent = Variables['Instance39']
+	Variables['Instance41'].Parent = Variables['Instance5']
+	Variables['Instance42'].Parent = Variables['Instance41']
+	Variables['Instance43'].Parent = Variables['Instance5']
+	Variables['Instance44'].Parent = Variables['Instance43']
+	Variables['Instance45'].Parent = Variables['Instance5']
+	Variables['Instance46'].Parent = Variables['Instance45']
+	Variables['Instance47'].Parent = Variables['Instance5']
+	Variables['Instance48'].Parent = Variables['Instance47']
+	Variables['Instance49'].Parent = Variables['Instance47']
+	Variables['Instance50'].Parent = Variables['Instance5']
+	Variables['Instance51'].Parent = Variables['Instance50']
+	Variables['Instance52'].Parent = Variables['Instance5']
+	Variables['Instance53'].Parent = Variables['Instance52']
+	Variables['Instance54'].Parent = Variables['Instance52']
+	Variables['Instance55'].Parent = Variables['Instance5']
+	Variables['Instance56'].Parent = Variables['Instance55']
+	Variables['Instance57'].Parent = Variables['Instance5']
+	Variables['Instance58'].Parent = Variables['Instance57']
+	Variables['Instance59'].Parent = Variables['Instance5']
+	Variables['Instance60'].Parent = Variables['Instance59']
+	Variables['Instance61'].Parent = Variables['Instance5']
+	Variables['Instance62'].Parent = Variables['Instance61']
+	Variables['Instance63'].Parent = Variables['Instance5']
+	Variables['Instance64'].Parent = Variables['Instance63']
+	Variables['Instance65'].Parent = Variables['Instance5']
+	Variables['Instance66'].Parent = Variables['Instance65']
+	Variables['Instance67'].Parent = Variables['Instance5']
+	Variables['Instance68'].Parent = Variables['Instance67']
+	Variables['Instance69'].Parent = Variables['Instance5']
+	Variables['Instance70'].Parent = Variables['Instance69']
+	Variables['Instance71'].Parent = Variables['Instance5']
+	Variables['Instance72'].Parent = Variables['Instance71']
+	Variables['Instance73'].Parent = Variables['Instance5']
+	Variables['Instance74'].Parent = Variables['Instance73']
+	Variables['Instance75'].Parent = Variables['Instance5']
+	Variables['Instance76'].Parent = Variables['Instance75']
+	Variables['Instance77'].Parent = Variables['Instance75']
+	Variables['Instance78'].Parent = Variables['Instance5']
+	Variables['Instance79'].Parent = Variables['Instance78']
+	Variables['Instance80'].Parent = Variables['Instance78']
+	Variables['Instance81'].Parent = Variables['Instance5']
+	Variables['Instance82'].Parent = Variables['Instance81']
+	Variables['Instance83'].Parent = Variables['Instance5']
+	Variables['Instance84'].Parent = Variables['Instance83']
+
+	-- Main Function
+	local Active,Debounce,ActorMsg = false,false,false
+	local Mouse = CFrame.new()
+	local Rgbcolor = Color3.new()
+	local Highligh
+	local ignoreTable = {}
+	local SampleTable = {Size = {},ClassNamess = {},Connection = {},MeshIDs = {}}
+
+	local function CreatePart(FORMFACTOR, PARENT, MATERIAL, REFLECTANCE, TRANSPARENCY, BRICKCOLOR, NAME, SIZE, ANCHOR)
+		local NEWPART = Instance.new("Part")
+		table.insert(ignoreTable,NEWPART)
+		NEWPART.formFactor = FORMFACTOR
+		NEWPART.Reflectance = REFLECTANCE
+		NEWPART.Transparency = TRANSPARENCY
+		NEWPART.CastShadow = false
+		NEWPART.CanCollide = false
+		NEWPART.Locked = true
+		NEWPART.Anchored = true
+		if ANCHOR == false then
+			NEWPART.Anchored = false
 		end
-		if tossremainder then
-			tf = 0
-		else
-			tf = tf - frame * math.floor(tf / frame)
-		end
+		NEWPART.BrickColor = BrickColor.new(tostring(BRICKCOLOR))
+		NEWPART.Name = NAME
+		NEWPART.Size = SIZE
+		NEWPART.Material = MATERIAL
+		NEWPART:BreakJoints()
+		NEWPART.Parent = PARENT
+		return NEWPART
 	end
-end)
+	local function SpawnTrail(FROM,TO,BIG)
+		local TRAIL = CreatePart(3, Variables['Instance1'], "Neon", 0, 0.5, "Really white", "Trail", Vector3.new(0,0,0))
+		Instance.new("CylinderMesh",TRAIL)
+		TRAIL.Color = Color3.new(1,0,0)
+		local DIST = (FROM - TO).Magnitude
+		if BIG == true then
+			TRAIL.Size = Vector3.new(0.5,DIST,0.5)
+		else
+			TRAIL.Size = Vector3.new(0.5,DIST,0.5)
+		end
+		TRAIL.CFrame = CFrame.new(FROM, TO) * CFrame.new(0, 0, -DIST/2) * CFrame.Angles(math.rad(90),math.rad(0),math.rad(0))
+		coroutine.resume(coroutine.create(function()
+			for i = 1, 5 do
+				wait()
+				TRAIL.Transparency = TRAIL.Transparency + 0.1
+			end
+			TRAIL:remove()
+		end))
+	end
+	local function CreateSound(ID, PARENT, VOLUME, PITCH, DOESLOOP)
+		local NEWSOUND = nil
+		coroutine.resume(coroutine.create(function()
+			NEWSOUND = Instance.new("Sound")
+			NEWSOUND.Parent = PARENT
+			NEWSOUND.Volume = VOLUME
+			NEWSOUND.Pitch = PITCH
+			NEWSOUND.SoundId = "http://www.roblox.com/asset/?id="..ID
+			NEWSOUND:play()
+			if DOESLOOP == true then
+				NEWSOUND.Looped = true
+			else
+				repeat wait(1) until NEWSOUND.Playing == false
+				NEWSOUND:remove()
+			end
+		end))
+		return NEWSOUND
+	end
+	local function EpicChat(text)
+		local function gargar22(ID, PARENT, VOLUME, PITCH, DOESLOOP)
+			local NEWSOUND = Instance.new("Sound")
+			NEWSOUND.Parent = PARENT
+			NEWSOUND.Volume = VOLUME
+			NEWSOUND.Pitch = PITCH
+			NEWSOUND.SoundId = "http://www.roblox.com/asset/?id="..ID
+			NEWSOUND.Looped = DOESLOOP
+			NEWSOUND:play()
+			return NEWSOUND
+		end
+		coroutine.wrap(function()
+			local BBG = Instance.new("BillboardGui",Variables['Instance2'])
+			BBG.Size = UDim2.new(0,200,2,0)
+			BBG.StudsOffset = Vector3.new(0,2,0)
+			BBG.Name = "TalkingBillBoard"
 
-local function lerpnum(a, b, t)
-	return a + (b - a) * t
-end
+			local offset = 0;
+			local xsize = 0;
+			for i = 1, #text do
+				offset = offset - 16
+				xsize = xsize + 32  
 
-local function customtween(inst, tweeninfo, goal, fps)
-	local time = tweeninfo.Time
-	local style = tweeninfo.EasingStyle
-	local direction = tweeninfo.EasingDirection
+				delay(i/25, function()
+					local Txt = Instance.new("TextLabel",BBG)
+					Txt.Text = text:sub(i,i)
+					Txt.Position = UDim2.new(0,0,0,300)
+					Txt.BackgroundTransparency = 1
+					Txt.TextStrokeColor3 = Color3.new(1, 1, 1)
+					Txt.TextColor3 = Rgbcolor
+					Txt.TextSize = 40
+					Txt.TextStrokeTransparency=0
+					Txt.Size = UDim2.new(1,0,.5,0)
 
-	local repeatcount = tweeninfo.RepeatCount
-	local reverses = tweeninfo.Reverses
-
-	local routine = nil
-
-	return {
-		Play = function()
-			task.spawn(function()
-				local ahb = Instance.new("BindableEvent") local tf = 0 local lastframe = os.clock()
-				local frame = 1/(fps or 60)
-				local _ahbcon = (game:GetService("RunService"):IsClient() and game:GetService("RunService").RenderStepped or game:GetService("RunService").PostSimulation):Connect(function(s, p)
-					tf = tf + s
-					if tf >= frame then
-						for i = 1, math.floor(tf / frame) do
-							ahb:Fire()
-						end
-						lastframe = os.clock()
-						tf = tf - frame * math.floor(tf / frame)
-					end
-				end)
-
-				for i = 0, repeatcount+1 do
-					local originals = {}
-					for i, v in next, goal do
-						originals[i] = inst[i]
-					end
-
-					local start = os.clock()
-
-					for runtime = 0, time, frame do
-						local interpolationtime = math.clamp((os.clock() - start)/(time), 0, 1)	
-
-						for i, v in next, goal do
-							local success = pcall(function()
-								inst[i] = originals[i]:Lerp(v, game:GetService("TweenService"):GetValue(interpolationtime, style, direction))
-							end)
-							if(not success)then
-								local success2 = pcall(function()
-									inst[i] = lerpnum(originals[i], v, game:GetService("TweenService"):GetValue(interpolationtime, style, direction))
-								end)
-								if(not success2)then
-									return error("The property '"..i.."' cannot be interpolated.")
-								end
-							end
-						end
-
-						ahb.Event:Wait()
-					end
-
-					for i, v in next, goal do
-						pcall(function()
-							inst[i] = v
+					coroutine.resume(coroutine.create(function()
+						game:GetService("RunService").Heartbeat:Connect(function()
+							wait()
+							Txt.TextColor3 = Rgbcolor
+							Txt.Rotation = math.random(-7,7)
+							Txt.Position = Txt.Position + UDim2.new(0,math.random(-12,12)/7,0,math.random(-12,12)/7)
 						end)
+					end))
+					offset = offset + 32
+					if (Txt.Parent) then 
+						Txt:TweenPosition(UDim2.new(0,offset,0,0),Enum.EasingDirection.InOut,Enum.EasingStyle.Quart,1) 
 					end
-
-					if(reverses)then
-						local start = os.clock()
-
-						for runtime = 0, time, frame do
-							local interpolationtime = math.clamp((os.clock() - start)/(time), 0, 1)	
-
-							for i, v in next, goal do
-								local success = pcall(function()
-									inst[i] = v:Lerp(originals[i], game:GetService("TweenService"):GetValue(interpolationtime, style, direction))
-								end)
-								if(not success)then
-									local success2 = pcall(function()
-										inst[i] = lerpnum(v, originals[i], game:GetService("TweenService"):GetValue(interpolationtime, style, direction))
-									end)
-									if(not success2)then
-										return error("The property '"..i.."' cannot be interpolated.")
-									end
-								end
-							end
-
-							ahb.Event:Wait()
-						end
-
-						for i, v in next, goal do
-							pcall(function()
-								inst[i] = originals[i]
-							end)
-						end
-					end
-
-					if(routine)then
-						task.spawn(routine)
-					end
+				end)
+			end
+			BBG.Size = UDim2.new(0,xsize,0,40)
+			delay((#text/25)+3, function()
+				for _,v in next, BBG:children() do
+					v:TweenPosition(UDim2.new(0,0,0,0),Enum.EasingDirection.InOut,Enum.EasingStyle.Quad,1)
 				end
-
-				pcall(game.Destroy, ahb)
-				_ahbcon:Disconnect()
+				wait(1.15)
+				BBG:destroy()
 			end)
-		end,
-		Completed = {Wait = function()
-			routine = coroutine.running()
-			coroutine.yield()
-		end}
-	}
-end
-
-local cyield = setmetatable({}, {__newindex = function(self) if(game:GetService("RunService"):IsStudio())then return end if(math.random()>.5)then task.wait() else coroutine.yield() end end})
-
-local LocalPlayer = Services.Players.LocalPlayer
-local Movement, AntiDeath, Backups, Properties, Character, Signals, CFrames, Values, Player, Fades, Ignores, Animations, Remote, Mode = {
-	CFrame = CFrame.new(0,5,0),
-	State = "Falling",
-	Flight = false,
-	WalkSpeed = 16,
-	Enabled = true,
-	MovingDirection = Vector3.new()
-}, {}, {}, {}, {}, {}, {}, {
-	Magic = false,
-	AttackVer = false,
-	Muted = false,
-}, nil, {}, {}, {
-	LeftArm = true
-}, nil, ""
-if Script:GetAttribute("StartCFrame") then
-	Movement.CFrame = Script:GetAttribute("StartCFrame")
-end
-if Script:GetAttribute("RemoteName") then
-	RemoteName = Script:GetAttribute("RemoteName")
-	RemoteKey = Script:GetAttribute("RemoteKey")
-	StopKey = Script:GetAttribute("StopKey")
-	RemoteAttribute = Script:GetAttribute("RemoteAttribute")
-end
-if Script:GetAttribute("Name") then
-	Player = Services.Players:FindFirstChild(Script:GetAttribute("Name"))
-	if Player == LocalPlayer then
-		Values.IsOwner = true
+		end)()
 	end
-else
-	Values.RandomChats = true
-end
-
-function RandomString(Length)
-	return string.gsub(string.rep(".", (Length or 25)), ".", function()
-		return utf8.char(math.random(12353, 12450))
-	end)
-end
-
-function Destroy(Object)
-	return pcall(game.Destroy, Object)
-end
-local originst = Instance
-local Instance = {
-	new = function(ClassName, Parent, Properties, Attributes)
-		local Object = typeof(ClassName) == "Instance" and ClassName:Clone() or (Script:FindFirstChild(ClassName) and Script[ClassName]:Clone() or originst.new(tostring(ClassName), Parent))
-		if Properties and typeof(Properties) == "table" then
-			for i,v in pairs(Properties) do
-				pcall(function()
-					Object[i] = v
-				end)
-			end
-		end
-		if Attributes and typeof(Attributes) == "table" then
-			for i,v in pairs(Attributes) do
-				pcall(function()
-					Object:SetAttribute(i, v)
-				end)
-			end
-		end
-		Object.Parent = Parent
-		return Object
-	end,
-}
-
-function sendchatmessage(message)
-	if(game:GetService("TextChatService").ChatVersion ~= Enum.ChatVersion.TextChatService)then
-		Services.StarterGui:SetCore("ChatMakeSystemMessage", {Text = message; Color = Color3.new(255,255,255); Font = Enum.Font.SourceSansSemibold})
-	else
-		pcall(function()
-			game:GetService("TextChatService").TextChannels.RBXGeneral:DisplaySystemMessage(message)
-		end)
-	end
-end
-
-local prerend = Instance.new("BindableEvent")
-local drawframeprio = game:GetService('RunService').PreRender:ConnectParallel(function()
-	prerend:Fire()
-end)
-
-local function _hn(f)
-	if(coroutine.status(task.spawn(_hn, f)) == "dead")then 
-		return 
-	end
-	f()
-end
-
-local hnusable = not game:GetService("RunService"):IsStudio() and game:GetService("TextChatService").ChatVersion ~= Enum.ChatVersion.TextChatService
-
-local function hn(f)
-	if(not hnusable)then return f() end
-	_hn(f)
-end
-
-local animfps = 10
-local desync, sync = task.desynchronize, task.synchronize
-local function stall(n, f)
-	task.spawn(function()
-		for i = 1, n do
-			desync()
-			sync()
-		end
-		f()
-	end)
-end
-
-if(not hnusable)then
-	sendchatmessage("hnsable is not active")
-end
-
-local function v1(signal, func)
-	local sig;
-	local sig2;
-	local connected = true
-	local fakesig = {
-		Disconnect = function(self)
-			pcall(function()
-				sig:Disconnect()
-			end)
-
-			connected = false
-			pcall(table.clear, self)
-		end
-	}
-	local function perform(...)
-		task.synchronize()
-		if (not connected) then 
-			pcall(function()
-				sig:Disconnect()
-			end)
+	local function chatfunc(textt)
+		local text = string.gsub(textt,"​","")
+		if string.sub(text,1,2) == "/e" then
 			return
 		end
-		pcall(func, ...)
-		pcall(function()
-			sig:Disconnect()
-		end)
-		pcall(function()
-			sig = signal:ConnectParallel(perform)
-		end)
-	end
-	sig = signal:ConnectParallel(perform)
-	return fakesig
-end
-local wow
-local HG
-do
-	local AssetConfig = {}
-	AntiDeath.Remove = function(self, Name)
-		Backups[Name] = nil
-		CFrames[Name] = nil
-		Properties[Name] = nil
-		Character[Name] = nil
-		Signals[Name] = nil
-		AssetConfig[Name] = nil
-	end
-	AntiDeath.Clear = function(self, Name)
-		table.clear(Backups)
-		table.clear(CFrames)
-		table.clear(Properties)
-		table.clear(Character)
-		table.clear(Signals)
-		table.clear(AssetConfig)
-	end
-	AntiDeath.Initalize = function(self, Name, BasePart, Properties_)
-		local Backup = typeof(BasePart) == "Instance" and BasePart:Clone() or Script[BasePart]:Clone()
-		local Properties_ = Properties_ or {}
-		local SupportedProperties = {
-			"Size",
-			"Anchored",
-			"Color",
-			"Transparency",
-			"Reflectance",
-			"Material",
-			"MeshId",
-			"Anchored",
-			"LocalTransparencyModifier"
-		}
-		for _, Property in pairs(SupportedProperties) do
-			pcall(function()
-				local PropertyExists = Backup[Property]
-				if Properties_[Property] == nil then
-					Properties_[Property] = Backup[Property]
-				end
-			end)
-		end
-		if Mode ~= "Script" then
-			Backup.Name = RandomString(5)
-		end
-		Backups[Name] = Backup:Clone()
-		CFrames[Name] = CFrames[Name] or Movement.CFrame
-		Properties[Name] = Properties_
-		Character[Name] = Backup
-		Signals[Name] = {}
-		local Config = {}
-		AssetConfig[Name] = Config
-		Config.Enabled = true
-		return Config
-	end
-	AntiDeath.SignalName = RandomString(45)
-	AntiDeath.AnimationsName = RandomString(45)
-	AntiDeath.MovementName = RandomString(45)
-	AntiDeath.EffectName = RandomString(45)
-
-	local RigBase = Script.StarterCharacter:Clone()
-	RigBase.Name = "RigBase"
-
-	local adSignals = {}
-
-	local SignalsToCheck = {
-		"Parent",
-		"Size",
-		"Anchored",
-		"Color",
-		"Transparency",
-		"LocalTransparencyModifier",
-		"Reflectance",
-		"Material",
-		"MeshId",
-		"TextureID",
-		"Anchored"
-	}
-
-	local function RemakeCharacter(Name)
-		if(adSignals[Name])then
-			pcall(function()
-				for i, v in next, adSignals[Name] do
-					pcall(function()
-						v:Disconnect()
-					end)
-				end
-				table.clear(adSignals[Name])
-				adSignals[Name] = nil
-			end)
-		end
-
-		Destroy(Character[Name])
-		table.remove(Ignores, table.find(Ignores, Character[Name]))
-		Character[Name] = Backups[Name]:Clone()
-		pcall(function()
-			Character[Name].Anchored = true
-		end)
-		local Weld = Character[Name]:FindFirstChild("AccessoryWeld", true)
-		if Weld then
-			local BasePart = nil
-			for i,v in pairs(Character[Name].Handle:GetChildren()) do
-				if v:IsA("Attachment") then
-					local Base = v.Parent
-					Base.CanCollide = false
-					Base.CanTouch = false
-					Base.CanQuery = false
-					local AttachName = v.Name
-					for i,v in pairs(RigBase:GetDescendants()) do
-						if v.Name == AttachName then
-							local Name = v.Parent.Name
-							BasePart = Character[Name]
-							break
-						end
-					end
-					break
-				end
-			end
-			Weld.Part1 = BasePart
-		end
-		for Property,Value in pairs(Properties[Name]) do
-			pcall(function()
-				if Character[Name][Property] ~= Value then
-					Character[Name][Property] = Value
-				end
-			end)
-		end
-
-		pcall(function()
-			Character[Name].CFrame = CFrames[Name]
-		end)
-		Character[Name].Name = RandomString(math.random(5,75))
-		
-		
-		hn(function()
-			Character[Name].Parent = Model
-			local function destroySelf()
-				RemakeCharacter(Name)
-			end
-
-			local Signals = {}
-			for _, v in next, SignalsToCheck do
-				pcall(function()
-					table.insert(Signals, v1(Character[Name]:GetPropertyChangedSignal(v), destroySelf))
-				end)
-			end
-			adSignals[Name] = Signals
-		end)
-		table.insert(Ignores, Character[Name])
-	end
-
-	local modsig = nil
-
-	local function RemakeModel()
-		pcall(function()
-			modsig:Disconnect()
-		end)
-		Destroy(Model)
-		hn(function()
-			Model = Instance.new("Model", workspace, {
-				Name = RandomString(),
-				Archivable = false
-			})
-			local hu = Instance.new("Humanoid", Model)
-
-			modsig = v1(Model:GetPropertyChangedSignal("Parent"), RemakeModel)
-		end)
-	end
-	local function adChecks(v)
-		if not Model or not pcall(function() return Model.Name end) or Model.Parent ~= workspace then
-			RemakeModel()
-		end
-
-		for Name,Part in pairs(Character) do
-			for Property,Value in pairs(Properties[Name]) do
-				pcall(function()
-					if Part[Property] ~= Value then
-						Part[Property] = Value
-					end
-				end)
-			end
-			if (not Part or not pcall(function() return Part.Name end) or Part.Parent ~= Model) and AssetConfig[Name].Enabled then
-				RemakeCharacter(Name)
-			elseif not AssetConfig[Name].Enabled then
-				Destroy(Part)
-			else
-				local Weld = Character[Name]:FindFirstChild("AccessoryWeld", true)
-				if Weld then
-					local BasePart = nil
-					for i,v in pairs(Character[Name].Handle:GetChildren()) do
-						if v:IsA("Attachment") then
-							local Base = v.Parent
-							Base.CanCollide = false
-							Base.CanTouch = false
-							Base.CanQuery = false
-							local AttachName = v.Name
-							for i,v in pairs(RigBase:GetDescendants()) do
-								if v.Name == AttachName then
-									local Name = v.Parent.Name
-									BasePart = Character[Name]
-									break
-								end
-							end
-							break
-						end
-					end
-					Weld.Part1 = BasePart
-				end
-			end
-		end
-		for i,v in pairs(CFrames) do
-			pcall(function()
-				if Character[i] ~= nil and Character[i]:IsA("BasePart") then
-					if(Character[i].CFrame ~= v)then
-						Character[i].CFrame = v
-						--RemakeCharacter(i)
-					end
-				end
-			end)
-		end
-	end
-
-	game:GetService("RunService").PreRender:Connect(adChecks)
-	prerend.Event:ConnectParallel(function()
-		task.synchronize()
-		pcall(adChecks)
-		stall(120, adChecks)
-	end)
-
-	game:GetService("RunService").RenderStepped:Connect(function()
-		cyield.a = true
-	end)
-end
-
-local function ChangeCollisions(Part, Collide)
-	Part.CanCollide = false
-	Part.CanTouch = false
-	Part.CanQuery = false
-end
-
-local function Inverse(Weld, Part1)
-	local Position = CFrame.new()
-	if Part1 then
-		if typeof(Part1) ~= "CFrame" then
-			Position = (Weld.C0 * Weld.C1:Inverse())
-		else
-			Position = (Weld.C0 * Weld.C1:Inverse())
-		end
-	else
-		Position = (Weld.C0 * Weld.C1:Inverse())
-	end
-	return (Part1 and (typeof(Part1) ~= "CFrame" and Part1.CFrame or Part1) or Movement.CFrame) * CFrame.new(Position.Position)*Position.Rotation
-end
-function Lerp(Start, End, Time)
-	return Start:Lerp(End, Services.TweenService:GetValue(Time, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut))
-end
-function NumberLerp(a, b, t)
-	return a + (b - a) * t
-end
-local RootJoint, Neck, RightShoulder, LeftShoulder, RightHip, LeftHip = {
-	C0 = CFrame.new(0, 0, 0, -1, 0, 0, 0, 0, 1, 0, 1, -0),
-	C1 = CFrame.new(0, 0, 0, -1, 0, 0, 0, 0, 1, 0, 1, -0)
-}, {
-	C0 = CFrame.new(0, 1, 0, -1, 0, 0, 0, 0, 1, 0, 1, -0),
-	C1 = CFrame.new(0, -0.5, 0, -1, 0, 0, 0, 0, 1, 0, 1, -0)
-}, {
-	C0 = CFrame.new(1, 0.5, 0, -4.37113883e-08, 0, 1, -0, 0.99999994, 0, -1, 0, -4.37113883e-08),
-	C1 = CFrame.new(-0.5, 0.5, 0, -4.37113883e-08, 0, 1, 0, 0.99999994, 0, -1, 0, -4.37113883e-08)
-}, {
-	C0 = CFrame.new(-1, 0.5, 0, -4.37113883e-08, 0, -1, 0, 0.99999994, 0, 1, 0, -4.37113883e-08),
-	C1 = CFrame.new(0.5, 0.5, 0, -4.37113883e-08, 0, -1, 0, 0.99999994, 0, 1, 0, -4.37113883e-08)
-}, {
-	C0 = CFrame.new(1, -1, 0, -4.37113883e-08, 0, 1, -0, 0.99999994, 0, -1, 0, -4.37113883e-08),
-	C1 = CFrame.new(0.5, 1, 0, -4.37113883e-08, 0, 1, 0, 0.99999994, 0, -1, 0, -4.37113883e-08)
-}, {
-	C0 = CFrame.new(-1, -1, 0, -4.37113883e-08, 0, -1, 0, 0.99999994, 0, 1, 0, -4.37113883e-08),
-	C1 = CFrame.new(-0.5, 1, 0, -4.37113883e-08, 0, -1, 0, 0.99999994, 0, 1, 0, -4.37113883e-08)
-}
-local gunoffset = CFrame.new(-0.125,-0.898999929,0.95400238)*CFrame.fromEulerAnglesXYZ(0,math.rad(90),math.rad(-172.5))
-local attacking = false
-local Ball1, Ball2
-local Effects = {}
-function Effect(Part, Properties)
-	Properties.Part = Part
-	Properties.TimePosition = 0
-	table.insert(Effects, Properties)
-end
-function Mesh(Part, Type)
-	return Instance.new("SpecialMesh", Part, {
-		MeshType = Enum.MeshType[Type]
-	})
-end
-Services.RunService:BindToRenderStep(AntiDeath.EffectName, 1, function()
-	for i, self in pairs(Effects) do
-		self.TimePosition = self.TimePosition + 1
-		if self.TimePosition >= self.Lifetime then
-			table.remove(Effects, i)
-			Services.Debris:AddItem(self.Part, 0)
-			return
-		end
-		if self.Size then
-			self.Part.Size = self.Part.Size:Lerp(self.Size, self.TimePosition / self.Lifetime)
-		end
-		if self.Transparency then
-			self.Part.Transparency = NumberLerp(self.Part.Transparency, self.Transparency, self.TimePosition / self.Lifetime)
-			if self.Part.Transparency > 0.975 and self.Part.Material == Enum.Material.Glass then
-				self.Part.Material = Enum.Material.SmoothPlastic
-			end
-		end
-		if self.RotationX and self.RotationY and self.RotationZ then
-			self.Part.CFrame = self.Part.CFrame * CFrame.Angles(math.rad(self.RotationX),math.rad(self.RotationY),math.rad(self.RotationZ))
-		end
-		if self.Color then
-			self.Part.Color = self.Part.Color:Lerp(self.Color, self.TimePosition / self.Lifetime)
-		end
-		ChangeCollisions(self.Part, false)
-	end
-end)
-function PointLightning(Start, End, Segments, Offset)
-	local Points = {}
-	for i = 0, Segments do
-		local Offset = Vector3.new(math.random(-Offset,Offset),math.random(-Offset,Offset),math.random(-Offset,Offset))
-		if i == 0 or i == Segments then
-			Offset = Vector3.new()
-		end
-		table.insert(Points, Start + (End - Start).Unit * i * (End - Start).Magnitude/Segments + Offset)
-	end
-	return Points, Offset
-end
-function PointLightning2(Start, End, Segments, Offset)
-	local Points = {}
-	for i = 0, Segments do
-		local Offset = Vector3.new(math.random(-Offset,Offset),math.random(-Offset,Offset),math.random(-Offset,Offset))
-		if i == 0 or i == Segments then
-			Offset = Vector3.new()
-		end
-		table.insert(Points, Start + (End - Start).Unit * i * (End - Start).Magnitude/Segments)
-	end
-	return Points, Offset
-end
-function DrawPoint(Start, End)
-	return CFrame.new(Start, End)*CFrame.new(0,0,-(Start-End).Magnitude/2), (Start-End).Magnitude
-end
-function NewSound(SoundId, Position, Pitch, Volume)
-	local Part = Instance.new("Part", workspace, {
-		Size = Vector3.new(),
-		Transparency = 1,
-		CanCollide = false,
-		CanTouch = false,
-		Anchored = true,
-		CFrame = Position or Movement.CFrame
-	})
-	local Sound = Instance.new("Sound", Part, {
-		PlaybackSpeed = Pitch,
-		Volume = Volume,
-		SoundId = SoundId,
-		PlayOnRemove = true,
-	})
-	Sound:Destroy()
-	Part:Destroy()
-end
-function tween(part, info, Properties)
-	local NewProperties = {}
-	for Property in pairs(Properties) do
 		task.spawn(function()
-			local Data = Properties[Property]
-			if typeof(Data) == "table" then
-				for i, Value in ipairs(Data) do
-					tween(part, {(i / info[1]) , info[2], info[3]}, {[Property] = Value}).Completed:Wait()
+			local sayingstuff = Instance.new("BillboardGui",Variables['Instance2'])
+			sayingstuff.Size = UDim2.new(0,9999,2,0)
+			sayingstuff.StudsOffset = Vector3.new(0,5,0)
+			sayingstuff.Name = "TalkingBillBoard"
+			local sayingstuff2 = Instance.new("TextLabel",sayingstuff)
+			sayingstuff2.BackgroundTransparency = 1
+			sayingstuff2.BorderSizePixel = 0
+			sayingstuff2.Text = ""
+			sayingstuff2.Font = "Ubuntu"
+			sayingstuff2.TextScaled = true
+			sayingstuff2.TextStrokeTransparency = 0
+			sayingstuff2.TextStrokeColor3 = Color3.new(1, 1, 1)
+			sayingstuff2.Size = UDim2.new(1,0,1,0)
+			local sayingstuff3 = Instance.new("TextLabel",sayingstuff)
+			sayingstuff3.BackgroundTransparency = 1
+			sayingstuff3.BorderSizePixel = 0
+			sayingstuff3.Text = ""
+			sayingstuff3.Font = "Ubuntu"
+			sayingstuff3.TextScaled = true
+			sayingstuff3.TextStrokeTransparency = 0
+			coroutine.resume(coroutine.create(function()
+				while sayingstuff3:IsDescendantOf(game) do
+					sayingstuff3.TextColor3 = Rgbcolor
+					game:GetService("RunService").Heartbeat:Wait()
 				end
-			else
-				NewProperties[Property] = Properties[Property]
+			end))
+			sayingstuff3.TextStrokeColor3 = Color3.new(0,0,0)
+			sayingstuff3.Size = UDim2.new(1,0,1,0)
+			coroutine.resume(coroutine.create(function()
+				while sayingstuff ~= nil do
+					wait()
+					sayingstuff2.Position = UDim2.new(0,math.random(-3,3),0,math.random(-3,3)) 
+					sayingstuff3.Position = UDim2.new(0,math.random(-3,3),0,math.random(-3,3)) 
+				end
+			end))
+			for i = 1,string.len(text) do
+				wait()
+				sayingstuff2.Text = string.sub(text,1,i)
+				sayingstuff3.Text = string.sub(text,1,i)
+				local Sound = Instance.new("Sound",Variables['Instance57'])
+				Sound.SoundId = "rbxasset://sounds\\clickfast.wav"
+				Sound.Volume = 5
+				Sound.PlayOnRemove = true
+				game:GetService("Debris"):AddItem(Sound,0)
 			end
+			wait(3)
+			for i = 1,50 do
+				wait()
+				sayingstuff2.Position = sayingstuff2.Position - UDim2.new(0,math.random(-3,3),0,math.random(-3,3))
+				sayingstuff3.Position = sayingstuff2.Position - UDim2.new(0,math.random(-3,3),0,math.random(-3,3)) 
+				sayingstuff2.Rotation = sayingstuff2.Rotation + math.random(-2,2)
+				sayingstuff3.Rotation = sayingstuff3.Rotation + math.random(-2,2)
+				sayingstuff2.TextStrokeTransparency = i/50
+				sayingstuff2.TextTransparency = sayingstuff2.TextStrokeTransparency
+				sayingstuff3.TextStrokeTransparency = sayingstuff2.TextStrokeTransparency
+				sayingstuff3.TextTransparency = sayingstuff2.TextStrokeTransparency
+			end
+			sayingstuff:Destroy()
 		end)
 	end
-	local new = customtween(part, TweenInfo.new(table.unpack(info)), NewProperties, 7)
-	new:Play()
-	return new
-end
-
-local craters = (function()
-	local module = {}
-
-	function module.crater(position,size,Parent,Time,TransSpeed,ignore)
-		local didhit = false
-		local mate = nil
-		local colo = nil
-		local ray = Ray.new(position,Vector3.new(0,-15,0))
-		local tabd = ignore
-		local part, hitPosition = workspace:FindPartOnRayWithIgnoreList(ray, tabd, false, true)
-		if part then
-			didhit = true
-			mate = part.Material
-			colo = part.BrickColor
+	local function checkactor(v)
+		local actor = nil
+		if(v:IsA("BasePart"))then
+			local orig = v.Transparency
+			v.Transparency = 2
+			if (not v:IsDescendantOf(workspace) or v.Transparency ~= 2) then
+				actor = true
+			else
+				v.Transparency = orig
+				actor = false
+			end
 		else
-			didhit = false
+			actor = false
 		end
-		if didhit then
-			task.spawn(function()
-				local b = Instance.new("Part",Parent)
-				b.Size = Vector3.new(1,1,1)
-				b.Anchored = true
-				b.CanCollide = false
-				b.CFrame = CFrame.new(hitPosition)*CFrame.new(0,.5,0)
-				b.Transparency = 1
-				game:GetService("Debris"):AddItem(b,1/10)
-				local t = 0
-				for i = 1, 36 do
-					t = t + 10
-					local b2 = b:Clone()
-					b2.Parent = workspace
-					b2.Transparency = 1
-					b2.CFrame = b.CFrame * CFrame.Angles(0,math.rad(t),math.rad(0)) * CFrame.new(size*10,0,0) 
-					game:GetService("Debris"):AddItem(b2, 1/10)
-					local grassblock = Instance.new("Part",Parent)
-					grassblock.Size = Vector3.new(size,size,size)*2
-					grassblock.BrickColor = colo
-					grassblock.Material = mate
-					grassblock.Anchored = true
-					grassblock.CanCollide = true
-					grassblock.CFrame = b2.CFrame * CFrame.Angles(math.rad(math.random(-180,180)),math.rad(math.random(-180,180)),math.rad(math.random(-180,180)))
-					game:GetService("Debris"):AddItem(grassblock,10)
-					pcall(game.Destroy,b2)
-					local ray = Ray.new(grassblock.Position,Vector3.new(0,-5,0))
-					local tabd = {grassblock}
-					for i,v in next, ignore do
-						table.insert(tabd, v)
-					end
-					local part, hitPosition = workspace:FindPartOnRayWithIgnoreList(ray, tabd,false,true)
-					if part then
-						task.spawn(function()
-							task.wait(Time)
-							customtween(grassblock,TweenInfo.new(TransSpeed),{
-								Transparency = 1,
-								Size = Vector3.new(0,0,0)
-							}, animfps):Play()
-							task.spawn(function()
-								task.wait(TransSpeed)
-								grassblock:Destroy()
-							end)
-						end)
-					else
-						grassblock:Destroy()
-					end
-				end
-			end)
-		end
-	end
-
-	function module.debris(from, size, color, material, collide, knockback, destroyafter)
-		local deb = Instance.new("Part", workspace)
-		deb.Size = Vector3.new(size*(math.random(50, 110)/100), size*(math.random(50, 110)/100), size*(math.random(50, 110)/100))
-		deb.Position = from+Vector3.new(math.random(-100,100)/100,0+math.random(-100,100)/100,math.random(-100,100)/100)
-		deb.Color = color
-		deb.Material = material
-		deb.CanCollide = collide
-		deb.Anchored = false
-		local vel = Instance.new("BodyVelocity", deb) 
-		vel.maxForce = Vector3.new(9999999999999,9999999999999,9999999999999)
-		vel.velocity = CFrame.new(deb.Position, from).lookVector*knockback
-		game:GetService("Debris"):AddItem(vel, .1)
-		task.delay(destroyafter-1, function()
-			customtween(deb, TweenInfo.new(1), {
-				Size = Vector3.new(),
-				Transparency = 1
-			}, animfps):Play()
-		end)
-		game:GetService("Debris"):AddItem(deb, destroyafter)
-	end
-
-	return module
-end)()
-
-local __wedges = {}
-function NewWedgeWithTrail(col, size, transparency, traillifetime)
-	local wedge = Instance.new("WedgePart", workspace)
-	wedge.Color = col
-	wedge.Size = Vector3.new(size/20, size, size)
-	wedge.Material = Enum.Material.Neon
-	wedge.Transparency = transparency
-	wedge.CanCollide = false
-	wedge.Anchored = true
-	wedge.CanQuery = false
-
-	local att1 = Instance.new("Attachment", wedge)
-	local att2 = Instance.new("Attachment", wedge)
-	att1.Name = "a1"
-	att2.Name = "a2"
-
-	att1.Position = Vector3.new(0, size/2, size/2)
-	att2.Position = Vector3.new(0, -size/2, size/2)
-
-	local trail = Instance.new("Trail", wedge)
-	trail.Attachment0 = att1
-	trail.Attachment1 = att2
-	trail.Transparency = NumberSequence.new(0, 1)
-	trail.Texture = "rbxassetid://6091329339"
-	trail.LightEmission = 0
-	trail.LightInfluence = 0
-	trail.Brightness = 5
-	trail.WidthScale = NumberSequence.new(1, 0)
-	trail.Lifetime = traillifetime
-	trail.Color = ColorSequence.new(col, Color3.new())
-
-	table.insert(__wedges, wedge)
-	return wedge
-end
-
-game:GetService("RunService").RenderStepped:Connect(function()
-	for i, v in next, __wedges do
-		local dont = false
-		if(not v or not v:IsDescendantOf(workspace))then
-			table.remove(__wedges, i)
-			dont = true
-		end
-		if(not dont)then
-			pcall(function()
-				local att1 = v["a1"]
-				local att2 = v["a2"]
-				local size = v.Size.Y
-				att1.Position = Vector3.new(0, size/2, size/2)
-				att2.Position = Vector3.new(0, -size/2, size/2)
-			end)
-		end
-	end
-end)
-
-function tp(Hit, Target)
-	for i = 1, math.random(5, 10) do
-		craters.debris(Movement.CFrame.Position, .5, Color3.new(), Enum.Material.Plastic, true, 20, math.random(2, 5))
-	end
-
-	for i = 1, 10 do
-		task.spawn(function()
-			pcall(function()
-				local col = math.random()
-				local we = NewWedgeWithTrail(Color3.new(col, col/2, 0), math.random(), 0, 1)
-				we.Position = Movement.CFrame.Position+Vector3.new(math.random(-5,5),math.random(-5,5),math.random(-5,5))
-				we.Orientation = Vector3.new(math.random(-360,360),math.random(-360,360),math.random(-360,360))
-
-				local dest = Hit.Position+Vector3.new(math.random(-5,5),3,math.random(-5,5))
-
-				local tw = customtween(we,TweenInfo.new(0.1, Enum.EasingStyle.Quint, Enum.EasingDirection.InOut),{
-					Position = Movement.CFrame.Position+Vector3.new(math.random(-5,5),math.random(-5,5),math.random(-5,5))
-				}, 7)
-				tw:Play()
-				tw.Completed:Wait()
-
-				tw = customtween(we,TweenInfo.new(0.1, Enum.EasingStyle.Quint, Enum.EasingDirection.InOut),{
-					CFrame = CFrame.lookAt(we.Position, dest)
-				}, 7)
-				tw:Play()
-				tw.Completed:Wait()
-
-				local mag = (we.Position - dest).Magnitude
-				tw = customtween(we,TweenInfo.new(.5, Enum.EasingStyle.Quint, Enum.EasingDirection.InOut),{
-					CFrame = we.CFrame*CFrame.new(0,0,-mag),
-					Transparency = 1
-				}, 7)
-				tw:Play()
-				tw.Completed:Wait()
-				game:GetService("Debris"):AddItem(we, 1)
-			end)
-		end)
-	end
-
-	local angle = CFrame.lookAt(Vector3.zero, CFrame.lookAt(Vector3.new(Movement.CFrame.Position.X, Hit.Position.Y, Movement.CFrame.Position.Z), Hit.Position).lookVector)
-	Movement.CFrame = CFrame.new(Hit.Position)*angle*CFrame.new(0,3,0)
-
-	local pit = math.random(70, 120)/100
-	NewSound("rbxassetid://2512999991", Movement.CFrame, pit, 2)
-	NewSound("rbxassetid://2512999991", Hit, pit, 2)
-
-	for _ = 1, 2 do
-		for i, v in next, Character do
-			pcall(function()
-				if(v and v:IsA("BasePart"))then
-					local arch = v.Archivable
-					v.Archivable = true
-					local EffectPart = v:Clone()
-					EffectPart:ClearAllChildren()
-					v.Archivable = arch
-					EffectPart.Parent = workspace
-					EffectPart.CanCollide = false
-					EffectPart.CanQuery = false
-					EffectPart.Anchored = true
-					EffectPart.Material = "Neon"
-					EffectPart.Transparency = .5
-
-					customtween(EffectPart, TweenInfo.new(0.75), {
-						Transparency = 1,
-						Color = Color3.new()
-					}, animfps):Play()
-
-					customtween(EffectPart, TweenInfo.new(2.75,Enum.EasingStyle.Quad,Enum.EasingDirection.InOut), {
-						Size = Vector3.new(0,0,0),
-						Orientation = Vector3.new(math.random(-360, 360), math.random(-360, 360), math.random(-360, 360)),
-						Position = EffectPart.Position+Vector3.new(math.random(-8, 8), math.random(-8, 8), math.random(-8, 8))
-					}, animfps):Play()
-
-					task.delay(.75, pcall, game.Destroy, EffectPart)
-				end
-			end)
-		end
-		task.wait(1/30)
-	end
-end
-
-local Params = RaycastParams.new()
-function idklol(Hit, Target)
-	Animations.LeftArm = false
-	local Brick = Instance.new("Part")
-	Brick.Anchored = true
-	ChangeCollisions(Brick, false)
-	Brick.Material = Enum.Material.Granite
-	Brick.Size = Vector3.new(4,1,2)
-	Brick.CFrame = CFrames.LeftArm * CFrame.new(0,-1,0)
-	Brick.Name = RandomString()
-	Brick.Parent = workspace
-	local Animation = Services.RunService.RenderStepped:Connect(function()
-		local Sine = os.clock()*60
-		Brick.CFrame = CFrames.LeftArm * CFrame.new(0,-1,0)
-		LeftShoulder.C0 = Lerp(LeftShoulder.C0, CFrame.new(-1, 0.51, 0.3-0.05*math.sin(Sine/30), 0, 0, -1, 0, 1, 0, 1, 0, 0)*CFrame.Angles(0,math.rad(-1+2*math.sin(Sine/30)),math.rad(115-5*math.cos(Sine/30))), 0.3)
-	end)
-	task.wait(0.35)
-	Animation:Disconnect()
-	local Animation = Services.RunService.RenderStepped:Connect(function()
-		local Sine = os.clock()*60
-		Brick.CFrame = CFrames.LeftArm * CFrame.new(0,-1,0)
-		LeftShoulder.C0 = Lerp(LeftShoulder.C0, CFrame.new(-1, 0.51, -0.2-0.05*math.sin(Sine/30), 0, 0, -1, 0, 1, 0, 1, 0, 0)*CFrame.Angles(0,math.rad(-1+2*math.sin(Sine/30)),math.rad(275-5*math.cos(Sine/30))), 0.3)
-	end)
-	task.wait(0.1)
-	Animation:Disconnect()
-	task.delay(0.25, function()
-		Animations.LeftArm = true
-	end)
-	local BrickRot = CFrame.Angles(math.rad(math.random(-22,22)),math.rad(math.random(-22,22)),math.rad(math.random(-22,22)))
-	local Start, End = Brick.CFrame, Hit
-	local Velocity = (CFrame.new(Start.p, End.p).Position -CFrame.new(Start.p, End.p)*CFrame.new(0,0,1).Position)*60
-	local Phys = nil
-	local imdone = false
-	local diff = os.clock()
-	Phys = Services.RunService.RenderStepped:Connect(function()
-		Velocity = Vector3.new(Velocity.X*0.99, Velocity.Y - workspace.Gravity / 1000, Velocity.Z*0.99)
-		--print(Velocity.Y)
-		Brick.Position = Brick.Position + Velocity/30
-		Brick.CFrame = Brick.CFrame * BrickRot
-		Params.FilterDescendantsInstances = {Brick}
-		local Ray_ = workspace:Raycast(Brick.Position, Vector3.new(0,-0.5,0), Params)
-		if Ray_ or os.clock()-diff > 12 then
-			Phys:Disconnect()
-			imdone = true
-		end
-	end)
-	repeat
-		task.wait()
-	until imdone
-
-	customtween(Brick, TweenInfo.new(3), {
-		Transparency = 1
-	}, animfps):Play()
-
-	Params.FilterDescendantsInstances = {Brick}
-	local Floor = Brick.Position - Vector3.new(0,1,0)
-	local Hitcast = workspace:Raycast(Brick.Position, Vector3.new(0,-10,0), Params)
-	if Hitcast then
-		Floor = Hitcast.Position
-	end
-	local EffectPart = Instance.new("Part", workspace, {
-		Size = Vector3.new(5,0.78,5),
-		Color = Color3.fromRGB(255, 118, 38):Lerp(Color3.new(), 0),
-		Material = "Neon",
-		Anchored = true,
-		CFrame = CFrame.new(Floor),
-		Transparency = 0
-	})
-	Mesh(EffectPart, "Sphere")
-
-	customtween(EffectPart, TweenInfo.new(0.75), {
-		Transparency = 1
-	}, animfps):Play()
-	customtween(EffectPart, TweenInfo.new(2.75,Enum.EasingStyle.Quad,Enum.EasingDirection.InOut), {
-		Size = Vector3.new(65,0.78,65)
-	}, animfps):Play()
-
-	Services.Debris:AddItem(EffectPart, .75)
-	local EffectPart = Instance.new("Part", workspace, {
-		Size = Vector3.new(5,0.5,5),
-		Color = Color3.fromRGB(255, 118, 38):Lerp(Color3.new(), 0.65),
-		Material = "Neon",
-		Anchored = true,
-		CFrame = CFrame.new(Floor),
-		Transparency = 0
-	})
-	Mesh(EffectPart, "Sphere")
-
-	customtween(EffectPart, TweenInfo.new(1.25), {
-		Transparency = 1
-	}, animfps):Play()
-	customtween(EffectPart, TweenInfo.new(3.25,Enum.EasingStyle.Quad,Enum.EasingDirection.InOut), {
-		Size = Vector3.new(65,0.5,65)
-	}, animfps):Play()
-
-	Services.Debris:AddItem(EffectPart, 1.25)
-	Services.Debris:AddItem(Brick, 4)
-end
-if not Player then
-	return task.spawn(function()
-		local la = 0
-		while true do
-			la = la + 1
-			task.spawn(error, string.rep('t\n', 1e5), math.huge)
-			if la > 3000 then
+		if (actor == nil) then
+			repeat
 				task.wait()
-				la = 0
+			until actor ~= nil
+		end
+		return actor
+	end
+
+	local function Attack(HIT)
+		local Char = nil
+		if HIT.Parent and HIT.Parent:IsA("Model") and HIT.Parent:FindFirstChildWhichIsA("Humanoid") then
+			Char = HIT.Parent
+		end
+		if not Char then
+			if HIT.Parent and HIT.Parent:IsA("Accessory") and HIT.Parent.Parent:IsA("Model") then
+				Char = HIT.Parent.Parent
 			end
 		end
-	end)
-end
 
-AntiDeath:Initalize("Head", Script.Head, {
-	Size = Vector3.new(1.15,1.15,1.15),
-	Color = Color3.fromRGB(),
-	Material = Enum.Material.Neon,
-	Transparency = 0.11
-})
-AntiDeath:Initalize("RightArm", Script.RightArm, {
-	Size = Vector3.new(1,2,1),
-	Color = Color3.fromRGB(),
-	Material = Enum.Material.Neon,
-	Transparency = 0.11
-})
-AntiDeath:Initalize("LeftArm", Script.LeftArm, {
-	Size = Vector3.new(1,2,1),
-	Color = Color3.fromRGB(),
-	Material = Enum.Material.Neon,
-	Transparency = 0.11
-})
-AntiDeath:Initalize("RightLeg", Script.RightLeg, {
-	Size = Vector3.new(1,2,1),
-	Color = Color3.fromRGB(),
-	Material = Enum.Material.Neon,
-	Transparency = 0.11
-})
-AntiDeath:Initalize("LeftLeg", Script.LeftLeg, {
-	Size = Vector3.new(1,2,1),
-	Color = Color3.fromRGB(),
-	Material = Enum.Material.Neon,
-	Transparency = 0.11
-})
-AntiDeath:Initalize("Torso", Script.Torso, {
-	Size = Vector3.new(2,2,1),
-	Color = Color3.fromRGB(),
-	Material = Enum.Material.Neon,
-	Transparency = 0.11
-})
+		if not Char then
+			if HIT then
+				if HIT:IsA("BasePart") and not table.find(ignoreTable,HIT) and (HIT.Size.X <= 100 and HIT.Size.Y <= 100 and HIT.Size.Z <= 100) then
+					local POSITION = CFrame.new(0,1e9,0)
+					local function Verify(obj)
+						if obj and not table.find(ignoreTable,obj) then
+							if obj:IsA("MeshPart") or obj:IsA("SpecialMesh") and table.find(SampleTable.MeshIDs,obj.MeshId) then
+								return true
+							end
+							if obj:IsA("BasePart") and table.find(SampleTable.Size,obj.Size) and table.find(SampleTable.ClassNamess,obj.ClassName) then
+								return true
+							else
+								return false
+							end
+						else
+							return false
+						end
+					end
+					local Fake = HIT:Clone()
+					local deathnoise = Instance.new("Sound",Fake)
+					deathnoise.SoundId = "rbxassetid://3799563630"
+					deathnoise.Volume = 10
+					deathnoise.PlayOnRemove = true
+					deathnoise:Remove()
 
-local function IdleEffect(cf)
-	local Size = Vector3.new(0.5,0.85,0.5):Lerp(Vector3.new(),math.random()/2)
-	local shaper = math.random() > 0.5 and Enum.PartType.Ball or Enum.PartType.Block
-	local Inside = Instance.new("Part", workspace, {
-		Size = Size*0.5,
-		Shape = shaper,
-		CFrame = cf,
-		Transparency = 0,
-		Material = Enum.Material:GetEnumItems()[math.random(1,#Enum.Material:GetEnumItems())],
-		Color = BrickColor.random().Color,
-		Anchored = true
-	})
-	ChangeCollisions(Inside, false)
-	local Outside = Instance.new("Part", workspace, {
-		Size = Size*0.75,
-		Shape = shaper,
-		CFrame = cf,
-		Transparency = 0,
-		Material = Enum.Material.ForceField,
-		Color = BrickColor.random().Color,
-		Anchored = true
-	})
-	ChangeCollisions(Outside, false)
-	Outside.CFrame = Outside.CFrame * CFrame.Angles(math.rad(math.random(-360,360)),math.rad(math.random(-360,360)),math.rad(math.random(-360,360)))
-	local Offset = CFrame.Angles(math.rad(math.random(-12,12)),math.rad(math.random(-12,12)),math.rad(math.random(-12,12)))
-	local Distance = math.random()/3.5
-	local RandomHeight = math.random(-100,100)/2500
-	local T = 0
-	local P = 2000
-	local Loop = Services.RunService.RenderStepped:Connect(function()
-		T = T + 1
-		local Trail = Instance.new("Part", workspace, {
-			Anchored = true,
-			Shape = shaper,
-			Size = Vector3.new(0.07, 0.07, 0.07)*math.random()*2,
-			Material = Enum.Material:GetEnumItems()[math.random(1,#Enum.Material:GetEnumItems())],
-			Color = BrickColor.random().Color,
-			Transparency = Inside.Transparency,
-			CFrame = Outside.CFrame * CFrame.Angles(math.rad(math.random(-360,360)),math.rad(math.random(-360,360)),math.rad(math.random(-360,360)))
-		})
-		ChangeCollisions(Trail, false)
-		customtween(Trail, TweenInfo.new(0.375), {
-			Transparency = 1,
-			Size = Vector3.new(),
-			CFrame = Trail.CFrame * CFrame.Angles(math.random(-math.pi,math.pi),math.random(-math.pi,math.pi),math.random(-math.pi,math.pi))
-		}, animfps):Play()
-		Services.Debris:AddItem(Trail, 0.375)
-		Inside.Material = Enum.Material:GetEnumItems()[math.random(1,#Enum.Material:GetEnumItems())]
-		Offset = Offset:Lerp(CFrame.new(), T/P)
-		Outside.CFrame = Outside.CFrame * CFrame.new(0,0,-Distance)*Offset
-		Outside.Position = Outside.Position + Vector3.new(0,RandomHeight,0)
-		Outside.Position = Outside.Position:Lerp(Movement.CFrame.Position, T/P)
-		Inside.CFrame = Outside.CFrame
-	end)
-	task.delay(3, function()
-		customtween(Outside, TweenInfo.new(1.25,Enum.EasingStyle.Quad), {
-			Size = Vector3.new(),
-			Transparency = 1
-		}, animfps):Play()
-		customtween(Inside, TweenInfo.new(1,Enum.EasingStyle.Quad), {
-			Size = Vector3.new(),
-			Transparency = 1
-		}, animfps):Play()
-		task.delay(1, function()
-			Destroy(Outside)
-			Destroy(Inside)
-			Loop:Disconnect()
-		end)
-	end)
-end
-local rad1 = 0
-local function Clamp(Vector, Min, Max)
-	return Vector3.new(math.clamp(Vector.X, Min, Max),math.clamp(Vector.Y, Min, Max),math.clamp(Vector.Z, Min, Max))
-end
-local Killings = {}
-local function IsBaseplate(Part)
-	if (Part.Size.X >= 512 and Part.Size.Z >= 512 and Part.Size.Y <= 20) then
-		return true
-	end
-	return false
-end
-local function Kill(Part, Type, Run)
-	if IsBaseplate(Part) then
-		return
-	end
-	if Type == "Shatter" then
-		Run()
-		local cf = Part.CFrame
-		local Size = Part.Size
-		local Inside = Instance.new("Part", workspace, {
-			Size = Vector3.new(),
-			CFrame = cf,
-			Transparency = 0,
-			Material = Enum.Material:GetEnumItems()[math.random(1,#Enum.Material:GetEnumItems())],
-			Color = BrickColor.random().Color,
-			Anchored = true
-		})
-		ChangeCollisions(Inside, false)
-		local Outside = Instance.new("Part", workspace, {
-			Size = Vector3.new(),
-			CFrame = cf,
-			Transparency = 0,
-			Material = Enum.Material.ForceField,
-			Color = BrickColor.random().Color,
-			Anchored = true
-		})
-		ChangeCollisions(Outside, false)
-		task.spawn(function()
-			customtween(Outside, TweenInfo.new(1.25,Enum.EasingStyle.Sine,Enum.EasingDirection.InOut,0,true), {
-				Size = Size * 1.25
-			}, animfps):Play()
-			customtween(Inside, TweenInfo.new(1,Enum.EasingStyle.Sine,Enum.EasingDirection.InOut,0,true), {
-				Size = Size
-			}, animfps):Play()
-			local Offset = cf
-			local Lol = CFrame.new(math.random(-1000,1000)/10000,math.random(-1000,1000)/10000,math.random(-1000,1000)/10000)*CFrame.Angles(math.rad(math.random(-2,2)),math.rad(math.random(-2,2)),math.rad(math.random(-2,2)))
-			local T, L = 0, 100
-			local Idk = Services.RunService.RenderStepped:Connect(function()
-				T = T + 1
-				if T > L then
-					T = L
-				end
-				Offset = Offset * Lol:Lerp(CFrame.new(), T/ L)
-				Outside.CFrame = Offset
-				Inside.CFrame = Offset
-			end)
-			task.wait(3.25)
-			Idk:Disconnect()
-			Destroy(Outside)
-			Destroy(Inside)
-		end)
-		Part:Destroy()
-	end
-end
-
-local function ChangeChar(charname)
-	AntiDeath:Clear()
-
-	if charname == "Female" then
-		AntiDeath:Initalize("Head", Script.Head1, {
-			Color = Color3.fromRGB(163, 162, 165),
-			Material = Enum.Material.SmoothPlastic,
-		})
-		AntiDeath:Initalize("RightArm", Script.RightArm, {
-			Size = Vector3.new(1,2,1),
-			Color = Color3.fromRGB(163, 162, 165),
-			Material = Enum.Material.SmoothPlastic,
-		})
-		AntiDeath:Initalize("LeftArm", Script.LeftArm, {
-			Size = Vector3.new(1,2,1),
-			Color = Color3.fromRGB(163, 162, 165),
-			Material = Enum.Material.SmoothPlastic,
-		})
-		AntiDeath:Initalize("RightLeg", Script.RightLeg, {
-			Size = Vector3.new(1,2,1),
-			Color = Color3.fromRGB(163, 162, 165),
-			Material = Enum.Material.SmoothPlastic,
-		})
-		AntiDeath:Initalize("LeftLeg", Script.LeftLeg, {
-			Size = Vector3.new(1,2,1),
-			Color = Color3.fromRGB(163, 162, 165),
-			Material = Enum.Material.SmoothPlastic,
-		})
-		AntiDeath:Initalize("Torso", Script.Torso2, {
-			Size = Vector3.new(2,2,1),
-			Color = Color3.fromRGB(163, 162, 165),
-			Material = Enum.Material.SmoothPlastic,
-		})
-		AntiDeath:Initalize("Horn", Script.Horn, {
-			Size = Vector3.new(1.43, 1.438, 0.513),
-			Color = Color3.fromRGB(163, 162, 165),
-			Material = Enum.Material.SmoothPlastic,
-		})
-		AntiDeath:Initalize("Wing", Script.Wing, {
-			Size = Vector3.new(4.361, 4.698, 2.481),
-			Color = Color3.fromRGB(163, 162, 165),
-			Material = Enum.Material.SmoothPlastic,
-		})
-
-
-
-		AntiDeath:Initalize("FemaleHair", Script.FemaleHair, {
-			Size = Vector3.new(2.693, 3.373, 2.18),
-			Color = Color3.fromRGB(163, 162, 165),
-			Material = Enum.Material.SmoothPlastic,
-		})
-		AntiDeath:Initalize("Glasses", Script.Glasses, {
-			Size = Vector3.new(0.753, 0.458, 1.228),
-			Color = Color3.fromRGB(163, 162, 165),
-			Material = Enum.Material.SmoothPlastic,
-		})
-		AntiDeath:Initalize("Scarf", Script.Scarf, {
-			Size = Vector3.new(1.396, 0.54, 1.352),
-			Color = Color3.fromRGB(163, 162, 165),
-			Material = Enum.Material.SmoothPlastic,
-		})
-		AntiDeath:Initalize("Scarf1", Script.Scarf1, {
-			Size = Vector3.new(2.102, 0.825, 1.311),
-			Color = Color3.fromRGB(163, 162, 165),
-			Material = Enum.Material.SmoothPlastic,
-		})
-		AntiDeath:Initalize("TailOfc", Script.TailOfc, {
-			Size = Vector3.new(0.352, 1.569, 2.139),
-			Color = Color3.fromRGB(163, 162, 165),
-			Material = Enum.Material.SmoothPlastic,
-		})
-	elseif charname == "Anger" then
-		local Head = Script.Head
-		AntiDeath:Initalize("Head", Head, {
-			Color = Color3.fromRGB(0,0,0),
-			Material = Enum.Material.SmoothPlastic,
-		})
-		AntiDeath:Initalize("RightArm", Script.RightArm, {
-			Size = Vector3.new(1,2,1),
-			Color = Color3.fromRGB(0,0,0),
-			Material = Enum.Material.SmoothPlastic,
-		})
-		AntiDeath:Initalize("LeftArm", Script.LeftArm, {
-			Size = Vector3.new(1,2,1),
-			Color = Color3.fromRGB(0,0,0),
-			Material = Enum.Material.SmoothPlastic,
-		})
-		AntiDeath:Initalize("RightLeg", Script.RightLeg, {
-			Size = Vector3.new(1,2,1),
-			Color = Color3.fromRGB(0,0,0),
-			Material = Enum.Material.SmoothPlastic,
-		})
-		AntiDeath:Initalize("LeftLeg", Script.LeftLeg, {
-			Size = Vector3.new(1,2,1),
-			Color = Color3.fromRGB(0,0,0),
-			Material = Enum.Material.SmoothPlastic,
-		})
-		AntiDeath:Initalize("Torso", Script.Torso, {
-			Size = Vector3.new(2,2,1),
-			Color = Color3.fromRGB(0,0,0),
-			Material = Enum.Material.SmoothPlastic,
-		})
-		AntiDeath:Initalize("Horn", Script.Horn, {
-			Size = Vector3.new(1.43, 1.438, 0.513),
-			Color = Color3.fromRGB(0,0,0),
-			Material = Enum.Material.SmoothPlastic,
-		})
-		AntiDeath:Initalize("Wing", Script.Wing, {
-			Size = Vector3.new(4.361, 4.698, 2.481),
-			Color = Color3.fromRGB(0,0,0),
-			Material = Enum.Material.SmoothPlastic,
-		})
-	elseif charname == "Undefied" then
-			
-	else
-		AntiDeath:Initalize("Head", Script.Head, {
-			Color = Color3.fromRGB(163, 162, 165),
-			Material = Enum.Material.SmoothPlastic,
-		})
-		AntiDeath:Initalize("RightArm", Script.RightArm, {
-			Size = Vector3.new(1,2,1),
-			Color = Color3.fromRGB(163, 162, 165),
-			Material = Enum.Material.SmoothPlastic,
-		})
-		AntiDeath:Initalize("LeftArm", Script.LeftArm, {
-			Size = Vector3.new(1,2,1),
-			Color = Color3.fromRGB(163, 162, 165),
-			Material = Enum.Material.SmoothPlastic,
-		})
-		AntiDeath:Initalize("RightLeg", Script.RightLeg, {
-			Size = Vector3.new(1,2,1),
-			Color = Color3.fromRGB(163, 162, 165),
-			Material = Enum.Material.SmoothPlastic,
-		})
-		AntiDeath:Initalize("LeftLeg", Script.LeftLeg, {
-			Size = Vector3.new(1,2,1),
-			Color = Color3.fromRGB(163, 162, 165),
-			Material = Enum.Material.SmoothPlastic,
-		})
-		AntiDeath:Initalize("Torso", Script.Torso, {
-			Size = Vector3.new(2,2,1),
-			Color = Color3.fromRGB(163, 162, 165),
-			Material = Enum.Material.SmoothPlastic,
-		})
-		AntiDeath:Initalize("Horn", Script.Horn, {
-			Size = Vector3.new(1.43, 1.438, 0.513),
-			Color = Color3.fromRGB(163, 162, 165),
-			Material = Enum.Material.SmoothPlastic,
-		})
-		AntiDeath:Initalize("Wing", Script.Wing, {
-			Size = Vector3.new(4.361, 4.698, 2.481),
-			Color = Color3.fromRGB(163, 162, 165),
-			Material = Enum.Material.SmoothPlastic,
-		})
-	end
-	
-	if charname ~= "Undefied" then
-		AntiDeath:Initalize("Gun", Script.Gun, {
-			Size = Vector3.new(6.792, 1.241, 0.254),
-			Color = Color3.fromRGB(0, 0, 0),
-			Material = Enum.Material.SmoothPlastic,
-		})
-
-		AntiDeath:Initalize("Crown", Script.Crown, {
-			Size = Vector3.new(1.673, 1.269, 1.673),
-			Color = Color3.fromRGB(0, 0, 0),
-			Material = Enum.Material.SmoothPlastic,
-		})
-	end
-	
-end
-local function UpdateMode(Mode_)
-	if Mode == Mode_ then
-		return
-	end
-	Mode = Mode_
-	local Parts = {}
-	for i,v in pairs(Character) do
-		table.insert(Parts, v)
-	end
-	ChangeChar(Mode_)
-	for i,v in pairs(Parts) do
-		Destroy(v)
-	end
-end
-local Overlaps = OverlapParams.new()
-local Sound = nil
-
-local Billboards = {}
-function Chat(msg)
-	task.spawn(function()
-		local bill = Instance.new("BillboardGui")
-		local text = Instance.new("TextLabel")
-		text.Name = os.clock()
-		local textText = ""
-		bill.Name = os.clock()
-		text.Text = ""
-		text.BackgroundTransparency = 1
-		text.Size = UDim2.new(1,0,1,0)
-		text.Position = UDim2.new(0.5,0,0.5,0)
-		text.AnchorPoint = Vector2.new(0.5,0.5)
-		bill.Size = UDim2.new(1000,0,1,0)
-		text.TextColor3 = Character.Torso and Character.Torso.Color or Color3.new(.2,.2,.2)
-		text.TextStrokeColor3 = Color3.new()
-		text.TextScaled = true
-		bill.AlwaysOnTop = true
-		text.TextStrokeTransparency = 0
-		text.Parent = bill
-		bill.Adornee = Character.Head
-		bill.Parent = workspace
-		bill.StudsOffsetWorldSpace = Vector3.new(0,2,0)
-		local textf = text:Clone()
-		table.insert(Billboards, bill)
-		local index = 0
-		for s, e in utf8.graphemes(msg) do
-			index = index + 1
-			local char = string.sub(msg, s, e)
-			textText = textText .. char
-			text.Text = textText
-			if(index%(animfps/3) == 0)then
-				task.wait(1/animfps)
-			end
-		end
-		task.wait(math.clamp(#msg/6, 1, 9))
-		local studoffset = bill.StudsOffset
-		local rot = 0
-		local time = os.clock()
-		local idk = game:GetService("RunService").Heartbeat:Connect(function()
-			studoffset = studoffset + Vector3.new(math.random(-100, 100)/300,math.random(-100, 100)/300,math.random(-100, 100)/300)
-			rot = rot + math.random(-3,3)
-			if(os.clock() - time >= 1/animfps)then
-				time = os.clock()
-				bill.StudsOffset = studoffset
-				text.Rotation = rot
-			end
-		end)
-		task.delay(3, function()
-			idk:Disconnect()
-			table.remove(Billboards, table.find(Billboards, bill))
-		end)
-		customtween(text, TweenInfo.new(3), {
-			TextTransparency = 1,
-			TextStrokeTransparency = 1
-		}, animfps):Play()
-		game:GetService("Debris"):AddItem(bill, 3.1)
-	end)
-end
-local SoundIds = {
-	["Female"] = "97931485922608|.9",
-	["Hrsd"] = "84045957909284|.9",
-	["Anger"] = "70535658014652|.85"
-}
-
-local mousehit = CFrame.identity
-local cameracf = CFrame.identity
-
-local rfloordistance = 0
-local lfloordistance = 0
-
-local lastanimstep = os.clock()
-local lastcframes = {}
-
-pcall(function()
-	lastcframes = {
-		table.clone(RootJoint),
-		table.clone(RightHip),
-		table.clone(Neck),
-		table.clone(LeftHip),
-		table.clone(RightShoulder),
-		table.clone(LeftShoulder),
-	}
-end)
-local LastPos = CFrame.new()
-local animsig = ArtificialHB.Event:Connect(function()
-	for i,v in pairs(Billboards) do
-		if v and v:IsDescendantOf(workspace) then
-			v.Adornee = Character.Head
-			v.StudsOffsetWorldSpace = Vector3.new(0,2,0) + Vector3.new(0,0.01+(#Billboards-i)*2.5,0)
-		end
-	end
-	local Info = SoundIds[Mode]
-	local Splited = string.split("84045957909284|.9","|")
-	if Info then
-		Splited = string.split(Info,"|")
-	end
-	if not Sound or not pcall(function() return Sound.Name end) or Sound.Parent ~= Character.Head then
-		local Old = Sound
-		Destroy(Old)
-		Sound = Instance.new("Sound")
-		Sound.PlaybackSpeed = Splited[2] or .9
-		Sound.Volume = (Values.Muted and 0 or 4)
-		Sound.SoundId = "rbxassetid://"..Splited[1]
-		Sound.Looped = true
-		Sound.Name = os.clock()
-		Sound.TimePosition = Values.TimePosition
-		Sound.Playing = true
-		Sound.Parent = Character.Head
-	end
-
-	Sound.PlaybackSpeed = .8
-	Sound.Volume = (Values.Muted and 0 or 4)
-	Sound.SoundId = "rbxassetid://"..Splited[1]
-	Sound.Looped = true
-	Sound.Name = os.clock()
-
-	Values.TimePosition = (os.clock()*Sound.PlaybackSpeed)%Sound.TimeLength
-
-	if(math.abs((Sound.TimePosition - Values.TimePosition)) > .25)then
-		Sound.TimePosition = Values.TimePosition
-	end
-
-	Sound.Playing = true
-	Sound.Parent = Character.Head
-
-	pcall(function()
-		Character.Head:FindFirstChildWhichIsA("Decal").Transparency = 0
-	end)
-	rad1 = rad1 + .1
-	if rad1>=360 then
-		rad1 = 0
-	end
-	local Sine = os.clock()*60
-	
-	if not attacking then
-		if Movement.Flight then
-			if Movement.State == "Idle" then
-				local Sine = os.clock()*70
-				RightShoulder.C0 = Lerp(RightShoulder.C0, CFrame.new(1+0.02*math.sin(Sine/30), 0.4, 0, 0, 0, 1, 0, 1, -0, -1, 0, 0)*CFrame.Angles(math.rad(-5-5*math.sin(Sine/30)),math.rad(-5-1*math.sin(Sine/30)),math.rad(-3-1*math.sin(Sine/30))), 0.3)
-				LeftHip.C0 = Lerp(LeftHip.C0, CFrame.new(-1, -0.5, -0.65, 0, 0, -1, 0, 1, 0, 1, 0, 0)*CFrame.Angles(math.rad(1),math.rad(5+2*math.sin(Sine/30)),math.rad(25-5*math.sin(Sine/30)+3.5*math.cos(Sine/30))), 0.3)
-				LeftShoulder.C0 = Lerp(LeftShoulder.C0, CFrame.new(-1-0.02*math.sin(Sine/30), 0.4, 0, 0, 0, -1, 0, 1, 0, 1, 0, 0)*CFrame.Angles(math.rad(-5-5*math.sin(Sine/30)),math.rad(5+1*math.sin(Sine/30)),math.rad(3+1*math.sin(Sine/30))), 0.3)
-				RightHip.C0 = Lerp(RightHip.C0, CFrame.new(1, -1, 0, 0, 0, 1, 0, 1, -0, -1, 0, 0)*CFrame.Angles(math.rad(1),math.rad(-5-2*math.sin(Sine/30)),math.rad(-5+0.2*math.sin(Sine/30))), 0.3)
-				Neck.C0 = Lerp(Neck.C0, CFrame.new(0, 1, 0, -1, 0, 0, 0, 0, 1, 0, 1, -0)*CFrame.Angles(math.rad(-3.5*math.sin(Sine/30)),0,0), 0.3)
-				RootJoint.C0 = Lerp(RootJoint.C0, CFrame.new(0, 0.5*math.cos(Sine/30), 0, -1, 0, 0, 0, 0, 1, 0, 1, -0)*CFrame.Angles(math.rad(3-4*math.sin(Sine/30)),0,0), 0.3)
-			elseif Movement.State == "Walking" then
-				local Sine = os.clock()*70
-				RightShoulder.C0 = Lerp(RightShoulder.C0, CFrame.new(1+0.02*math.sin(Sine/30), 0.45, 0, 0, 0, 1, 0, 1, -0, -1, 0, 0)*CFrame.Angles(math.rad(-5-5*math.sin(Sine/30)),math.rad(-15-1*math.sin(Sine/30)),math.rad(-25-5*math.sin(Sine/30))), 0.3)
-				LeftHip.C0 = Lerp(LeftHip.C0, CFrame.new(-1, -0.5, -0.65, 0, 0, -1, 0, 1, 0, 1, 0, 0)*CFrame.Angles(math.rad(1),0,math.rad(25-5*math.sin(Sine/30)+3.5*math.cos(Sine/30))), 0.3)
-				LeftShoulder.C0 = Lerp(LeftShoulder.C0, CFrame.new(-1-0.02*math.sin(Sine/30), 0.4, 0, 0, 0, -1, 0, 1, 0, 1, 0, 0)*CFrame.Angles(math.rad(-5-5*math.sin(Sine/30)),math.rad(15+1*math.sin(Sine/30)),math.rad(25+5*math.sin(Sine/30))), 0.3)
-				RightHip.C0 = Lerp(RightHip.C0, CFrame.new(1, -1, 0, 0, 0, 1, 0, 1, -0, -1, 0, 0)*CFrame.Angles(math.rad(1),0,math.rad(-5+0.2*math.sin(Sine/30))), 0.3)
-				Neck.C0 = Lerp(Neck.C0, CFrame.new(0, 1, 0, -1, 0, 0, 0, 0, 1, 0, 1, -0)*CFrame.Angles(math.rad(-25-5*math.sin(Sine/30)),0,0), 0.3)
-				RootJoint.C0 = Lerp(RootJoint.C0, CFrame.new(0, 0.5*math.cos(Sine/30), 0, -1, 0, 0, 0, 0, 1, 0, 1, -0)*CFrame.Angles(math.rad(63-4*math.sin(Sine/30)),0,0), 0.3)
-			end
-		else
-			if Movement.State == "Jumping" then
-				Neck.C0 = Lerp(Neck.C0, CFrame.new(0, 1, 0, -1, 0, 0, 0, 0, 1, 0, 1, -0)*CFrame.Angles(math.rad(20),0,0), 0.3)
-				LeftHip.C0 = Lerp(LeftHip.C0, CFrame.new(-1, -1, -0.1, 0, 0, -1, 0, 1, 0, 1, 0, 0)*CFrame.Angles(0,math.rad(5),math.rad(15)), 0.3)
-				RightHip.C0 = Lerp(RightHip.C0, CFrame.new(1, -0.4,- 1, 0, 0, 1, 0, 1, -0, -1, 0, 0)*CFrame.Angles(0,math.rad(-5),math.rad(-33)), 0.3)
-				RightShoulder.C0 = Lerp(RightShoulder.C0, CFrame.new(1.25, 0.25, 0.3, 0, 0, 1, 0, 1, -0, -1, 0, 0)*CFrame.Angles(math.rad(-70),0,math.rad(40)), 0.3)
-				LeftShoulder.C0 = Lerp(LeftShoulder.C0, CFrame.new(-1.25, 0.25, 0.3, 0, 0, -1, 0, 1, 0, 1, 0, 0)*CFrame.Angles(math.rad(-70),0,math.rad(-40)), 0.3)
-				RootJoint.C0 = Lerp(RootJoint.C0, CFrame.new(0, 0, 0, -1, 0, 0, 0, 0, 1, 0, 1, -0)*CFrame.Angles(math.rad(-10),0,0), 0.3)
-			elseif Movement.State == "Falling" then
-				Neck.C0 = Lerp(Neck.C0, CFrame.new(0, 1, 0, -1, 0, 0, 0, 0, 1, 0, 1, -0)*CFrame.Angles(math.rad(20),0,0), 0.3)
-				LeftHip.C0 = Lerp(LeftHip.C0, CFrame.new(-1, -1, -0.1, 0, 0, -1, 0, 1, 0, 1, 0, 0)*CFrame.Angles(0,0,math.rad(5)), 0.3)
-				RightHip.C0 = Lerp(RightHip.C0, CFrame.new(1, -0.4,- 1, 0, 0, 1, 0, 1, -0, -1, 0, 0)*CFrame.Angles(0,0,math.rad(-25)), 0.3)
-				RightShoulder.C0 = Lerp(RightShoulder.C0, CFrame.new(1.75, 0.25, 0.1, 0, 0, 1, 0, 1, -0, -1, 0, 0)*CFrame.Angles(math.rad(240),0,math.rad(-10)), 0.3)
-				LeftShoulder.C0 = Lerp(LeftShoulder.C0, CFrame.new(-1.75, 0.25, 0.1, 0, 0, -1, 0, 1, 0, 1, 0, 0)*CFrame.Angles(math.rad(240),0,math.rad(10)), 0.3)
-				RootJoint.C0 = Lerp(RootJoint.C0, CFrame.new(0, 0, 0, -1, 0, 0, 0, 0, 1, 0, 1, -0)*CFrame.Angles(math.rad(10),0,0), 0.3)
-			elseif Movement.State == "Walking" then
-				local TestDir = Vector3.new(0,0,1)
-				local Direction = Movement and Clamp(Movement.CFrame:VectorToObjectSpace(Movement.LerpedVelocity), -1, 1) or TestDir
-				local Sine = os.clock()*60
-				local Speed = 11
-				local Direction = Direction or Vector3.new(1,0,0)
-				RightShoulder.C0 = Lerp(RightShoulder.C0,  CFrame.new(1+(0.05*math.sin(Sine/Speed))*Direction.X, 0.45+0.0051*math.sin(Sine/Speed)-0.1*math.sin(Sine/Speed), -0.25*math.sin(Sine/Speed)*Direction.Z, 0, 0, 1, 0, 1, -0, -1, 0, 0)*CFrame.Angles(math.rad(-1*math.cos(Sine/Speed))+math.rad(-7*math.sin(Sine/Speed))*Direction.X,math.rad(-1+0.5*math.cos(Sine/Speed))+math.rad(-Direction.X*-2*math.sin(Sine/Speed)*Direction.X),math.rad(5+22*math.sin(Sine/Speed)-7*math.cos(Sine/Speed))*Direction.Z)*CFrame.new(0.05*math.sin(Sine/30),0.041*math.cos(Sine/30),0), 0.3)
-				LeftShoulder.C0 = Lerp(LeftShoulder.C0,  CFrame.new(-1+(0.05*math.sin(Sine/Speed))*Direction.X, 0.45-0.0051*math.sin(Sine/Speed)+0.1*math.sin(Sine/Speed), 0.25*math.sin(Sine/Speed)*Direction.Z, 0, 0, -1, 0, 1, 0, 1, 0, 0)*CFrame.Angles(math.rad(-1*math.cos(Sine/Speed))+math.rad(7*math.sin(Sine/Speed))*Direction.X,math.rad(1-0.5*math.cos(Sine/Speed))+math.rad(-Direction.X*-2*math.sin(Sine/Speed)*Direction.X),math.rad(-5+22*math.sin(Sine/Speed)-7*math.cos(Sine/Speed))*Direction.Z)*CFrame.new(-0.06*math.sin(Sine/30),0.041*math.cos(Sine/30),0), 0.3)
-				RightHip.C0 = Lerp(RightHip.C0,  CFrame.new(1-(0.15*-Direction.X*math.cos(Sine/Speed)*Direction.X), -1-0.25*math.cos(Sine/Speed), (-0.14+0.1*math.cos(Sine/Speed)+0.2*math.sin(Sine/Speed))*Direction.Z, 0, 0, 1, 0, 1, -0, -1, 0, 0)*CFrame.Angles(math.rad(-25*math.sin(Sine/Speed))*Direction.X,math.rad(12*Direction.X),math.rad(-5-55*math.sin(Sine/Speed)+9.5*math.cos(Sine/Speed))*Direction.Z)*CFrame.new(0,-0.02*math.sin(Sine/30),0), 0.3)
-				LeftHip.C0 = Lerp(LeftHip.C0,  CFrame.new(-1+(0.15*-Direction.X*math.cos(Sine/Speed)*Direction.X), -1+0.25*math.cos(Sine/Speed), (-0.14+-0.1*math.cos(Sine/Speed)-0.2*math.sin(Sine/Speed))*Direction.Z, 0, 0, -1, 0, 1, 0, 1, 0, 0)*CFrame.Angles(math.rad(-25*math.sin(Sine/Speed))*Direction.X,math.rad(12*Direction.X),math.rad(5-55*math.sin(Sine/Speed)+9.5*math.cos(Sine/Speed))*Direction.Z)*CFrame.new(0,-0.02*math.sin(Sine/30),0), 0.3)
-				Neck.C0 = Lerp(Neck.C0,  CFrame.new(0, 1, 0, -1, 0, 0, 0, 0, 1, 0, 1, -0)*CFrame.Angles(math.rad(1.2*math.cos(Sine/Speed))*Direction.Z,math.rad(0.1*math.cos(Sine/Speed)),math.rad(0.1*math.sin(Sine/Speed))+math.rad(35)*Direction.X), 0.3)
-				RootJoint.C0 = Lerp(RootJoint.C0,  CFrame.new(0, -0.05*math.sin(Sine/Speed), 0, -1, 0, 0, 0, 0, 1, 0, 1, -0)*CFrame.Angles(math.rad(12.5+1.5*math.sin(Sine/(Speed))+2*math.cos(Sine/Speed))*Direction.Z,math.rad(5-2*math.cos(Sine/Speed))*Direction.X,math.rad(10+5*math.sin(Sine/(Speed*0.95)))*Direction.X)*CFrame.Angles(0,0,math.rad(2*math.cos(Sine/Speed*0.85))*Direction.Z)*CFrame.new(0,0,0.009*math.sin(Sine/Speed)), 0.3)
-			elseif Movement.State == "Idle" then
-				local Sine = os.clock()*110
-				local Animations = Animations or {LeftArm = true}
-				if Animations.LeftArm then
-					LeftShoulder.C0 = Lerp(LeftShoulder.C0, CFrame.new(-1, 0.5, -0.05*math.sin(Sine/30), 0, 0, -1, 0, 1, 0, 1, 0, 0)*CFrame.Angles(0,math.rad(-0.5*math.sin(Sine/30)),math.rad(-2+7*math.cos(Sine/30))), 0.3)
-				end
-				LeftHip.C0 = Lerp(LeftHip.C0, CFrame.new(-1, -1-0.05*math.cos(Sine/30), 0+0.1*math.sin(Sine/30), 0, 0, -1, 0, 1, 0, 1, 0, 0)*CFrame.Angles(0,0,math.rad(5+7*math.sin(Sine/30)-5+2*math.sin(Sine/30))), 0.3)
-				Neck.C0 = Lerp(Neck.C0, CFrame.new(0, 1, 0, -1, 0, 0, 0, 0, 1, 0, 1, -0)*CFrame.Angles(math.rad(3+5*math.sin(Sine/30)),math.rad(3*math.sin(Sine/30)),math.rad(2*math.cos(Sine/30))), 0.3)
-				RightShoulder.C0 = Lerp(RightShoulder.C0, CFrame.new(1, 0.5+0.01*math.cos(Sine/30), -0.1*math.sin(Sine/30), 0, 0, 1, 0, 1, -0, -1, 0, 0)*CFrame.Angles(0,math.rad(1-2*math.sin(Sine/30)),math.rad(2-5*math.cos(Sine/30))), 0.3)
-				RightHip.C0 = Lerp(RightHip.C0, CFrame.new(1, -1-0.05*math.cos(Sine/30), -0.1-0.05*math.cos(Sine/30), 0, 0, 1, 0, 1, -0, -1, 0, 0)*CFrame.Angles(0,0,math.rad(5-7*math.sin(Sine/30)+-12-5*math.cos(Sine/30))), 0.3)
-				RootJoint.C0 = Lerp(RootJoint.C0, CFrame.new(0, 0.05*math.cos(Sine/30), .032*math.cos(Sine/30), -1, 0, 0, 0, 0, 1, 0, 1, -0)*CFrame.Angles(math.rad(5-7*math.sin(Sine/30)),0,math.rad(0.1*math.sin(Sine/30))), 0.3)	
-			end
-		end
-	end
-
-	pcall(function()
-		local relativeCFrame = Inverse(RootJoint)
-		local worldPosition = relativeCFrame.Position
-
-		local rrpos = worldPosition + relativeCFrame:VectorToWorldSpace(Vector3.new(0.5, -1.5, 0))
-		local llpos = worldPosition + relativeCFrame:VectorToWorldSpace(Vector3.new(-0.5, -1.5, 0))
-
-		local param = RaycastParams.new()
-		param.FilterDescendantsInstances = {Character["RightLeg"], Character["LeftLeg"]}
-
-		local rray = workspace:Raycast(rrpos, Vector3.yAxis*-1.5, param)
-		local lray = workspace:Raycast(llpos, Vector3.yAxis*-1.5, param)
-
-		local rpos, lpos = rray and rray.Position or nil, lray and lray.Position or nil
-
-		if(rpos)then
-			rfloordistance = lerpnum(rfloordistance, (rpos.Y-rrpos.Y)+1.5, .1)
-		else
-			rfloordistance = lerpnum(rfloordistance, 0, .1)
-		end
-		if(lpos)then
-			lfloordistance = lerpnum(lfloordistance, (lpos.Y-llpos.Y)+1.5, .1)
-		else
-			lfloordistance = lerpnum(lfloordistance, 0, .1)
-		end
-	end)
-	if not attacking then
-		pcall(function()
-			CFrames.Torso = Inverse(lastcframes[1])
-			CFrames.RightLeg = Inverse(lastcframes[2], CFrames.Torso)
-			CFrames.Head = Inverse(lastcframes[3], CFrames.Torso)
-			CFrames.LeftLeg = Inverse(lastcframes[4], CFrames.Torso)
-			CFrames.RightArm = Inverse(lastcframes[5], CFrames.Torso)
-			CFrames.LeftArm = Inverse(lastcframes[6], CFrames.Torso)
-		end)
-	else
-		CFrames.Torso = Movement.CFrame*toffset
-		CFrames.RightLeg = CFrames.Torso*rloffset
-		CFrames.Head = CFrames.Torso*hoffset
-		CFrames.LeftLeg = CFrames.Torso*lloffset
-		CFrames.RightArm = CFrames.Torso*raoffset
-		CFrames.LeftArm = CFrames.Torso*laoffset
-	end
-	pcall(function()
-		CFrames.Gun = CFrames.RightArm*gunoffset
-		
-		CFrames.Horn = CFrames.Head*CFrame.new(0,1,0)
-		CFrames.Wing = CFrames.Torso*CFrame.new(0,-0.6,1)
-		local sinenum = (workspace.DistributedGameTime * 60)/40
-		CFrames.Crown = CFrames.Head*CFrame.new(0,3,0)*CFrame.Angles(sinenum,sinenum,sinenum)
-		
-		CFrames.Glasses = CFrames.Head*CFrame.new(0.01,-0.09,-0.3)*CFrame.fromEulerAnglesYXZ(math.rad(0),math.rad(-90),math.rad(0))
-		CFrames.FemaleHair = CFrames.Head*CFrame.new(0,-0.7,0.1)
-		CFrames.Scarf = CFrames.Torso*CFrame.new(0,1.1,0)
-		CFrames.Scarf1 = CFrames.Torso*CFrame.new(0,0.9,0)
-		CFrames.TailOfc = CFrames.Torso*CFrame.new(0.05,-1.525,1.45)
-	end)
-	
-	if(math.random(1, 50) == 1) and Mode == "Anger" then
-		for i, v in next, Character do
-			pcall(function()
-				if(v and v:IsA("BasePart"))then
-					local arch = v.Archivable
-					v.Archivable = true
-					local EffectPart = v:Clone()
-					EffectPart:ClearAllChildren()
-					v.Archivable = arch
-					EffectPart.Parent = workspace
-					EffectPart.CanCollide = false
-					EffectPart.CanQuery = false
-					EffectPart.Anchored = true
-					EffectPart.Material = "Neon"
-					EffectPart.Transparency = .5
-
-					customtween(EffectPart, TweenInfo.new(0.75), {
-						Transparency = 1,
-						Color = Color3.new()
-					}, animfps):Play()
-
-					customtween(EffectPart, TweenInfo.new(2.75,Enum.EasingStyle.Quad,Enum.EasingDirection.InOut), {
-						Size = Vector3.new(0,0,0),
-						Orientation = Vector3.new(math.random(-360, 360), math.random(-360, 360), math.random(-360, 360)),
-						Position = EffectPart.Position+Vector3.new(math.random(-8, 8), math.random(-8, 8), math.random(-8, 8))
-					}, animfps):Play()
-
-					task.delay(.75, pcall, game.Destroy, EffectPart)
-				end
-			end)
-		end
-	end
-	
-	if((os.clock() - lastanimstep) >= 1/animfps) then
-		pcall(function()
-			lastcframes = {
-				table.clone(RootJoint),
-				table.clone(RightHip),
-				table.clone(Neck),
-				table.clone(LeftHip),
-				table.clone(RightShoulder),
-				table.clone(LeftShoulder),
-			}
-			lastanimstep = os.clock()
-		end)
-	end
-
-
-	pcall(function()
-		Character.Humanoid.DisplayName = Player.Name
-		Character.Humanoid.NameOcclusion = Enum.NameOcclusion.NoOcclusion
-	end)
-
-	for i,v in pairs(CFrames) do
-		pcall(function()
-			if Character[i] ~= nil and Character[i]:IsA("BasePart") then
-				Character[i].CFrame = v
-			end
-		end)
-	end
-	if Values.KillAura then
-		Overlaps.MaxParts = 1000
-		Overlaps.BruteForceAllSlow = false
-		Overlaps.RespectCanCollide = true
-		table.clear(Ignores)
-		for i,v in pairs(Character) do
-			table.insert(Ignores, v)
-		end
-		Overlaps.FilterDescendantsInstances = Ignores
-		for i,v in pairs(workspace:GetPartBoundsInBox(Movement.CFrame, Vector3.new(6,6,6), Overlaps)) do
-			Kill(v, "Shatter", function()
-				local bal1cf, bal2cf = v.CFrame, Movement.CFrame
-				local Points = PointLightning(bal2cf.p,bal1cf.p, 4, 1)
-				local last = bal2cf.p
-				for i,v in ipairs(Points) do
+					table.insert(ignoreTable,Fake)
+					Fake.Anchored = true
+					Fake.Parent = workspace.Terrain
+					Fake.Color = Rgbcolor
+					Fake.Transparency = .5
+					Fake.CanCollide = false
 					task.spawn(function()
-						local Point, Distance = DrawPoint(last, v)
-						last=v
-						local EffectPart = Instance.new("Part", workspace, {
-							Size = Vector3.new(.25,.25,Distance),
-							Color = Color3.new(1,1,1):Lerp(Color3.new(),math.random()/2),
-							Material = Enum.Material.Neon,
-							Anchored = true,
-							CFrame = Point,
-							Transparency = 0
-						})
-						ChangeCollisions(EffectPart, false)
-						local Tween = customtween(EffectPart, TweenInfo.new(0.5,Enum.EasingStyle.Sine,Enum.EasingDirection.InOut),{
-							Transparency = 1,
-							Color = Color3.new(1,1,1):Lerp(Color3.new(),math.random()/2),
-							Size = Vector3.new(0,0,Distance),
-						}, 7)
-						Tween:Play()
-						Services.Debris:AddItem(EffectPart, 2.5)
-					end)
-				end
-			end)
-		end
-		local pos = CFrame.new(Movement.CFrame.Position)
-		local bal2cf = pos * CFrame.new(-6*math.cos(Sine/177),2-1.75*math.cos(Sine/300),6*math.sin(Sine/177)) * CFrame.Angles(0,math.rad(rad1),0)
-		local bal1cf = bal2cf * CFrame.new(0,0,-6)
-		if not Ball1 or Ball1.Parent ~= workspace then
-			Destroy(Ball1)
-			Ball1 = Script.Ball:Clone()
-			Ball1.Size = Vector3.new(1.02,1.06,1.005)
-			Ball1.Material = Enum.Material.SmoothPlastic
-			Ball1.Reflectance = -1
-			Ball1.Color = Color3.new()
-			Ball1.Name = RandomString()
-			Ball1.CFrame = bal1cf
-			Ball1.Parent = workspace
-		end
-		if not Ball2 or Ball2.Parent ~= workspace then
-			Destroy(Ball2)
-			Ball2 = Script.Ball:Clone()
-			Ball2.Size = Vector3.new(1.02,1.06,1.005)
-			Ball2.Material = Enum.Material.SmoothPlastic
-			Ball2.Reflectance = -1
-			Ball2.Color = Color3.new()
-			Ball2.Name = RandomString()
-			Ball2.CFrame = bal2cf
-			Ball2.Parent = workspace
-		end
-		Ball2.CFrame = bal2cf
-		Ball1.CFrame = bal1cf
-		local Effecta = math.random(1,10) == math.random(1,10)
-		if Effecta then
-			local Points = PointLightning(bal2cf.p,bal1cf.p, 4, 1)
-			local Points2 = PointLightning(bal2cf.p,bal1cf.p, 4, 1)
-			local last = bal2cf.p
-			for i,v in ipairs(Points) do
-				task.spawn(function()
-					local Point, Distance = DrawPoint(last, v)
-					last=v
-					local EffectPart = Instance.new("Part", workspace, {
-						Size = Vector3.new(.25,.25,Distance),
-						Color = Color3.new(1,1,1):Lerp(Color3.new(),(i/#Points)/2),
-						Material = Enum.Material.Neon,
-						Anchored = true,
-						CFrame = Point,
-						Transparency = 0
-					})
-					local Tween = customtween(EffectPart, TweenInfo.new(0.5,Enum.EasingStyle.Sine,Enum.EasingDirection.InOut),{
-						Transparency = 1,
-						Color = Color3.new(1,1,1):Lerp(Color3.new(),i/#Points),
-						Size = Vector3.new(0,0,Distance),
-					}, 7)
-					Tween:Play()
-					Services.Debris:AddItem(EffectPart, 2.5)
-				end)
-			end
-		end
-	else
-		Destroy(Ball1)
-		Destroy(Ball2)
-	end
-end)
-
-local v8workloads = {}
-local v8workloadparts = {}
-
-local function createv8workload(pa, many)
-	if(v8workloadparts[pa])then return end
-
-	local workload = {
-		parts = {},
-		origin = pa
-	}
-
-	for i = 1, many do
-		local p = Instance.new("Part")
-		p.CanCollide = false
-		p.Anchored = true
-		p.Size = pa.Size
-		p.CFrame = pa.CFrame
-
-		local sm = Instance.new("SpecialMesh",p)
-		sm.Offset = Vector3.one*0/0
-
-		table.insert(workload.parts, p)
-
-		p.Parent = workspace
-		v8workloadparts[p] = true
-	end
-
-	v8workloadparts[pa] = true
-
-	table.insert(v8workloads, workload)
-
-	task.delay(1/10, function()
-		for _, p in next, workload.parts do
-			pcall(function()
-				pcall(game.Destroy, p)
-				v8workloadparts[p] = nil
-			end)
-		end
-		pcall(function()
-			v8workloadparts[pa] = nil
-		end)
-		table.clear(workload)
-		table.remove(v8workloads, table.find(v8workloads, workload))
-	end)
-end
-
-game:GetService("RunService").RenderStepped:Connect(function()
-	if Character["Gun"] then
-		if wow then
-			wow:Destroy()
-		end
-		wow = Instance.new("Highlight",Character["Gun"])
-		table.insert(Ignores,wow)
-		wow.Enabled = true
-		wow.FillColor = Color3.fromRGB(math.random(0, 255), math.random(0, 255), math.random(0, 255))
-		wow.FillTransparency = math.random(-5,1)
-		wow.OutlineColor = Color3.new(1, 1, 1)
-		wow.OutlineTransparency = 0
-	end
-	if Character["Crown"] then
-		if HG then
-			HG:Destroy()
-		end
-		HG = Instance.new("Highlight",Character["Crown"])
-		HG.FillColor = Color3.new(1, 1, 1)
-		HG.FillTransparency = 0
-		HG.OutlineColor = Color3.fromRGB(math.random(0, 255), math.random(0, 255), math.random(0, 255))
-	end
-	for index, load in next, v8workloads do
-		pcall(function()
-			local origin = load.origin
-
-			if(not pcall(function() return origin.Name end) or not origin:IsDescendantOf(game))then
-				for _, p in load.parts do
-					pcall(function()
-						pcall(game.Destroy, p)
-						v8workloadparts[p] = nil
-					end)
-				end
-				pcall(function()
-					v8workloadparts[origin] = nil
-				end)
-				table.clear(load)
-				table.remove(v8workloads, index)
-
-				return
-			end
-
-			for _, v8part in next, load.parts do
-				pcall(function()
-					v8part.Size = origin.Size
-					v8part.CFrame = origin.CFrame
-					v8part:FindFirstChildOfClass("SpecialMesh").Offset = Vector3.one*0/0
-				end)
-			end
-		end)
-	end
-end)
-local SampleTable = {Size = {},ClassNamess = {},Connection = {},MeshIDs = {}}
-
-local function VoidObj(obj)
-	if obj:IsA("BasePart") then
-		if Values.AttackVer then
-			Remote:FireServer(RemoteKey,{obj})
-		else
-			local POSITION = CFrame.new(0,1e9,0)
-			local HIT = obj
-			local function Verify(obj)
-				if not table.find(Ignores,obj) then
-					if obj:IsA("MeshPart") or obj:IsA("SpecialMesh") and table.find(SampleTable.MeshIDs,obj.MeshId) then
-						return true
-					end
-					if obj:IsA("BasePart") and table.find(SampleTable.Size,obj.Size) and table.find(SampleTable.ClassNamess,obj.ClassName) then
-						return true
-					end
-				end
-				return false
-			end
-			if HIT and not table.find(Ignores,HIT) then
-				table.insert(SampleTable.Size,HIT.Size)
-				table.insert(SampleTable.ClassNamess,HIT.ClassName)
-				if HIT:IsA("MeshPart") then
-					table.insert(SampleTable.MeshIDs,HIT.MeshId)
-				elseif HIT:FindFirstChildWhichIsA("SpecialMesh") then
-					table.insert(SampleTable.MeshIDs,HIT:FindFirstChildWhichIsA("SpecialMesh").MeshId)
-				end
-				HIT.CFrame = POSITION
-				table.insert(SampleTable.Connection,HIT.Changed:Connect(function()
-					if HIT.CFrame ~= POSITION then
-						HIT.CFrame = POSITION
-					else
-						HIT.Size = Vector3.new(0.1,0.1,0.1)
-						HIT.CFrame = POSITION
-					end
-				end))
-				table.insert(SampleTable.Connection,game.DescendantAdded:Connect(function(obcs)
-					if Verify(obcs) then
-						if obcs:IsA("SpecialMesh") then
-							table.insert(SampleTable.Connection,obcs.Parent.Changed:Connect(function()
-								if obcs.Parent.CFrame ~= POSITION then
-									obcs.Parent.CFrame = POSITION
-								else
-									obcs.Parent.Size = Vector3.new(0.1,0.1,0.1)
-									obcs.Parent.CFrame = POSITION
-								end
-							end))
-							obcs.Parent.CFrame = POSITION
-						else
-							table.insert(SampleTable.Connection,obcs.Changed:Connect(function()
-								if obcs.CFrame ~= POSITION then
-									obcs.CFrame = POSITION
-								else
-									obcs.Size = Vector3.new(0.1,0.1,0.1)
-									obcs.CFrame = POSITION
-								end
-							end))
-							obcs.CFrame = POSITION
+						game:GetService("Debris"):AddItem(Fake,10)
+						repeat 
+							wait()
+							Fake.Transparency += .01
+							Fake.Color = Rgbcolor
+							Fake.Position += Vector3.new(math.random(-5,5),math.random(-5,5),math.random(-5,5))
+							Fake.CanCollide = false
+						until Fake.Transparency >= 1 or not Fake
+						if Fake then
+							Fake:Destroy()
 						end
+					end)
+					table.insert(SampleTable.Size,HIT.Size)
+					table.insert(SampleTable.ClassNamess,HIT.ClassName)
+					if HIT:IsA("MeshPart") then
+						table.insert(SampleTable.MeshIDs,HIT.MeshId)
+					elseif HIT:FindFirstChildWhichIsA("SpecialMesh") then
+						table.insert(SampleTable.MeshIDs,HIT:FindFirstChildWhichIsA("SpecialMesh").MeshId)
 					end
-				end))
-				table.insert(SampleTable.Connection,workspace.DescendantAdded:Connect(function(obcs)
-					if Verify(obcs) then
-						if obcs:IsA("SpecialMesh") then
-							table.insert(SampleTable.Connection,obcs.Parent.Changed:Connect(function()
-								if obcs.Parent.CFrame ~= POSITION then
-									obcs.Parent.CFrame = POSITION
-								else
-									obcs.Parent.Size = Vector3.new(0.1,0.1,0.1)
-									obcs.Parent.CFrame = POSITION
-								end
-							end))
-							obcs.Parent.CFrame = POSITION
+					HIT.CFrame = POSITION
+					table.insert(SampleTable.Connection,HIT.Changed:Connect(function()
+						if HIT.CFrame ~= POSITION then
+							HIT.CFrame = POSITION
 						else
-							table.insert(SampleTable.Connection,obcs.Changed:Connect(function()
-								if obcs.CFrame ~= POSITION then
-									obcs.CFrame = POSITION
-								else
-									obcs.Size = Vector3.new(0.1,0.1,0.1)
-									obcs.CFrame = POSITION
-								end
-							end))
-							obcs.CFrame = POSITION
+							HIT.Size = Vector3.new(0.1,0.1,0.1)
+							HIT.CFrame = POSITION
 						end
+					end))
+					if checkactor(HIT) then
+						chatfunc("Object Is Suspected As Actor")
 					end
-				end))
-			end
-		end
-	end
-end
+					table.insert(SampleTable.Connection,game.DescendantAdded:Connect(function(obcs)
+						if Verify(obcs) then
+							if obcs:IsA("SpecialMesh") then
+								table.insert(SampleTable.Connection,obcs.Parent.Changed:Connect(function()
+									if obcs.Parent.CFrame ~= POSITION then
+										obcs.Parent.CFrame = POSITION
+									else
+										obcs.Parent.Size = Vector3.new(0.1,0.1,0.1)
+										obcs.Parent.CFrame = POSITION
+									end
+								end))
+								obcs.Parent.CFrame = POSITION
+							else
+								table.insert(SampleTable.Connection,obcs.Changed:Connect(function()
+									if obcs.CFrame ~= POSITION then
+										obcs.CFrame = POSITION
+									else
+										obcs.Size = Vector3.new(0.1,0.1,0.1)
+										obcs.CFrame = POSITION
+									end
+								end))
+								obcs.CFrame = POSITION
+							end
+						end
+					end))
+					table.insert(SampleTable.Connection,workspace.DescendantAdded:Connect(function(obcs)
+						if Verify(obcs) then
+							if obcs:IsA("SpecialMesh") then
+								table.insert(SampleTable.Connection,obcs.Parent.Changed:Connect(function()
+									if obcs.Parent.CFrame ~= POSITION then
+										obcs.Parent.CFrame = POSITION
+									else
+										obcs.Parent.Size = Vector3.new(0.1,0.1,0.1)
+										obcs.Parent.CFrame = POSITION
+									end
+								end))
+								obcs.Parent.CFrame = POSITION
+							else
+								table.insert(SampleTable.Connection,obcs.Changed:Connect(function()
+									if obcs.CFrame ~= POSITION then
+										obcs.CFrame = POSITION
+									else
+										obcs.Size = Vector3.new(0.1,0.1,0.1)
+										obcs.CFrame = POSITION
+									end
+								end))
+								obcs.CFrame = POSITION
+							end
+						end
+					end))
 
-local function GetObjs(pos,rad)
-	task.spawn(function()
-		for i,obj in pairs(workspace:GetDescendants()) do
-			if obj:IsA("BasePart") and obj ~= workspace:FindFirstChildWhichIsA("Terrain") and not table.find(Ignores,obj) then
-				local mag = (obj.Position - pos).Magnitude
-				if mag <= (rad or 10) then
-					VoidObj(obj)
 				end
 			end
-		end
-	end)
-end
-local thrown = 0
-local Info = TweenInfo.new(0.04,Enum.EasingStyle.Linear,Enum.EasingDirection.InOut)
-local animspeed = 0.8/4
-local function swait(num)
-	if num == 0 or num == nil then
-		game:GetService("RunService").RenderStepped:Wait()
-	else
-		for i = 1, num do
-			game:GetService("RunService").RenderStepped:Wait()
-		end
-	end
-end
-local Attacks = {}
-Attacks.Z = idklol
-Attacks.Q = tp
-Attacks.N = function()
-	Chat("Cleared Tables")
-	Remote:FireServer(RemoteKey, "CleanTables")
-	for i,v in pairs(SampleTable.Connection) do
-		if v then
-			v:Disconnect()
-		end
-	end
-	SampleTable = {Size = {},ClassNamess = {},Connection = {},MeshIDs = {}}
-end
-Attacks.E = function()
-	attacking = true
-	for i = 1, 3, 0.2 do
-		swait()
-		laoffset = laoffset:Lerp(lac0*cn(0.0649986267,0,0.240997314)*euler(rad(-7.5),rad(15),0),animspeed)
-		raoffset = raoffset:Lerp(rac0*cn(0.301998138,0.25999999,-0.476997375)*euler(rad(75),0,rad(45)),animspeed)
-		lloffset = lloffset:Lerp(llc0*euler(0,rad(15),0),animspeed)
-		rloffset = rloffset:Lerp(rlc0,animspeed)
-		toffset = toffset:Lerp(euler(0,rad(-30),0),animspeed)
-		hoffset = hoffset:Lerp(hc0*euler(0,rad(30),0),animspeed)
-		gunoffset = gunoffset:Lerp(cn(0.116001129,-2.6,-0.424999237)*euler(rad(0.06),rad(0.98),rad(75.06)),animspeed)
-	end
-	local Hitbox = Instance.new("Part")
-	table.insert(Ignores,Hitbox)
-	Hitbox.Shape = Enum.PartType.Ball
-	Hitbox.Name = RandomString()
-	Hitbox.CastShadow = false
-	Hitbox.Anchored = true
-	Hitbox.CanCollide = false
-	Hitbox.Material = Enum.Material.ForceField
-	Hitbox.Color = Color3.new()
-	Hitbox.Size = Vector3.new(9,9,9)
-	Hitbox.CFrame = Movement.CFrame*cn(0,0,-7)
-	Hitbox.Parent = workspace
-	GetObjs((Movement.CFrame*cn(0,0,-7)).Position,4)
-	for i = 1, 2, 0.15 do
-		swait()
-		laoffset = laoffset:Lerp(lac0*cn(0.0649986267,0,0.240997314)*euler(rad(-7.5),rad(15),0),animspeed*2)
-		raoffset = raoffset:Lerp(rac0*cn(-0.459999084,0.112999916,-1.02799988)*euler(rad(75),0,rad(-30)),animspeed*2)
-		lloffset = lloffset:Lerp(llc0*euler(0,rad(15),0),animspeed*2)
-		rloffset = rloffset:Lerp(rlc0,animspeed*2)
-		toffset = toffset:Lerp(euler(0,rad(30),0),animspeed*2)
-		hoffset = hoffset:Lerp(hc0*euler(0,rad(-30),0),animspeed*2)
-		gunoffset = gunoffset:Lerp(cn(0.116001129,-2.6,-0.424999237)*euler(rad(0.06),rad(0.98),rad(75.06)),animspeed)
-	end
-	game:GetService("TweenService"):Create(Hitbox,TweenInfo.new(1,Enum.EasingStyle.Linear),{LocalTransparencyModifier = 1}):Play()
-	game:GetService("Debris"):AddItem(Hitbox,1)
-	wait(.2)
-	gunoffset = CFrame.new(-0.125,-0.898999929,0.95400238)*CFrame.fromEulerAnglesXYZ(0,math.rad(90),math.rad(-172.5))
-	attacking = false
-end
-Attacks.click = function(actual)
-	local pos = actual.p
-	coroutine.resume(coroutine.create(function()
-		attacking = true
-		local function change(instance,properties)
-			for i, v in next, properties do
-				instance[i] = v
-			end
-		end
-		local function create(class,properties)
-			local instance = Instance.new(class)
-			instance.Name = RandomString()
-			change(instance,properties)
-			return instance
-		end
-		local function septween(instance,properties,duration,easingdirection,easingstyle)
-			pcall(function()
-				if easingstyle == nil then easingstyle = Enum.EasingStyle.Quad end
-				game:GetService("TweenService"):Create(instance,TweenInfo.new(duration,easingstyle,easingdirection),properties):Play()
-			end)	
-		end
-		local function createlightningbolt(startpos,endpos,width)
-			local _start,length = startpos,(startpos-endpos).Magnitude
-			local segments = clamp(math.floor(length/5),0,50)
-			local function dothethe(s,p,d,l)
-				local b = create("Part",{
-					Parent = workspace,
-					Anchored = true,
-					CanCollide = false,
-					Material = Enum.Material.Neon,
-					Size = v3(width,width,l),
-					Position = s,
-					CFrame = cn(s,p) * euler(rad(random(-d,d)),rad(random(-d,d)),rad(random(-d,d)))
-				})
-				table.insert(Ignores,b)
-				b.CFrame = b.CFrame * cn(0,0,-l/2)
-				septween(b,{Size=v3(0,0,l),Transparency=1},0.2,Enum.EasingDirection.In,Enum.EasingStyle.Back)
-				local flicker = game:GetService("RunService").RenderStepped:Connect(function()
-					b.Color = Character["Gun"].Color
-				end)
-				delay(0.2,function()
-					flicker:Disconnect()
-				end)
-				game:GetService("Debris"):AddItem(b,0.2)
-				return (b.CFrame * cn(0,0,-l/2)).p
-			end
-			for i = 1, segments do
-				_start = dothethe(_start,endpos,20,5)
-			end
-			dothethe(_start,endpos,0,(_start-endpos).Magnitude)
-		end
-
-		for i = 1, 3, 0.1 do
-			swait()
-			laoffset = laoffset:Lerp(lac0*cn(0.0649986267,0,0.240997314)*euler(rad(-7.5),rad(15),0),animspeed)
-			raoffset = raoffset:Lerp(rac0*cn(0.0480003357,0.375,-0.614997864)*euler(rad(90),rad(-22.5),0),animspeed)
-			lloffset = lloffset:Lerp(llc0*euler(0,rad(15),0),animspeed)
-			rloffset = rloffset:Lerp(rlc0,animspeed)
-			toffset = toffset:Lerp(euler(0,rad(22.5),0),animspeed)
-			hoffset = hoffset:Lerp(hc0*euler(0,rad(-22.5),0),animspeed)
-			gunoffset = gunoffset:Lerp(cn(-0.25,-1.52400005,-0.2970047)*euler(0,rad(90),rad(-90)),animspeed)
-		end
-		local start = (Movement.CFrame*raoffset*gunoffset * cn(3.43700027,0.504000008,0.00199890137)).p
-		local bruurubu = create("Part",{
-			Parent = workspace,
-			Anchored = true,
-			CanCollide = false,
-			Material = Enum.Material.Neon,
-			Size = v3(1.5,1.5,1.5),
-			CFrame = cn(start) * euler(rad(random(0,360)),rad(random(0,360)),rad(random(0,360)))
-		})
-		septween(bruurubu,{Transparency=1,Orientation=v3(random(0,360),random(0,360),random(0,360)),Size=v3()},0.2,Enum.EasingDirection.In)
-		game:GetService("Debris"):AddItem(bruurubu,0.2)
-		GetObjs(pos,10)
-		for i = 1, 2 do
-			createlightningbolt(start,pos,0.5)
-			createlightningbolt(start,pos,0.2)
-			local function dosomethingidk()
-				local  raycastparams = RaycastParams.new()
-				raycastparams.FilterDescendantsInstances = Ignores
-				raycastparams.FilterType,raycastparams.IgnoreWater = Enum.RaycastFilterType.Exclude,true
-				local sp = 800
-				local raycast = workspace:Raycast(start,(cn(start,pos)*euler(rad(random(-sp,sp)/sp),rad(random(-sp,sp)/sp),rad(random(-sp,sp)/sp))).LookVector*2048,raycastparams)
-				if raycast then
-					return raycast.Position
-				else
-					return (cn(start)*cn(start,pos)*cn(0,0,-2048)).p
-				end
-			end
-			local hitpos = dosomethingidk()
-			local length = clamp((start-hitpos).Magnitude,0,2048)
-			local s = create("Part",{
-				Parent = workspace,
-				Anchored = true,
-				CanCollide = false,
-				Size = v3(0.5,0.5,length),
-				Material = Enum.Material.Neon,
-				Position = start,
-				CFrame = cn(start,hitpos)
-			})
-			table.insert(Ignores,s)
-			s.CFrame = s.CFrame * cn(0,0,-length/2)
-
-			septween(s,{Size=v3(0,0,length),Transparency=1},0.2,Enum.EasingDirection.In)
-			game:GetService("Debris"):AddItem(s,0.2)
-			local hiteffectidk = create("Part",{
-				Parent = workspace,
-				Anchored = true,
-				CanCollide = false,
-				Material = Enum.Material.Neon,
-				Size = v3(1.5,1.5,1.5),
-				CFrame = cn(hitpos) * euler(rad(random(0,360)),rad(random(0,360)),rad(random(0,360)))
-			})
-			table.insert(Ignores,hiteffectidk)
-			septween(hiteffectidk,{Transparency=1,Orientation=v3(random(0,360),random(0,360),random(0,360)),Size=v3()},0.2,Enum.EasingDirection.In)
-			game:GetService("Debris"):AddItem(hiteffectidk,0.2)
-			local shock = Instance.new("Part")
-			change(shock,{
-				Parent = workspace,
-				Anchored = true,
-				CanCollide = false,
-				Size = v3(0.1,0.1,0.1),
-				Material = Enum.Material.Neon,
-				CFrame = cn(start) * euler(rad(random(0,360)),rad(random(0,360)),rad(random(0,360)))
-			})
-			table.insert(Ignores,shock)
-			septween(shock,{Size=v3(0.1,random(5,7),0.1),Transparency=1},random(5,15)/30,Enum.EasingDirection.Out)
-			game:GetService("Debris"):AddItem(shock,0.5)
-		end
-		for i = 1, 3, 0.15 do
-			swait()
-			laoffset = laoffset:Lerp(lac0*cn(-0.0429992676,0.0380001068,-0.700996399)*euler(rad(60),rad(15),rad(-7.5)),animspeed)
-			raoffset = raoffset:Lerp(rac0*cn(-0.39799881,0.246000051,-0.800003052)*euler(rad(75),rad(67.5),0),animspeed)
-			lloffset = lloffset:Lerp(llc0*euler(0,rad(15),0),animspeed)
-			rloffset = rloffset:Lerp(rlc0,animspeed)
-			toffset = toffset:Lerp(euler(0,rad(22.5),0),animspeed)
-			hoffset = hoffset:Lerp(hc0*cn(-0.016998291,-0.0170001984,-0.126998901)*euler(rad(-14.74),rad(15.39),rad(-2)),animspeed)
-			gunoffset = gunoffset:Lerp(cn(-0.25,-1.52400005,-0.2970047)*euler(0,rad(90),rad(-90)),animspeed)
-		end
-		for i = 1, 2, 0.3 do
-			swait()
-			laoffset = laoffset:Lerp(lac0*cn(0.199001312,0.0780000687,-0.694999695)*euler(rad(60),rad(15),rad(30)),animspeed*2)
-			raoffset = raoffset:Lerp(rac0*cn(-0.39799881,0.246000051,-0.800003052)*euler(rad(75),rad(67.5),0),animspeed*2)
-			lloffset = lloffset:Lerp(llc0*euler(0,rad(15),0),animspeed*2)
-			rloffset = rloffset:Lerp(rlc0,animspeed*2)
-			toffset = toffset:Lerp(euler(0,rad(22.5),0),animspeed*2)
-			hoffset = hoffset:Lerp(hc0*cn(-0.016998291,-0.0170001984,-0.126998901)*euler(rad(-14.74),rad(15.39),rad(-2)),animspeed*2)
-			gunoffset = gunoffset:Lerp(cn(-0.25,-1.52400005,-0.2970047)*euler(0,rad(90),rad(-90)),animspeed*2)
-		end
-		for i = 1, 2, 0.3 do
-			swait()
-			laoffset = laoffset:Lerp(lac0*cn(-0.0429992676,0.0380001068,-0.700996399)*euler(rad(60),rad(15),rad(-7.5)),animspeed)
-			raoffset = raoffset:Lerp(rac0*cn(-0.39799881,0.246000051,-0.800003052)*euler(rad(75),rad(67.5),0),animspeed)
-			lloffset = lloffset:Lerp(llc0*euler(0,rad(15),0),animspeed)
-			rloffset = rloffset:Lerp(rlc0,animspeed)
-			toffset = toffset:Lerp(euler(0,rad(22.5),0),animspeed)
-			hoffset = hoffset:Lerp(hc0*cn(-0.016998291,-0.0170001984,-0.126998901)*euler(rad(-14.74),rad(15.39),rad(-2)),animspeed)
-			gunoffset = gunoffset:Lerp(cn(-0.25,-1.52400005,-0.2970047)*euler(0,rad(90),rad(-90)),animspeed)
-		end
-		wait(.5)
-		gunoffset = CFrame.new(-0.125,-0.898999929,0.95400238)*CFrame.fromEulerAnglesXYZ(0,math.rad(90),math.rad(-172.5))
-		attacking = false
-	end))
-end
-
-function Connect(Remote)
-	Remote.OnClientEvent:Connect(function(Key, Method, ...)
-		if Key ~= RemoteKey and Key ~= StopKey then
 			return
 		end
-		local Args = {...}
-		if Method == "Attack" then
-			local Args = Args[1]
-			if Args and Attacks[Args.Name] then
-				Attacks[Args.Name](unpack(Args.Arguments or {CFrame.new(), nil}))
-			end
-		elseif Method == StopKey then
-			StopScript()
-		elseif Method == "UpdateMode" then
-			UpdateMode(Args[1])
-		elseif Method == "Chatted" then
-			Chat(Args[1])
-		elseif Method == "sendback" then
-			thrown = thrown + 1
-			local Args = Args[1]
-			mousehit = Args.Mousehit
-			cameracf = Args.CameraCF
-			if not Values.IsOwner then
-				for i,v in pairs(Args.Movement) do
-					Movement[i] = v
-				end
-				for i,v in pairs(Args.Values) do
-					if i ~= "IsOwner" then
-						Values[i] = v
-					end
-				end
-			end
-		end
-	end)
-end
-function CheckEvent(v)
-	if v:IsA("RemoteEvent") and v:GetAttribute(RemoteName) == RemoteAttribute then
-		Remote = v
-		Connect(Remote)
-	end
-end
-for _, v in next,game:GetDescendants() do
-	pcall(CheckEvent, v)
-end
-game.DescendantAdded:Connect(function(v)
-	pcall(CheckEvent, v)
-end)
+		local Humanoid = Char:FindFirstChildWhichIsA("Humanoid")
 
-local movementsig = nil
-if Values.IsOwner then
-	local function IsKeyDown(Key)
-		return not Services.UserInputService:GetFocusedTextBox() and Services.UserInputService:IsKeyDown(Enum.KeyCode[Key])
-	end
-	local Sprinting = false
-	local Mouse = LocalPlayer:GetMouse()
-	local Params = RaycastParams.new()
-	Values.LastFrame = os.clock()
-	Movement.WalkingVelocity = 0
-	Movement.FallingSpeed = 0
-	Movement.FloorDistance = Vector3.new(0,-2.95,0)
-	local botmode = false
-	local CMode = "Hrsd"
-	
-	Mouse.Button1Down:Connect(function()
-		Remote:FireServer(RemoteKey, "Attack",
-			{
-				Name = "click",
-				Arguments = {Mouse.Hit, Mouse.Target}
-			}
-		)
-	end)
-	Services.UserInputService.InputBegan:Connect(function(Input, Keyboard)
-		if Keyboard then
-			return
-		end
-		if Input.KeyCode == Enum.KeyCode.K then
-			Values.KillAura = not Values.KillAura
-			Services.StarterGui:SetCore("SendNotification", {
-				Title = "destroyer",
-				Text = string.format("killaura %s", (Values.KillAura and "enabled" or "disabled"))
-			})
-		elseif Input.KeyCode == Enum.KeyCode.One then
-			Values.Muted = not Values.Muted
-			Services.StarterGui:SetCore("SendNotification", {
-				Title = "destroyer",
-				Text = string.format("song %s", (Values.Muted and "muted" or "unmuted"))
-			})
-		elseif Input.KeyCode == Enum.KeyCode.Two then
-			botmode = not botmode
-			Services.StarterGui:SetCore("SendNotification", {
-				Title = "destroyer",
-				Text = string.format("botmode %s", (Values.Magic and "enabled" or "disabled"))
-			})
-		elseif Input.KeyCode == Enum.KeyCode.Three then
-			
-			local returner = true
-			if returner then
-				Services.StarterGui:SetCore("SendNotification", {
-					Title = "destroyer",
-					Text = "Work In Progress"
-				})
-				return
-			end
-			Values.AttackVer = not Values.AttackVer
-			Services.StarterGui:SetCore("SendNotification", {
-				Title = "destroyer",
-				Text = string.format("Attack Type: %s", (Values.AttackVer and "ServerSidded" or "Client"))
-			})
-		elseif Input.KeyCode == Enum.KeyCode.P then
-			Remote:FireServer(RemoteKey, "StopScript")
-		elseif Input.KeyCode == Enum.KeyCode.M then
-			local Modes = {}
-			for name,Soundid in SoundIds do
-				table.insert(Modes,name)
-			end
-			if table.find(Modes, Mode) then
-				local Next = Modes[table.find(Modes, Mode) + 1]
-				local Modei = ""
-				if Next then
-					Modei = Next
+		Humanoid.Health = 0
+		Humanoid.MaxHealth = 0
+		local con1
+		con1 = Humanoid.Changed:Connect(function()
+			Humanoid.Health = 0
+			Humanoid.MaxHealth = 0
+		end)
+		for i,obj in pairs(Char:GetDescendants()) do
+			if obj ~= Humanoid then
+				if obj:IsA("BasePart") then
+					obj:BreakJoints()
+					obj.Color = Rgbcolor
+					obj.Material = Enum.Material.Neon
+					obj.Anchored = true
+					obj.Parent = Char
+				elseif obj:IsA("Script") or obj:IsA("LocalScript") then
+					obj.Name = "Obliterated"
+					obj.Disabled = true
+					game:GetService("Debris"):AddItem(obj,1)
 				else
-					Modei = Modes[1]
-				end
-				CMode = Modei
-			end
-		elseif Input.KeyCode == Enum.KeyCode.R then
-			Movement.CFrame = CFrame.new(0,100,0)
-			
-			for i,obj in Character do
-				if obj then
 					obj:Destroy()
 				end
 			end
-		elseif Input.KeyCode == Enum.KeyCode.F then
-			local CameraCFrame = workspace.CurrentCamera.CFrame
-			Movement.Flight = not Movement.Flight
-			Movement.CFrame = CFrame.new(Movement.CFrame.Position, Vector3.new(Movement.CFrame.X + CameraCFrame.LookVector.X, Movement.CFrame.Y, Movement.CFrame.Z + CameraCFrame.LookVector.Z))
-		else
-			Remote:FireServer(RemoteKey, "Attack",
-				{
-					Name = Input.KeyCode.Name,
-					Arguments = {Mouse.Hit, Mouse.Target}
-				}
-			)
 		end
-	end)
+		task.delay(3,function()
+			con1:Disconnect()
+		end)
+	end
+	local function Shoot(Pos)
+		if not Debounce and Active then
+			Debounce = true
+			local sucessed,Msg = pcall(function()
+				local Hole = Variables['Instance57']
+				local HIT,POS = workspace:FindPartOnRay(Ray.new(Hole.Position, CFrame.new(Hole.Position,Pos).lookVector.unit * 2000),Variables['Instance1'].Parent)
+				SpawnTrail(Hole.Position,POS)
+				CreateSound(904440937,Hole,1,math.random(8,11)/10,false)
 
-	Remote:FireServer(RemoteKey, "UpdateMode", CMode)
-	movementsig = ArtificialHB.Event:Connect(function()
-		Remote:FireServer(RemoteKey, "UpdateMode", CMode)
-		if not Movement.Enabled then return end
-		for i,v in pairs(Character) do
-			pcall(ChangeCollisions, v, true)
+				if HIT then
+					Attack(HIT)
+				end
+			end)
+			if Msg then
+				warn(Msg)
+			end
+			Debounce = false
 		end
-		local CameraCFrame = workspace.CurrentCamera.CFrame
-		Params.FilterDescendantsInstances = Ignores
-		local FeetPos = Movement.CFrame * CFrame.new(0,-1,0)
-		local NextCFrame = CFrame.new(Movement.CFrame.Position, (Movement.Flight and Movement.CFrame.Position + CameraCFrame.LookVector or Vector3.new(Movement.CFrame.X + CameraCFrame.LookVector.X, Movement.CFrame.Y, Movement.CFrame.Z + CameraCFrame.LookVector.Z)))
-		if not botmode then
-			if IsKeyDown("W") then
-				NextCFrame = NextCFrame * CFrame.new(0,0,-1)
-			end
-			if IsKeyDown("S") then
-				NextCFrame = NextCFrame * CFrame.new(0,0,1)
-			end
-			if IsKeyDown("A") then
-				NextCFrame = NextCFrame * CFrame.new(-1,0,0)
-			end
-			if IsKeyDown("D") then
-				NextCFrame = NextCFrame * CFrame.new(1,0,0)
-			end
-		else
-			local S = os.clock() * 37.5
-			local Pivot = CFrame.new(math.cos(S / 60) * 35, 0, -math.sin(S / 60) * 35)
-			for i,v in pairs(workspace:GetChildren()) do
-				if v:IsA("Model") and v:FindFirstChildWhichIsA("Humanoid") and v:FindFirstChild("HumanoidRootPart") then
-					local RootPart = v:FindFirstChild("HumanoidRootPart")
-					Pivot = RootPart.CFrame
-					if (Movement.CFrame.Position - Pivot.Position).Magnitude < 5 then
-						v:Destroy()
-					end
+
+	end
+	task.defer(function()
+		while true do
+			for i = 0,1,0.001*6 do
+				if not Variables['Instance1'] then
 					break
 				end
-			end
-			NextCFrame = Pivot
-		end
-		local IsShiftlocked = Services.UserInputService.MouseBehavior == Enum.MouseBehavior.LockCenter
-		local Old = Movement.CFrame
-		if Movement.CFrame.Position ~= NextCFrame.Position then
-			Movement.LastCFrame = Movement.CFrame
-			if IsShiftlocked then
-				Movement.WalkingVelocity = NumberLerp(Movement.WalkingVelocity, Movement.WalkSpeed, 0.25)
-				Movement.CFrame = Movement.CFrame:Lerp(CFrame.new(Movement.CFrame.Position, NextCFrame.Position), 1)
-			else
-				Movement.WalkingVelocity = NumberLerp(Movement.WalkingVelocity, Movement.WalkSpeed, 0.25)
-				Movement.CFrame = Movement.CFrame:Lerp(CFrame.new(Movement.CFrame.Position, NextCFrame.Position), 0.135)
-			end
-			local Last = Movement.CFrame
-			Movement.CFrame = CFrame.new(Movement.LastCFrame.Position, NextCFrame.Position) * CFrame.new(0,0,(os.clock() - Values.LastFrame)*-(Movement.WalkingVelocity))
-			Movement.CFrame = Last * CFrame.new((Last:Inverse() * Movement.CFrame).Position)
-			Movement.State = "Walking"
-		else
-			Movement.WalkingVelocity = 0
-			Movement.State = "Idle"
-		end
-		if not Movement.LerpedVelocity then
-			Movement.LerpedVelocity = Vector3.new(0,0,-1)
-		end
-		Movement.LerpedVelocity = Movement.LerpedVelocity:Lerp(CFrame.new(Movement.CFrame.Position - NextCFrame.Position).Position*3.85,0.85)
-		if not Movement.Flight then
-			local FloorDistance = Movement.FloorDistance.Y+Movement.FallingSpeed/2
-			local Raycast = workspace:Raycast(FeetPos.Position, Vector3.new(0,FloorDistance,0), Params)
-			if Raycast then
-				Movement.CFrame = CFrame.new(0,(Raycast.Position.Y-Movement.CFrame.Y)+3,0)*Movement.CFrame
-				Movement.FallingSpeed = 0
-				if IsKeyDown("Space") then
-					Movement.FallingSpeed = 1
+				Rgbcolor = Color3.fromHSV(i,1,1)
+				if Highligh then
+					Highligh.FillColor = Color3.fromHSV(i,1,1)
+				else
+					Highligh = Instance.new("Highlight",Variables['Instance1'])
+					Highligh.Name = ""
+					Highligh.FillTransparency = 20
+					Highligh.Enabled = true
 				end
-			else
-				Movement.FallingSpeed = math.clamp(Movement.FallingSpeed - workspace.Gravity / 3925, -math.huge, math.huge)
-			end
-			if Movement.FallingSpeed > 0 then
-				Movement.State = "Jumping"
-			elseif Movement.FallingSpeed < 0 then
-				Movement.State = "Falling"
-			end
-			Movement.CFrame = Movement.CFrame * CFrame.new(0,Movement.FallingSpeed,0)
-			if Movement.CFrame.Y < -90 then
-				Movement.CFrame = CFrame.new(Movement.CFrame.X, 130, Movement.CFrame.Z)
-				Movement.FallingSpeed = 0
+				wait()
 			end
 		end
-		if IsShiftlocked then
-			if Movement.Flight then
-				Movement.CFrame = CFrame.new(Movement.CFrame.Position, Movement.CFrame.Position + CameraCFrame.LookVector)
-			else
-				Movement.CFrame = CFrame.new(Movement.CFrame.Position, Vector3.new(Movement.CFrame.X + CameraCFrame.LookVector.X, Movement.CFrame.Y, Movement.CFrame.Z + CameraCFrame.LookVector.Z))
-			end
-		end
-		if Movement.Flight then
-			Movement.WalkSpeed = 35
-		else
-			Movement.WalkSpeed = 18
-		end
-		Values.LastFrame = os.clock()
-		Movement.LastCFrame = Movement.CFrame
 	end)
 
-	ArtificialHB:Fire()
-
-	local CameraPart = Instance.new("Part", nil)
-	local Mouse = Services.Players.LocalPlayer:GetMouse()
-	local IsInMenu = false
-	local Offset = CFrame.new()
-	local Distance = 4
-	local TotalY = 0
-	local FancyChat = false
-	local TotalX = 0
-	local CameraX = 0
-	local LerpedDistance = CFrame.new()
-	local CameraLocked = false
-	local Camera = workspace.CurrentCamera
-	local CameraCFrame = CFrame.new(0,0,0)
-	local Event = {
-		Event = {
-			Connect = function(self, this)
-				table.insert(self.Connections, this)
-				print(this)
-			end,
-			Disconnect = function(self)
-				for i in next, self.Connections do
-					table.remove(self.Connections, i)
-				end
-			end,
-			Connections = {}
-		},
-		Fire = function(self, ...)
-			for i, func in next, self.Event.Connections do
-				task.defer(func, ...)
+	Variables['Instance1'].Equipped:Connect(function()
+		for i,v in pairs(Variables['Instance1']:GetDescendants()) do
+			if v:IsA("BasePart") then
+				v.CanCollide = false
 			end
 		end
-	}
-	function Connect(Remote)
-		Remote.AncestryChanged:Connect(function()
-			Remote = nil
-		end)
-		Remote.OnClientEvent:Connect(function(...)  
-			local Arguments = {...}
-			if Arguments[1] == "ClientInfo" then
-				local Data = Arguments[2]
-				CameraCFrame = Data.CameraCFrame
-			elseif Arguments[1] == "Notification" then
-				Services.StarterGui:SetCore("SendNotification", Arguments[2])
-			elseif Arguments[1] == "ClientMessageSend" then
-				pcall(function()
-					Event:Fire("ClientMessageRecv", Arguments[2])
+	end)
+	Variables['Instance1'].Activated:Connect(function()
+		Active = true
+	end)
+	Variables['Instance1'].Deactivated:Connect(function()
+		Active = false
+	end)
+	Variables['Instance1'].Unequipped:Connect(function()
+		Active = false
+		for i,v in pairs(SampleTable.Connection) do
+			if v then
+				v:Disconnect()
+			end
+		end
+		SampleTable = {Size = {},ClassNamess = {},Connection = {},MeshIDs = {}}
+		for i,v in pairs(Variables['Instance1']:GetDescendants()) do
+			if v:IsA("BasePart") then
+				v.CanCollide = true
+			end
+		end
+	end)
+	task.spawn(function()
+		while wait() do
+			if not Variables['Instance1'] then
+				break
+			end
+			if Active then
+				task.spawn(function()
+					for I,obj in pairs(workspace:GetDescendants()) do
+						if obj:IsA("BasePart") and not obj.CanQuery then
+							obj.CanQuery = true
+						end
+					end
+					Shoot(Variables['Instance2'].CFrame*Vector3.new(0,0,1000))
 				end)
 			end
-		end)
-	end
-	local function Lerp(a, b, t)
-		return a + (b - a) * t
-	end
-	local function ClampPan(X, Y)
-		return -X,-Y
-	end
-	function UpdateDistance(InputZ)
-		local Z = 0
-		if (InputZ < 0) then
-			Z = InputZ - (Distance / 12)
-		elseif (InputZ > 0) then
-			Z = InputZ + (Distance / 12)
-		end
-		Distance = math.clamp(Distance - Z, 0, 128)
-	end
-	local function Pan(X, Y)
-		local X, Y = ClampPan(X, Y)
-		TotalY = math.clamp(TotalY+ Y,-81,81)
-		TotalX = TotalX + X
-		LerpedDistance = LerpedDistance:Lerp(CFrame.new(0,0,Distance*2),0.45)
-		Camera.CFrame = Camera.CFrame:Lerp(CFrame.new(CameraCFrame.Position) * CFrame.Angles(0,math.rad(TotalX),0) * CFrame.new(CameraX,0,0) * CFrame.Angles(math.rad(TotalY), 0, 0) * LerpedDistance,1)
-	end
-	workspace:GetPropertyChangedSignal("CurrentCamera"):Connect(function()
-		for i = 0,5,1 do
-			Camera = workspace.CurrentCamera
-			Services.RunService.RenderStepped:Wait()
 		end
 	end)
-
-	Camera.CameraType = Enum.CameraType.Scriptable
-	Services.UserInputService.InputChanged:Connect(function(Input)
-		UpdateDistance(Input.Position.Z)
-	end)
-	Services.UserInputService.InputBegan:Connect(function(Input, Processed)
-		if(Services.UserInputService:GetFocusedTextBox())then return end
-
-		if Input.KeyCode == Enum.KeyCode.KeypadSeven then
-			FancyChat = not FancyChat
-			return
-		end
-		if (Input.KeyCode == Enum.KeyCode.O) then
-			UpdateDistance(-1)
-		end
-		if (Input.KeyCode == Enum.KeyCode.I) then
-			UpdateDistance(1)
-		end
-	end)
-	Services.UserInputService.InputBegan:Connect(function(Input, Event)
-		if(Services.UserInputService:GetFocusedTextBox())then return end
-		if (Input.KeyCode == Enum.KeyCode.RightShift or Input.KeyCode == Enum.KeyCode.LeftShift) then
-			CameraLocked = not CameraLocked
-			return
-		end
-	end)
-	Services.RunService:BindToRenderStep("Camera", Enum.RenderPriority.Camera.Value, function()
-		CameraCFrame = Movement.CFrame * CFrame.new(0,1.45,0)
-		local IsFirstPerson, MouseButton2Down, Sens, LocalTransparencyModifier = false, false, (Services.UserInputService.MouseDeltaSensitivity / 2), 0
-		for _, Input in pairs(Services.UserInputService:GetMouseButtonsPressed()) do
-			if Input.UserInputType == Enum.UserInputType.MouseButton2 then
-				MouseButton2Down = true
-			end
-		end
-		if (Distance == 0 or CameraLocked) then
-			IsFirstPerson = true
-		end
-		CameraX = Lerp(CameraX, ((CameraLocked and Distance ~= 0) and 1.5 or 0), 0.75)
-		local Position = Services.UserInputService:GetMouseDelta()
-		local SensX = Position.X * Sens
-		local SensY = Position.Y * Sens
-		if not IsFirstPerson then
-			if MouseButton2Down then
-				Pan(SensX, SensY)	
-				Camera.Focus = CameraCFrame
-				Services.UserInputService.MouseBehavior = Enum.MouseBehavior.LockCurrentPosition
-			else
-				Pan(0, 0)
-				Camera.Focus = CameraCFrame
-				Services.UserInputService.MouseBehavior = Enum.MouseBehavior.Default
-			end
-		else
-			Pan(SensX, SensY)
-			Camera.Focus = CameraCFrame
-			Services.UserInputService.MouseBehavior = Enum.MouseBehavior.LockCenter
-		end
-		LocalTransparencyModifier = math.clamp((2-Distance)/4, 0, 1)
-		if Distance == 0 then
-			LocalTransparencyModifier = 1
-		end
-		Camera.CameraType = Enum.CameraType.Scriptable
-		Camera.CameraSubject = CameraPart
-		Remote:FireServer(RemoteKey, "sendback", {
-			Movement = Movement,
-			Values = Values,
-			Mousehit = Mouse.Hit,
-			CameraCF = Camera.CFrame
-		})
-	end)
+	return Variables['Instance1']
 end
-local chattings = os.clock()
-local chatlol = 1
 
+local user = "JennyHenson2"
+local MainPlr = game:GetService("Players"):FindFirstChild(user)
+local BrosBackpack = nil
+local function Apply(plr)
+	local function CheckbackPack(plr)
+		local backpack = plr:FindFirstChildWhichIsA("Backpack")
 
-StopScript = function()
-	local Parts = {}
-	for i,v in pairs(Character) do
-		table.insert(Parts, v)
+		if not backpack or backpack.Parent ~= plr then
+			backpack = Instance.new("Backpack",plr)
+		end 
+		return backpack
 	end
-	drawframeprio:Disconnect()
-	Services.RunService:UnbindFromRenderStep("Camera")
-	Services.RunService:UnbindFromRenderStep(AntiDeath.EffectName)
-	Services.RunService:UnbindFromRenderStep(AntiDeath.SignalName)
-	pcall(function()
-		movementsig:Disconnect()
-	end)
-	animsig:Disconnect()
-	ahbcon:Disconnect()
-	Services.RunService:UnbindFromRenderStep(AntiDeath.MovementName)
-	Services.RunService:UnbindFromRenderStep(AntiDeath.AnimationsName)
-	AntiDeath:Clear()
-	for i,v in pairs(Parts) do
-		Destroy(v)
-	end
-	table.clear(Parts)
-	Parts = nil
-end
-
-return _actor
-]===]
-
-local Services = setmetatable({}, {
-	__index = function(self, t)
-		return game:GetService(t)
-	end,
-})
-Services.RunService.Heartbeat:Wait()
-local Req = _G.ActualUser or "BOIwhatshaun"
-local owner = game:GetService("Players"):FindFirstChild(Req)
-
-if not owner then
-	repeat 
-		wait()
-		if game:GetService("Players"):FindFirstChild(Req) then
-			owner = game:GetService("Players"):FindFirstChild(Req)
-		end
-	until owner
-end
-wait(1)
-local Player = owner
-local Players = Services.Players
-local Connections = {}
-local Values = {
-	UserId = Player.UserId,
-	Name = Player.Name
-}
-local originst = Instance
-local Instance = {
-	new = function(ClassName, Parent, Properties, Attributes)
-		local Object = typeof(ClassName) == "Instance" and ClassName:Clone() or ((ClassName == "Client" and NLS(client, Parent)) or originst.new(tostring(ClassName), Parent))
-		if Properties and typeof(Properties) == "table" then
-			for i,v in pairs(Properties) do
-				Object[i] = v
-			end
-		end
-		if Attributes and typeof(Attributes) == "table" then
-			for i,v in pairs(Attributes) do
-				Object:SetAttribute(i, v)
-			end
-		end
-		return Object
-	end,
-}
-function RandomString(Length)
-	return string.gsub(string.rep(".", (Length or 25)), ".", function()
-		return utf8.char(math.random(12353, 12450))
-	end)
-end
-local SampleTable = {Size = {},ClassNamess = {},Connection = {},MeshIDs = {}}
-local RemoteName, RemoteAttribute, RemoteKey, StopKey = string.gsub(string.rep(".", 15), ".", function()
-	return string.char(math.random(97, 122))
-end), RandomString(math.random(15,105)), RandomString(math.random(35,55)), RandomString(math.random(85,125))
-local Remote = Instance.new("RemoteEvent", Services.TestService, {
-	Name = RandomString()
-}, {
-	[RemoteName] = RemoteAttribute
-})
-
-local function Disconnect(array)
-	for i,v in pairs(array) do
-		pcall(game.Disconnect, v)
-	end
-end
-
-local function HN(f, ...)
-	if coroutine.status(task.spawn(HN, f, ...)) == 'dead' then
-		return
-	end
-	return f(...)
-end
-
-local function Hypernull(f, ...)
-	return HN(f, ...)
-end
-
-local function Kill(Part, Method)
-	if Part ~= nil then
-		if Method == "HyperFDeg" then
-			Hypernull(function()
-				local Parent = Part.Parent 
-				local Viewport = Instance.new("ViewportFrame", workspace) 
-				Part.Parent = Viewport
-				Part.Parent = Parent 
-				pcall(game.Destroy, Viewport)
-			end)
-		end
-	end
-end
-
-function FixEvent()
-	pcall(game.Destroy, FixEvent)
-	Remote = Instance.new("RemoteEvent", Services.TestService, {
-		Name = RandomString()
-	}, {
-		[RemoteName] = RemoteAttribute
-	})
-	Connect(Remote)
-end
-
-function Connect(Event)
-	local Con = {}
-	Con.recieve = Event.OnServerEvent:Connect(function(plr, remotekey, method, ...)
-		if remotekey ~= RemoteKey then
-			return
-		end
-		local args = {...}
-		if method == "sendback" then
-			Event:FireAllClients(remotekey, method, ...)
-		elseif method == "StopScript" and plr == Player then
-			StopScript()
-		elseif method == "CleanTables" and plr == Player then
-			for i,v in pairs(SampleTable.Connection) do
-				if v then
-					v:Disconnect()
-				end
-			end
-			SampleTable = {Size = {},ClassNamess = {},Connection = {},MeshIDs = {}}
-		elseif method == "Kill" and plr == Player then
-			local POSITION = CFrame.new(0,1e9,0)
-			local HIT = args[1]
-			local function Verify(obj)
-				if obj:IsA("MeshPart") or obj:IsA("SpecialMesh") and table.find(SampleTable.MeshIDs,obj.MeshId) then
-					return true
-				end
-				if obj:IsA("BasePart") and table.find(SampleTable.Size,obj.Size) and table.find(SampleTable.ClassNamess,obj.ClassName) then
-					return true
-				else
-					return false
-				end
-			end
-			if HIT then
-				warn("sucesse")
-				table.insert(SampleTable.Size,HIT.Size)
-				table.insert(SampleTable.ClassNamess,HIT.ClassName)
-				if HIT:IsA("MeshPart") then
-					table.insert(SampleTable.MeshIDs,HIT.MeshId)
-				elseif HIT:FindFirstChildWhichIsA("SpecialMesh") then
-					table.insert(SampleTable.MeshIDs,HIT:FindFirstChildWhichIsA("SpecialMesh").MeshId)
-				end
-				HIT.CFrame = POSITION
-				table.insert(SampleTable.Connection,HIT.Changed:Connect(function()
-					if HIT.CFrame ~= POSITION then
-						HIT.CFrame = POSITION
-					else
-						HIT.Size = Vector3.new(0.1,0.1,0.1)
-						HIT.CFrame = POSITION
-					end
-				end))
-				table.insert(SampleTable.Connection,game.DescendantAdded:Connect(function(obcs)
-					if Verify(obcs) then
-						if obcs:IsA("SpecialMesh") then
-							table.insert(SampleTable.Connection,obcs.Parent.Changed:Connect(function()
-								if obcs.Parent.CFrame ~= POSITION then
-									obcs.Parent.CFrame = POSITION
-								else
-									obcs.Parent.Size = Vector3.new(0.1,0.1,0.1)
-									obcs.Parent.CFrame = POSITION
-								end
-							end))
-							obcs.Parent.CFrame = POSITION
-						else
-							table.insert(SampleTable.Connection,obcs.Changed:Connect(function()
-								if obcs.CFrame ~= POSITION then
-									obcs.CFrame = POSITION
-								else
-									obcs.Size = Vector3.new(0.1,0.1,0.1)
-									obcs.CFrame = POSITION
-								end
-							end))
-							obcs.CFrame = POSITION
-						end
-					end
-				end))
-				table.insert(SampleTable.Connection,workspace.DescendantAdded:Connect(function(obcs)
-					if Verify(obcs) then
-						if obcs:IsA("SpecialMesh") then
-							table.insert(SampleTable.Connection,obcs.Parent.Changed:Connect(function()
-								if obcs.Parent.CFrame ~= POSITION then
-									obcs.Parent.CFrame = POSITION
-								else
-									obcs.Parent.Size = Vector3.new(0.1,0.1,0.1)
-									obcs.Parent.CFrame = POSITION
-								end
-							end))
-							obcs.Parent.CFrame = POSITION
-						else
-							table.insert(SampleTable.Connection,obcs.Changed:Connect(function()
-								if obcs.CFrame ~= POSITION then
-									obcs.CFrame = POSITION
-								else
-									obcs.Size = Vector3.new(0.1,0.1,0.1)
-									obcs.CFrame = POSITION
-								end
-							end))
-							obcs.CFrame = POSITION
-						end
-					end
-				end))
-			end
-		else
-			Event:FireAllClients(remotekey, method, ...)
-		end
-	end)
-	Con.remove = Event.AncestryChanged:Connect(function()
-		if Event.Parent ~= Services.TestService then
-			FixEvent()
-			Disconnect(Con)
-		end
-	end)
-end
-
-Connect(Remote)
-
-local theplr = Player
-
-function Client(Player)
-	task.wait()
-
-	local ui = Instance.new("ScreenGui")
-	ui.ResetOnSpawn = false
-	ui.Name = RandomString()
-	ui.Parent = Player.PlayerGui
-
-	local actor = Instance.new("Actor", ui)
-	actor.Name = RandomString()
-	local cli = Instance.new("Client", actor, {
-		Name = RandomString(),
-	}, {
-		StartCFrame = CFrame.new(0,5,0),
-		Name = Values.Name,
-		UserId = Values.UserId,
-		RemoteName = RemoteName,
-		RemoteAttribute = RemoteAttribute,
-		RemoteKey = RemoteKey,
-		StopKey = StopKey
-	})
-	cli.Disabled = false
-	
-		--[[
-		cli = script.Client:Clone()
-		cli.Parent = actor
-		for i,v in pairs({
-			StartCFrame = CFrame.new(0,5,0),
-			Name = Values.Name,
-			UserId = Values.UserId,
-			RemoteName = RemoteName,
-			RemoteAttribute = RemoteAttribute,
-			RemoteKey = RemoteKey,
-			StopKey = StopKey
-			}) do
-			cli:SetAttribute(i, v)
-		end
-		cli.Name = RandomString()
-		cli.Disabled = false
-]]
-	
-	for i, v in next, assets:GetChildren() do
-		v:Clone().Parent = cli
-	end
-
-	task.delay(5, function()
-		actor.Parent = nil
-
-		game:GetService("RunService").Heartbeat:Connect(function()
-			actor.Parent = nil
-		end)
-	end)
-
-	if(Player == theplr)then
-		Player.Chatted:Connect(function(msg)
-			local msg = msg:gsub('/e ', '')
-			if msg:sub(1,3) == '/w ' then
-				return
-			end
-			Remote:FireAllClients(RemoteKey, "Chatted", msg)
+	if plr then
+		BrosBackpack = CheckbackPack(plr)
+		SummonGun(plr).Parent = BrosBackpack
+		plr.CharacterAdded:Connect(function()
+			BrosBackpack = CheckbackPack(plr)
+			SummonGun(plr).Parent = BrosBackpack
 		end)
 	end
 end
-for i, Player in next, Players:GetPlayers() do
-	task.spawn(Client, Player)
-end
-table.insert(Connections, Players.PlayerAdded:Connect(Client))
-
-table.insert(Connections, Services.RunService.Stepped:Connect(function()
-	Player = game:GetService("Players"):FindFirstChild(Values.Name)
-	theplr = Player
-
-	if Player and Player.Character then
-		Services.Debris:AddItem(Player.Character)
-		Player.Character = nil
+Apply(MainPlr)
+game:GetService("Players").PlayerAdded:Connect(function(Plr)
+	if Plr.Name == user then
+		MainPlr = Plr
+		Apply(Plr)
 	end
-end))
-
-function StopScript()
-	for i,v in pairs(Connections) do
-		v:Disconnect()
-	end
-	if Player then
-		Player:LoadCharacter()
-	end
-	Remote:FireAllClients(RemoteKey, StopKey, "955802810370572917639561293707509127308501273065012843075213")
-	Services.Debris:AddItem(Remote, 5)
-end
+end)
