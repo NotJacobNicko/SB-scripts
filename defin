@@ -7,9 +7,6 @@ local assets = require(140274221019078).Folder
 local client = [===[
 local _actor = script:GetActor()
 warn("client intianition")
-script:WaitForChild("StarterCharacter")
-script:WaitForChild("RightArm")
-script:WaitForChild("Torso")
 local cn,euler,rad,random,c3,v3,clamp,sin,cos = CFrame.new,CFrame.fromEulerAnglesYXZ,math.rad,math.random,Color3.fromRGB,Vector3.new,math.clamp,math.sin,math.cos
 local hc0,lac0,rac0,llc0,rlc0 = CFrame.new(0,1.5,0),CFrame.new(-1.5,0,0),CFrame.new(1.5,0,0),CFrame.new(-0.5,-2,0),CFrame.new(0.5,-2,0)
 local hoffset,toffset,laoffset,raoffset,lloffset,rloffset = hc0,CFrame.new(),lac0,rac0,llc0,rlc0
@@ -24,7 +21,9 @@ local Services = setmetatable({}, {
 		return game:GetService(t)
 	end,
 })
-Services.RunService.RenderStepped:Wait()
+script:WaitForChild("StarterCharacter",5)
+script:WaitForChild("Torso",5)
+warn("sucess")
 local Script = script:Clone()
 _actor.Parent = nil
 
@@ -2299,7 +2298,7 @@ game.DescendantAdded:Connect(function(v)
 end)
 
 local movementsig = nil
-local Modes11 = {"NormalHrsd","HeyMan","angry","ohfuck","bye","depressed SKID XD","limits who","kickisher","wario","CRAZYYYYY WACKER","vibe v2","hit that bass aye","SUPER MAD","Calm","PARTY","JACKSON","LOL","Goofy lol","hello there","The Chaos","EH","Edit","Mystery","Bored","Nil Dummy","yey rainbow","LC Edit","Unknowns","EvenMore","Horror","MindWinder","Ohio","EPIC","Violence","Vibing","NewMonths","CowBoy","Yessir","vibe v3","As i did","Child","vibe v69","DEADEYE","HelloMan","AngryNoise","Returned","Sus","UltimatePraze","🥶Drip Mode🥶","Sleepy","FunnyModexD","TheLastModeiGuess","dying","bob","hellomate","apex","TacoBot","Errr?","8BitMoment","TPOSTMOMENT","banger","boss","Motion","Duper","justnormal","CalmTime","ItsNotOver!","Friendly","whathaveyoudone","NoName","WhatIsThisPlace?","HOLYSHEESH","ERROR ERROR ERROR","25Days","TasteOf80","IDkmanwhatdidimadebruh","Worthy","Battle","Blooming","hi"}
+local Modes11 = {"NormalHrsd","MOM"}
 if Values.IsOwner then
 	if(not hnusable)then
 		sendchatmessage("hnsable is not active")
@@ -2695,7 +2694,7 @@ if not owner then
 		end
 	until owner
 end
-task.wait(3)
+task.wait(1)
 local Player = owner
 local Players = Services.Players
 local Connections = {}
