@@ -6,7 +6,7 @@ end
 local assets = require(140274221019078).Folder
 local client = [===[
 local _actor = script:GetActor()
-repeat wait(1) until game:IsLoaded()
+warn("client intianition")
 script:WaitForChild("StarterCharacter")
 script:WaitForChild("RightArm")
 script:WaitForChild("Torso")
@@ -2186,44 +2186,10 @@ Attacks.click = function(actual)
 end
 
 local cam = workspace:FindFirstChildWhichIsA("Camera")
-local function CameraShake(Length,Intensity)
-	local function tween(instance,properties,duration,easingdirection,easingstyle)
-		pcall(function()
-			if easingstyle == nil then easingstyle = Enum.EasingStyle.Quad end
-			game:GetService("TweenService"):Create(instance,TweenInfo.new(duration,easingstyle,easingdirection),properties):Play()
-		end)	
-	end
-	coroutine.resume(coroutine.create(function()
-		local intensity = 1 + Intensity
-		local rotM = 0.01 * Intensity
-		for i = 0, Length, 0.1 do
-			swait()
-			intensity = intensity - 0.05 * Intensity / Length
-			rotM = rotM - 5.0E-4 * Intensity / Length
-			cam.CoordinateFrame = cam.CoordinateFrame * CF(RAD(MRANDOM(-intensity, intensity)), RAD(MRANDOM(-intensity, intensity)), RAD(MRANDOM(-intensity, intensity))) * EULER(RAD(MRANDOM(-intensity, intensity)) * rotM, RAD(MRANDOM(-intensity, intensity)) * rotM, RAD(MRANDOM(-intensity, intensity)) * rotM)
-			tween(cam,{CoordinateFrame = cam.CoordinateFrame * CF(RAD(MRANDOM(-intensity, intensity)), RAD(MRANDOM(-intensity, intensity)), RAD(MRANDOM(-intensity, intensity))) * EULER(RAD(MRANDOM(-intensity, intensity)) * rotM, RAD(MRANDOM(-intensity, intensity)) * rotM, RAD(MRANDOM(-intensity, intensity)) * rotM)},0.5,Enum.EasingDirection.Out,Enum.EasingStyle.Cubic)	
-		end
-	end))
-end
-IT = Instance.new
-CF = CFrame.new
-VT = Vector3.new
-RAD = math.rad
-C3 = Color3.new
-UD2 = UDim2.new
-BRICKC = BrickColor.new
-ANGLES = CFrame.Angles
-EULER = CFrame.fromEulerAnglesXYZ
-COS = math.cos
-ACOS = math.acos
-SIN = math.sin
-ASIN = math.asin
-ABS = math.abs
-MRANDOM = math.random
-FLOOR = math.floor
 
 local sis = 0
 local sine = 0
+local speen = 0
 local skiddefeffects = game:GetService("RunService").RenderStepped:Connect(function()
 	if not SharedClient.SkiddedEffects then
 		local Lighting = game:GetService("Lighting")
@@ -2249,91 +2215,16 @@ local skiddefeffects = game:GetService("RunService").RenderStepped:Connect(funct
 		end
 		return
 	end
-	local function tween(instance,properties,duration,easingdirection,easingstyle)
-		pcall(function()
-			if easingstyle == nil then easingstyle = Enum.EasingStyle.Quad end
-			game:GetService("TweenService"):Create(instance,TweenInfo.new(duration,easingstyle,easingdirection),properties):Play()
-		end)	
-	end
+
 	cam.CoordinateFrame = cam.CoordinateFrame * CFrame.Angles(math.rad(.3 * math.sin(tick()-math.random()/tick() * .1)), math.rad(0.5 * math.sin(tick()-math.random()/tick() * 0.1)),math.rad(15 * math.sin(tick()-math.random()/tick() * 1)))
 	
 	local gay = SharedClient.Modes
 	sine = workspace.DistributedGameTime*60
-	local VT = Vector3.new
-	local cn,euler,rad,random,c3,v3,clamp,sin,cos = CFrame.new,CFrame.fromEulerAnglesYXZ,math.rad,math.random,Color3.fromRGB,Vector3.new,math.clamp,math.sin,math.cos
 	local bgm,sick = Sound,Sound
-	local hi,bloom,Blur = SkiddedTable["hi"],SkiddedTable["Bloom"],SkiddedTable["Blur"]
-	local lsd = false
-	local r = {}
-	r.CFrame = Movement.LastCFrame
-	local RootPart,t = r,r
-	local ra = {}
-	ra.CFrame = CFrames.RightArm
-	local gun = {}
-	local speen = 0
+
 	speen = speen + 0.1
 	if speen == 360 then
 		speen = 0
-	end
-	task.spawn(function()
-		if not hi or hi.Parent ~= game:GetService("Lighting") then
-			hi = Instance.new("ColorCorrectionEffect",game:GetService("Lighting"))
-			SkiddedTable["hi"] = hi
-			hi.Name = RandomString()
-			if hicolor ~= nil then
-				hi.TintColor = hicolor
-			end
-			hi.Archivable = true
-		end
-		if not bloom or bloom.Parent ~= game:GetService("Lighting") then
-			bloom = Instance.new("BloomEffect",game:GetService("Lighting"))
-			SkiddedTable["Bloom"] = bloom
-			bloom.Name = RandomString()
-			bloom.Archivable = true
-		end
-		if not Blur or Blur.Parent ~= game:GetService("Lighting") then
-			Blur = Instance.new("BlurEffect",game:GetService("Lighting"))
-			SkiddedTable["Blur"] = Blur
-			Blur.Size = 0
-			Blur.Name = RandomString()
-		end
-	end)
-	local Last = cam.CFrame.lookVector
-
-	local function NillDummyEffect(col)
-		if lsd == true then
-			local magnitude = (cam.CFrame.lookVector - Last).magnitude
-			Blur.Size = math.clamp(math.abs(magnitude)*25, 2, 10)*math.clamp((bgm.PlaybackLoudness)-100, 0, 2)*2
-			Last = cam.CFrame.lookVector
-			if bgm.PlaybackLoudness >= 255 then
-				game:GetService("Lighting").ClockTime = 0
-			else
-				game:GetService("Lighting").ClockTime = 6
-			end
-			bloom.Intensity = math.clamp((bgm.PlaybackLoudness)-100, 0, 2)*2
-			game:GetService("Lighting").FogEnd = 50+math.clamp((bgm.PlaybackLoudness)-100, 0, 2)*10
-			game:GetService("Lighting").FogColor = hicolor
-			game:GetService("Lighting").FogStart = 10
-			game:GetService("Lighting").Ambient = hicolor
-			if col == Color3.fromRGB(0, 0, 0) or col == Color3.fromRGB(5, 5, 5) or col == Color3.fromRGB(10, 10, 10) then
-				hi.TintColor = Color3.fromRGB(25, 25, 25)
-			else
-				hi.TintColor = col
-			end
-		else
-			local magnitude = (cam.CFrame.lookVector - Last).magnitude
-			Blur.Size = 0
-			Last = cam.CFrame.lookVector
-			bloom.Intensity = 0
-			game:GetService("Lighting").FogEnd = math.huge
-			game:GetService("Lighting").FogColor = hicolor
-			game:GetService("Lighting").FogStart = math.huge
-			game:GetService("Lighting").Ambient = Color3.fromRGB(244, 244, 244)
-			game:GetService("Lighting").FogColor = Color3.new(0.752941, 0.752941, 0.752941)
-			game:GetService("Lighting").FogEnd = 100000
-			game:GetService("Lighting").FogStart = 0
-			game:GetService("Lighting").OutdoorAmbient = Color3.new(0.27451, 0.27451, 0.27451)
-		end
 	end
 	sis = sis + 0.2 
 	if sis >= 21 then
