@@ -142,8 +142,6 @@ local function customtween(inst, tweeninfo, goal, fps)
 	}
 end
 
-local cyield = setmetatable({}, {__newindex = function(self) if(game:GetService("RunService"):IsStudio())then return end if(math.random()>.5)then task.wait() else coroutine.yield() end end})
-
 local LocalPlayer = Services.Players.LocalPlayer
 local Movement, AntiDeath, Backups, Properties, Character, Signals, CFrames, Values, Player, Fades, Ignores, Animations, Remote, Mode = {
 	CFrame = CFrame.new(0,5,0),
@@ -642,9 +640,6 @@ do
 		stall(300, adChecks)
 	end)
 
-	game:GetService("RunService").RenderStepped:Connect(function()
-		cyield.a = true
-	end)
 end
 
 local function ChangeCollisions(Part, Collide)
@@ -922,104 +917,6 @@ game:GetService("RunService").RenderStepped:Connect(function()
 	end
 end)
 
-local Params = RaycastParams.new()
-function idklol(Hit, Target)
-	Animations.LeftArm = false
-	local Brick = Instance.new("Part")
-	Brick.Anchored = true
-	ChangeCollisions(Brick, false)
-	Brick.Material = Enum.Material.Granite
-	Brick.Size = Vector3.new(4,1,2)
-	Brick.CFrame = CFrames.LeftArm * CFrame.new(0,-1,0)
-	Brick.Name = RandomString()
-	Brick.Parent = workspace
-	local Animation = Services.RunService.RenderStepped:Connect(function()
-		local Sine = os.clock()*60
-		Brick.CFrame = CFrames.LeftArm * CFrame.new(0,-1,0)
-		LeftShoulder.C0 = Lerp(LeftShoulder.C0, CFrame.new(-1, 0.51, animspeed-0.05*math.sin(Sine/30), 0, 0, -1, 0, 1, 0, 1, 0, 0)*CFrame.Angles(0,math.rad(-1+2*math.sin(Sine/30)),math.rad(115-5*math.cos(Sine/30))), animspeed)
-	end)
-	task.wait(0.35)
-	Animation:Disconnect()
-	local Animation = Services.RunService.RenderStepped:Connect(function()
-		local Sine = os.clock()*60
-		Brick.CFrame = CFrames.LeftArm * CFrame.new(0,-1,0)
-		LeftShoulder.C0 = Lerp(LeftShoulder.C0, CFrame.new(-1, 0.51, -0.2-0.05*math.sin(Sine/30), 0, 0, -1, 0, 1, 0, 1, 0, 0)*CFrame.Angles(0,math.rad(-1+2*math.sin(Sine/30)),math.rad(275-5*math.cos(Sine/30))), animspeed)
-	end)
-	task.wait(0.1)
-	Animation:Disconnect()
-	task.delay(0.25, function()
-		Animations.LeftArm = true
-	end)
-	local BrickRot = CFrame.Angles(math.rad(math.random(-22,22)),math.rad(math.random(-22,22)),math.rad(math.random(-22,22)))
-	local Start, End = Brick.CFrame, Hit
-	local Velocity = (CFrame.new(Start.p, End.p).Position -CFrame.new(Start.p, End.p)*CFrame.new(0,0,1).Position)*60
-	local Phys = nil
-	local imdone = false
-	local diff = os.clock()
-	Phys = Services.RunService.RenderStepped:Connect(function()
-		Velocity = Vector3.new(Velocity.X*0.99, Velocity.Y - workspace.Gravity / 1000, Velocity.Z*0.99)
-		--print(Velocity.Y)
-		Brick.Position = Brick.Position + Velocity/30
-		Brick.CFrame = Brick.CFrame * BrickRot
-		Params.FilterDescendantsInstances = {Brick}
-		local Ray_ = workspace:Raycast(Brick.Position, Vector3.new(0,-0.5,0), Params)
-		if Ray_ or os.clock()-diff > 12 then
-			Phys:Disconnect()
-			imdone = true
-		end
-	end)
-	repeat
-		task.wait()
-	until imdone
-
-	customtween(Brick, TweenInfo.new(3), {
-		Transparency = 1
-	}, animfps):Play()
-
-	Params.FilterDescendantsInstances = {Brick}
-	local Floor = Brick.Position - Vector3.new(0,1,0)
-	local Hitcast = workspace:Raycast(Brick.Position, Vector3.new(0,-10,0), Params)
-	if Hitcast then
-		Floor = Hitcast.Position
-	end
-	local EffectPart = Instance.new("Part", workspace, {
-		Size = Vector3.new(5,0.78,5),
-		Color = Color3.fromRGB(255, 118, 38):Lerp(Color3.new(), 0),
-		Material = "Neon",
-		Anchored = true,
-		CFrame = CFrame.new(Floor),
-		Transparency = 0
-	})
-	Mesh(EffectPart, "Sphere")
-
-	customtween(EffectPart, TweenInfo.new(0.75), {
-		Transparency = 1
-	}, animfps):Play()
-	customtween(EffectPart, TweenInfo.new(2.75,Enum.EasingStyle.Quad,Enum.EasingDirection.InOut), {
-		Size = Vector3.new(65,0.78,65)
-	}, animfps):Play()
-
-	Services.Debris:AddItem(EffectPart, .75)
-	local EffectPart = Instance.new("Part", workspace, {
-		Size = Vector3.new(5,0.5,5),
-		Color = Color3.fromRGB(255, 118, 38):Lerp(Color3.new(), 0.65),
-		Material = "Neon",
-		Anchored = true,
-		CFrame = CFrame.new(Floor),
-		Transparency = 0
-	})
-	Mesh(EffectPart, "Sphere")
-
-	customtween(EffectPart, TweenInfo.new(1.25), {
-		Transparency = 1
-	}, animfps):Play()
-	customtween(EffectPart, TweenInfo.new(3.25,Enum.EasingStyle.Quad,Enum.EasingDirection.InOut), {
-		Size = Vector3.new(65,0.5,65)
-	}, animfps):Play()
-
-	Services.Debris:AddItem(EffectPart, 1.25)
-	Services.Debris:AddItem(Brick, 4)
-end
 
 local function IdleEffect(cf)
 	local Size = Vector3.new(0.5,0.85,0.5):Lerp(Vector3.new(),math.random()/2)
@@ -1783,52 +1680,6 @@ local animsig = game:GetService("RunService").RenderStepped:Connect(function()
 	end
 end)
 
-local v8workloads = {}
-local v8workloadparts = {}
-
-local function createv8workload(pa, many)
-	if(v8workloadparts[pa])then return end
-
-	local workload = {
-		parts = {},
-		origin = pa
-	}
-
-	for i = 1, many do
-		local p = Instance.new("Part")
-		p.CanCollide = false
-		p.Anchored = true
-		p.Size = pa.Size
-		p.CFrame = pa.CFrame
-
-		local sm = Instance.new("SpecialMesh",p)
-		sm.Offset = Vector3.one*0/0
-
-		table.insert(workload.parts, p)
-
-		p.Parent = workspace
-		v8workloadparts[p] = true
-	end
-
-	v8workloadparts[pa] = true
-
-	table.insert(v8workloads, workload)
-
-	task.delay(1/10, function()
-		for _, p in next, workload.parts do
-			pcall(function()
-				pcall(game.Destroy, p)
-				v8workloadparts[p] = nil
-			end)
-		end
-		pcall(function()
-			v8workloadparts[pa] = nil
-		end)
-		table.clear(workload)
-		table.remove(v8workloads, table.find(v8workloads, workload))
-	end)
-end
-
 game:GetService("RunService").RenderStepped:Connect(function()
 	if Character["Gun"] then
 		if wow then
@@ -1967,7 +1818,6 @@ local function swait(num)
 	end
 end
 local Attacks = {}
-Attacks.Q = idklol
 Attacks.B = function()
 	Chat("Cleared Tables")
 	Remote:FireServer(RemoteKey, "CleanTables")
