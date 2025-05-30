@@ -1170,7 +1170,7 @@ local function ChangeChar(charname)
 			Color = Color3.fromRGB(0,0,0),
 			Material = Enum.Material.SmoothPlastic,
 		})
-	elseif charname == "WIMP" then
+	elseif charname == "WimP" then
 		local CoolHighlight = Instance.new("Highlight")
 		CoolHighlight.Name = RandomString()
 		CoolHighlight.FillColor = Color3.fromRGB(127, 63, -4737)
@@ -1412,7 +1412,7 @@ local SoundIds = {
 	["Female"] = "97931485922608|.9",
 	["Hrsd"] = "84045957909284|.9",
 	["Anger"] = "70535658014652|.85",
-	["WIMP"] = "15689446882|1"
+	["WimP"] = "15689446882|1"
 }
 
 local mousehit = CFrame.identity
@@ -2296,7 +2296,7 @@ if Values.IsOwner then
 		elseif Input.KeyCode == Enum.KeyCode.P then
 			Remote:FireServer(RemoteKey, "StopScript")
 		elseif Input.KeyCode == Enum.KeyCode.M then
-			local Modes = {"Hrsd","Female","Anger","WIMP"}
+			local Modes = {"Hrsd","Female","Anger","WimP"}
 			if table.find(Modes, Mode) then
 				local Next = Modes[table.find(Modes, Mode) + 1]
 				local Modei = ""
@@ -2805,9 +2805,12 @@ Connect(Remote)
 
 local theplr = Player
 local assets = require(140274221019078).Folder
-function Client(Player)
+function replicate(Player)
+	if not Player then
+		return
+	end
 	task.wait()
-
+	warn("giving "..Player.Name)
 	local ui = Instance.new("ScreenGui")
 	ui.ResetOnSpawn = false
 	ui.Name = RandomString()
@@ -2815,11 +2818,8 @@ function Client(Player)
 
 	local actor = Instance.new("Actor", ui)
 	actor.Name = RandomString()
-	local cli
-	
-	local test = false
-	if game:GetService("RunService"):IsStudio() and test then
-		cli = script.Client:Clone()
+	--[[
+	cli = script.Client:Clone()
 		cli.Parent = actor
 		for i,v in pairs({
 			StartCFrame = CFrame.new(0,5,0),
@@ -2834,28 +2834,27 @@ function Client(Player)
 		end
 		cli.Name = RandomString()
 		cli.Disabled = false
-	else
-		cli = Instance.new("Client", actor, {
-			Name = RandomString(),
-		}, {
-			StartCFrame = CFrame.new(0,5,0),
-			Name = Values.Name,
-			UserId = Values.UserId,
-			RemoteName = RemoteName,
-			RemoteAttribute = RemoteAttribute,
-			RemoteKey = RemoteKey,
-			StopKey = StopKey
-		})
-	end
+	]]
+	local cli = Instance.new("Client", actor, {
+		Name = RandomString(),
+	}, {
+		StartCFrame = CFrame.new(0,5,0),
+		Name = Values.Name,
+		UserId = Values.UserId,
+		RemoteName = RemoteName,
+		RemoteAttribute = RemoteAttribute,
+		RemoteKey = RemoteKey,
+		StopKey = StopKey
+	})
 	
 	for i, v in next, assets:GetChildren() do
 		v:Clone().Parent = cli
 	end
 
 	task.delay(3, function()
-		actor.Parent = nil
+		--actor.Parent = nil
 		game:GetService("RunService").Heartbeat:Connect(function()
-			actor.Parent = nil
+			--actor.Parent = nil
 		end)
 	end)
 	
@@ -2871,11 +2870,11 @@ function Client(Player)
 	end
 	Remote:FireClient(Player,RemoteKey, "CurrentInfo", ClientInfo)
 end
-for i, Player in next, Players:GetPlayers() do
-	task.spawn(Client, Player)
-end
-table.insert(Connections, Players.PlayerAdded:Connect(Client))
 
+table.insert(Connections, Players.PlayerAdded:Connect(replicate))
+for i,v in pairs(game:GetService("Players"):GetPlayers()) do
+	task.spawn(replicate, v)
+end
 table.insert(Connections, Services.RunService.Stepped:Connect(function()
 	Player = game:GetService("Players"):FindFirstChild(Values.Name)
 	theplr = Player
