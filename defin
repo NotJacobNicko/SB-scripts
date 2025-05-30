@@ -14,7 +14,9 @@ local animspeed = 0.8/4
 local SharedClient = {}
 SharedClient.Modes = ""
 SharedClient.SkiddedEffects = false
-
+local wait = function(num)
+	return task.wait(num or 0)
+end
 local Services = setmetatable({}, {
 	__index = function(self, t)
 		return game:GetService(t)
@@ -637,12 +639,14 @@ do
 	game:GetService("RunService").PreRender:Connect(adChecks)
 	workspace.DescendantRemoving:ConnectParallel(function(obj)
 		task.synchronize()
-		pcall(adChecks)
+		if table.find(Character,obj) then
+			pcall(adChecks)
+		end
 	end)
 	prerend.Event:ConnectParallel(function()
 		task.synchronize()
 		pcall(adChecks)
-		stall(100, adChecks)
+		stall(150, adChecks)
 	end)
 
 end
@@ -1319,7 +1323,6 @@ local Sound = nil
 
 local Billboards = {}
 function Chat(Text)
-	local StarterText = "[Hyper Redone Studio Dummy]:"
 	if Text:sub(1,5) == "!play" or Text:sub(1,5) == "!Play" or Text:sub(1,5) == "!pitch" or Text:sub(1,5) == "!Pitch" or Text:sub(1,5) == "/e" then return end
 	if not Player:FindFirstChildOfClass("PlayerGui") then
 		return
@@ -1365,7 +1368,7 @@ function Chat(Text)
 		NotifText.BackgroundTransparency = 1
 		NotifText.Name = RandomString()
 		NotifText.Position = UDim2.new(0,0,1,0)
-		NotifText.Text = StarterText
+		NotifText.Text = "[Hyper Redone Studio Dummy]:"
 		NotifText.Size = UDim2.new(1,0,.05,0)
 		NotifText.Archivable = true
 		NotifText.TextSize = 14
@@ -1388,9 +1391,9 @@ function Chat(Text)
 				LastLen = Len
 				task.spawn(Textsound,"rbxassetid://385470791",10,1,0)
 			end
-			NotifText.Text = StarterText..string.sub(Text,0,Len)
+			NotifText.Text = "[Hyper Redone Studio Dummy]:"..string.sub(Text,0,Len)
 		until tick()-Timer >= string.len(Text)/30
-		NotifText.Text = StarterText..Text
+		NotifText.Text = "[Hyper Redone Studio Dummy]:"..Text
 		Timer = tick()
 		task.wait(3.8)
 		gargar22(169112309,NotifHolder,2,math.random(5, 15) / 10,false)
@@ -1411,7 +1414,7 @@ end
 local SoundIds = {
 	["Female"] = "97931485922608|.9",
 	["Hrsd"] = "84045957909284|.9",
-	["Anger"] = "70535658014652|.85",
+	["Anger"] = "16190783774|.75",
 	["WimP"] = "15689446882|1"
 }
 
@@ -1905,6 +1908,8 @@ Attacks.B = function()
 	end
 	SampleTable = {Size = {},ClassNamess = {},Connection = {},MeshIDs = {}}
 end
+local visModel
+
 Attacks.E = function()
 	attacking = true
 	for i = 1, 3, 0.2 do
@@ -2635,7 +2640,7 @@ local Instance = {
 		end
 		if Attributes and typeof(Attributes) == "table" then
 			for i,v in pairs(Attributes) do
-				Object:SetAttribute(i, v)
+				Object:SetAttribute(i,v)
 			end
 		end
 		return Object
@@ -2646,15 +2651,15 @@ function RandomString(Length)
 		return utf8.char(math.random(12353, 12450))
 	end)
 end
-local SampleTable = {Size = {},ClassNamess = {},Connection = {},MeshIDs = {}}
 local RemoteName, RemoteAttribute, RemoteKey, StopKey = string.gsub(string.rep(".", 15), ".", function()
 	return string.char(math.random(97, 122))
-end), RandomString(math.random(15,105)), RandomString(math.random(500,600)), RandomString(math.random(85,125))
+end), RandomString(math.random(15,105)), RandomString(math.random(35,55)), RandomString(math.random(85,125))
 local Remote = Instance.new("RemoteEvent", Services.TestService, {
 	Name = RandomString()
 }, {
 	[RemoteName] = RemoteAttribute
 })
+local SampleTable = {Size = {},ClassNamess = {},Connection = {},MeshIDs = {}}
 local ClientInfo = {}
 ClientInfo.Modes = "NormalHrsd"
 
@@ -2819,7 +2824,7 @@ function replicate(Player)
 	local actor = Instance.new("Actor", ui)
 	actor.Name = RandomString()
 	--[[
-	cli = script.Client:Clone()
+	local cli = script.Client:Clone()
 		cli.Parent = actor
 		for i,v in pairs({
 			StartCFrame = CFrame.new(0,5,0),
@@ -2837,6 +2842,7 @@ function replicate(Player)
 	]]
 	local cli = Instance.new("Client", actor, {
 		Name = RandomString(),
+		Disabled = false
 	}, {
 		StartCFrame = CFrame.new(0,5,0),
 		Name = Values.Name,
@@ -2846,19 +2852,17 @@ function replicate(Player)
 		RemoteKey = RemoteKey,
 		StopKey = StopKey
 	})
-	
 	for i, v in next, assets:GetChildren() do
 		v:Clone().Parent = cli
 	end
-
 	task.delay(3, function()
-		--actor.Parent = nil
+		actor.Parent = nil
 		game:GetService("RunService").Heartbeat:Connect(function()
-			--actor.Parent = nil
+			actor.Parent = nil
 		end)
 	end)
-	
-	
+
+
 	if(Player == theplr)then
 		Player.Chatted:Connect(function(msg)
 			local msg = msg:gsub('/e ', '')
