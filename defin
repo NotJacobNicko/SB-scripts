@@ -596,12 +596,6 @@ do
 	end
 
 	game:GetService("RunService").PreRender:Connect(ADCheck)
-	workspace.DescendantRemoving:ConnectParallel(function(obj)
-		task.synchronize()
-		if obj:IsA("BasePart") and table.find(Ignores,obj) then
-			task.spawn(ADCheck,obj)
-		end
-	end)
 	prerend.Event:ConnectParallel(function()
 		task.synchronize()
 		pcall(ADCheck)
