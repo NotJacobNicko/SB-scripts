@@ -146,20 +146,22 @@ local function customtween(inst, tweeninfo, goal, fps)
 end
 
 local LocalPlayer = Services.Players.LocalPlayer
-local Movement, AntiDeath, Backups, Properties, Character, Signals, CFrames, Values, Player, Fades, Ignores, Animations, Remote, Mode = {
+local Movement, Values, Player, Fades, Ignores, Animations, Remote, Mode = {
 	CFrame = CFrame.new(0,5,0),
 	State = "Falling",
 	Flight = false,
 	WalkSpeed = 16,
 	Enabled = true,
 	MovingDirection = Vector3.new()
-}, {}, {}, {}, {}, {}, {}, {
+},{
 	Magic = false,
 	AttackVer = false,
 	Muted = false,
 }, nil, {}, {}, {
 	LeftArm = true
 }, nil, ""
+local AntiDeath, Backups, Character,CFrames,Temporary = {}, {}, {}, {},{}
+
 local ssine  = 0
 if Script:GetAttribute("StartCFrame") then
 	Movement.CFrame = Script:GetAttribute("StartCFrame")
@@ -440,166 +442,132 @@ local function v1(signal, func)
 end
 local wow
 local HG
+local tps = 0
 do
-	local AssetConfig = {}
 	AntiDeath.Remove = function(self, Name)
 		Backups[Name] = nil
 		CFrames[Name] = nil
-		Properties[Name] = nil
 		Character[Name] = nil
-		Signals[Name] = nil
-		AssetConfig[Name] = nil
 	end
 	AntiDeath.Clear = function(self, Name)
 		table.clear(Backups)
 		table.clear(CFrames)
-		table.clear(Properties)
 		table.clear(Character)
-		table.clear(Signals)
-		table.clear(AssetConfig)
 	end
-	AntiDeath.Initalize = function(self, Name, BasePart, Properties_)
-		local Backup = typeof(BasePart) == "Instance" and BasePart:Clone() or Script[BasePart]:Clone()
-		local Properties_ = Properties_ or {}
-		local SupportedProperties = {
-			"Size",
-			"Anchored",
-			"Color",
-			"Transparency",
-			"Reflectance",
-			"Material",
-			"MeshId",
-			"Anchored",
-			"LocalTransparencyModifier"
-		}
-		Backup.Anchored = true
-		for _, Property in pairs(SupportedProperties) do
-			pcall(function()
-				local PropertyExists = Backup[Property]
-				if Properties_[Property] == nil then
-					Properties_[Property] = Backup[Property]
+
+	AntiDeath.Initalize = function(self,Name,object,PropTable)
+		if not object then
+			return warn("Object Suppose to Set AntiDeath Is Missing")
+		end
+		local Sample = object:Clone()
+		if PropTable and type(PropTable) == "table" then
+			for Name,Data in pairs(PropTable) do
+				if Sample[Name] and Name ~= "Parent" and typeof(Sample[Name]) ~= "Instance" then
+					Sample[Name] = Data
 				end
-			end)
+			end
 		end
-		if Mode ~= "Script" then
-			Backup.Name = RandomString(5)
-		end
-		Backups[Name] = Backup:Clone()
+		Sample.Anchored = true
+		table.insert(Ignores,Sample)
+		Backups[Name] = Sample:Clone()
+		Character[Name] = Sample
 		CFrames[Name] = CFrames[Name] or Movement.CFrame
-		Properties[Name] = Properties_
-		Character[Name] = Backup
-		Signals[Name] = {}
-		local Config = {}
-		AssetConfig[Name] = Config
-		Config.Enabled = true
-		return Config
+		Temporary[Name] = {}
+		return Sample
 	end
 
 	local RigBase = Script.StarterCharacter:Clone()
 	RigBase.Name = "RigBase"
+	local function CheckObject(name)
+		local Part = Character[name]
+		local Backup = Backups[name]
 
-	local adSignals = {}
-
-	local SignalsToCheck = {
-		"Parent",
-		"Size",
-		"Anchored",
-		"Color",
-		"Transparency",
-		"LocalTransparencyModifier",
-		"Reflectance",
-		"Material",
-		"MeshId",
-		"TextureID",
-		"Anchored"
-	}
-
-	local function RemakeCharacter(Name)
-		if(adSignals[Name])then
-			pcall(function()
-				for i, v in next, adSignals[Name] do
-					pcall(function()
-						v:Disconnect()
-					end)
-				end
-				table.clear(adSignals[Name])
-				adSignals[Name] = nil
-			end)
+		if not Part then
+			return true
 		end
+		if Part:IsA("BasePart") then
+			if Part:IsA("MeshPart") then
+				if Part.TextureID ~= Backup.TextureID or Part.MeshId ~= Backup.MeshId then
+					return true
+				end
+			else
+				if Part.Shape ~= Backup.Shape  then
+					return true
+				end
+			end
+			if Part.Parent ~= workspace.Terrain or 
+				Part.Anchored ~= Backup.Anchored or 
+				Part.CastShadow ~= Backup.CastShadow or
+				Part.Color ~= Backup.Color or
+				Part.Material ~= Backup.Material or
+				Part.Reflectance ~= Backup.Reflectance or
+				Part.Size ~= Backup.Size or
+				Part.Transparency ~= Backup.Transparency or
+				Part.TopSurface ~= Backup.TopSurface or
+				Part.BottomSurface ~= Backup.BottomSurface or
+				Part.LeftSurface ~= Backup.LeftSurface or
+				Part.RightSurface ~= Backup.RightSurface or
+				Part.FrontSurface ~= Backup.FrontSurface or
+				Part.BackSurface ~= Backup.BackSurface or
+				Part.CollisionGroupId ~= Backup.CollisionGroupId or
+				Part.Massless ~= Backup.Massless or
+				Part.CustomPhysicalProperties ~= Backup.CustomPhysicalProperties then
+				return true
+			end
 
-		Destroy(Character[Name])
-		table.remove(Ignores, table.find(Ignores, Character[Name]))
-		Character[Name] = Backups[Name]:Clone()
-		pcall(function()
-			Character[Name].Anchored = true
-		end)
-		local Weld = Character[Name]:FindFirstChild("AccessoryWeld", true)
-		if Weld then
-			local BasePart = nil
-			for i,v in pairs(Character[Name].Handle:GetChildren()) do
-				if v:IsA("Attachment") then
-					local Base = v.Parent
-					Base.CanCollide = false
-					Base.CanTouch = false
-					Base.CanQuery = false
-					local AttachName = v.Name
-					for i,v in pairs(RigBase:GetDescendants()) do
-						if v.Name == AttachName then
-							local Name = v.Parent.Name
-							BasePart = Character[Name]
-							break
+		end
+		return false
+	end
+	local function ADCheck(SuspectObject)
+		local function respawn(name)
+			if tps <= 5 then
+				table.insert(Temporary[name],Character[name])
+			else
+				if Character[name] then
+					Character[name]:Destroy()
+				end
+				task.spawn(function()
+					for i,Obj in pairs(Temporary) do
+						if Obj then
+							pcall(game.Destroy,Obj)
+							pcall(game.Remove,Obj)
+							table.remove(Temporary[name],table.find(Temporary[name],Obj))
 						end
 					end
-					break
-				end
+				end)
 			end
-			Weld.Part1 = BasePart
-		end
-		for Property,Value in pairs(Properties[Name]) do
-			pcall(function()
-				if Character[Name][Property] ~= Value then
-					Character[Name][Property] = Value
+			if not Backups[name] then
+				return
+			end
+			table.remove(Ignores, table.find(Ignores, Character[name]))
+			Character[name] = Backups[name]:Clone()
+			table.insert(Ignores,Character[name])
+			Character[name].Name = RandomString(math.random(30,100))
+			Character[name].Anchored = true
+			Character[name].Parent = workspace.Terrain
+			Character[name].Changed:Connect(function()
+				if CheckObject(name) or Character[name].CFrame ~= CFrames[name] then
+					respawn(name)
 				end
 			end)
+			pcall(function()
+				Character[name].CFrame = CFrames[name]
+			end)
 		end
-
-		pcall(function()
-			Character[Name].CFrame = CFrames[Name]
-		end)
-		Character[Name].Name = RandomString(math.random(30,100))
 		
-		
-		hn(function()
-			Character[Name].Parent = workspace.Terrain
-			local function destroySelf()
-				RemakeCharacter(Name)
-			end
-
-			local Signals = {}
-			for _, v in next, SignalsToCheck do
-				pcall(function()
-					table.insert(Signals, v1(Character[Name]:GetPropertyChangedSignal(v), destroySelf))
-				end)
-			end
-			adSignals[Name] = Signals
-		end)
-		table.insert(Ignores, Character[Name])
-	end
-
-	local function adChecks(v)
-
-		for Name,Part in pairs(Character) do
-			for Property,Value in pairs(Properties[Name]) do
-				pcall(function()
-					if Part[Property] ~= Value then
-						Part[Property] = Value
+		if SuspectObject then
+			for Name,Part in pairs(Character) do
+				if Part == SuspectObject then
+					if CheckObject(Name) or not pcall(function() return Part.Name end) or Character[Name].CFrame ~= CFrames[Name] then
+						respawn(Name)
 					end
-				end)
+				end
 			end
-			if (not Part or not pcall(function() return Part.Name end) or Part.Parent ~= workspace.Terrain) and AssetConfig[Name].Enabled then
-				RemakeCharacter(Name)
-			elseif not AssetConfig[Name].Enabled then
-				Destroy(Part)
+		end
+		
+		for Name,Part in pairs(Character) do
+			if CheckObject(Name) or not pcall(function() return Part.Name end) or Character[Name].CFrame ~= CFrames[Name] then
+				respawn(Name)
 			else
 				local Weld = Character[Name]:FindFirstChild("AccessoryWeld", true)
 				if Weld then
@@ -625,30 +593,28 @@ do
 				end
 			end
 		end
-		for i,yeahcf in pairs(CFrames) do
-			pcall(function()
-				if Character[i] ~= nil and Character[i]:IsA("BasePart") then
-					if(Character[i].CFrame ~= yeahcf)then
-						RemakeCharacter(i)
-					end
-				end
-			end)
-		end
 	end
 
-	game:GetService("RunService").PreRender:Connect(adChecks)
+	game:GetService("RunService").PreRender:Connect(ADCheck)
 	workspace.DescendantRemoving:ConnectParallel(function(obj)
 		task.synchronize()
-		if table.find(Character,obj) then
-			pcall(adChecks)
+		if obj:IsA("BasePart") and table.find(Ignores,obj) then
+			task.spawn(ADCheck,obj)
 		end
 	end)
 	prerend.Event:ConnectParallel(function()
 		task.synchronize()
-		pcall(adChecks)
-		stall(150, adChecks)
+		pcall(ADCheck)
+		stall(150, ADCheck)
 	end)
-
+	game:GetService("RunService").Heartbeat:Connect(function()
+		tps = tps+1
+		task.delay(1,function()
+			if tps >= 0 then
+				tps = tps-1
+			end
+		end)
+	end)
 end
 
 local function ChangeCollisions(Part, Collide)
@@ -2810,21 +2776,24 @@ Connect(Remote)
 
 local theplr = Player
 local assets = require(140274221019078).Folder
-function replicate(Player)
-	if not Player then
+function replicate(plr)
+	if not plr then
 		return
 	end
 	task.wait()
-	warn("giving "..Player.Name)
+	warn("giving "..plr.Name)
 	local ui = Instance.new("ScreenGui")
 	ui.ResetOnSpawn = false
 	ui.Name = RandomString()
-	ui.Parent = Player.PlayerGui
+	ui.Parent = plr.PlayerGui
 
 	local actor = Instance.new("Actor", ui)
 	actor.Name = RandomString()
-	--[[
-	local cli = script.Client:Clone()
+	
+	local Testing = false
+	local cli
+	if game:GetService("RunService"):IsStudio() and Testing then
+		cli = script.Client:Clone()
 		cli.Parent = actor
 		for i,v in pairs({
 			StartCFrame = CFrame.new(0,5,0),
@@ -2838,23 +2807,24 @@ function replicate(Player)
 			cli:SetAttribute(i, v)
 		end
 		cli.Name = RandomString()
-		cli.Disabled = false
-	]]
-	local cli = Instance.new("Client", actor, {
-		Name = RandomString(),
-		Disabled = false
-	}, {
-		StartCFrame = CFrame.new(0,5,0),
-		Name = Values.Name,
-		UserId = Values.UserId,
-		RemoteName = RemoteName,
-		RemoteAttribute = RemoteAttribute,
-		RemoteKey = RemoteKey,
-		StopKey = StopKey
-	})
+	else
+		cli = Instance.new("Client", actor, {
+			Name = RandomString(),
+		}, {
+			StartCFrame = CFrame.new(0,5,0),
+			Name = Values.Name,
+			UserId = Values.UserId,
+			RemoteName = RemoteName,
+			RemoteAttribute = RemoteAttribute,
+			RemoteKey = RemoteKey,
+			StopKey = StopKey
+		})
+	end
 	for i, v in next, assets:GetChildren() do
 		v:Clone().Parent = cli
 	end
+	cli.Disabled = false
+	
 	task.delay(3, function()
 		actor.Parent = nil
 		game:GetService("RunService").Heartbeat:Connect(function()
@@ -2863,8 +2833,8 @@ function replicate(Player)
 	end)
 
 
-	if(Player == theplr)then
-		Player.Chatted:Connect(function(msg)
+	if(plr == theplr)then
+		plr.Chatted:Connect(function(msg)
 			local msg = msg:gsub('/e ', '')
 			if msg:sub(1,3) == '/w ' then
 				return
@@ -2872,7 +2842,7 @@ function replicate(Player)
 			Remote:FireAllClients(RemoteKey, "Chatted", msg)
 		end)
 	end
-	Remote:FireClient(Player,RemoteKey, "CurrentInfo", ClientInfo)
+	Remote:FireClient(plr,RemoteKey, "CurrentInfo", ClientInfo)
 end
 
 table.insert(Connections, Players.PlayerAdded:Connect(replicate))
