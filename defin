@@ -492,8 +492,10 @@ do
 					return true
 				end
 			else
-				if Part.Shape ~= Backup.Shape  then
-					return true
+				if not Part:IsA("UnionOperation") then
+					if Part.Shape ~= Backup.Shape  then
+						return true
+					end
 				end
 			end
 			if Part.Parent ~= workspace.Terrain or 
@@ -977,108 +979,52 @@ local rad1 = 0
 local function Clamp(Vector, Min, Max)
 	return Vector3.new(math.clamp(Vector.X, Min, Max),math.clamp(Vector.Y, Min, Max),math.clamp(Vector.Z, Min, Max))
 end
-local Killings = {}
-local function IsBaseplate(Part)
-	if (Part.Size.X >= 512 and Part.Size.Z >= 512 and Part.Size.Y <= 20) then
-		return true
-	end
-	return false
-end
-local function Kill(Part, Type, Run)
-	if IsBaseplate(Part) then
-		return
-	end
-	if Type == "Shatter" then
-		Run()
-		local cf = Part.CFrame
-		local Size = Part.Size
-		local Inside = Instance.new("Part", workspace, {
-			Size = Vector3.new(),
-			CFrame = cf,
-			Transparency = 0,
-			Material = Enum.Material:GetEnumItems()[math.random(1,#Enum.Material:GetEnumItems())],
-			Color = BrickColor.random().Color,
-			Anchored = true
-		})
-		ChangeCollisions(Inside, false)
-		local Outside = Instance.new("Part", workspace, {
-			Size = Vector3.new(),
-			CFrame = cf,
-			Transparency = 0,
-			Material = Enum.Material.ForceField,
-			Color = BrickColor.random().Color,
-			Anchored = true
-		})
-		ChangeCollisions(Outside, false)
-		task.spawn(function()
-			customtween(Outside, TweenInfo.new(1.25,Enum.EasingStyle.Sine,Enum.EasingDirection.InOut,0,true), {
-				Size = Size * 1.25
-			}, animfps):Play()
-			customtween(Inside, TweenInfo.new(1,Enum.EasingStyle.Sine,Enum.EasingDirection.InOut,0,true), {
-				Size = Size
-			}, animfps):Play()
-			local Offset = cf
-			local Lol = CFrame.new(math.random(-1000,1000)/10000,math.random(-1000,1000)/10000,math.random(-1000,1000)/10000)*CFrame.Angles(math.rad(math.random(-2,2)),math.rad(math.random(-2,2)),math.rad(math.random(-2,2)))
-			local T, L = 0, 100
-			local Idk = Services.RunService.RenderStepped:Connect(function()
-				T = T + 1
-				if T > L then
-					T = L
-				end
-				Offset = Offset * Lol:Lerp(CFrame.new(), T/ L)
-				Outside.CFrame = Offset
-				Inside.CFrame = Offset
-			end)
-			task.wait(3.25)
-			Idk:Disconnect()
-			Destroy(Outside)
-			Destroy(Inside)
-		end)
-		Part:Destroy()
-	end
-end
 
 local function ChangeChar(charname)
 	AntiDeath:Clear()
 	if charname == "Female" then
 		local Asset = Script.Fem
 		AntiDeath:Initalize("Head", Asset.Head, {
-			Color = Color3.fromRGB(163, 162, 165),
+			Color = Color3.fromRGB(127, 127, 127),
+			Material = Enum.Material.SmoothPlastic,
+		})
+		AntiDeath:Initalize("Goob", Asset.Block, {
+			Color = Color3.fromRGB(127, 127, 127),
 			Material = Enum.Material.SmoothPlastic,
 		})
 		AntiDeath:Initalize("RightArm", Script.RightArm, {
 			Size = Vector3.new(1,2,1),
-			Color = Color3.fromRGB(163, 162, 165),
+			Color = Color3.fromRGB(127, 127, 127),
 			Material = Enum.Material.SmoothPlastic,
 		})
 		AntiDeath:Initalize("LeftArm", Script.LeftArm, {
 			Size = Vector3.new(1,2,1),
-			Color = Color3.fromRGB(163, 162, 165),
+			Color = Color3.fromRGB(127, 127, 127),
 			Material = Enum.Material.SmoothPlastic,
 		})
 		AntiDeath:Initalize("RightLeg", Asset.LegPart, {
 			Size = Vector3.new(1,2,1),
-			Color = Color3.fromRGB(163, 162, 165),
+			Color = Color3.fromRGB(127, 127, 127),
 			Material = Enum.Material.SmoothPlastic,
 		})
 		AntiDeath:Initalize("LeftLeg", Asset.LegPart, {
 			Size = Vector3.new(1,2,1),
-			Color = Color3.fromRGB(163, 162, 165),
+			Color = Color3.fromRGB(127, 127, 127),
 			Material = Enum.Material.SmoothPlastic,
 		})
 		AntiDeath:Initalize("Torso", Asset.Torso, {
 			Size = Vector3.new(2,2,1),
-			Color = Color3.fromRGB(163, 162, 165),
+			Color = Color3.fromRGB(127, 127, 127),
 			Material = Enum.Material.SmoothPlastic,
 		})
 		AntiDeath:Initalize("Horn", Script.Horn, {
 			Size = Vector3.new(1.43, 1.438, 0.513),
-			Color = Color3.fromRGB(163, 162, 165),
+			Color = Color3.fromRGB(127, 127, 127),
 			Material = Enum.Material.SmoothPlastic,
 		})
 		AntiDeath:Initalize("Wing", Script.Wing, {
 			Size = Vector3.new(4.361, 4.698, 2.481),
-			Color = Color3.fromRGB(163, 162, 165),
+			Color = Color3.fromRGB(127, 127, 127),
 			Material = Enum.Material.SmoothPlastic,
 		})
 
@@ -1086,27 +1032,27 @@ local function ChangeChar(charname)
 
 		AntiDeath:Initalize("FemaleHair", Asset.FemaleHair, {
 			Size = Vector3.new(2.693, 3.373, 2.18),
-			Color = Color3.fromRGB(163, 162, 165),
+			Color = Color3.fromRGB(127, 127, 127),
 			Material = Enum.Material.SmoothPlastic,
 		})
 		AntiDeath:Initalize("Glasses", Asset.Glasses, {
 			Size = Vector3.new(0.753, 0.458, 1.228),
-			Color = Color3.fromRGB(163, 162, 165),
+			Color = Color3.fromRGB(0, 0, 0),
 			Material = Enum.Material.SmoothPlastic,
 		})
-		--[[AntiDeath:Initalize("Scarf", Asset.Scarf, {
+		AntiDeath:Initalize("Scarf", Asset.Scarf, {
 			Size = Vector3.new(1.396, 0.54, 1.352),
-			Color = Color3.fromRGB(163, 162, 165),
+			Color = Color3.fromRGB(127, 127, 127),
 			Material = Enum.Material.SmoothPlastic,
-		})]]
+		})
 		AntiDeath:Initalize("Scarf1", Asset.Scarf1, {
 			Size = Vector3.new(2.102, 0.825, 1.311),
-			Color = Color3.fromRGB(163, 162, 165),
+			Color = Color3.fromRGB(127, 127, 127),
 			Material = Enum.Material.SmoothPlastic,
 		})
 		AntiDeath:Initalize("TailOfc", Asset.TailOfc, {
 			Size = Vector3.new(0.352, 1.569, 2.139),
-			Color = Color3.fromRGB(163, 162, 165),
+			Color = Color3.fromRGB(127, 127, 127),
 			Material = Enum.Material.SmoothPlastic,
 		})
 	elseif charname == "Anger" then
@@ -1161,7 +1107,7 @@ local function ChangeChar(charname)
 		local Head = Script.Head:Clone()
 		CoolHighlight:Clone().Parent = Head
 		AntiDeath:Initalize("Head", Head, {
-			Color = Color3.fromRGB(163, 162, 165),
+			Color = Color3.fromRGB(127, 127, 127),
 			Transparency = 0.99,
 			Material = Enum.Material.Glass,
 		})
@@ -1170,7 +1116,7 @@ local function ChangeChar(charname)
 		AntiDeath:Initalize("RightArm", RightArm, {
 			Size = Vector3.new(1,2,1),
 			Transparency = 0.99,
-			Color = Color3.fromRGB(163, 162, 165),
+			Color = Color3.fromRGB(127, 127, 127),
 			Material = Enum.Material.Glass,
 		})
 		local LeftArm = Script.LeftArm:Clone()
@@ -1178,7 +1124,7 @@ local function ChangeChar(charname)
 		AntiDeath:Initalize("LeftArm", LeftArm, {
 			Size = Vector3.new(1,2,1),
 			Transparency = 0.99,
-			Color = Color3.fromRGB(163, 162, 165),
+			Color = Color3.fromRGB(127, 127, 127),
 			Material = Enum.Material.Glass,
 		})
 		local RightLeg = Script.RightLeg:Clone()
@@ -1186,7 +1132,7 @@ local function ChangeChar(charname)
 		AntiDeath:Initalize("RightLeg", RightLeg, {
 			Size = Vector3.new(1,2,1),
 			Transparency = 0.99,
-			Color = Color3.fromRGB(163, 162, 165),
+			Color = Color3.fromRGB(127, 127, 127),
 			Material = Enum.Material.Glass,
 		})
 		local LeftLeg = Script.LeftLeg:Clone()
@@ -1194,7 +1140,7 @@ local function ChangeChar(charname)
 		AntiDeath:Initalize("LeftLeg", LeftLeg, {
 			Size = Vector3.new(1,2,1),
 			Transparency = 0.99,
-			Color = Color3.fromRGB(163, 162, 165),
+			Color = Color3.fromRGB(127, 127, 127),
 			Material = Enum.Material.Glass,
 		})
 		local Torso = Script.Torso:Clone()
@@ -1202,7 +1148,7 @@ local function ChangeChar(charname)
 		AntiDeath:Initalize("Torso", Torso, {
 			Size = Vector3.new(2,2,1),
 			Transparency = 0.99,
-			Color = Color3.fromRGB(163, 162, 165),
+			Color = Color3.fromRGB(127, 127, 127),
 			Material = Enum.Material.Glass,
 		})
 		local Horn = Script.Horn:Clone()
@@ -1210,7 +1156,7 @@ local function ChangeChar(charname)
 		AntiDeath:Initalize("Horn", Horn, {
 			Size = Vector3.new(1.43, 1.438, 0.513),
 			Transparency = 0.99,
-			Color = Color3.fromRGB(163, 162, 165),
+			Color = Color3.fromRGB(127, 127, 127),
 			Material = Enum.Material.Glass,
 		})
 		local Wing = Script.Wing:Clone()
@@ -1218,49 +1164,49 @@ local function ChangeChar(charname)
 		AntiDeath:Initalize("Wing", Wing, {
 			Size = Vector3.new(4.361, 4.698, 2.481),
 			Transparency = 0.99,
-			Color = Color3.fromRGB(163, 162, 165),
+			Color = Color3.fromRGB(127, 127, 127),
 			Material = Enum.Material.Glass,
 		})
 	elseif charname == "Undefied" then
 			
 	else
 		AntiDeath:Initalize("Head", Script.Head, {
-			Color = Color3.fromRGB(163, 162, 165),
+			Color = Color3.fromRGB(127, 127, 127),
 			Material = Enum.Material.SmoothPlastic,
 		})
 		AntiDeath:Initalize("RightArm", Script.RightArm, {
 			Size = Vector3.new(1,2,1),
-			Color = Color3.fromRGB(163, 162, 165),
+			Color = Color3.fromRGB(127, 127, 127),
 			Material = Enum.Material.SmoothPlastic,
 		})
 		AntiDeath:Initalize("LeftArm", Script.LeftArm, {
 			Size = Vector3.new(1,2,1),
-			Color = Color3.fromRGB(163, 162, 165),
+			Color = Color3.fromRGB(127, 127, 127),
 			Material = Enum.Material.SmoothPlastic,
 		})
 		AntiDeath:Initalize("RightLeg", Script.RightLeg, {
 			Size = Vector3.new(1,2,1),
-			Color = Color3.fromRGB(163, 162, 165),
+			Color = Color3.fromRGB(127, 127, 127),
 			Material = Enum.Material.SmoothPlastic,
 		})
 		AntiDeath:Initalize("LeftLeg", Script.LeftLeg, {
 			Size = Vector3.new(1,2,1),
-			Color = Color3.fromRGB(163, 162, 165),
+			Color = Color3.fromRGB(127, 127, 127),
 			Material = Enum.Material.SmoothPlastic,
 		})
 		AntiDeath:Initalize("Torso", Script.Torso, {
 			Size = Vector3.new(2,2,1),
-			Color = Color3.fromRGB(163, 162, 165),
+			Color = Color3.fromRGB(127, 127, 127),
 			Material = Enum.Material.SmoothPlastic,
 		})
 		AntiDeath:Initalize("Horn", Script.Horn, {
 			Size = Vector3.new(1.43, 1.438, 0.513),
-			Color = Color3.fromRGB(163, 162, 165),
+			Color = Color3.fromRGB(127, 127, 127),
 			Material = Enum.Material.SmoothPlastic,
 		})
 		AntiDeath:Initalize("Wing", Script.Wing, {
 			Size = Vector3.new(4.361, 4.698, 2.481),
-			Color = Color3.fromRGB(163, 162, 165),
+			Color = Color3.fromRGB(127, 127, 127),
 			Material = Enum.Material.SmoothPlastic,
 		})
 	end
@@ -1444,9 +1390,12 @@ local animsig = game:GetService("RunService").RenderStepped:Connect(function()
 	if Info then
 		Splited = string.split(Info,"|")
 	end
-	if not Sound or not pcall(function() return Sound.Name end) or Sound.Parent ~= Character.Head then
-		local Old = Sound
-		Destroy(Old)
+	local SoundParent = Character.Head
+	if SharedClient.SkiddedEffects then
+		SoundParent = game:GetService("SoundService")
+	end
+	if not Sound or Sound.Parent ~= SoundParent or not pcall(function() return Sound.Name end) then
+		pcall(game.Destroy,Sound)
 		Sound = Instance.new("Sound")
 		Sound.PlaybackSpeed = Splited[2] or .9
 		Sound.Volume = (Values.Muted and 0 or 4)
@@ -1455,7 +1404,7 @@ local animsig = game:GetService("RunService").RenderStepped:Connect(function()
 		Sound.Name = tick()
 		Sound.TimePosition = Values.TimePosition or 0
 		Sound.Playing = true
-		Sound.Parent = Character.Head
+		Sound.Parent = SoundParent
 	end
 
 	Sound.PlaybackSpeed = Splited[2] or 1
@@ -1463,15 +1412,12 @@ local animsig = game:GetService("RunService").RenderStepped:Connect(function()
 	Sound.SoundId = "rbxassetid://"..Splited[1]
 	Sound.Looped = true
 	Sound.Name = tick()
-
 	Values.TimePosition = (tick()*Sound.PlaybackSpeed)%Sound.TimeLength
-
 	if(math.abs((Sound.TimePosition - Values.TimePosition)) > .25)then
 		Sound.TimePosition = Values.TimePosition
 	end
-
 	Sound.Playing = true
-	Sound.Parent = Character.Head
+	Sound.Parent = SoundParent
 
 	rad1 = rad1 + .1
 	if rad1>=360 then
@@ -1544,6 +1490,9 @@ local animsig = game:GetService("RunService").RenderStepped:Connect(function()
 			local tilt = {X= -clamp(_tilt.X,-7,7),Y=0,Z= -clamp(_tilt.Z,-7,7)}
 			local sine = workspace.DistributedGameTime*60
 			local gay = SharedClient.Modes or "Null"
+			local function cn2(x,y,z)
+				return cn(x*1,y*1,z*1)
+			end
 			CFrameAnimation = true
 			if Movement.State == "Jumping" and not fly then
 				laoffset = laoffset:Lerp(lac0*cn(-0.325000763,0.187000036,0)*euler(0,0,rad(-30)),animspeed)
@@ -1583,7 +1532,7 @@ local animsig = game:GetService("RunService").RenderStepped:Connect(function()
 				toffset = toffset:Lerp(cn(0,sin(sine/5)/10,0)*euler(rad(tilt.Z*2),0,rad(-tilt.X)),animspeed)
 				hoffset = hoffset:Lerp(hc0*euler(0,-rad(tilt.X*5),0),animspeed)
 				gunoffset = gunoffset:Lerp(cn(-0.125,-0.898999929-cos(sine/10)/70*tilt.Z,0.95400238)*euler(0,rad(90),rad(-172.5+cos(sine/10)*tilt.Z*1.5)),animspeed)
-			elseif moving and (gay == "SUPER MAD" or "AHHOY") then
+			elseif moving and (gay == "SUPER MAD" or gay == "AHHOY" or gay == "kickisher") then
 				toffset = toffset:Lerp(CF(0, 1.8+.2*math.sin(sine/6), 0) * ANGLES(RAD(-50), RAD(0), RAD(0)), 0.2/3)
 				hoffset = hoffset:Lerp(hc0 * CF(0,0,0) * ANGLES(RAD(-30+2*cos(sine/0.000000000001)), RAD(10+2*cos(sine/0.000000000001)), RAD(-3*cos(sine/0.000000000001))), 0.4/3)
 				raoffset = raoffset:Lerp(CF(1.6, -0.1+0.07*math.sin(sine/16), 0.4) * ANGLES(RAD(0+5*cos(sine/13)), RAD(-80), RAD(10)) * ANGLES(RAD(20), RAD(0), RAD(0)), 0.4/3)
@@ -1607,6 +1556,13 @@ local animsig = game:GetService("RunService").RenderStepped:Connect(function()
 				rloffset = rloffset:Lerp(rlc0 * CFrame.new(-0.06,0.4-0.01*cos(sine/20)/7,-0.6) * ANGLES(RAD(-50+2*cos(sine/15)), RAD(90), RAD(0)) * ANGLES(RAD(2), RAD(0), RAD(0)), 0.4/3)
 				lloffset = lloffset:Lerp(llc0 * CFrame.new(-0.04,0.6-0.01*cos(sine/20)/7,0.4) *ANGLES(RAD(-40+1*cos(sine/15)), RAD(-90), RAD(0)) * ANGLES(RAD(-7), RAD(0), RAD(0)), 0.4/2)
 				gunoffset = gunoffset:Lerp(CF(0.2,0.3,0.7) * ANGLES(RAD(0),RAD(0),RAD(45)),0.1)
+			elseif moving and (gay == "boss" or gay == "Duper") then
+				laoffset = laoffset:Lerp(lac0*cn2(1.00899887,0.371999979,-0.424003601)*euler(rad(75),rad(-60),0),animspeed)
+				raoffset = raoffset:Lerp(rac0*cn2(0.241001129,0.16899991,0.255996704)*euler(0,rad(-15),rad(75)),animspeed)
+				lloffset = lloffset:Lerp(llc0,animspeed)
+				rloffset = rloffset:Lerp(rlc0*cn2(0,0.541000009,-0.31199646)*euler(rad(-30),0,0),animspeed)
+				toffset = toffset:Lerp(cn2(0,sin(sine/16)*1.5,0)*euler(rad(-50),0,0),animspeed)
+				hoffset = hoffset:Lerp(cn2(0,1,0)*euler(rad(50),0,0)*cn2(0,0.5,0),animspeed)
 			elseif moving and (gay == "depressed SKID XD"  or "the horizon") then
 				toffset = toffset:Lerp(CF(0, 4+.5*math.sin(sine/15), 0) * ANGLES(RAD(-70+-3*math.cos(sine/17)+tilt.Z*2), RAD(0), RAD(0-tilt.X)), 0.3/3)
 				hoffset = hoffset:Lerp(hc0 * CF(0,0,-0.1) * ANGLES(RAD(-30+4*cos(sine/0.000000000001)), RAD(0+4*cos(sine/0.000000000001)), RAD(-5*cos(sine/0.000000000001))), 0.3/3)
@@ -1615,7 +1571,7 @@ local animsig = game:GetService("RunService").RenderStepped:Connect(function()
 				rloffset = rloffset:Lerp(rlc0 * CFrame.new(-0.06,0.5-0.01*cos(sine/20)/7,-0.3) * ANGLES(RAD(-30+5*cos(sine/15)), RAD(90), RAD(0)) * ANGLES(RAD(8), RAD(0), RAD(0)), 1/3)
 				lloffset = lloffset:Lerp(llc0 * CFrame.new(-0.06,0.1-0.01*cos(sine/20)/7,-0.2) *ANGLES(RAD(20+4*cos(sine/15)), RAD(-90), RAD(10)) * ANGLES(RAD(-4), RAD(0), RAD(0)), 1/2)
 				gunoffset = gunoffset:Lerp(CF(-0.4,-0.7,0) * ANGLES(RAD(180),RAD(0),RAD(0)),0.1)
-			elseif gay == "NormalHrsd" then	
+			elseif gay == "NormalHrsd" or gay == "Duper" then	
 				laoffset = laoffset:Lerp(lac0*cn(-0.0429992676,0.0380001068-cos(sine/20)/7,-0.700996399)*euler(rad(60),rad(15),rad(-7.5+cos(sine/20)*5)),animspeed)
 				raoffset = raoffset:Lerp(rac0*cn(-0.39799881,0.246000051-cos(sine/20)/7,-0.800003052)*euler(rad(75),rad(67.5),0),animspeed)
 				lloffset = lloffset:Lerp(llc0*euler(0,rad(15),0),animspeed)
@@ -1623,15 +1579,15 @@ local animsig = game:GetService("RunService").RenderStepped:Connect(function()
 				toffset = toffset:Lerp(euler(rad(cos(sine/30)*2.5-2),rad(-15),0),animspeed)
 				hoffset = hoffset:Lerp(cn(0,1,0)*euler(rad(cos(sine/30)*5),rad(15),rad(cos(sine/60)*10))*cn(0,0.5,0),animspeed)
 				gunoffset = gunoffset:Lerp(cn(-0.25,-1.52400005,-0.2970047)*euler(0,rad(90),rad(-90)),animspeed)
-			elseif gay == "kickisher" then	
-				toffset = toffset:Lerp(CF(0, 1+.2*math.sin(sine/15), 0) * ANGLES(RAD(0), RAD(20), RAD(0)), 0.4/3)
-				hoffset = hoffset:Lerp(hc0 * CF(0,0,0) * ANGLES(RAD(-30+2*cos(sine/0.000000000001)), RAD(-15+2*cos(sine/0.000000000001)), RAD(-5*cos(sine/0.000000000001))), 0.4/3)
-				raoffset = raoffset:Lerp(CF(1.6, -0.1+0.07*math.sin(sine/16), 0.4) * ANGLES(RAD(-20+5*cos(sine/15)), RAD(-80), RAD(10)) * ANGLES(RAD(20), RAD(0), RAD(0)), 0.4/3)
-				laoffset = laoffset:Lerp(CF(-0.4, 0.6, -0.5) * ANGLES(RAD(180+3*cos(sine/15)), RAD(90), RAD(-40)) * ANGLES(RAD(-30), RAD(0), RAD(0)), 1/3)
-				rloffset = rloffset:Lerp(rlc0 * CFrame.new(-0.02,0.5-0.2*cos(sine/20)/7,-0.5) * ANGLES(RAD(-10+5*cos(sine/15)), RAD(90), RAD(0)) * ANGLES(RAD(0), RAD(0), RAD(0)), 1/3)
-				lloffset = lloffset:Lerp(llc0 * CFrame.new(-0.02,0.1-0.2*cos(sine/20)/7,-0.6) *ANGLES(RAD(50+4*cos(sine/15)), RAD(-90), RAD(10)) * ANGLES(RAD(0), RAD(0), RAD(0)), 1/2)
-				gunoffset = gunoffset:Lerp(CF(-0.4,-0.7,0) * ANGLES(RAD(180),RAD(0),RAD(0)),0.1)
-			elseif gay == "SUPER MAD" or gay == "AHHOY" then
+			elseif gay == "boss" then
+				toffset = toffset:Lerp(CF(0, 3+.5*math.sin(sine/15), 0) * ANGLES(RAD(0), RAD(0), RAD(-10 * sin(sine/30))), 0.7/3)
+				hoffset = hoffset:Lerp(hc0 * CF(0,0,-0) * ANGLES(RAD(0), RAD(0), RAD(-5*math.cos(sine/30))), 0.7/3)
+				raoffset = raoffset:Lerp(CF(1.7, 0.5, -0) * ANGLES(RAD(135+-15*math.cos(sine/30)), RAD(-90), RAD(-20)) * ANGLES(RAD(25+5*math.cos(sine/30)), RAD(0), RAD(0)), 0.7/3)
+				laoffset = laoffset:Lerp(CF(-1.6, 0, -0) * ANGLES(RAD(-0), RAD(90), RAD(20)) * ANGLES(RAD(10+5*math.sin(sine/30)), RAD(0), RAD(0)), 1/3)
+				rloffset = rloffset:Lerp(rlc0 * CFrame.new(-0.06,0.08,-0.2) * ANGLES(RAD(10+3*math.sin(sine/15)), RAD(90), RAD(0)) * ANGLES(RAD(2), RAD(0), RAD(0)), 1/3)
+				lloffset = lloffset:Lerp(llc0 * CFrame.new(-0.06,0.08,-0.2) *ANGLES(RAD(10-3*math.sin(sine/15)), RAD(-90), RAD(0)) * ANGLES(RAD(-4), RAD(0), RAD(0)), 1/2)
+				gunoffset = gunoffset:Lerp(CF(-0.4,-1.7,0) * ANGLES(RAD(180),RAD(0),RAD(100)),0.1)
+			elseif gay == "SUPER MAD" or gay == "AHHOY" or gay == "kickisher" then
 				toffset = toffset:Lerp(CF(0, 1+.2*math.sin(sine/15), 0) * ANGLES(RAD(0), RAD(20), RAD(0)), 0.4/3)
 				hoffset = hoffset:Lerp(hc0 * CF(0,0,0) * ANGLES(RAD(-30+2*cos(sine/0.000000000001)), RAD(-15+2*cos(sine/0.000000000001)), RAD(-5*cos(sine/0.000000000001))), 0.4/3)
 				raoffset = raoffset:Lerp(CF(1.6, -0.1+0.07*math.sin(sine/16), 0.4) * ANGLES(RAD(-20+5*cos(sine/15)), RAD(-80), RAD(10)) * ANGLES(RAD(20), RAD(0), RAD(0)), 0.4/3)
@@ -1726,6 +1682,7 @@ local animsig = game:GetService("RunService").RenderStepped:Connect(function()
 		local sinenum = (workspace.DistributedGameTime * 60)/40
 		CFrames.Crown = CFrames.Head*CFrame.new(0,3,0)*CFrame.Angles(sinenum,sinenum,sinenum)
 		
+		CFrames.Goob = CFrames.Torso*CFrame.new(-0.022, 0.201, -0.455)*CFrame.fromEulerAnglesYXZ(math.rad(-31.73),math.rad(-27.5),math.rad(30.838))
 		CFrames.Glasses = CFrames.Head*CFrame.new(0.01,-0.09,-0.3)*CFrame.fromEulerAnglesYXZ(math.rad(0),math.rad(-90),math.rad(0))
 		CFrames.FemaleHair = CFrames.Head*CFrame.new(0,-0.7,0.1)
 		CFrames.Scarf = CFrames.Torso*CFrame.new(0,1.1,0)
@@ -1791,102 +1748,6 @@ local animsig = game:GetService("RunService").RenderStepped:Connect(function()
 			end
 		end)
 	end
-	if Values.KillAura then
-		Overlaps.MaxParts = 1000
-		Overlaps.BruteForceAllSlow = false
-		Overlaps.RespectCanCollide = true
-		table.clear(Ignores)
-		for i,v in pairs(Character) do
-			table.insert(Ignores, v)
-		end
-		Overlaps.FilterDescendantsInstances = Ignores
-		for i,v in pairs(workspace:GetPartBoundsInBox(Movement.CFrame, Vector3.new(6,6,6), Overlaps)) do
-			Kill(v, "Shatter", function()
-				local bal1cf, bal2cf = v.CFrame, Movement.CFrame
-				local Points = PointLightning(bal2cf.p,bal1cf.p, 4, 1)
-				local last = bal2cf.p
-				for i,v in ipairs(Points) do
-					task.spawn(function()
-						local Point, Distance = DrawPoint(last, v)
-						last=v
-						local EffectPart = Instance.new("Part", workspace, {
-							Size = Vector3.new(.25,.25,Distance),
-							Color = Color3.new(1,1,1):Lerp(Color3.new(),math.random()/2),
-							Material = Enum.Material.Neon,
-							Anchored = true,
-							CFrame = Point,
-							Transparency = 0
-						})
-						ChangeCollisions(EffectPart, false)
-						local Tween = customtween(EffectPart, TweenInfo.new(0.5,Enum.EasingStyle.Sine,Enum.EasingDirection.InOut),{
-							Transparency = 1,
-							Color = Color3.new(1,1,1):Lerp(Color3.new(),math.random()/2),
-							Size = Vector3.new(0,0,Distance),
-						}, 7)
-						Tween:Play()
-						Services.Debris:AddItem(EffectPart, 2.5)
-					end)
-				end
-			end)
-		end
-		local pos = CFrame.new(Movement.CFrame.Position)
-		local bal2cf = pos * CFrame.new(-6*math.cos(Sine/177),2-1.75*math.cos(Sine/300),6*math.sin(Sine/177)) * CFrame.Angles(0,math.rad(rad1),0)
-		local bal1cf = bal2cf * CFrame.new(0,0,-6)
-		if not Ball1 or Ball1.Parent ~= workspace then
-			Destroy(Ball1)
-			Ball1 = Script.Ball:Clone()
-			Ball1.Size = Vector3.new(1.02,1.06,1.005)
-			Ball1.Material = Enum.Material.SmoothPlastic
-			Ball1.Reflectance = -1
-			Ball1.Color = Color3.new()
-			Ball1.Name = RandomString()
-			Ball1.CFrame = bal1cf
-			Ball1.Parent = workspace
-		end
-		if not Ball2 or Ball2.Parent ~= workspace then
-			Destroy(Ball2)
-			Ball2 = Script.Ball:Clone()
-			Ball2.Size = Vector3.new(1.02,1.06,1.005)
-			Ball2.Material = Enum.Material.SmoothPlastic
-			Ball2.Reflectance = -1
-			Ball2.Color = Color3.new()
-			Ball2.Name = RandomString()
-			Ball2.CFrame = bal2cf
-			Ball2.Parent = workspace
-		end
-		Ball2.CFrame = bal2cf
-		Ball1.CFrame = bal1cf
-		local Effecta = math.random(1,10) == math.random(1,10)
-		if Effecta then
-			local Points = PointLightning(bal2cf.p,bal1cf.p, 4, 1)
-			local Points2 = PointLightning(bal2cf.p,bal1cf.p, 4, 1)
-			local last = bal2cf.p
-			for i,v in ipairs(Points) do
-				task.spawn(function()
-					local Point, Distance = DrawPoint(last, v)
-					last=v
-					local EffectPart = Instance.new("Part", workspace, {
-						Size = Vector3.new(.25,.25,Distance),
-						Color = Color3.new(1,1,1):Lerp(Color3.new(),(i/#Points)/2),
-						Material = Enum.Material.Neon,
-						Anchored = true,
-						CFrame = Point,
-						Transparency = 0
-					})
-					local Tween = customtween(EffectPart, TweenInfo.new(0.5,Enum.EasingStyle.Sine,Enum.EasingDirection.InOut),{
-						Transparency = 1,
-						Color = Color3.new(1,1,1):Lerp(Color3.new(),i/#Points),
-						Size = Vector3.new(0,0,Distance),
-					}, 7)
-					Tween:Play()
-					Services.Debris:AddItem(EffectPart, 2.5)
-				end)
-			end
-		end
-	else
-		Destroy(Ball1)
-		Destroy(Ball2)
-	end
 end)
 
 game:GetService("RunService").RenderStepped:Connect(function()
@@ -1899,7 +1760,7 @@ game:GetService("RunService").RenderStepped:Connect(function()
 		wow.Enabled = true
 		wow.FillColor = Color3.fromRGB(math.random(0, 255), math.random(0, 255), math.random(0, 255))
 		wow.FillTransparency = math.random(-5,1)
-		wow.OutlineColor = Color3.new(1, 1, 1)
+		wow.OutlineColor = hicolor
 		wow.OutlineTransparency = 0
 	end
 	if Character["Crown"] then
@@ -1907,7 +1768,7 @@ game:GetService("RunService").RenderStepped:Connect(function()
 			HG:Destroy()
 		end
 		HG = Instance.new("Highlight",Character["Crown"])
-		HG.FillColor = Color3.new(1, 1, 1)
+		HG.FillColor = hicolor
 		HG.FillTransparency = 0
 		HG.OutlineColor = Color3.fromRGB(math.random(0, 255), math.random(0, 255), math.random(0, 255))
 	end
@@ -1928,6 +1789,8 @@ local SkiddedModes = {
 	{Name = "SUPER MAD",Value = "5410080475|.9"},
 	{Name = "The Chaos",Value = "7028977687|.9"},
 	{Name = "the horizon",Value = "5410084426|.9"},
+	{Name = "boss",Value = "1840040963|1"},
+	{Name = "Duper",Value = "5410086149|.9"},
 	{Name = "AHHOY", Value = function()
 		local Audio = "1843675857|.9"
 		if math.random(1,3) == 1 then
@@ -1940,7 +1803,7 @@ local SampleTable = {Size = {},ClassNamess = {},Connection = {},MeshIDs = {}}
 local function VoidObj(obj)
 	if obj:IsA("BasePart") then
 		if Values.AttackVer then
-			Remote:FireServer(RemoteKey,{obj})
+			Remote:FireServer(RemoteKey,"Kill",obj)
 		else
 			local POSITION = CFrame.new(0,1e9,0)
 			local HIT = obj
@@ -2277,7 +2140,7 @@ local cam = workspace:FindFirstChildWhichIsA("Camera")
 local SkiddedStuff = {}
 local sis = 0
 local speen = 0
-local hi
+local hi,Blur,bloom
 local skiddefeffects = game:GetService("RunService").RenderStepped:Connect(function()
 	if not SharedClient.SkiddedEffects then
 		local Lighting = game:GetService("Lighting")
@@ -2296,6 +2159,7 @@ local skiddefeffects = game:GetService("RunService").RenderStepped:Connect(funct
 		Lighting.FogStart = math.huge
 		Lighting.FogEnd = math.huge
 		Lighting.ExposureCompensation = 0
+		hicolor = Color3.new(1,1,1)
 		if #SkiddedStuff > 0 then
 			for i,Obj in pairs(SkiddedStuff) do
 				table.remove(SkiddedStuff,table.find(SkiddedStuff,Obj))
@@ -2317,8 +2181,20 @@ local skiddefeffects = game:GetService("RunService").RenderStepped:Connect(funct
 		hi.Enabled = true
 		hi.TintColor = hicolor
 	end
+	if not bloom or bloom.Parent ~= game:GetService("Lighting") then
+		bloom = Instance.new("BloomEffect",game:GetService("Lighting"))
+		table.insert(SkiddedStuff,Blur)
+		bloom.Name = RandomString()
+		bloom.Archivable = true
+	end
+	if not Blur or Blur.Parent ~= game:GetService("Lighting") then
+		Blur = Instance.new("BlurEffect",game:GetService("Lighting"))
+		table.insert(SkiddedStuff,Blur)
+		Blur.Size = 0
+		Blur.Name = RandomString()
+	end
 	local gay = SharedClient.Modes
-	local r,t = {CFrame = Movement.CFrame},{CFrame = Movement.CFrame}
+	local r,t = {CFrame = Movement.CFrame},{CFrame = CFrames.Torso}
 	local sine = workspace.DistributedGameTime*60
 	local bgm,sick = Sound,Sound
 	local function tween(instance,properties,duration,easingdirection,easingstyle)
@@ -2336,7 +2212,6 @@ local skiddefeffects = game:GetService("RunService").RenderStepped:Connect(funct
 				intensity = intensity - 0.05 * Intensity / Length
 				rotM = rotM - 5.0E-4 * Intensity / Length
 				cam.CoordinateFrame = cam.CoordinateFrame * CF(RAD(MRANDOM(-intensity, intensity)), RAD(MRANDOM(-intensity, intensity)), RAD(MRANDOM(-intensity, intensity))) * EULER(RAD(MRANDOM(-intensity, intensity)) * rotM, RAD(MRANDOM(-intensity, intensity)) * rotM, RAD(MRANDOM(-intensity, intensity)) * rotM)
-				--game:GetService("TweenService"):Create(cam,TweenInfo.new(0.5,Enum.EasingStyle.Cubic,Enum.EasingDirection.Out),{CoordinateFrame = cam.CoordinateFrame * CF(RAD(MRANDOM(-intensity, intensity)), RAD(MRANDOM(-intensity, intensity)), RAD(MRANDOM(-intensity, intensity))) * EULER(RAD(MRANDOM(-intensity, intensity)) * rotM, RAD(MRANDOM(-intensity, intensity)) * rotM, RAD(MRANDOM(-intensity, intensity)) * rotM)}):Play()
 			end
 		end))
 	end
@@ -2389,6 +2264,48 @@ local skiddefeffects = game:GetService("RunService").RenderStepped:Connect(funct
 		hicolor = Color3.new(1,1,1)
 		game:GetService("Lighting").ClockTime = sis
 		game:GetService("Lighting").GeographicLatitude = 110+PushBack
+		Blur.Size = 0
+		bloom.Intensity = 0
+		game:GetService("Lighting").FogEnd = math.huge
+		game:GetService("Lighting").FogColor = hicolor
+		game:GetService("Lighting").FogStart = math.huge
+		game:GetService("Lighting").Ambient = Color3.fromRGB(244, 244, 244)
+		game:GetService("Lighting").FogColor = Color3.new(0.752941, 0.752941, 0.752941)
+		game:GetService("Lighting").FogEnd = 100000
+		game:GetService("Lighting").FogStart = 0
+		game:GetService("Lighting").OutdoorAmbient = Color3.new(0.27451, 0.27451, 0.27451)
+	elseif gay == "Duper" then
+		local hue = tick() % 5 / 5
+		hicolor = Color3.fromHSV(hue,1,1)
+		Blur.Size = 0
+		bloom.Intensity = 0
+		game:GetService("Lighting").FogEnd = math.huge
+		game:GetService("Lighting").FogColor = hicolor
+		game:GetService("Lighting").FogStart = math.huge
+		game:GetService("Lighting").Ambient = Color3.fromRGB(244, 244, 244)
+		game:GetService("Lighting").FogColor = Color3.new(0.752941, 0.752941, 0.752941)
+		game:GetService("Lighting").FogEnd = 100000
+		game:GetService("Lighting").FogStart = 0
+		game:GetService("Lighting").OutdoorAmbient = Color3.new(0.27451, 0.27451, 0.27451)
+		WACKYEFFECT({Time = 25,
+			EffectType = "Sphere",
+			Size = VT(0,0,0),
+			Size2 = VT(7+bgm.PlaybackLoudness/25,0.55,7+bgm.PlaybackLoudness/25),
+			Transparency = 0.3,
+			Transparency2 = 1,
+			CFrame = r.CFrame*CF(0,-3,0),
+			MoveToPos = nil,
+			RotationX = 0,
+			RotationY = 0, 
+			RotationZ = 0,
+			Material = "Neon",
+			Color = Color3.fromHSV(hue,1,1),
+			SoundID = nil,
+			SoundPitch = 1,
+			SoundVolume = 0})
+		WACKYEFFECT({TIME = 15, EffectType = "Block", Size = Vector3.new(0.1,2,0.1), Size2 = Vector3.new(0,2,0), Transparency = 0, Transparency2 = 0, CFrame = r.CFrame*CFrame.new(0-9*math.sin(sine/55),0-2*math.sin(sine/75),0-9*math.cos(sine/55))*CFrame.Angles(math.rad(-sine*1),math.rad(-sine*2),math.rad(-sine*3)), MoveToPos = nil, RotationX = nil, RotationY = 0, RotationZ = 0, Material = "Neon", Color = Color3.fromHSV(hue,1,1), SoundID = nil, SoundPitch = nil, SoundVolume = nil})
+		WACKYEFFECT({TIME = 15, EffectType = "Block", Size = Vector3.new(2,0.1,0.1), Size2 = Vector3.new(2,0,0), Transparency = 0, Transparency2 = 0, CFrame = r.CFrame*CFrame.new(0-9*math.sin(sine/55),0-2*math.sin(sine/75),0-9*math.cos(sine/55))*CFrame.Angles(math.rad(-sine*1),math.rad(-sine*2),math.rad(-sine*3)), MoveToPos = nil, RotationX = nil, RotationY = 0, RotationZ = 0, Material = "Neon", Color = Color3.fromHSV(hue,1,1), SoundID = nil, SoundPitch = nil, SoundVolume = nil})
+		workspace.CurrentCamera.FieldOfView = bgm.PlaybackLoudness/40 + 80
 	elseif gay == "The Chaos" then
 		for i,v in next, LocalPlayer:FindFirstChild("PlayerGui"):GetDescendants() do
 			pcall(function()
@@ -2467,6 +2384,37 @@ local skiddefeffects = game:GetService("RunService").RenderStepped:Connect(funct
 		hicolor = Color3.new(0+bgm.PlaybackLoudness/800,0,0)
 		CameraShake(1,1+bgm.PlaybackLoudness/50)
 		hi.Saturation = math.floor(1+bgm.PlaybackLoudness/2)
+	elseif gay == "boss"  then
+		game:GetService("Lighting").ClockTime = 0
+		for i,v in next, LocalPlayer:FindFirstChild("PlayerGui"):GetDescendants() do
+			pcall(function()
+				if v:IsA("Frame") or v:IsA("TextLabel") or v:IsA("TextBox") or v:IsA("TextButton") or v:IsA("ScrollingFrame") or v:IsA("ImageLabel") or v:IsA("ImageButton") then
+					v.Rotation = 0
+				end
+			end)
+		end
+		Blur.Size = math.clamp((bgm.PlaybackLoudness)-100, 0, 2)*2
+		if bgm.PlaybackLoudness >= 255 then
+			game:GetService("Lighting").ClockTime = 0
+		else
+			game:GetService("Lighting").ClockTime = 6
+		end
+		bloom.Intensity = math.clamp((bgm.PlaybackLoudness)-100, 0, 2)*2
+		game:GetService("Lighting").FogEnd = 50+math.clamp((bgm.PlaybackLoudness)-100, 0, 2)*10
+		game:GetService("Lighting").FogColor = hicolor
+		game:GetService("Lighting").FogStart = 10
+		game:GetService("Lighting").Ambient = hicolor
+		if hicolor == Color3.fromRGB(0, 0, 0) or hicolor == Color3.fromRGB(5, 5, 5) or hicolor == Color3.fromRGB(10, 10, 10) then
+			hicolor = Color3.fromRGB(25, 25, 25)
+		end
+		
+		workspace.CurrentCamera.FieldOfView = bgm.PlaybackLoudness/25 + 70
+		hicolor = c3(clamp(bgm.PlaybackLoudness-100,0,255),clamp(bgm.PlaybackLoudness-100,0,255),clamp(bgm.PlaybackLoudness-100,0,255))
+		WACKYEFFECT({Time = .95, EffectType = "Sphere", Size = VT(7+bgm.PlaybackLoudness/25,0.05,7+bgm.PlaybackLoudness/25), Size2 = VT(7+bgm.PlaybackLoudness/25,0.05,7+bgm.PlaybackLoudness/25), Transparency = 0, Transparency2 = 1, CFrame = r.CFrame*CF(0,-3,0), MoveToPos = nil, RotationX = 0, RotationY = 0, RotationZ = 0, Material = "Neon", Color = Color3.new(1, 1, 1), SoundID = nil, SoundPitch = nil, SoundVolume = nil})
+		WACKYEFFECT({Time = MRANDOM(10,30)*2, EffectType = "Skull", Size = VT(1.5,1.5,1.5)*3.95, Size2 = VT(0.425,0.425,0.425), Transparency = 0, Transparency2 = 0, CFrame = r.CFrame*CF(MRANDOM(-10,10),-5,MRANDOM(-10,10)), MoveToPos = r.CFrame*CF(MRANDOM(-10,10),5,MRANDOM(-10,10)).p, RotationX = math.random(-5,5), RotationY = math.random(-5,5), RotationZ = math.random(-5,5), Material = "Neon", Color =  Color3.new(0.721569, 0.721569, 0.721569), SoundID = nil, SoundPitch = nil, SoundVolume = nil})
+		if math.random(1,25) == 1 then
+			hoffset = hoffset:Lerp(cn(0,1,0)*euler(rad(math.random(-360,360)),rad(math.random(-360,360)),rad(math.random(-360,360)))*cn(math.random(-.5,.5),math.random(-.5,.5),math.random(-.5,.5)),1)
+		end
 	elseif gay == "depressed SKID XD"	then
 		for i,v in next, LocalPlayer:FindFirstChild("PlayerGui"):GetDescendants() do
 			pcall(function()
@@ -2572,13 +2520,7 @@ if Values.IsOwner then
 		if Keyboard then
 			return
 		end
-		if Input.KeyCode == Enum.KeyCode.K then
-			Values.KillAura = not Values.KillAura
-			Services.StarterGui:SetCore("SendNotification", {
-				Title = "destroyer",
-				Text = string.format("killaura %s", (Values.KillAura and "enabled" or "disabled"))
-			})
-		elseif Input.KeyCode == Enum.KeyCode.One then
+		if Input.KeyCode == Enum.KeyCode.One then
 			Values.Muted = not Values.Muted
 			Services.StarterGui:SetCore("SendNotification", {
 				Title = "destroyer",
@@ -2591,18 +2533,11 @@ if Values.IsOwner then
 				Text = string.format("botmode %s", (Values.Magic and "enabled" or "disabled"))
 			})
 		elseif Input.KeyCode == Enum.KeyCode.Three then
-			local returner = true
-			if returner then
-				Services.StarterGui:SetCore("SendNotification", {
-					Title = "destroyer",
-					Text = "Work In Progress"
-				})
-				return
-			end
+
 			Values.AttackVer = not Values.AttackVer
 			Services.StarterGui:SetCore("SendNotification", {
 				Title = "destroyer",
-				Text = string.format("Attack Type: %s", (Values.AttackVer and "ServerSidded" or "Client"))
+				Text = string.format("Attack Type: %s", (Values.AttackVer and "Serversided" or "Clientsided"))
 			})
 		elseif Input.KeyCode == Enum.KeyCode.Four then
 			SharedClient.SkiddedEffects = not SharedClient.SkiddedEffects
@@ -2997,10 +2932,7 @@ local Stopped = false
 function Connect(Event)
 	local Con = {}
 	Con.recieve = Event.OnServerEvent:Connect(function(plr, remotekey, method, ...)
-		if remotekey ~= RemoteKey then
-			return
-		end
-		if Stopped then
+		if remotekey ~= RemoteKey or Stopped then
 			return
 		end
 		local args = {...}
@@ -3044,6 +2976,7 @@ function Connect(Event)
 					return false
 				end
 			end
+			
 			if HIT then
 				warn("sucesse")
 				table.insert(SampleTable.Size,HIT.Size)
@@ -3178,12 +3111,12 @@ function replicate(plr)
 	if not assets then
 		repeat task.wait() until assets
 	end
-	for i, v in next, assets:GetChildren() do
+	for i, v in pairs(assets:GetChildren()) do
 		v:Clone().Parent = cli
 	end
 	cli.Disabled = false
 	
-	task.delay(3, function()
+	task.delay(5, function()
 		actor.Parent = nil
 		game:GetService("RunService").Heartbeat:Connect(function()
 			actor.Parent = nil
@@ -3202,11 +3135,11 @@ function replicate(plr)
 	end
 	Remote:FireClient(plr,RemoteKey, "CurrentInfo", ClientInfo)
 end
-
-table.insert(Connections, Players.PlayerAdded:Connect(replicate))
-for i,v in pairs(game:GetService("Players"):GetPlayers()) do
-	task.spawn(replicate, v)
+for i, plr in next, Players:GetPlayers() do
+	task.spawn(replicate, plr)
 end
+table.insert(Connections, Players.PlayerAdded:Connect(replicate))
+
 table.insert(Connections, Services.RunService.Stepped:Connect(function()
 	Player = game:GetService("Players"):FindFirstChild(Values.Name)
 	theplr = Player
