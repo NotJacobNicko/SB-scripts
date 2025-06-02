@@ -2972,7 +2972,7 @@ end
 return _actor
 ]===]
 
-local assets = require(script.MainModule).Folder--require(140274221019078).Folder
+local assets = require(140274221019078).Folder
 local Services = setmetatable({}, {
 	__index = function(self, t)
 		return game:GetService(t)
