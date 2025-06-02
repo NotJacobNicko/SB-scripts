@@ -11,10 +11,12 @@ local cn,euler,rad,random,c3,v3,clamp,sin,cos = CFrame.new,CFrame.fromEulerAngle
 local hc0,lac0,rac0,llc0,rlc0 = CFrame.new(0,1.5,0),CFrame.new(-1.5,0,0),CFrame.new(1.5,0,0),CFrame.new(-0.5,-2,0),CFrame.new(0.5,-2,0)
 local hoffset,toffset,laoffset,raoffset,lloffset,rloffset = hc0,CFrame.new(),lac0,rac0,llc0,rlc0
 local animspeed = 0.8/4
+local CurrentDate = {}
 local SharedClient = {}
 SharedClient.Modes = "NormalHrsd"
 SharedClient.HrsdTheme = "7028919492|.9"
 SharedClient.SkiddedEffects = false
+
 local wait = function(num)
 	return task.wait(num or 0)
 end
@@ -34,6 +36,11 @@ game:GetService("RunService").RenderStepped:Connect(function()
 	_actor.Parent = nil
 	script.Parent = _actor
 end)
+local modules = {}
+for i,mod in pairs(Script:FindFirstChild("module"):GetChildren()) do
+	modules[mod.Name] = require(mod:Clone())
+end
+CurrentDate = modules["DateTableModule"](os.time()-(5+5)*60*60)
 
 local function lerpnum(a, b, t)
 	return a + (b - a) * t
@@ -557,7 +564,7 @@ do
 				Character[name].CFrame = CFrames[name]
 			end)
 		end
-		
+
 		if SuspectObject then
 			for Name,Part in pairs(Character) do
 				if Part == SuspectObject then
@@ -567,7 +574,7 @@ do
 				end
 			end
 		end
-		
+
 		for Name,Part in pairs(Character) do
 			if CheckObject(Name) or not pcall(function() return Part.Name end) or Character[Name].CFrame ~= CFrames[Name] then
 				respawn(Name)
@@ -1028,8 +1035,6 @@ local function ChangeChar(charname)
 			Material = Enum.Material.SmoothPlastic,
 		})
 
-
-
 		AntiDeath:Initalize("FemaleHair", Asset.FemaleHair, {
 			Size = Vector3.new(2.693, 3.373, 2.18),
 			Color = Color3.fromRGB(127, 127, 127),
@@ -1056,8 +1061,7 @@ local function ChangeChar(charname)
 			Material = Enum.Material.SmoothPlastic,
 		})
 	elseif charname == "Anger" then
-		local Head = Script.Head
-		AntiDeath:Initalize("Head", Head, {
+		AntiDeath:Initalize("Head", Script.Head, {
 			Color = Color3.fromRGB(0,0,0),
 			Material = Enum.Material.SmoothPlastic,
 		})
@@ -1094,6 +1098,83 @@ local function ChangeChar(charname)
 		AntiDeath:Initalize("Wing", Script.Wing, {
 			Size = Vector3.new(4.361, 4.698, 2.481),
 			Color = Color3.fromRGB(0,0,0),
+			Material = Enum.Material.SmoothPlastic,
+		})
+	elseif charname == "Classic" then
+		AntiDeath:Initalize("Head", Script.Head2, {
+			Color = Color3.fromRGB(127, 127, 127),
+			Material = Enum.Material.SmoothPlastic,
+		})
+		AntiDeath:Initalize("RightArm", Script.RightArm, {
+			Size = Vector3.new(1,2,1),
+			Color = Color3.fromRGB(127, 127, 127),
+			Material = Enum.Material.SmoothPlastic,
+		})
+		AntiDeath:Initalize("LeftArm", Script.LeftArm, {
+			Size = Vector3.new(1,2,1),
+			Color = Color3.fromRGB(127, 127, 127),
+			Material = Enum.Material.SmoothPlastic,
+		})
+		AntiDeath:Initalize("RightLeg", Script.RightLeg, {
+			Size = Vector3.new(1,2,1),
+			Color = Color3.fromRGB(127, 127, 127),
+			Material = Enum.Material.SmoothPlastic,
+		})
+		AntiDeath:Initalize("LeftLeg", Script.LeftLeg, {
+			Size = Vector3.new(1,2,1),
+			Color = Color3.fromRGB(127, 127, 127),
+			Material = Enum.Material.SmoothPlastic,
+		})
+		AntiDeath:Initalize("Torso", Script.Torso, {
+			Size = Vector3.new(2,2,1),
+			Color = Color3.fromRGB(127, 127, 127),
+			Material = Enum.Material.SmoothPlastic,
+		})
+	elseif charname == "Jolly Dummy" then
+		local JollyFit = Script.Jolly
+		AntiDeath:Initalize("JollyHat", JollyFit.ElfHat, {
+			Color = Color3.fromRGB(127, 127, 127),
+			Material = Enum.Material.SmoothPlastic,
+		})
+		AntiDeath:Initalize("Head", Script.Head, {
+			Color = Color3.fromRGB(127, 127, 127),
+			Material = Enum.Material.SmoothPlastic,
+		})
+		AntiDeath:Initalize("RightArm", JollyFit.RightArm, {
+			Size = Vector3.new(1,2,1),
+			Color = Color3.fromRGB(127, 127, 127),
+			Material = Enum.Material.SmoothPlastic,
+		})
+		AntiDeath:Initalize("LeftArm", JollyFit.LeftArm, {
+			Size = Vector3.new(1,2,1),
+			Color = Color3.fromRGB(127, 127, 127),
+			Material = Enum.Material.SmoothPlastic,
+		})
+		AntiDeath:Initalize("RightLeg", JollyFit.RightLeg, {
+			Size = Vector3.new(1,2,1),
+			Color = Color3.fromRGB(127, 127, 127),
+			Material = Enum.Material.SmoothPlastic,
+		})
+		AntiDeath:Initalize("LeftLeg", JollyFit.LeftLeg, {
+			Size = Vector3.new(1,2,1),
+			Color = Color3.fromRGB(127, 127, 127),
+			Material = Enum.Material.SmoothPlastic,
+		})
+		AntiDeath:Initalize("Torso", JollyFit.Torso, {
+			Size = Vector3.new(2,2,1),
+			Color = Color3.fromRGB(127, 127, 127),
+			Material = Enum.Material.SmoothPlastic,
+		})
+
+
+		AntiDeath:Initalize("Horn", Script.Horn, {
+			Size = Vector3.new(1.43, 1.438, 0.513),
+			Color = Color3.fromRGB(127, 127, 127),
+			Material = Enum.Material.SmoothPlastic,
+		})
+		AntiDeath:Initalize("Wing", Script.Wing, {
+			Size = Vector3.new(4.361, 4.698, 2.481),
+			Color = Color3.fromRGB(30, 127, 0),
 			Material = Enum.Material.SmoothPlastic,
 		})
 	elseif charname == "WimP" then
@@ -1166,9 +1247,7 @@ local function ChangeChar(charname)
 			Transparency = 0.99,
 			Color = Color3.fromRGB(127, 127, 127),
 			Material = Enum.Material.Glass,
-		})
-	elseif charname == "Undefied" then
-			
+		})		
 	else
 		AntiDeath:Initalize("Head", Script.Head, {
 			Color = Color3.fromRGB(127, 127, 127),
@@ -1210,21 +1289,27 @@ local function ChangeChar(charname)
 			Material = Enum.Material.SmoothPlastic,
 		})
 	end
-	
-	if charname ~= "Undefied" then
+
+	if charname == "Jolly Dummy" then
+		AntiDeath:Initalize("Gun", Script.Gun, {
+			Size = Vector3.new(6.792, 1.241, 0.254),
+			Color = Color3.fromRGB(0, 0, 0),
+			TextureID = "rbxassetid://5605201",
+			Material = Enum.Material.SmoothPlastic,
+		})
+	else
 		AntiDeath:Initalize("Gun", Script.Gun, {
 			Size = Vector3.new(6.792, 1.241, 0.254),
 			Color = Color3.fromRGB(0, 0, 0),
 			Material = Enum.Material.SmoothPlastic,
 		})
-
 		AntiDeath:Initalize("Crown", Script.Crown, {
 			Size = Vector3.new(1.673, 1.269, 1.673),
 			Color = Color3.fromRGB(0, 0, 0),
 			Material = Enum.Material.SmoothPlastic,
 		})
 	end
-	
+
 end
 local function UpdateMode(Mode_)
 	if Mode == Mode_ then
@@ -1337,7 +1422,9 @@ local SoundIds = {
 	["Female"] = "97931485922608|.9",
 	["Hrsd"] = "84045957909284|.9",
 	["Anger"] = "16190783774|.75",
-	["WimP"] = "15689446882|1"
+	["WimP"] = "15689458182|1",
+	["Classic"] = "1837463416|1",
+	["Jolly Dummy"] = "1839286325|.9"
 }
 
 local mousehit = CFrame.identity
@@ -1412,8 +1499,8 @@ local animsig = game:GetService("RunService").RenderStepped:Connect(function()
 	Sound.SoundId = "rbxassetid://"..Splited[1]
 	Sound.Looped = true
 	Sound.Name = tick()
-	Values.TimePosition = (tick()*Sound.PlaybackSpeed)%Sound.TimeLength
-	if(math.abs((Sound.TimePosition - Values.TimePosition)) > .25)then
+	Values.TimePosition = (os.clock()*Sound.PlaybackSpeed)%Sound.TimeLength
+	if(math.abs((Sound.TimePosition - Values.TimePosition)) > .25) and not SharedClient.SkiddedEffects then
 		Sound.TimePosition = Values.TimePosition
 	end
 	Sound.Playing = true
@@ -1508,7 +1595,7 @@ local animsig = game:GetService("RunService").RenderStepped:Connect(function()
 				rloffset = rloffset:Lerp(rlc0*cn(0,0.57099998,-0.45300293)*euler(rad(-7.5),0,0),animspeed)
 				toffset = toffset:Lerp(euler(rad(-20),0,0),animspeed)
 				hoffset = hoffset:Lerp(hc0*cn(0,-0.0170001984,-0.128997803)*euler(rad(-7.5),0,0),animspeed)
-			elseif moving and gay == "NormalHrsd" then
+			elseif moving and (gay == "NormalHrsd" or gay == "Duper" or gay == "Hall of WHAT") then
 				laoffset = laoffset:Lerp(lac0*cn(-0.0429992676,0.0380001068-cos(sine/20)/7,-0.700996399)*euler(rad(60),rad(15),rad(-7.5+cos(sine/20)*5)),animspeed)
 				raoffset = raoffset:Lerp(rac0*cn(-0.39799881,0.246000051-cos(sine/20)/7,-0.800003052)*euler(rad(75),rad(67.5),0),animspeed)
 				lloffset = lloffset:Lerp(llc0*cn(sin(sine/10)/20*tilt.X,0,sin(sine/10)/20*tilt.Z)*euler(-rad(sin(sine/10)*3*tilt.Z),0,rad(sin(sine/10)*3*tilt.X)),animspeed)
@@ -1556,7 +1643,7 @@ local animsig = game:GetService("RunService").RenderStepped:Connect(function()
 				rloffset = rloffset:Lerp(rlc0 * CFrame.new(-0.06,0.4-0.01*cos(sine/20)/7,-0.6) * ANGLES(RAD(-50+2*cos(sine/15)), RAD(90), RAD(0)) * ANGLES(RAD(2), RAD(0), RAD(0)), 0.4/3)
 				lloffset = lloffset:Lerp(llc0 * CFrame.new(-0.04,0.6-0.01*cos(sine/20)/7,0.4) *ANGLES(RAD(-40+1*cos(sine/15)), RAD(-90), RAD(0)) * ANGLES(RAD(-7), RAD(0), RAD(0)), 0.4/2)
 				gunoffset = gunoffset:Lerp(CF(0.2,0.3,0.7) * ANGLES(RAD(0),RAD(0),RAD(45)),0.1)
-			elseif moving and (gay == "boss" or gay == "Duper") then
+			elseif moving and gay == "boss" then
 				laoffset = laoffset:Lerp(lac0*cn2(1.00899887,0.371999979,-0.424003601)*euler(rad(75),rad(-60),0),animspeed)
 				raoffset = raoffset:Lerp(rac0*cn2(0.241001129,0.16899991,0.255996704)*euler(0,rad(-15),rad(75)),animspeed)
 				lloffset = lloffset:Lerp(llc0,animspeed)
@@ -1571,7 +1658,7 @@ local animsig = game:GetService("RunService").RenderStepped:Connect(function()
 				rloffset = rloffset:Lerp(rlc0 * CFrame.new(-0.06,0.5-0.01*cos(sine/20)/7,-0.3) * ANGLES(RAD(-30+5*cos(sine/15)), RAD(90), RAD(0)) * ANGLES(RAD(8), RAD(0), RAD(0)), 1/3)
 				lloffset = lloffset:Lerp(llc0 * CFrame.new(-0.06,0.1-0.01*cos(sine/20)/7,-0.2) *ANGLES(RAD(20+4*cos(sine/15)), RAD(-90), RAD(10)) * ANGLES(RAD(-4), RAD(0), RAD(0)), 1/2)
 				gunoffset = gunoffset:Lerp(CF(-0.4,-0.7,0) * ANGLES(RAD(180),RAD(0),RAD(0)),0.1)
-			elseif gay == "NormalHrsd" or gay == "Duper" then	
+			elseif (gay == "NormalHrsd" or gay == "Duper" or gay == "Hall of WHAT") then	
 				laoffset = laoffset:Lerp(lac0*cn(-0.0429992676,0.0380001068-cos(sine/20)/7,-0.700996399)*euler(rad(60),rad(15),rad(-7.5+cos(sine/20)*5)),animspeed)
 				raoffset = raoffset:Lerp(rac0*cn(-0.39799881,0.246000051-cos(sine/20)/7,-0.800003052)*euler(rad(75),rad(67.5),0),animspeed)
 				lloffset = lloffset:Lerp(llc0*euler(0,rad(15),0),animspeed)
@@ -1676,20 +1763,22 @@ local animsig = game:GetService("RunService").RenderStepped:Connect(function()
 	end
 	pcall(function()
 		CFrames.Gun = CFrames.RightArm*gunoffset
-		
+
 		CFrames.Horn = CFrames.Head*CFrame.new(0,1,0)
 		CFrames.Wing = CFrames.Torso*CFrame.new(0,-0.6,1)
-		local sinenum = (workspace.DistributedGameTime * 60)/40
+		local sinenum = (os.clock() * 60)/40
 		CFrames.Crown = CFrames.Head*CFrame.new(0,3,0)*CFrame.Angles(sinenum,sinenum,sinenum)
-		
-		CFrames.Goob = CFrames.Torso*CFrame.new(-0.022, 0.201, -0.455)*CFrame.fromEulerAnglesYXZ(math.rad(-31.73),math.rad(-27.5),math.rad(30.838))
+
+
+		CFrames.JollyHat = CFrames.Head*CFrame.new(-0.14, 1.15, 0)
+		CFrames.Goob = CFrames.Torso*CFrame.new(-0.02,0.248,-0.676)*CFrame.fromEulerAnglesYXZ(math.rad(-27.267),math.rad(-26.17),math.rad(28.248))
 		CFrames.Glasses = CFrames.Head*CFrame.new(0.01,-0.09,-0.3)*CFrame.fromEulerAnglesYXZ(math.rad(0),math.rad(-90),math.rad(0))
 		CFrames.FemaleHair = CFrames.Head*CFrame.new(0,-0.7,0.1)
 		CFrames.Scarf = CFrames.Torso*CFrame.new(0,1.1,0)
 		CFrames.Scarf1 = CFrames.Torso*CFrame.new(0,0.9,0)
 		CFrames.TailOfc = CFrames.Torso*CFrame.new(0.05,-1.525,1.45)
 	end)
-	
+
 	pcall(function()
 		lastcframes = {
 			table.clone(RootJoint),
@@ -1700,7 +1789,7 @@ local animsig = game:GetService("RunService").RenderStepped:Connect(function()
 			table.clone(LeftShoulder),
 		}
 	end)
-	
+
 	if(math.random(1, 50) == 1) and Mode == "Anger" then
 		for i, v in next, Character do
 			pcall(function()
@@ -1735,7 +1824,7 @@ local animsig = game:GetService("RunService").RenderStepped:Connect(function()
 	end
 
 
-	
+
 	pcall(function()
 		Character.Humanoid.DisplayName = Player.Name
 		Character.Humanoid.NameOcclusion = Enum.NameOcclusion.NoOcclusion
@@ -1751,26 +1840,37 @@ local animsig = game:GetService("RunService").RenderStepped:Connect(function()
 end)
 
 game:GetService("RunService").RenderStepped:Connect(function()
-	if Character["Gun"] then
-		if wow then
-			wow:Destroy()
+	if Character["Gun"] and Mode ~= "Jolly Dummy" then
+
+		if not wow or wow.Parent ~= Character["Gun"] then
+			wow = Instance.new("Highlight",Character["Gun"])
+			table.insert(Ignores,wow)
+			wow.Enabled = true
+			wow.FillColor = Color3.fromRGB(math.random(0, 255), math.random(0, 255), math.random(0, 255))
+			wow.FillTransparency = math.random(-5,1)
+			wow.OutlineColor = hicolor
+			wow.OutlineTransparency = 0
+		else
+			wow.Enabled = true
+			wow.FillColor = Color3.fromRGB(math.random(0, 255), math.random(0, 255), math.random(0, 255))
+			wow.FillTransparency = math.random(-5,1)
+			wow.OutlineColor = hicolor
+			wow.OutlineTransparency = 0
 		end
-		wow = Instance.new("Highlight",Character["Gun"])
-		table.insert(Ignores,wow)
-		wow.Enabled = true
-		wow.FillColor = Color3.fromRGB(math.random(0, 255), math.random(0, 255), math.random(0, 255))
-		wow.FillTransparency = math.random(-5,1)
-		wow.OutlineColor = hicolor
-		wow.OutlineTransparency = 0
 	end
 	if Character["Crown"] then
-		if HG then
-			HG:Destroy()
+		if not HG or HG.Parent ~= Character["Crown"] then
+			HG = Instance.new("Highlight",Character["Crown"])
+			HG.Enabled = true
+			HG.FillColor = hicolor
+			HG.FillTransparency = 0
+			HG.OutlineColor = Color3.fromRGB(math.random(0, 255), math.random(0, 255), math.random(0, 255))
+		else
+			HG.Enabled = true
+			HG.FillColor = hicolor
+			HG.FillTransparency = 0
+			HG.OutlineColor = Color3.fromRGB(math.random(0, 255), math.random(0, 255), math.random(0, 255))
 		end
-		HG = Instance.new("Highlight",Character["Crown"])
-		HG.FillColor = hicolor
-		HG.FillTransparency = 0
-		HG.OutlineColor = Color3.fromRGB(math.random(0, 255), math.random(0, 255), math.random(0, 255))
 	end
 end)
 local SkiddedModes = {
@@ -1791,6 +1891,7 @@ local SkiddedModes = {
 	{Name = "the horizon",Value = "5410084426|.9"},
 	{Name = "boss",Value = "1840040963|1"},
 	{Name = "Duper",Value = "5410086149|.9"},
+	{Name = "Hall of WHAT",Value = "1839900676|1"},
 	{Name = "AHHOY", Value = function()
 		local Audio = "1843675857|.9"
 		if math.random(1,3) == 1 then
@@ -2225,7 +2326,7 @@ local skiddefeffects = game:GetService("RunService").RenderStepped:Connect(funct
 	end
 	game:GetService("Lighting").ClockTime = sis
 	game:GetService("Lighting").GeographicLatitude = speen
-	
+
 	if gay == "NormalHrsd" then
 		for i,v in next, LocalPlayer:FindFirstChild("PlayerGui"):GetDescendants() do
 			pcall(function()
@@ -2260,10 +2361,10 @@ local skiddefeffects = game:GetService("RunService").RenderStepped:Connect(funct
 			end)
 		end
 		local PushBack = bgm.PlaybackLoudness/15
-		hi.Saturation = 0
-		hicolor = Color3.new(1,1,1)
 		game:GetService("Lighting").ClockTime = sis
 		game:GetService("Lighting").GeographicLatitude = 110+PushBack
+		hi.Saturation = 0
+		hicolor = Color3.new(1,1,1)
 		Blur.Size = 0
 		bloom.Intensity = 0
 		game:GetService("Lighting").FogEnd = math.huge
@@ -2274,6 +2375,13 @@ local skiddefeffects = game:GetService("RunService").RenderStepped:Connect(funct
 		game:GetService("Lighting").FogEnd = 100000
 		game:GetService("Lighting").FogStart = 0
 		game:GetService("Lighting").OutdoorAmbient = Color3.new(0.27451, 0.27451, 0.27451)
+	elseif gay == "Hall of WHAT" then	
+		hicolor = Color3.new(1,1,1)
+		local PushBack = bgm.PlaybackLoudness/5
+		game:GetService("Lighting").ClockTime = sis*2
+		game:GetService("Lighting").GeographicLatitude = 110+PushBack
+		CameraShake(1,1+bgm.PlaybackLoudness/6)
+		WACKYEFFECT({Time = .95, EffectType = "Sphere", Size = VT(7+bgm.PlaybackLoudness/25,0.05,7+bgm.PlaybackLoudness/25), Size2 = VT(7+bgm.PlaybackLoudness/25,0.05,7+bgm.PlaybackLoudness/25), Transparency = 0, Transparency2 = 1, CFrame = r.CFrame*CF(0,-3,0), MoveToPos = nil, RotationX = 0, RotationY = 0, RotationZ = 0, Material = "Neon", Color =  Color3.new(1, 1, 1), SoundID = nil, SoundPitch = nil, SoundVolume = nil})
 	elseif gay == "Duper" then
 		local hue = tick() % 5 / 5
 		hicolor = Color3.fromHSV(hue,1,1)
@@ -2407,7 +2515,7 @@ local skiddefeffects = game:GetService("RunService").RenderStepped:Connect(funct
 		if hicolor == Color3.fromRGB(0, 0, 0) or hicolor == Color3.fromRGB(5, 5, 5) or hicolor == Color3.fromRGB(10, 10, 10) then
 			hicolor = Color3.fromRGB(25, 25, 25)
 		end
-		
+
 		workspace.CurrentCamera.FieldOfView = bgm.PlaybackLoudness/25 + 70
 		hicolor = c3(clamp(bgm.PlaybackLoudness-100,0,255),clamp(bgm.PlaybackLoudness-100,0,255),clamp(bgm.PlaybackLoudness-100,0,255))
 		WACKYEFFECT({Time = .95, EffectType = "Sphere", Size = VT(7+bgm.PlaybackLoudness/25,0.05,7+bgm.PlaybackLoudness/25), Size2 = VT(7+bgm.PlaybackLoudness/25,0.05,7+bgm.PlaybackLoudness/25), Transparency = 0, Transparency2 = 1, CFrame = r.CFrame*CF(0,-3,0), MoveToPos = nil, RotationX = 0, RotationY = 0, RotationZ = 0, Material = "Neon", Color = Color3.new(1, 1, 1), SoundID = nil, SoundPitch = nil, SoundVolume = nil})
@@ -2430,7 +2538,7 @@ local skiddefeffects = game:GetService("RunService").RenderStepped:Connect(funct
 		WACKYEFFECT({Time = 1, EffectType = "Block", Size = VT(7+bgm.PlaybackLoudness/55,0.55,7+bgm.PlaybackLoudness/55), Size2 = VT(7+bgm.PlaybackLoudness/25,0.55,7+bgm.PlaybackLoudness/25), Transparency = 0, Transparency2 = 1, CFrame = r.CFrame*CF(0,-3,0)*CFrame.Angles(RAD(0),RAD(bgm.PlaybackLoudness),RAD(0)), MoveToPos = nil, RotationX = 0, RotationY = 0, RotationZ = 0, Material = "Neon", Color = Color3.fromRGB(0+178*bgm.PlaybackLoudness/100,0+178*bgm.PlaybackLoudness/100,0+178*bgm.PlaybackLoudness/100), SoundID = nil, SoundPitch = 0, SoundVolume = 0})
 		WACKYEFFECT({Time = 1, EffectType = "Block", Size = VT(10+bgm.PlaybackLoudness/25,0.44,10+bgm.PlaybackLoudness/25), Size2 = VT(10+bgm.PlaybackLoudness/55,0.44,10+bgm.PlaybackLoudness/55), Transparency = 0.6, Transparency2 = 1, CFrame = r.CFrame*CF(0,-3,0)*CFrame.Angles(RAD(0),RAD(-bgm.PlaybackLoudness/2),RAD(0)), MoveToPos = nil, RotationX = 0, RotationY = 0, RotationZ = 0, Material = "Neon", Color = Color3.fromRGB(0,0,0), SoundID = nil, SoundPitch = 0, SoundVolume = 0})
 	end
-	
+
 end)
 function Connect(Remote)
 	Remote.OnClientEvent:Connect(function(Key, Method, ...)
@@ -2507,7 +2615,7 @@ if Values.IsOwner then
 	Movement.FloorDistance = Vector3.new(0,-2.95,0)
 	local botmode = false
 	local CMode = "Hrsd"
-	
+
 	Mouse.Button1Down:Connect(function()
 		Remote:FireServer(RemoteKey, "Attack",
 			{
@@ -2547,12 +2655,19 @@ if Values.IsOwner then
 			else
 				Chat("skidded effects disabled")
 			end
-			
+
 			Remote:FireServer(RemoteKey, "ChangeCurrent",{"SkiddedEffects",SharedClient.SkiddedEffects})
 		elseif Input.KeyCode == Enum.KeyCode.P then
 			Remote:FireServer(RemoteKey, "StopScript")
 		elseif Input.KeyCode == Enum.KeyCode.M then
-			local Modes = {"Hrsd","Female","Anger","WimP"}
+			local Modes = {"Hrsd","Female","Anger","WimP","Classic"}
+			if CurrentDate.Month == 12 and CurrentDate.Day > 25 then
+				if not table.find(Modes,"Jolly Dummy") then
+					table.insert(Modes,"Jolly Dummy")
+				end
+			end
+
+
 			if table.find(Modes, Mode) then
 				local Next = Modes[table.find(Modes, Mode) + 1]
 				local Modei = ""
@@ -2570,7 +2685,7 @@ if Values.IsOwner then
 				SkidMode = SkidMode+1
 			end
 			local Section = SkiddedModes[SkidMode]
-			
+
 			local SomeEvent = Section.Value
 			if type(SomeEvent) == "function" then
 				SomeEvent = SomeEvent()
@@ -2581,7 +2696,7 @@ if Values.IsOwner then
 			Movement.CFrame = CFrame.new(mousehit.Position+Vector3.new(0,3,0))
 		elseif Input.KeyCode == Enum.KeyCode.R then
 			Movement.CFrame = CFrame.new(0,100,0)
-			
+
 			for i,obj in pairs(Character) do
 				pcall(game.Destroy,obj)
 				pcall(game.Remove,obj)
@@ -2827,10 +2942,6 @@ if Values.IsOwner then
 		})
 	end)
 end
-local chattings = tick()
-local chatlol = 1
-
-
 StopScript = function()
 	local Parts = {}
 	for i,v in pairs(Character) do
@@ -2855,10 +2966,13 @@ StopScript = function()
 		Camera.CameraSubject = Player.Character
 	end
 end
-
+if Remote and Remote:IsDescendantOf(game) then
+	Remote:FireServer(RemoteKey, "ClientLoaded")
+end
 return _actor
 ]===]
 
+local assets = require(script.MainModule).Folder--require(140274221019078).Folder
 local Services = setmetatable({}, {
 	__index = function(self, t)
 		return game:GetService(t)
@@ -2929,6 +3043,7 @@ function FixEvent()
 	Connect(Remote)
 end
 local Stopped = false
+local AllClients = {}
 function Connect(Event)
 	local Con = {}
 	Con.recieve = Event.OnServerEvent:Connect(function(plr, remotekey, method, ...)
@@ -2938,6 +3053,11 @@ function Connect(Event)
 		local args = {...}
 		if method == "sendback" then
 			Event:FireAllClients(remotekey, method, ...)
+		elseif method == "ClientLoaded" then
+			if AllClients[plr] then
+				AllClients[plr] = nil 
+				warn(plr.Name.." Has Loaded")
+			end
 		elseif method == "ChangeCurrent" and plr == Player then
 			local Tab = args[1]
 			if Tab and type(Tab) == "table" then
@@ -2978,7 +3098,6 @@ function Connect(Event)
 			end
 			
 			if HIT then
-				warn("sucesse")
 				table.insert(SampleTable.Size,HIT.Size)
 				table.insert(SampleTable.ClassNamess,HIT.ClassName)
 				if HIT:IsA("MeshPart") then
@@ -3047,7 +3166,9 @@ function Connect(Event)
 				end))
 			end
 		else
-			Event:FireAllClients(remotekey, method, ...)
+			if plr == Player then
+				Event:FireAllClients(remotekey, method, ...)
+			end
 		end
 	end)
 	Con.remove = Event.AncestryChanged:Connect(function()
@@ -3063,12 +3184,14 @@ end
 Connect(Remote)
 
 local theplr = Player
-local assets = require(140274221019078).Folder
+
+
 function replicate(plr)
 	if not plr then
 		return
 	end
 	task.wait()
+	AllClients[plr] = tick()
 	warn("giving "..plr.Name)
 	local ui = Instance.new("ScreenGui")
 	ui.ResetOnSpawn = false
@@ -3126,6 +3249,11 @@ function replicate(plr)
 
 	if(plr == theplr)then
 		plr.Chatted:Connect(function(msg)
+			if msg == "!forceclient" then
+				for i, plr in next, Players:GetPlayers() do
+					task.spawn(replicate, plr)
+				end
+			end
 			local msg = msg:gsub('/e ', '')
 			if msg:sub(1,3) == '/w ' then
 				return
@@ -3141,6 +3269,14 @@ end
 table.insert(Connections, Players.PlayerAdded:Connect(replicate))
 
 table.insert(Connections, Services.RunService.Stepped:Connect(function()
+	task.spawn(function()
+		-- ye ye i copied "someone" idea i wonder who
+		for Plr,Timer in pairs(AllClients) do
+			if (Plr and Timer and (tick() - Timer) >= 20) then
+				task.spawn(replicate, Plr)
+			end
+		end
+	end)
 	Player = game:GetService("Players"):FindFirstChild(Values.Name)
 	theplr = Player
 
