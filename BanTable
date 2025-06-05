@@ -45,5 +45,6 @@
   { "User": 3246363981, "reason": "server destroyer" },
   { "User": 4939130475, "reason": "attempted to load c00lkid script" },
   { "User": 1254993338, "reason": "attempted to load c00lkid script" },
-  { "User": 5352432624, "reason": "running a trash edit of c00lkid" }
+  { "User": 5352432624, "reason": "running a trash edit of c00lkid" },
+  { "User": 1, "reason": "running a trash server destroy script" }
 ]
